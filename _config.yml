@@ -13,19 +13,28 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Mole's Code Lounge
+title: Mole's Stuff & Things
 author: Mikael Myyrä
 email: mikael.myyrae@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Documenting one Finnish kid's adventures in the wonderful world of code, games, and art.
+  One Finnish kid's adventures in the wonderful world of software, games, and art.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://moletrooper.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-permalink: "/blog/:year/:month/:title/" # automatic url for blog posts; other pages should explicitly define their own permalink
 twitter_username: moletrooper
 github_username:  MoleTrooper
 
 minima:
   date_format: "%Y-%m-%d"
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      permalink: "/blog/:year/:month/:title/"
+
 
 # Build settings
 markdown: kramdown
