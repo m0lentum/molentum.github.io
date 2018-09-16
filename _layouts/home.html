@@ -1,12 +1,46 @@
 ---
-layout: default
+
 ---
 
-<div class="home">
-  {%- if page.title -%}
-  <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  <a class="blog-link" href="/blog/">Blog</a>
+{%- include head.html -%}
 
-</div>
+<body>
+
+  <main class="page-content" aria-label="Content">
+
+    <div class="home-header-wrapper">
+      <div class="home-header">
+
+        <h1 class="home-title">{{ site.title }}</h1>
+
+        <div class="home-link-container">
+          <a class="home-link" href="/blog/">
+            Blog
+          </a>
+          <a class="home-link disabled" href="/games/">
+            Games
+          </a>
+          <a class="home-link disabled" href="/art/">
+            Art
+          </a>
+        </div>
+
+        <img src="/assets/moleThink_big.png" class="abs bot right">
+        <img src="/assets/moleYo_big.png" class="abs bot left">
+      </div>
+    </div>
+
+    <div class="wrapper">
+      {{ content }}
+    </div>
+
+  </main>
+
+  {%- include footer.html -%}
+
+</body>
+
+</html>

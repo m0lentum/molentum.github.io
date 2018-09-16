@@ -1,0 +1,92 @@
+---
+---
+
+@import "minima";
+
+$lime: #bfff5e;
+$mint: #81ffb3;
+$limemintgradient: linear-gradient(to right, $mint, $lime, $lime, $mint);
+$darkcyan: #0e3344;
+
+
+
+.site-header {
+  background: $limemintgradient;
+  border-bottom: 2px solid black;
+}
+
+.home-header-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.home-header {
+  position: relative;
+
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+
+  width: 100%;
+  padding: 30px 0;
+  border: 3px solid $darkcyan;
+  border-right: none;
+  border-left: none;
+  
+  color: $darkcyan;
+  background: $limemintgradient;
+
+  .home-title {
+    font-weight: bolder;
+  }
+
+  .home-link-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+  }
+  
+  .home-link {
+    display: block;
+
+    border: 2px solid $darkcyan;
+    border-radius: 5px;
+
+    font-weight: bold;
+    color: $darkcyan;
+
+    width: 80px;
+    padding: 3px;
+    margin: 0 5px;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.disabled {
+      color: gray;
+      border-color: gray;
+    }
+  }
+}
+
+
+.abs {
+  position: absolute;
+
+  &.bot {
+    bottom: 0;
+  }
+  &.top {
+    top: 0;
+  }
+  &.left {
+    left: 0;
+  }
+  &.right {
+    right: 0;
+  }
+}
