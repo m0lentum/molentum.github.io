@@ -17,7 +17,7 @@ title: Mole's Nerd Cave
 author: Mikael Myyrä
 email: mikael.myyrae@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  One Finnish kid's adventures in the wonderful world of software, games, and art.
+  One Finnish kid's adventures in software, art, and software as art.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://moletrooper.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: moletrooper

@@ -35,12 +35,14 @@ $darkcyan: #0e3344;
 
         padding: 0 3px;
         margin: 0 3px;
+      }
+    }
 
-        color: inherit;
-        &:hover {
-          text-decoration: none;
-          opacity: 0.6;
-        }
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: none;
+        opacity: 0.6;
       }
     }
   }
@@ -72,12 +74,19 @@ $darkcyan: #0e3344;
 
   .home-title {
     font-weight: bolder;
+    margin-bottom: 0; // margin set on the description
+  }
+
+  .home-desc {
+    margin: 20px;
   }
 
   .home-link-container {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+
+    margin: 5px 0;
   }
   
   .home-link {
