@@ -5,10 +5,11 @@
 
 
 
-$lime: #bfff5e;
-$mint: #81ffb3;
+$lime: #cfff88;
+$mint: #a0ffc6;
 $limemintgradient: linear-gradient(to right, $mint, $lime, $lime, $mint);
 $darkcyan: #0e3344;
+$thickborder: 3px solid $darkcyan;
 $mildorange: #f0ece2;
 
 
@@ -65,9 +66,7 @@ $mildorange: #f0ece2;
 
   width: 100%;
   padding: 30px 0;
-  border: 3px solid $darkcyan;
-  border-right: none;
-  border-left: none;
+  border-bottom: $thickborder;
   
   color: $darkcyan;
   background: $limemintgradient;
@@ -134,7 +133,7 @@ $mildorange: #f0ece2;
     padding: 30px;
 
     img {
-      border: 3px solid $darkcyan;
+      border: $thickborder;
       border-radius: 10px;
       margin: 0;
 
@@ -146,6 +145,10 @@ $mildorange: #f0ece2;
       float: right;
       margin-right: 0;
       margin-left: 20px;
+    }
+
+    .latest {
+      margin-top: 2rem;
     }
   }
 }
@@ -181,6 +184,13 @@ $mildorange: #f0ece2;
   &.right {
     right: 0;
   }
+}
+
+.site-footer {
+  background: $limemintgradient;
+  border-top: $thickborder;
+  
+  .footer-col-wrapper { color: $darkcyan; }
 }
 
 @media (max-width: 600px) {
