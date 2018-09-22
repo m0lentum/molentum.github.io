@@ -9,7 +9,7 @@
 
 <body>
 
-  <main class="page-content" aria-label="Content">
+  <main aria-label="Content">
 
     <div class="home-header-wrapper">
       <div class="home-header">
@@ -38,6 +38,21 @@
       <div class="sidebar left"></div>
       <div class="content">
         {{ content }}
+
+        <div class="latest blog">
+          <h1>Latest blog post</h1>
+          {% assign post = site.posts.first %}
+          {% assign content = post.content %}
+          {% include post_detail.html %}
+        </div>
+        <div class="latest game">
+          <h1>Latest game</h1>
+          <p>This section is still empty.</p>
+        </div>
+        <div class="latest art">
+          <h1>Latest art</h1>
+          <p>This section is still empty.</p>
+        </div>
       </div>
       <div class="sidebar right"></div>
     </div>
