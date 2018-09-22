@@ -7,12 +7,18 @@
 
 $lime: #cfff88;
 $mint: #a0ffc6;
+$white: #fdfdfd; // the Minima theme's background color
 $limemintgradient: linear-gradient(to right, $mint, $lime, $lime, $mint);
 $darkcyan: #0e3344;
 $thickborder: 3px solid $darkcyan;
 $mildorange: #f0ece2;
 
 
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
 
 .site-header {
   background: $limemintgradient;
@@ -113,6 +119,8 @@ $mildorange: #f0ece2;
 }
 
 .content-wrapper {
+  flex-grow: 1;
+
   display: flex;
   flex-flow: row nowrap;
   align-content: stretch;
@@ -124,8 +132,8 @@ $mildorange: #f0ece2;
     align-items: center;
     justify-content: center;
 
-    &.left { background: linear-gradient(to right, $mildorange, white); }
-    &.right { background: linear-gradient(to left, $mildorange, white); }
+    &.left { background: linear-gradient(to right, $mildorange, $white); }
+    &.right { background: linear-gradient(to left, $mildorange, $white); }
   }
 
   .content {

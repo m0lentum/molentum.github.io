@@ -9,30 +9,30 @@
 
 <body>
 
-  <main aria-label="Content">
+  <div class="home-header-wrapper">
+    <div class="home-header">
 
-    <div class="home-header-wrapper">
-      <div class="home-header">
+      <h1 class="home-title">{{ site.title }}</h1>
+      <p class="home-desc">{{ site.description }}</p>
 
-        <h1 class="home-title">{{ site.title }}</h1>
-        <p class="home-desc">{{ site.description }}</p>
-
-        <div class="home-link-container">
-          <a class="home-link" href="/blog/">
-            Blog
-          </a>
-          <a class="home-link disabled" href="/games/">
-            Games
-          </a>
-          <a class="home-link disabled" href="/art/">
-            Art
-          </a>
-        </div>
-
-        <img src="/assets/moleThink_big.png" class="molemote big right">
-        <img src="/assets/moleYo_big.png" class="molemote big left">
+      <div class="home-link-container">
+        <a class="home-link" href="/blog/">
+          Blog
+        </a>
+        <a class="home-link disabled" href="/games/">
+          Games
+        </a>
+        <a class="home-link disabled" href="/art/">
+          Art
+        </a>
       </div>
+
+      <img src="/assets/moleThink_big.png" class="molemote big right">
+      <img src="/assets/moleYo_big.png" class="molemote big left">
     </div>
+  </div>
+
+  <main aria-label="Content">
 
     <div class="content-wrapper">
       <div class="sidebar left"></div>
@@ -57,9 +57,9 @@
       <div class="sidebar right"></div>
     </div>
 
-    {%- include footer.html -%}
-
   </main>
+
+  {%- include footer.html -%}
 
 </body>
 
