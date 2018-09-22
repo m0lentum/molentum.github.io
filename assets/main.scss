@@ -9,6 +9,7 @@ $lime: #bfff5e;
 $mint: #81ffb3;
 $limemintgradient: linear-gradient(to right, $mint, $lime, $lime, $mint);
 $darkcyan: #0e3344;
+$mildorange: #f0ece2;
 
 
 
@@ -53,7 +54,6 @@ $darkcyan: #0e3344;
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  margin-bottom: 1em;
 }
 
 .home-header {
@@ -116,7 +116,7 @@ $darkcyan: #0e3344;
 .content-wrapper {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  align-content: stretch;
 
   .sidebar {
     flex: 1 0 auto;
@@ -125,24 +125,36 @@ $darkcyan: #0e3344;
     align-items: center;
     justify-content: center;
 
-    margin: 10px;
+    &.left { background: linear-gradient(to right, $mildorange, white); }
+    &.right { background: linear-gradient(to left, $mildorange, white); }
   }
 
   .content {
     flex: 0 1 800px;
-    padding: 20px;
-  }
-}
+    padding: 30px;
 
-.sidebarimg {
-  border: 3px solid $darkcyan;
-  border-radius: 10px;
+    img {
+      border: 3px solid $darkcyan;
+      border-radius: 10px;
+      margin: 0;
+
+      float: left;
+      margin-right: 20px;
+    }
+
+    p:nth-child(odd) img {
+      float: right;
+      margin-right: 0;
+      margin-left: 20px;
+    }
+  }
 }
 
 @media (max-width: 1100px) {
   .content-wrapper {
     flex-flow: column nowrap;
-
+    
+    border-bottom: none;
     .sidebar {
       &.left {
         order: 1;
