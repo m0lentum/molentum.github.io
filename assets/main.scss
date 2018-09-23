@@ -137,7 +137,7 @@ main {
   }
 
   .content {
-    flex: 0 1 800px;
+    flex: 0 1 1000px;
     padding: 30px;
 
     img {
@@ -157,6 +157,7 @@ main {
 
     .latest {
       margin-top: 2rem;
+      clear: both;
     }
   }
 }
