@@ -10,7 +10,7 @@ game engine suitable for rapid prototyping and game jams as well as more polishe
 This blog is meant to document the development and ideas behind it in a fair bit of detail - mostly to organize and
 revise my own thoughts, but with the hope that someone else might also find it interesting and/or helpful.
 In this first post I will outline what exactly I am trying to accomplish and why I am doing it.
-
+<!--excerpt-->
 # But why?
 I'm the kind of person whose first thought when seeing something cool is "how can I do this too?".
 Probably the second coolest thing in the universe to me, right after computers, is movement and the mathematics therein.
