@@ -72,5 +72,4 @@ Also, for those interested, the full source code to this project lives on  [GitH
 
 # Coming up
 The next post in this series will be all about architecture. We'll take a look at
-[Entity-Component-System](https://en.wikipedia.org/wiki/Entity%E2%80%93component%E2%80%93system),
-how I implemented it, and a quick glance at my game loop and state machine.
+[Entity-Component-System](https://en.wikipedia.org/wiki/Entity%E2%80%93component%E2%80%93system) and how I implemented it.
