@@ -42,7 +42,7 @@ struct Player {
 ```
 * <small>Note: in Rust there is no data inheritance, so we couldn't do the first approach even if we wanted to.</small>
 
-This is *type-level* composition - we're defining a type for every distinct set of components.
+This is *type-level* composition -- we're defining a type for every distinct set of components.
 [This blog post](oop-dead) provides another, more fleshed out perspective on the matter.
 
 What if we zoom in a little from this object-focused view and start thinking about their components individually?
@@ -60,15 +60,15 @@ Caches work best with data that is laid out in contiguous blocks, so
 in order to make use of the cache as much as possible, data that is accessed together should be together in memory.
 
 Alright, with this information, let's get back to thinking about game objects. What are the operations we perform on them?
-We have many different, largely independent update loops going on - physics, AI, controls, rendering, and so on.
-You may notice that all of these loops only use a certain subset of an object's components:
+We have many different, largely independent update loops going on: physics, AI, controls, rendering, and so on.
+You may notice that all of these loops only use a certain subset of an object's components --
 for instance, rigid body physics needs a transform, body and collider, and rendering needs a mesh and a transform.
 In the object-oriented design, all components of an object are together in memory.
 This means that in each loop, as we iterate over objects, we're accessing some data we don't use at all.
 
-Our update loops could make better use of the processor cache if every component of one type was together in one place.
-In a world like this the loops would get to zip through some nice contiguous memory where everything is relevant to their task.
-This is one of the problems addressed by ECS.
+Our update loops could make better use of the processor cache if they didn't need to skip over unused components like this.
+Ideally, they want to zip through some nice contiguous memory where everything is relevant to their task.
+Trying to optimize our memory layout like this is one of the goals of ECS.
 
 # Entity-Component-System
 As mentioned earlier, ECS is really just a fancy interface for composition,
