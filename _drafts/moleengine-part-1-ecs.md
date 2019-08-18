@@ -6,7 +6,7 @@ categories: engine
 ---
 
 Entity-Component-System is a flexible and scalable architecture for runtime data composition.
-It's well suited for describing objects in a video game thanks to good performance
+It's well suited for describing objects in a video game due to good performance
 and convenient authoring of new object types.
 This post is a brief intro to the whys and hows of the subject based on my learnings implementing it in [MoleEngine].
 <!--excerpt-->
@@ -43,7 +43,7 @@ struct Player {
 * <small>Note: in Rust there is no data inheritance, so we couldn't do the first approach even if we wanted to.</small>
 
 This is *type-level* composition - we're defining a type for every distinct set of components.
-[This blog post](oop-dead) provides another, perhaps more fleshed out perspective on the matter.
+[This blog post](oop-dead) provides another, more fleshed out perspective on the matter.
 
 What if we zoom in a little from this object-focused view and start thinking about their components individually?
 
@@ -83,3 +83,4 @@ As a result, we now need a way to identify which data belongs to which object.
 [caches]: https://arstechnica.com/gadgets/2002/07/caching/
 [Specs]: https://github.com/slide-rs/specs
 [MoleEngine]: https://moletrooper.github.io/blog/2018/09/moleengine-part-0-introduction/
+[Rust]: https://www.rust-lang.org/
