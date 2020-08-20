@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Building a Game Engine: Architecture"
+title: "Starframe dev blog: Architecture"
 #date:   2018-09-23 16:10:00 +0300
 categories: engine
 ---
 
 Most of the past two years of [Starframe] development have gone into implementing and reimplementing
 the basic structures that describe a game and its content.
-This is a story about the things I've tried and learned so far.
+This post is about what I've tried so far and what those attempts taught me.
 
 <!--excerpt-->
 
@@ -26,7 +26,7 @@ Everything from physics libraries to graphical editing tools is considered part 
 On the other hand, many games have tools and background libraries built specifically for them.
 In these cases the separation between "engine" and "gameplay" code can get very blurry.
 
-In general, though, the tools provided by an engine tend to be fairly independent from each other, especially if they're meant to be reusable in multiple games.
+In general, though, the tools provided by an engine tend to be fairly independent from each other, especially if they're meant to be used in multiple games.
 A physics library doesn't need to know anything about graphics.
 A level editor doesn't need to know anything about physics, nor does an input manager or a sound system, and so on.
 As such, it doesn't make much sense to talk about the overall architecture of an engine – most of these pieces don't need to fit together at all.
@@ -52,11 +52,12 @@ because every time I redo it I have to update large parts of everything else.
 
 # Building up
 
-Before we get too deep into the mud here, I want any beginners reading this to know that game objects don't have to be complicated
-and unless you're more interested in this stuff than actually making games (like I am, apparently),
-implementing complicated things yourself is going to be a waste of time. So let's take a moment to start simple.
+Before we get to the things I've been building, let's establish a starting point that we can compare to.
+I've made a thing that's considerably complicated, and there are reasons why I want to have that thing,
+but you can boil the same concept down to a very simple thing indeed.
 
-In small projects you can probably get away with using simple structs as objects.
+We already have a type system, why not just use it to represent our objects?
+
 ```rust
 struct Goblin {
   position: Vector2<f32>,
@@ -66,12 +67,14 @@ struct Goblin {
   has_a_gun: bool,
 }
 ```
-In languages with support for sum types (a.k.a tagged unions or fat enums) you can even build a single type that can be queried
+
+In languages with support for sum types (a.k.a. tagged unions or fat enums) you can even build a single all-encompassing object type that can be queried
 for components in a similar fashion to the more complicated systems we're about to discuss.
+
 ```rust
 enum GameObject {
   Player(Player),
-  Enemy(Enemy),
+  Goblin(Goblin),
   Projectile(Projectile),
   Decoration(Decoration),
   // ...
@@ -84,21 +87,61 @@ impl GameObject {
       // ... you get the idea
     }
   }
-  get_sprite(&self) -> Option<&Sprite> { /* ... */ }
+  pub fn get_sprite(&self) -> Option<&Sprite> {
+    match self {
+      // ...
+    }
+  }
 }
 ```
+
 There's a good chance something like this is already flexible enough to support your entire game without much trouble.
-Check out [this post by Mason Remaley][way-of-rhea] for a more detailed description of such a system.
-This approach is dead simple and has some genuine advantages over other systems,
-but also some notable problems, both of which I'll discuss later.
+Check out [this post by Mason Remaley][way-of-rhea] for a more detailed description of such a system, as implemented in the game Way of Rhea.
+This approach is dead simple and has some genuine advantages over other systems (simplicity in itself is a big one!),
+but also some notable problems, both of which will be touched upon later.
 
-## Attempt 1: ECS
+What would this object model look like as a graph? This is a strange question at this point but bear with me, it'll make more sense later.
+The smallest unit we can operate on in this model is a whole object.
+We can look at different parts inside them to produce different behaviors, but we can't pull those parts apart and put them in different places.
+Therefore, the 'atomic' unit of this world and the node type of this graph would be the whole object.
+Representing different behaviors with different colors, this graph would look something like this:
 
-arst
+TODO: not sure if this is good here, maybe only discuss it in the actual graph talk
+
+![graph_1](/assets/graphs/structs.png)
+
+The nodes are entirely self-contained and don't need any edges to connect them to anything.
+
+# Attempt 1: ECS
+
+Entity-Component-System, or ECS for short, seems (to my limited perspective)
+to be a de-facto standard in most of the game dev world at the moment.
+There are various Rust crates implementing it, such as [specs], [legion], and [hecs].
+At the time I started, `specs` was the big ECS crate everyone was using, I saw [this popular talk by Catherine West][west-talk],
+and naturally this led me to look into the `specs` source as my primary reference.
+
+**So what is it?**
+
+ECS takes the struct from our initial example, gives it an identifier, rips all its fields out and distributes them
+into what are essentially database tables where they can be looked up with the identifier.
+The identifier is called the Entity, and the fields are Components.
+Game logic can select entities that have a certain set of components and ignore the rest.
+Functions that do this are called Systems.
+
+This improves performance by grouping data in memory more efficiently than those big everything-structs from earlier.
+To put it briefly, memory lookups are extremely slow, and processors do best when they get to go from one memory location
+to the one right next to it and repeat. This optimization is accomplished using _caches_ of very fast memory close to the processor.
+The big structs have a bunch of irrelevant things in them that take up space in the cache,
+whereas ECS database tables only have one type of thing each, so we can pick and choose what to pull into the cache when running Systems.
+
+The other benefits of this pattern stem from its nature as a dynamic type system, as do many of its flaws.
 
 <!-- links -->
 
 [starframe]: https://github.com/MoleTrooper/starframe
 [amethyst]: https://amethyst.rs/
-[specs]: https://github.com/amethyst/specs
 [way-of-rhea]: https://www.anthropicstudios.com/2019/06/05/entity-systems/
+[specs]: https://github.com/amethyst/specs
+[legion]: https://github.com/TomGillen/legion
+[hecs]: https://github.com/Ralith/hecs
+[west-talk]: https://www.youtube.com/watch?v=aKLntZcp27M
