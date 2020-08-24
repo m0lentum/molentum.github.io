@@ -138,7 +138,7 @@ main {
   }
 
   .content {
-    flex: 0 1 1000px;
+    flex: 0 1 800px;
     padding: 30px;
 
     img {
@@ -163,7 +163,7 @@ main {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
   .content-wrapper {
     flex-flow: column nowrap;
 
