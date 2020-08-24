@@ -6,7 +6,7 @@ categories: engine
 ---
 
 I've spent a large portion of the past two years writing and rewriting
-the basic structures that describe a game and its content in [Starframe].
+the basic structures that describe a game and its content in [Starframe] (formerly known as MoleEngine).
 This post is about what I've tried so far and what those attempts taught me.
 
 <!--excerpt-->
@@ -16,11 +16,16 @@ before diving into the Entity-Component-System architecture and my efforts at im
 Finally, I'll cover my latest approach, which represents objects as a more general graph.
 
 Note: many details here are specific to the Rust language, as are all the code examples,
-but most of the information can be applied to any environment.
+but a lot of the information can be applied to any environment.
+Feel free to skip around if you're not interested in implementation details.
 
 # Intro: Engines and objects
 
-It's difficult to define exactly what a game engine is. The best-known ones used in commercial games,
+When I started this project I had this vague idea that it should follow an architecture of some kind.
+After some thought and experience I realized there was probably no good definition of what that even meant.
+Let me take a moment to ponder about it here.
+
+First of all, it's difficult to define exactly what a game engine even is. The best-known ones sold as products of their own,
 like Unity, Unreal and Godot, are huge suites of reusable tools for every aspect of game production.
 Everything from physics libraries to graphical editing tools is considered part of the package that is the engine.
 On the other hand, many games have tools and background libraries built specifically for them.
@@ -29,13 +34,15 @@ In these cases the separation between "engine" and "gameplay" code can get very 
 In general, though, the tools provided by an engine tend to be fairly independent from each other, especially if they're meant to be used in multiple games.
 A physics library doesn't need to know anything about graphics.
 A level editor doesn't need to know anything about physics, nor does an input manager or a sound system, and so on.
-As such, it doesn't make much sense to talk about the overall architecture of an engine – most of these pieces don't need to fit together at all.
+As such, it doesn't make much sense to talk about the overall architecture of an engine – most of these pieces hardly need to fit together at all.
 However, there is one point where almost everything is connected, and that is the **game object**, also known as the **entity**.
 I'll speak about game objects here to separate this more general concept from the entities found in the Entity-Component-System architecture.
 
-Game objects are another thing whose definition is quite hard to nail down, but I'm sure you have an intuition for it.
-They're _things_ that exist in a game world and probably interact with other _things_ therein in some way.
-To interact, or indeed have any purpose at all, they need to have some data associated with them.
+Game objects are another thing whose definition is quite hard to nail down.
+If you'll forgive the hand-waving, they're _things_ that exist in a game world in a similar,
+but not quite the same, way to real objects in the real world. Things with a distinct identity (in the metaphysical sense, not the mathematical).
+
+In order to have any purpose or behavior, game objects need to have some data associated with them.
 These associations can be implemented in many ways, and any tool or system
 that touches game objects (i.e. most of them) needs to be able to follow them.
 Well, either that or you need additional compatibility code converting things to whatever formats each system wants,
@@ -46,6 +53,7 @@ into their entity system of choice.
 
 Anyway, this is where architecture suddenly becomes crucial in a fully integrated engine like mine –
 almost every higher-level system depends on how you compose game objects.
+So in a sense, you could call the architecture of game objects the fundamental architecture of a game engine.
 This is why I've spent so much time thinking about this and doing it over and over.
 I don't want to build too many systems on top of my object model until I'm happy with it,
 because every time I redo it I have to update large parts of everything else.
@@ -56,7 +64,7 @@ Before we get to the things I've been building, let's establish a starting point
 I've made a thing that's considerably complicated, and there are reasons why I want to have that thing,
 but you can boil the same concept down to a very simple thing indeed.
 
-We already have a type system provided by the language, why not just use it to represent our objects?
+We already have a type system provided by our programming language, why not just use it to represent our objects?
 
 ```rust
 struct Goblin {
@@ -68,8 +76,9 @@ struct Goblin {
 }
 ```
 
-In languages with support for sum types (a.k.a. tagged unions or fat enums) you can even build a single all-encompassing object type that can be queried
-for components in a similar fashion to the more complicated systems we're about to discuss.
+In languages with support for sum types (a.k.a. tagged unions or fat enums)
+you can even build a single all-encompassing object type (or multiple some-encompassing ones)
+that can be queried for components in a similar fashion to the more complicated systems we're about to discuss.
 
 ```rust
 enum GameObject {
@@ -92,14 +101,14 @@ impl GameObject {
 }
 ```
 
-<small>(In real life I would probably make a parameterized trait like `GetComponent<T>` and use it to make systems generic,
-but that's not relevant to the example)
+<small>(In real life I would probably implement these getters as traits
+and use them to make my code generic to the concrete object type, but that's not relevant to the example)
 </small>
 
 There's a good chance something like this is already flexible enough to support your entire game without much trouble.
 Check out [this post by Mason Remaley][way-of-rhea] for a more detailed description of such a system, as implemented in the game Way of Rhea.
 This approach is dead simple and has some genuine advantages over other systems (simplicity in itself is a big one!),
-but also some notable problems, both of which will be touched upon later.
+but also some notable inefficiencies. We'll talk about them later when comparing back to this.
 
 # Attempt 1: Generic ECS
 
@@ -138,11 +147,16 @@ a classic example is an RPG character getting status effects added and removed d
 
 **My implementation**
 
-At this point I was still wrapping my head around what an ECS even is, and I started by more or less just copying what `specs` does.
+At this point I was still wrapping my head around what an ECS even is, and I started by more or less just copying what `specs` did.
 I had a top-level manager called `Space` that gave out entity IDs, kept track of alive entities with a `BitSet` from the `hibitset` crate,
-and stored all the component tables in an `AnyMap` (a container that stores pointers to any given type indexed by the type,
+and stored all the component tables in an `AnyMap` (a container that stores `Any` pointers indexed by the type,
 essentially a `HashMap<TypeId, Box<Any>>`) from the `anymap` crate.
-I made different types of `Storage` for my component tables that would be selected by the user based on how common the component was —
+
+Tables were inside `RwLock`s to allow accessing many in parallel.
+They also had their own `BitSet`s to keep track of entities using them,
+and queries used binary operations on these to find the entities that had the components they were looking for.
+
+I had different types of `Storage` for my component tables that would be selected by the user based on how common the component was —
 `VecStorage` when almost every object has it, `DenseVecStorage` when it's common but not ubiquitous, `HashMapStorage` when it's rare,
 and `NullStorage` when it's a zero-sized tag component.
 Object IDs contained a generation index that allowed them to be deleted and overwritten with new things
@@ -154,12 +168,13 @@ I wrote a rather long procedural macro that generated query implementations for 
 like this one from my physics module:
 
 ```rust
+// module paths modified for clarity, `sf` is `starframe`
 #[derive(ComponentQuery)]
 pub struct RigidBodyQuery<'a> {
     #[id]
-    id: ecs::IdType,
-    tr: &'a mut util::Transform,
-    body: &'a mut phys::RigidBody,
+    id: sf::ecs::IdType,
+    tr: &'a mut sf::util::Transform,
+    body: &'a mut sf::physics::RigidBody,
 }
 ```
 
@@ -171,9 +186,11 @@ Additional concepts I added from outside the realm of `specs` were `Recipe`s and
 A `Recipe` is very similar to the idea of a _prefab_ in most game engines.
 It's a simple struct that knows how to turn itself into an entity, and with some macros around it,
 also knows how to read itself from a file with `serde`.
-[Here][ecs-impl-1-recipes]'s what their definitions looked like.
-If you're wondering about the `recipes!` macro (which I don't use anymore because it made people wonder),
-it simply creates an enum with the given types as its variants (plus a bit more magic that was later deemed unnecessary).
+[Here's what their definitions looked like.][ecs-impl-1-recipes]
+
+<small>If you're wondering about the `recipes!` macro (which I don't use anymore because it made people wonder),
+it simply creates an enum with the given types as its variants, plus a bit more magic that was later deemed unnecessary.</small>
+
 With these I was able to read scenes from RON files like this:
 
 ```ron
@@ -202,9 +219,97 @@ This was especially important in this implementation because my `Space`s had a m
 
 The last revision of source code with this implementation can be found [here][ecs-impl-1].
 
-# Attempt 2: Distributed ECS
+# Attempt 2: Decentralized ECS
 
-arst
+I kept most of the first implementation for this one. `Space`s, `Storage`s, `Pool`s, the whole gang was still around,
+but the way I stored and queried my component tables was very different.
+
+`AnyMap`s are cool and all, but they limit the compile-time checks you can do for things you put inside them.
+What if I let the user define their own structs with the tables they want?
+This way we could make better use of Rust's type system and, more importantly, borrow checker to hand out references instead
+of locking things at runtime.
+However, the central `Space` was still necessary, and if possible, I'd still like to force every table to be connected to it somehow.
+
+What I came up with was to let the user put anything they wanted in one field of `Space`,
+but make querying for components only available through an interface of `Space`.
+While still technically possible to break things by mixing tables from different Spaces,
+you'd need some pretty acrobatic moves to do it.
+Here's what the types looked like from the perspective of a game:
+
+```rust
+pub type MainSpace = sf::core::Space<MainSpaceFeatures>;
+
+pub struct MainSpaceFeatures {
+    pub transform: sf::core::TransformFeature,
+    pub shape: sf::graphics::ShapeFeature,
+    pub physics: sf::physics::PhysicsFeature,
+    pub player: player::PlayerController,
+    pub camera: sf::graphics::camera::MouseDragCamera,
+}
+```
+
+All these types ending in `Feature` contain component tables.
+Many of them also have game logic, so you could call them Systems in the ECS sense while also being parts of the data structure itself.
+This is why I'm calling this thing "decentralized" — the data structure is scattered across a variety of types.
+
+A nice thing about the resulting interfaces is that they explicitly tell you what other Features/tables they depend on,
+so you must have everything around to be able to call them at all (as opposed to earlier where systems
+looked things up on their own using the macro-generated queries).
+Running many of these in parallel would also be easy, safe and lock-free with Rust borrow-checking the references,
+although I never actually did this.
+
+```rust
+// simplified from examples/testgame/main.rs
+space.tick(|features, iter_seed, cmd_queue| {
+    features.player.tick(
+        iter_seed,
+        &game.input,
+        &mut features.transform,
+        &mut features.physics,
+        cmd_queue
+    );
+
+    let grav = forcefield::Gravity(Vec2::new(0.0, -9.81));
+    features.physics.tick(
+        iter_seed,
+        &mut features.transform,
+        dt,
+        Some(&grav),
+    );
+});
+```
+
+You may notice the `iter_seed` here, which leads us to the new query system.
+As mentioned, the macro-generated queries were gone; they couldn't exist without the ability to look up a table by its type.
+I needed something a little less automagical, which I wanted for maintainability's sake anyway.
+
+After some wrestling with generics and closures, I managed to produce a set of iterator combinators that looked like this:
+
+```rust
+// simplified from src/physics/mod.rs
+let mut iter = iter_seed
+  .overlay(self.bodies.iter_mut())
+  .and(self.colliders.iter())
+  .and(transforms.iter_mut())
+  .with_ids()
+  .into_iter();
+
+for (((body, coll), tr), id) in iter {
+  // do stuff...
+}
+```
+
+The `IterSeed` is handed out by a `Space`, and produces a `()` for every entity that is alive.
+You have to start with this. From there on you get various binary operations to add parts to the query,
+filtering out entities that don't fit the mold.
+`and` is by far the most useful one, but things like `not` and `or` are also possible.
+For those interested, the code for these is [here][ecs-impl-2-iters].
+
+Aside from the ugly nested tuples, which are fairly easily dealt with by one pattern match,
+I was really happy with the expressiveness and lack of macros in this.
+There was some awkwardness in the `Space` API, but overall I felt like this was an improvement over the original.
+
+The last revision of source code with this implementation can be found [here][ecs-impl-2].
 
 # Attempt 3: Graph
 
@@ -230,5 +335,7 @@ The nodes are entirely self-contained and don't need any edges to connect them t
 [legion]: https://github.com/TomGillen/legion
 [hecs]: https://github.com/Ralith/hecs
 [west-talk]: https://www.youtube.com/watch?v=aKLntZcp27M
-[ecs-impl-1]: https://github.com/MoleTrooper/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/
+[ecs-impl-1]: https://github.com/MoleTrooper/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
 [ecs-impl-1-recipes]: https://github.com/MoleTrooper/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
+[ecs-impl-2]: https://github.com/MoleTrooper/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
+[ecs-impl-2-iters]: https://github.com/MoleTrooper/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
