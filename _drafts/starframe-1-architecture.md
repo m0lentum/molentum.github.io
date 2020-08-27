@@ -7,7 +7,7 @@ categories: engine
 
 I've spent a large portion of the past two years writing and rewriting
 the basic structures that describe a game and its content in [Starframe] (formerly known as MoleEngine).
-This post is about what I've tried so far and what those attempts taught me.
+These are some rambly notes on what I've done so far and what I've learned from it.
 
 <!--excerpt-->
 
@@ -22,10 +22,10 @@ Feel free to skip around if you're not interested in implementation details.
 # Intro: Engines and objects
 
 When I started this project I had this vague idea that it should follow an architecture of some kind.
-After some thought and experience I realized there was probably no good definition of what that even meant.
+After some thought and experience I realized I didn't know what that even meant or if it made any sense.
 Let me take a moment to ponder about it here.
 
-First of all, it's difficult to define exactly what a game engine even is. The best-known ones sold as products of their own,
+First of all, it's difficult to define exactly what a game engine is in the first place. The best-known ones sold as products of their own,
 like Unity, Unreal and Godot, are huge suites of reusable tools for every aspect of game production.
 Everything from physics libraries to graphical editing tools is considered part of the package that is the engine.
 On the other hand, many games have tools and background libraries built specifically for them.
@@ -102,13 +102,14 @@ impl GameObject {
 ```
 
 <small>(In real life I would probably implement these getters as traits
-and use them to make my code generic to the concrete object type, but that's not relevant to the example)
+and use them to make code generic to the concrete object type, but that's not relevant to the example)
 </small>
 
-There's a good chance something like this is already flexible enough to support your entire game without much trouble.
+Depending on how many object types there are and how much of a concern performance is,
+this may well be flexible enough to support an entire game.
 Check out [this post by Mason Remaley][way-of-rhea] for a more detailed description of such a system, as implemented in the game Way of Rhea.
-This approach is dead simple and has some genuine advantages over other systems (simplicity in itself is a big one!),
-but also some notable inefficiencies. We'll talk about them later when comparing back to this.
+This approach is dead simple and has some genuine advantages over other models (simplicity in itself is a big one!),
+but is not quite as efficient as we might like. We'll talk about why in a minute.
 
 # Attempt 1: Generic ECS
 
@@ -129,7 +130,7 @@ Functions that do this are called Systems.
 This improves performance by grouping data in memory more efficiently than those big everything-structs from earlier.
 To put it briefly, memory lookups are extremely slow, and processors do best when they get to go from one memory location
 to the one right next to it and repeat. This optimization is accomplished using _caches_ of very fast memory close to the processor.
-Most things in the big structs are irrelevant to most operations, but they still take up space in the cache all the time.
+In our big structs, most fields are irrelevant to most operations, but they still take up space in the cache all the time.
 On the other hand, ECS "tables" only have one type of thing each, so we can pick and choose what to pull into the cache
 by completely ignoring the tables we don't need.
 This is quite important in rigid-body physics, where the number of objects tends to be very large and the only parts of them that matter
@@ -154,7 +155,7 @@ essentially a `HashMap<TypeId, Box<Any>>`) from the `anymap` crate.
 
 Tables were inside `RwLock`s to allow accessing many in parallel.
 They also had their own `BitSet`s to keep track of entities using them,
-and queries used binary operations on these to find the entities that had the components they were looking for.
+and queries used boolean operations on these to find the entities that had the components they were looking for.
 
 I had different types of `Storage` for my component tables that would be selected by the user based on how common the component was —
 `VecStorage` when almost every object has it, `DenseVecStorage` when it's common but not ubiquitous, `HashMapStorage` when it's rare,
@@ -255,7 +256,7 @@ This is why I'm calling this thing "decentralized" — the data structure is sca
 A nice thing about the resulting interfaces is that they explicitly tell you what other Features/tables they depend on,
 so you must have everything around to be able to call them at all (as opposed to earlier where systems
 looked things up on their own using the macro-generated queries).
-Running many of these in parallel would also be easy, safe and lock-free with Rust borrow-checking the references,
+Running many of these in parallel should also be easy, safe and lock-free with Rust borrow-checking the references,
 although I never actually did this.
 
 ```rust
@@ -288,11 +289,11 @@ After some wrestling with generics and closures, I managed to produce a set of i
 ```rust
 // simplified from src/physics/mod.rs
 let mut iter = iter_seed
-  .overlay(self.bodies.iter_mut())
-  .and(self.colliders.iter())
-  .and(transforms.iter_mut())
-  .with_ids()
-  .into_iter();
+    .overlay(self.bodies.iter_mut()) // `and` but hides previous items from the return type
+    .and(self.colliders.iter())
+    .and(transforms.iter_mut())
+    .with_ids()
+    .into_iter();
 
 for (((body, coll), tr), id) in iter {
   // do stuff...
@@ -300,18 +301,113 @@ for (((body, coll), tr), id) in iter {
 ```
 
 The `IterSeed` is handed out by a `Space`, and produces a `()` for every entity that is alive.
-You have to start with this. From there on you get various binary operations to add parts to the query,
+You have to start with this. From there on you get various boolean operations to add parts to the query,
 filtering out entities that don't fit the mold.
 `and` is by far the most useful one, but things like `not` and `or` are also possible.
 For those interested, the code for these is [here][ecs-impl-2-iters].
 
 Aside from the ugly nested tuples, which are fairly easily dealt with by one pattern match,
 I was really happy with the expressiveness and lack of macros in this.
-There was some awkwardness in the `Space` API, but overall I felt like this was an improvement over the original.
+Aside from some newfound awkwardness in the `Space` API, overall I felt like all these things were improvements over the original.
 
 The last revision of source code with this implementation can be found [here][ecs-impl-2].
 
 # Attempt 3: Graph
+
+Pretty much immediately after getting the previous implementation into a usable state I came across a crate called [froggy][froggy],
+which immediately sparked my imagination. It calls itself a _Component Graph System_ because it connects components directly to each other
+without an Entity at the center. This is achieved with reference-counted pointers that are contained in the components themselves,
+which might look something like this:
+
+```rust
+struct RigidBody {
+    transform: Pointer<Transform>,
+    collider: Pointer<Collider>,
+    mass: Mass,
+}
+```
+
+By nesting types that contain Pointers you can create all sorts of interesting hierarchies.
+They can be interpreted as directed graphs, hence the name.
+
+Incidentally, this ends up looking a lot like the simple struct approach we started with,
+but with custom "allocators" called `Storage`s to arrange the data more efficiently in memory
+and garbage collection to remove things that nobody needs anymore.
+
+For a while I contemplated just using `froggy` and ditching my own entity system altogether.
+I had some trouble imagining how I'd go about things like destroying an object on collision,
+which would require going upwards in the hierarchy from the rigid body component where the collision occurred.
+I don't doubt that this is a solvable problem with froggy, but this gave me a new idea:
+what if I took the graph out of the components and made it an actual graph data structure?
+This would open up many new algorithms and ways to move from one component to another,
+at the cost of some extra memory for the graph and the loss of statically typed hierarchies.
+Off I went to try this and see if it made any actual sense.
+
+The data structures part of this is pretty simple. I have a central `Graph` in a vaguely similar role to `Space` from my ECS attempts,
+and `Layer`s for concrete storage of components, similar to froggy's `Storage`s or the `Feature`s from the second form of my ECS.
+`Layer`s always store their contents in a `Vec`; no need for any other storage types.
+You register `Layer`s with the `Graph` and it generates a `Vec` of edges between it and every other registered `Layer`,
+represented as indices into the other `Layer`'s storage. You build a graph like this:
+
+```rust
+pub struct MyGraph {
+    graph: Graph,
+    l_transform: Layer<Transform>,
+    l_collider: Layer<Collider>,
+    l_body: Layer<RigidBody>,
+    // etc.
+}
+impl MyGraph {
+    pub fn new() -> Self {
+        let mut graph = sf::graph::Graph::new();
+        let l_transform = graph.create_layer();
+        let l_collider = graph.create_layer();
+        let l_body = graph.create_layer();
+        MyGraph {
+            graph,
+            l_transform,
+            l_collider,
+            l_body,
+        }
+    }
+}
+```
+
+Then insert components and connect them like this:
+
+```rust
+let g = MyGraph::new();
+let tr_node = g.l_transform.insert(Transform::new(..), &mut g.graph);
+let coll_node = g.l_collider.insert(Collider::new(..), &mut g.graph);
+let body_node = g.l_body.insert(RigidBody::new(..), &mut g.graph);
+g.graph.connect(&tr_node, &body_node); // edge both ways, tr_node -> body_node and body_node -> tr_node
+g.graph.connect(&body_node, &coll_node);
+g.graph.connect_oneway(&tr_node, &coll_node); // edge only from tr_node -> coll_node
+```
+
+When iterating on components, instead of selecting sets of them like in ECS,
+the equivalent here is selecting specific _patterns_ in the graph, which is rather straightforward:
+
+```rust
+// match the pattern `Transform <-- RigidBody --> Collider`:
+for mut body in g.l_body.iter_mut(&g.graph) {
+    let tr = match g.graph.get_neighbor(&body, &g.l_transform) {
+        Some(tr) => tr,
+        None => continue,
+    };
+    let coll = match graph.get_neighbor(&body, &g.l_collider) {
+        Some(c) => c,
+        None => continue,
+    };
+    // ...do stuff with `body`, `tr` and `coll`!
+}
+// note: you can do the same thing in fewer words by using `filter_map` on the iterator,
+// but I felt like this one got the point across better
+```
+
+Aside from having to carry the central `Graph` around everywhere, this is pretty simple and cool.
+However, things get a little more funky when we start wanting to delete things.
+I'm going to need some pictures for this.
 
 oien
 
@@ -339,3 +435,4 @@ The nodes are entirely self-contained and don't need any edges to connect them t
 [ecs-impl-1-recipes]: https://github.com/MoleTrooper/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
 [ecs-impl-2]: https://github.com/MoleTrooper/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
 [ecs-impl-2-iters]: https://github.com/MoleTrooper/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
+[froggy]: https://github.com/kvark/froggy
