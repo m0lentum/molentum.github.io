@@ -7,13 +7,13 @@ categories: engine
 
 I've spent a large portion of the past two years writing and rewriting
 the basic structures that describe a game and its content in [Starframe] (formerly known as MoleEngine).
-These are some rambly notes on what I've done so far and what I've learned from it.
+These are some notes on what I've done so far and what I've learned from it.
 
 <!--excerpt-->
 
 I'll start with some rambling about the nature of game engines and game objects
-before diving into the Entity-Component-System architecture and my efforts at implementing it.
-Finally, I'll cover my latest approach, which represents objects as a more general graph.
+before diving into rambling about the Entity-Component-System architecture and my efforts at implementing it.
+Finally, I'll ramble about my latest approach, which represents objects as a more general graph.
 
 Note: many details here are specific to the Rust language, as are all the code examples,
 but a lot of the information can be applied to any environment.
@@ -36,11 +36,12 @@ A physics library doesn't need to know anything about graphics.
 A level editor doesn't need to know anything about physics, nor does an input manager or a sound system, and so on.
 As such, it doesn't make much sense to talk about the overall architecture of an engine – most of these pieces hardly need to fit together at all.
 However, there is one point where almost everything is connected, and that is the **game object**, also known as the **entity**.
-I'll speak about game objects here to separate this more general concept from the entities found in the Entity-Component-System architecture.
+I'll speak about game objects here to separate this concept from the specific idea of an Entity in the Entity-Component-System model.
 
 Game objects are another thing whose definition is quite hard to nail down.
 If you'll forgive the hand-waving, they're _things_ that exist in a game world in a similar,
-but not quite the same, way to real objects in the real world. Things with a distinct identity (in the metaphysical sense, not the mathematical).
+but not quite the same, way to real objects in the real world. Things with a purpose and an identity
+(in the metaphysical sense, not the mathematical).
 
 In order to have any purpose or behavior, game objects need to have some data associated with them.
 These associations can be implemented in many ways, and any tool or system
@@ -133,8 +134,6 @@ to the one right next to it and repeat. This optimization is accomplished using 
 In our big structs, most fields are irrelevant to most operations, but they still take up space in the cache all the time.
 On the other hand, ECS "tables" only have one type of thing each, so we can pick and choose what to pull into the cache
 by completely ignoring the tables we don't need.
-This is quite important in rigid-body physics, where the number of objects tends to be very large and the only parts of them that matter
-are bodies, colliders, positions, orientations, and velocities.
 
 The other benefits of this pattern stem from its nature as a dynamic type system, as do many of its flaws.
 When using structs we were defining types in Rust's static type system,
@@ -144,14 +143,13 @@ On the other hand, in ECS, all our types are defined at runtime by inserting com
 No programming is needed to create new types of object or to wire them into the game logic,
 but we get no static analysis to help catch errors.
 An interesting consequence is that an object can change its type at runtime —
-a classic example is an RPG character getting status effects added and removed dynamically.
+a classic example is an RPG character getting status effects added and removed dynamically as components.
 
 **My implementation**
 
 At this point I was still wrapping my head around what an ECS even is, and I started by more or less just copying what `specs` did.
-I had a top-level manager called `Space` that gave out entity IDs, kept track of alive entities with a `BitSet` from the `hibitset` crate,
-and stored all the component tables in an `AnyMap` (a container that stores `Any` pointers indexed by the type,
-essentially a `HashMap<TypeId, Box<Any>>`) from the `anymap` crate.
+I had a top-level manager called `Space` that gave out entity IDs, kept track of alive entities with a `BitSet` from the [hibitset] crate,
+and stored all the component tables in an `AnyMap` from the [anymap] crate.
 
 Tables were inside `RwLock`s to allow accessing many in parallel.
 They also had their own `BitSet`s to keep track of entities using them,
@@ -169,13 +167,12 @@ I wrote a rather long procedural macro that generated query implementations for 
 like this one from my physics module:
 
 ```rust
-// module paths modified for clarity, `sf` is `starframe`
 #[derive(ComponentQuery)]
 pub struct RigidBodyQuery<'a> {
     #[id]
-    id: sf::ecs::IdType,
-    tr: &'a mut sf::util::Transform,
-    body: &'a mut sf::physics::RigidBody,
+    id: crate::ecs::IdType,
+    tr: &'a mut crate::util::Transform,
+    body: &'a mut crate::physics::RigidBody,
 }
 ```
 
@@ -184,9 +181,11 @@ I still think this is a neat interface, but the macro ended up so large it was q
 
 Additional concepts I added from outside the realm of `specs` were `Recipe`s and `Pool`s.
 
-A `Recipe` is very similar to the idea of a _prefab_ in most game engines.
+A `Recipe` is similar to the idea of a _prefab_ in most game engines.
 It's a simple struct that knows how to turn itself into an entity, and with some macros around it,
 also knows how to read itself from a file with `serde`.
+Whereas prefabs are essentially _prototypes_ defining all components of an entity, customized by changing the components' values,
+these are more like constructor functions that take some parameters and produce entities out of them.
 [Here's what their definitions looked like.][ecs-impl-1-recipes]
 
 <small>If you're wondering about the `recipes!` macro (which I don't use anymore because it made people wonder),
@@ -213,10 +212,13 @@ It's a concise but human-readable way to express scenes and helps a lot when a t
 
 A `Pool` is an optimization for types of objects that are frequently spawned and deleted, such as bullets or other projectiles in an action game.
 What it does is preallocate and take control of entity slots so that entities it manages are always placed in those slots.
-The benefit of this is twofold — firstly, it prevents memory fragmentation from objects getting deleted and respawned far away in memory.
+The benefit of this is twofold — firstly, it prevents memory fragmentation from objects getting deleted and respawned far away in memory.  
+<small>(In my understading this isn't actually an issue in an _archetypal_ ECS which does some tricks to organize things automatically,
+but I didn't even know those were a thing at this point.)</small>  
 Secondly, it lets you limit the number of instances of an object type that can exist at one time,
 preventing them from taking up more memory than your budget allows.
-This was especially important in this implementation because my `Space`s had a maximum capacity and weren't growable at runtime.
+This was especially important in this implementation because my `Space`s had a maximum capacity and weren't growable
+after being created.
 
 The last revision of source code with this implementation can be found [here][ecs-impl-1].
 
@@ -227,7 +229,7 @@ but the way I stored and queried my component tables was very different.
 
 `AnyMap`s are cool and all, but they limit the compile-time checks you can do for things you put inside them.
 What if I let the user define their own structs with the tables they want?
-This way we could make better use of Rust's type system and, more importantly, borrow checker to hand out references instead
+This way I could make better use of Rust's type system and, more importantly, borrow checker to hand out references instead
 of locking things at runtime.
 However, the central `Space` was still necessary, and if possible, I'd still like to force every table to be connected to it somehow.
 
@@ -315,7 +317,7 @@ The last revision of source code with this implementation can be found [here][ec
 # Attempt 3: Graph
 
 Pretty much immediately after getting the previous implementation into a usable state I came across a crate called [froggy][froggy],
-which immediately sparked my imagination. It calls itself a _Component Graph System_ because it connects components directly to each other
+which sparked my imagination right away. It calls itself a _Component Graph System_ because it connects components directly to each other
 without an Entity at the center. This is achieved with reference-counted pointers that are contained in the components themselves,
 which might look something like this:
 
@@ -328,7 +330,7 @@ struct RigidBody {
 ```
 
 By nesting types that contain Pointers you can create all sorts of interesting hierarchies.
-They can be interpreted as directed graphs, hence the name.
+These can be interpreted as directed graphs, hence the name.
 
 Incidentally, this ends up looking a lot like the simple struct approach we started with,
 but with custom "allocators" called `Storage`s to arrange the data more efficiently in memory
@@ -405,22 +407,101 @@ for mut body in g.l_body.iter_mut(&g.graph) {
 // but I felt like this one got the point across better
 ```
 
-Aside from having to carry the central `Graph` around everywhere, this is pretty simple and cool.
+Aside from having to carry the central `Graph` around everywhere, I think this is pretty simple and neat.
 However, things get a little more funky when we start wanting to delete things.
+We need to figure out what it means for a collection of nodes and edges to be one object.
 I'm going to need some pictures for this.
 
-oien
+A typical object still looks like the kind of object you can model with ECS,
+in the sense that every component belongs to this object only. Their identities are singular and clear.
+Objects like this are straightforward enough to identify — simply collect every edge and node you can find by following edges around,
+and that collection is your object.
+To delete it, we could just get rid of all the edges and nodes we found
+(which isn't quite as simple as it may sound, but we'll get back to this in a minute).
 
-Just for fun, let's look at what the previous architectures would look like if interpreted as a graph.
+(graph: simple objects)
 
-First, the big structs. The smallest unit we can operate on in this model is a whole object.
-We can look at different parts inside them to produce different behaviors, but we can't pull those parts apart and put them in different places.
-Therefore, the 'atomic' unit of this world and the node type of this graph would be the whole object.
-Representing different behaviors with different colors, this graph would look something like this:
+When we wander into the realm of patterns that are unique to this graph model, things get a little weird.
+Consider a scenario where two objects share the same component.
 
-(graph here)
+(graph: shared component)
 
-The nodes are entirely self-contained and don't need any edges to connect them to anything.
+We can't just follow every edge and delete every node anymore because this would steal away some functionality from an unrelated object.
+To identify situations like this I borrowed another idea from `froggy`, namely reference counting.
+Every node now knows how many edges are pointing towards it.
+
+With this information we're now armed to deal with this problem.
+I still run the same algorithm from earlier to find every edge and node I have a route to,
+but this time count the number of edges traversed leading to each node, then traverse again and compare this to the node's stored reference count.
+If they're equal, all edges were found and we can delete them. If not, we have identified a shared component and stop traversing in that direction.
+
+(graph: algorithm steps)
+
+Clearly this is not nearly as fast as deleting an object in a simpler model, but this accounts for such a small fraction
+of each frame of simulation I'm just not going to worry about it.
+
+There are potentially desirable patterns this algorithm doesn't quite solve on its own, such as Unity-style hierarchical transforms:
+
+(graph: hierarchical transforms)
+
+Here we have one object with another as its "child" which transforms in its local space.
+To determine the world-space location of the child we need a route from its transform to the parent's,
+but now if we delete the child with this algorithm the parent will be gone as well.
+Some kind of "weak edge" mechanism is needed to support this pattern, where certain edges won't be followed on delete.
+I haven't explored this properly yet.
+
+Technically, the deletion algorithm only deletes edges.
+Any node whose reference count reaches zero in this process is implicitly considered deleted.
+Many parts of my code depend on nodes never changing positions, so I can't put anything else in the slots left behind by deleted nodes
+and therefore can't keep my storages perfectly packed. Deleted nodes become holes.
+Instead, I push their positions into a queue from which they will be picked up and reused by future nodes.
+Additionally, because node identifiers can live anywhere in the program,
+I store a generation index as part of said identifier that's incremented on delete.
+Nodes are only the same if both their position and their generation is the same.
+
+That's about it for interesting parts of the current state of this thing.
+I don't yet know if it's actually any good but I'm having fun playing with it.
+I'll write more about this once I've had the time to come up with some interesting patterns
+and figure out if I like it better than ECS or not.
+Until then, I'll leave you with some random ideas and a quick recap.
+
+# Some random ideas
+
+I've been playing a lot of [Elasto Mania][elma] lately,
+which made me think about how I would go about putting the player bike from it into my graph.
+It's got a lot of parts — the wheels with a collider and sprite each,
+the chassis of the bike and the rider's body parts with sprites plus a collider for his head,
+some spring constraints keeping the wheels in place,
+and an event listener of some kind that reacts to the head colliding with terrain.
+Here's a speculative sketch of what all this in one big blob of graph might look like:
+
+(graph: elma guy)
+
+I've already implemented an `EventSink` component that subscribes to events by simply connecting to components that produce them.
+For instance, to listen to collision events, connect an `EventSink` to a `RigidBody` in the graph.
+I think it's neat.
+
+Elasto Mania also has terrain constructed out of loops of line segments, which could be graphified as a single `Layer` of vertices:
+
+(graph: vertex loops)
+
+Connect a Transform somewhere and you have a movable polygonal collider instead.
+This would allow an arbitrary number of vertices per collider / terrain loop while staying perfectly packed in memory.
+
+# A quick recap
+
+This was a post about game engines, game objects and ways to compose them.
+After some quick philosophy we started by representing objects directly with programming language constructs,
+which is nice, simple and statically typed (language permitting) but creates an inefficient memory layout and
+some slightly annoying boilerplate code.
+We then looked at Entity-Component-System, a database-like approach that arranges memory nicely and
+allows things to change their type at runtime, and my two attempts at implementing it.
+Finally, we looked at a novel graph-based approach that creates some interesting new patterns
+(and some interesting new problems).
+
+I realize this was a little long-winded, and to be honest I mostly wrote it just to get myself thinking,
+but I hope you found it interesting. If you read this far I'm going to assume that was the case.
+If you'd like to talk about it, you can find me on [Twitter] or the [Rust gamedev Discord][rgd-discord].
 
 <!-- links -->
 
@@ -431,8 +512,13 @@ The nodes are entirely self-contained and don't need any edges to connect them t
 [legion]: https://github.com/TomGillen/legion
 [hecs]: https://github.com/Ralith/hecs
 [west-talk]: https://www.youtube.com/watch?v=aKLntZcp27M
+[anymap]: https://github.com/chris-morgan/anymap
+[hibitset]: https://github.com/amethyst/hibitset
 [ecs-impl-1]: https://github.com/MoleTrooper/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
 [ecs-impl-1-recipes]: https://github.com/MoleTrooper/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
 [ecs-impl-2]: https://github.com/MoleTrooper/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
 [ecs-impl-2-iters]: https://github.com/MoleTrooper/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
 [froggy]: https://github.com/kvark/froggy
+[elma]: https://elastomania.com/
+[twitter]: https://twitter.com/moletrooper
+[rgd-discord]: https://discord.gg/yNtPTb2
