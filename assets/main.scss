@@ -141,19 +141,20 @@ main {
     flex: 0 1 800px;
     padding: 30px;
 
-    img {
-      border: $thickborder;
-      border-radius: 10px;
+    &.float-images {
+      img {
+        border: $thickborder;
+        border-radius: 10px;
+        margin: 0 20px 10px 0;
+        max-width: 50%;
+        float: left;
+      }
 
-      margin: 0 20px 10px 0;
-      max-width: 50%;
-      float: left;
-    }
-
-    p:nth-child(odd) img {
-      float: right;
-      margin-right: 0;
-      margin-left: 20px;
+      p:nth-child(odd) img {
+        float: right;
+        margin-right: 0;
+        margin-left: 20px;
+      }
     }
 
     .latest {
@@ -161,6 +162,14 @@ main {
       clear: both;
     }
   }
+}
+
+.code-like-img {
+  border: 1px solid #e8e8e8;
+  background-color: #eef;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px;
 }
 
 @media (max-width: 900px) {
