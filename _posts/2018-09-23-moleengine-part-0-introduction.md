@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Starframe dev blog: Introduction"
+title: "Starframe devlog: Introduction"
 date: 2018-09-23 16:10:00 +0300
 categories: engine
 ---
