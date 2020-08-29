@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Starframe dev blog: Architecture"
-#date:   2018-09-23 16:10:00 +0300
+title: "Starframe devlog: Architecture"
+date: 2020-08-30 00:11 +0300
 categories: engine
 ---
 
