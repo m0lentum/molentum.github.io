@@ -14,10 +14,8 @@ These are some notes on what I've done so far and what I've learned from it.
 I'll start with some rambling about the nature of game engines and game objects
 before diving into rambling about the Entity-Component-System architecture and my efforts at implementing it.
 Finally, I'll ramble about my latest approach, which represents objects as a more general graph.
-
-Note: many details here are specific to the Rust language, as are all the code examples,
-but a lot of the information can be applied to any environment.
-Feel free to skip around if you're not interested in implementation details.
+There will be a lot of implementation details and code examples that are specific to the Rust language,
+but also many ideas that can be applied elsewhere.
 
 # Intro: Engines and objects
 
@@ -31,16 +29,14 @@ Everything from physics libraries to graphical editing tools is considered part 
 On the other hand, many games have tools and background libraries built specifically for them.
 In these cases the separation between "engine" and "gameplay" code can get very blurry.
 
-In general, though, the tools provided by an engine tend to be fairly independent from each other, especially if they're meant to be used in multiple games.
-A physics library doesn't need to know anything about graphics.
-A level editor doesn't need to know anything about physics, nor does an input manager or a sound system, and so on.
-As such, it doesn't make much sense to talk about the overall architecture of an engine – most of these pieces hardly need to fit together at all.
-However, there is one point where almost everything is connected, and that is the **game object**, also known as the **entity**.
-I'll speak about game objects here to separate this concept from the specific idea of an Entity in the Entity-Component-System model.
+So there isn't really a generally agreed upon way to build an engine, nor a well-defined architecture of such a thing.
+However, there is one concept at the heart of an engine that almost every tool operates on in some way,
+and that is the **game object**, also known as the **entity**.
+I'll speak about game objects here to create some separation between this concept and the specific idea of an Entity in the Entity-Component-System model.
 
 Game objects are another thing whose definition is quite hard to nail down.
 If you'll forgive the hand-waving, they're _things_ that exist in a game world in a similar,
-but not quite the same, way to real objects in the real world. Things with a purpose and an identity
+but not quite the same, way to real objects in the real world. Things with a function and an identity
 (in the metaphysical sense, not the mathematical).
 
 In order to have any purpose or behavior, game objects need to have some data associated with them.
@@ -56,8 +52,13 @@ Anyway, this is where architecture suddenly becomes crucial in a fully integrate
 almost every higher-level system depends on how you compose game objects.
 So in a sense, you could call the architecture of game objects the fundamental architecture of a game engine.
 This is why I've spent so much time thinking about this and doing it over and over.
-I don't want to build too many systems on top of my object model until I'm happy with it,
+I don't want to build too big of a pile of code on top of my object model until I'm happy with it,
 because every time I redo it I have to update large parts of everything else.
+
+<small>If I actually wanted to make games I should just use a library made by smarter people than me
+instead of spending years figuring this stuff out for myself,
+but I guess I'm finding this more fun ¯\\\_(ツ)\_/¯
+</small>
 
 # Building up
 
@@ -69,11 +70,11 @@ We already have a type system provided by our programming language, why not just
 
 ```rust
 struct Goblin {
-  position: Vector2<f32>,
-  attack_power: u32,
-  health: u32,
-  catchphrase: String,
-  has_a_gun: bool,
+    position: Vector2<f32>,
+    attack_power: u32,
+    health: u32,
+    catchphrase: String,
+    has_a_gun: bool,
 }
 ```
 
@@ -83,22 +84,22 @@ that can be queried for components in a similar fashion to the more complicated 
 
 ```rust
 enum GameObject {
-  Player(Player),
-  Goblin(Goblin),
-  Projectile(Projectile),
-  Decoration(Decoration),
-  // ...
+    Player(Player),
+    Goblin(Goblin),
+    Projectile(Projectile),
+    Decoration(Decoration),
+    // ...
 }
 impl GameObject {
-  pub fn get_rigid_body(&self) -> Option<&RigidBody> {
-    match self {
-      GameObject::Projectile(p) => Some(p.body),
-      GameObject::Decoration(_) => None,
-      // ... you get the idea
+    pub fn get_rigid_body(&self) -> Option<&RigidBody> {
+        match self {
+            GameObject::Projectile(p) => Some(p.body),
+            GameObject::Decoration(_) => None,
+            // ... you get the idea
+        }
     }
-  }
-  pub fn get_position(&self) -> Option<&Vector2<f32>> { /* ... */ }
-  pub fn get_sprite(&self) -> Option<&Sprite> { /* ... */ }
+    pub fn get_position(&self) -> Option<&Vector2<f32>> { /* ... */ }
+    pub fn get_sprite(&self) -> Option<&Sprite> { /* ... */ }
 }
 ```
 
@@ -106,7 +107,7 @@ impl GameObject {
 and use them to make code generic to the concrete object type, but that's not relevant to the example)
 </small>
 
-Depending on how many object types there are and how much of a concern performance is,
+Depending on how many object types you have, how large your team is and how much of a concern performance is,
 this may well be flexible enough to support an entire game.
 Check out [this post by Mason Remaley][way-of-rhea] for a more detailed description of such a system, as implemented in the game Way of Rhea.
 This approach is dead simple and has some genuine advantages over other models (simplicity in itself is a big one!),
@@ -127,6 +128,12 @@ into what are essentially database tables where they can be looked up with the i
 The identifier is called the Entity, and the fields are Components.
 Game logic can select entities that have a certain set of components and ignore the rest.
 Functions that do this are called Systems.
+
+Here's how I picture the difference in my head. Imagine different colors are different component types.
+
+<div class="code-like-img">
+    <img alt="Structs vs. ECS" src="/assets/graph_pics/structs_to_ecs.png" />
+</div>
 
 This improves performance by grouping data in memory more efficiently than those big everything-structs from earlier.
 To put it briefly, memory lookups are extremely slow, and processors do best when they get to go from one memory location
@@ -183,8 +190,9 @@ Additional concepts I added from outside the realm of `specs` were `Recipe`s and
 
 A `Recipe` is similar to the idea of a _prefab_ in most game engines.
 It's a simple struct that knows how to turn itself into an entity, and with some macros around it,
-also knows how to read itself from a file with `serde`.
-Whereas prefabs are essentially _prototypes_ defining all components of an entity, customized by changing the components' values,
+also knows how to read itself from a file using [serde].
+Whereas prefabs are essentially _prototypes_ defining all components of an entity,
+customized on a per-object basis by changing the components' values,
 these are more like constructor functions that take some parameters and produce entities out of them.
 [Here's what their definitions looked like.][ecs-impl-1-recipes]
 
@@ -202,7 +210,7 @@ With these I was able to read scenes from RON files like this:
         width: 1, height: 0.8, transform: ( position: (1, -1.5) ),
     )),
     StaticBlock ((
-        width: 8, height: 0.2, transform: ( position: (0, -3) ),
+        width: 8, height: 0.2, transform: ( rotation: Deg(45) ),
     )),
 ]
 ```
@@ -231,39 +239,33 @@ but the way I stored and queried my component tables was very different.
 What if I let the user define their own structs with the tables they want?
 This way I could make better use of Rust's type system and, more importantly, borrow checker to hand out references instead
 of locking things at runtime.
-However, the central `Space` was still necessary, and if possible, I'd still like to force every table to be connected to it somehow.
+However, the central `Space` was still necessary, and if possible, I'd still like to force every table to be connected to it somehow
+to prevent mixing tables from different Spaces and causing errors.
 
-What I came up with was to let the user put anything they wanted in one field of `Space`,
-but make querying for components only available through an interface of `Space`.
-While still technically possible to break things by mixing tables from different Spaces,
-you'd need some pretty acrobatic moves to do it.
+What I ended up doing was to let the user put anything they wanted in one field of `Space`, but restrict how and when they could access it.
 Here's what the types looked like from the perspective of a game:
 
 ```rust
-pub type MainSpace = sf::core::Space<MainSpaceFeatures>;
+pub type MainSpace = Space<MainSpaceFeatures>;
 
 pub struct MainSpaceFeatures {
-    pub transform: sf::core::TransformFeature,
-    pub shape: sf::graphics::ShapeFeature,
-    pub physics: sf::physics::PhysicsFeature,
-    pub player: player::PlayerController,
-    pub camera: sf::graphics::camera::MouseDragCamera,
+    transform: sf::core::TransformFeature,
+    shape: sf::graphics::ShapeFeature,
+    physics: sf::physics::PhysicsFeature,
+    player: player::PlayerController,
+    camera: sf::graphics::camera::MouseDragCamera,
 }
 ```
 
-All these types ending in `Feature` contain component tables.
+All the types ending in `Feature` contain component tables.
 Many of them also have game logic, so you could call them Systems in the ECS sense while also being parts of the data structure itself.
 This is why I'm calling this thing "decentralized" — the data structure is scattered across a variety of types.
 
-A nice thing about the resulting interfaces is that they explicitly tell you what other Features/tables they depend on,
-so you must have everything around to be able to call them at all (as opposed to earlier where systems
-looked things up on their own using the macro-generated queries).
-Running many of these in parallel should also be easy, safe and lock-free with Rust borrow-checking the references,
-although I never actually did this.
+Here's how you'd access the `MainSpaceFeatures` in an update loop:
 
 ```rust
 // simplified from examples/testgame/main.rs
-space.tick(|features, iter_seed, cmd_queue| {
+space.tick(|features, iter_seed, _| {
     features.player.tick(
         iter_seed,
         &game.input,
@@ -282,7 +284,13 @@ space.tick(|features, iter_seed, cmd_queue| {
 });
 ```
 
-You may notice the `iter_seed` here, which leads us to the new query system.
+A nice thing about these interfaces is that they explicitly tell you what other Features/tables they depend on,
+so you must have everything around to be able to call them at all (as opposed to earlier where systems
+looked things up on their own using the macro-generated queries).
+Running many of these in parallel should also be easy, safe and lock-free with Rust borrow-checking the references,
+although I never actually did this.
+
+You may have noticed the `iter_seed` here, which leads us to the new query system.
 As mentioned, the macro-generated queries were gone; they couldn't exist without the ability to look up a table by its type.
 I needed something a little less automagical, which I wanted for maintainability's sake anyway.
 
@@ -345,11 +353,12 @@ This would open up many new algorithms and ways to move from one component to an
 at the cost of some extra memory for the graph and the loss of statically typed hierarchies.
 Off I went to try this and see if it made any actual sense.
 
-The data structures part of this is pretty simple. I have a central `Graph` in a vaguely similar role to `Space` from my ECS attempts,
-and `Layer`s for concrete storage of components, similar to froggy's `Storage`s or the `Feature`s from the second form of my ECS.
+The data structures part of this is pretty simple. I have a central `Graph` to store edges and some node metadata,
+and `Layer`s for concrete storage of components, similar to froggy's `Storage`s.
 `Layer`s always store their contents in a `Vec`; no need for any other storage types.
 You register `Layer`s with the `Graph` and it generates a `Vec` of edges between it and every other registered `Layer`,
-represented as indices into the other `Layer`'s storage. You build a graph like this:
+represented as indices into the other `Layer`'s storage.
+You build a graph in a similar way to the "features" from my second ECS attempt, by defining a custom type:
 
 ```rust
 pub struct MyGraph {
@@ -412,21 +421,37 @@ However, things get a little more funky when we start wanting to delete things.
 We need to figure out what it means for a collection of nodes and edges to be one object.
 I'm going to need some pictures for this.
 
-A typical object still looks like the kind of object you can model with ECS,
-in the sense that every component belongs to this object only. Their identities are singular and clear.
+<div class="code-like-img">
+    <img alt="Simple objects" src="/assets/graph_pics/simple_graphs.png" />
+</div>
+
+Imagine these are four different objects. Different-colored nodes are different types of components.
+What the types actually are doesn't matter, this is just about how you can connect them.
+
+A typical object (as pictured above) still looks like the kind of object you can model with ECS,
+in the sense that every component belongs to this object only.
 Objects like this are straightforward enough to identify — simply collect every edge and node you can find by following edges around,
 and that collection is your object.
-To delete it, we could just get rid of all the edges and nodes we found
-(which isn't quite as simple as it may sound, but we'll get back to this in a minute).
-
-(graph: simple objects)
+To delete it we could just get rid of all the edges and nodes we found.
 
 When we wander into the realm of patterns that are unique to this graph model, things get a little weird.
-Consider a scenario where two objects share the same component.
+Consider this scenario:
 
-(graph: shared component)
+<div class="code-like-img">
+    <img alt="Shared component" src="/assets/graph_pics/shared_component.png" />
+</div>
 
-We can't just follow every edge and delete every node anymore because this would steal away some functionality from an unrelated object.
+If we start deleting nodes on the left of the red node, everything on its right will remain untouched
+because there's no arrow that would take us to them, and vice versa.
+The red node is shared between two different objects.
+The problem is that the naive algorithm described above would delete the red and green node in both cases,
+stealing away some functionality from an unrelated object.
+
+<small>Quick digression: You may wonder if a construct like this is actually useful and worth thinking about.
+Honestly, I'm not sure. Many scenarios that look like this can be handled by `Rc`s outside of the graph.
+I'll have to play with this a lot more to figure out its nuances.
+</small>
+
 To identify situations like this I borrowed another idea from `froggy`, namely reference counting.
 Every node now knows how many edges are pointing towards it.
 
@@ -435,19 +460,29 @@ I still run the same algorithm from earlier to find every edge and node I have a
 but this time count the number of edges traversed leading to each node, then traverse again and compare this to the node's stored reference count.
 If they're equal, all edges were found and we can delete them. If not, we have identified a shared component and stop traversing in that direction.
 
-(graph: algorithm steps)
+<div class="code-like-img">
+    <img alt="Deletion algorithm" src="/assets/graph_pics/delete_algo.png" />
+</div>
+
+If we start on the node marked with red in step 1 and traverse every edge we find, we get the collection marked with red in step 2.
+The node at the center has more references to it than we found, so we stop deleting things there.
+The final step shows the end result.
 
 Clearly this is not nearly as fast as deleting an object in a simpler model, but this accounts for such a small fraction
 of each frame of simulation I'm just not going to worry about it.
 
 There are potentially desirable patterns this algorithm doesn't quite solve on its own, such as Unity-style hierarchical transforms:
 
-(graph: hierarchical transforms)
+<div class="code-like-img">
+    <img alt="Hierarchical transforms" src="/assets/graph_pics/hiera_transforms.png" />
+</div>
 
-Here we have one object with another as its "child" which transforms in its local space.
-To determine the world-space location of the child we need a route from its transform to the parent's,
-but now if we delete the child with this algorithm the parent will be gone as well.
-Some kind of "weak edge" mechanism is needed to support this pattern, where certain edges won't be followed on delete.
+Here we have one object with several others as its "children" which transform in its local space
+(the red squares represent the transform components).
+To determine the world-space location of a child we connect its transform to the parent's,
+but now if we delete any child the parent will be gone as well.
+To support both this pattern and deletions, I'm going to need some kind of a "weak edge" mechanism
+where certain edges won't be followed by the deletion algorithm.
 I haven't explored this properly yet.
 
 Technically, the deletion algorithm only deletes edges.
@@ -473,17 +508,20 @@ It's got a lot of parts — the wheels with a collider and sprite each,
 the chassis of the bike and the rider's body parts with sprites plus a collider for his head,
 some spring constraints keeping the wheels in place,
 and an event listener of some kind that reacts to the head colliding with terrain.
-Here's a speculative sketch of what all this in one big blob of graph might look like:
+I'm not going to draw it because it would be massive, but I think all these things could be connected in the graph as one big "object",
+which might be cool maybe.
 
-(graph: elma guy)
-
-I've already implemented an `EventSink` component that subscribes to events by simply connecting to components that produce them.
+As for the event listener, I've already implemented an `EventSink` component that subscribes
+to events by simply connecting to components that produce them.
 For instance, to listen to collision events, connect an `EventSink` to a `RigidBody` in the graph.
 I think it's neat.
 
-Elasto Mania also has terrain constructed out of loops of line segments, which could be graphified as a single `Layer` of vertices:
+Elasto Mania also has terrain constructed out of closed loops of line segments,
+which could be graphified as a loop where nodes are individual vertices.
 
-(graph: vertex loops)
+<div class="code-like-img">
+    <img alt="A vertex loop" src="/assets/graph_pics/vert_loop.png" />
+</div>
 
 Connect a Transform somewhere and you have a movable polygonal collider instead.
 This would allow an arbitrary number of vertices per collider / terrain loop while staying perfectly packed in memory.
@@ -493,7 +531,7 @@ This would allow an arbitrary number of vertices per collider / terrain loop whi
 This was a post about game engines, game objects and ways to compose them.
 After some quick philosophy we started by representing objects directly with programming language constructs,
 which is nice, simple and statically typed (language permitting) but creates an inefficient memory layout and
-some slightly annoying boilerplate code.
+some moderately annoying boilerplate code.
 We then looked at Entity-Component-System, a database-like approach that arranges memory nicely and
 allows things to change their type at runtime, and my two attempts at implementing it.
 Finally, we looked at a novel graph-based approach that creates some interesting new patterns
@@ -514,6 +552,7 @@ If you'd like to talk about it, you can find me on [Twitter] or the [Rust gamede
 [west-talk]: https://www.youtube.com/watch?v=aKLntZcp27M
 [anymap]: https://github.com/chris-morgan/anymap
 [hibitset]: https://github.com/amethyst/hibitset
+[serde]: https://github.com/serde-rs/serde
 [ecs-impl-1]: https://github.com/MoleTrooper/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
 [ecs-impl-1-recipes]: https://github.com/MoleTrooper/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
 [ecs-impl-2]: https://github.com/MoleTrooper/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
