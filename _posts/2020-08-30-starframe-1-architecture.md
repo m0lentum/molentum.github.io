@@ -447,11 +447,6 @@ The red node is shared between two different objects.
 The problem is that the naive algorithm described above would delete the red and green node in both cases,
 stealing away some functionality from an unrelated object.
 
-<small>Quick digression: You may wonder if a construct like this is actually useful and worth thinking about.
-Honestly, I'm not sure. Many scenarios that look like this can be handled by `Rc`s outside of the graph.
-I'll have to play with this a lot more to figure out its nuances.
-</small>
-
 To identify situations like this I borrowed another idea from `froggy`, namely reference counting.
 Every node now knows how many edges are pointing towards it.
 
@@ -471,7 +466,9 @@ The final step shows the end result.
 Clearly this is not nearly as fast as deleting an object in a simpler model, but this accounts for such a small fraction
 of each frame of simulation I'm just not going to worry about it.
 
-There are potentially desirable patterns this algorithm doesn't quite solve on its own, such as Unity-style hierarchical transforms:
+Building more complex hierarchies in this framework requires some thinking.
+Am I going to delete instances of this? If so, what will the deletion algorithm do if I start it on node X?
+Consider this pattern of Unity-style hierarchical transforms:
 
 <div class="code-like-img">
     <img alt="Hierarchical transforms" src="/assets/graph_pics/hiera_transforms.png" />
@@ -479,11 +476,19 @@ There are potentially desirable patterns this algorithm doesn't quite solve on i
 
 Here we have one object with several others as its "children" which transform in its local space
 (the red squares represent the transform components).
-To determine the world-space location of a child we connect its transform to the parent's,
-but now if we delete any child the parent will be gone as well.
-To support both this pattern and deletions, I'm going to need some kind of a "weak edge" mechanism
+To determine the world-space location of a child we connect its transform to the parent's.
+If we delete any of the children here, it'll work as expected and just delete the child's components,
+unless it's the only child left. Then the parent will be deleted as well.
+If we delete the parent before the children, all its nodes except the transform will be deleted.
+We could add edges pointing from the parent to the children, in which case the entire hierarchy would be deleted
+regardless of where you start.
+
+These interactions are probably not exactly what you'd want or expect.
+For further control I'm going to need some kind of a "weak edge" mechanism (analogous to froggy's weak pointers)
 where certain edges won't be followed by the deletion algorithm.
 I haven't explored this properly yet.
+On the other hand, most objects aren't ever deleted so you can often just ignore these rules and make whatever works.
+I have to admit this is a lot of baggage attached to the improved flexibility over froggy, which may or may not be worth it.
 
 Technically, the deletion algorithm only deletes edges.
 Any node whose reference count reaches zero in this process is implicitly considered deleted.
