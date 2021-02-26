@@ -11,6 +11,27 @@ $darkcyan: #0e3344;
 $thickborder: 3px solid $darkcyan;
 $mildorange: #f0ece2;
 
+
+// classes to use from markdown
+
+.code-like-img {
+  border: 1px solid #e8e8e8;
+  background-color: #eef;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.sidenote {
+  font-size: 0.8em;
+  padding: 8px 10px;
+  margin-left: 10px;
+  border-left: 10px solid #eef;
+}
+
+// general site styles
+
 main {
   flex-grow: 1;
   display: flex;
@@ -162,15 +183,6 @@ main {
       clear: both;
     }
   }
-}
-
-.code-like-img {
-  border: 1px solid #e8e8e8;
-  background-color: #eef;
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 5px;
-  box-sizing: border-box;
 }
 
 @media (max-width: 900px) {

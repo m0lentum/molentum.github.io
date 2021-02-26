@@ -13,6 +13,10 @@ detail a few game-engine-friendly ways of solving them. <!--excerpt-->
 I'll try to make things accessible, but some familiarity with linear algebra and
 calculus will be necessary.
 
+I'll start with the mathematical definition of constraints and then go over
+three solvers in the order I implemented them myself: Impulses with Projected
+Gauss-Seidel, Iterated Impulses, and Extended Position-Based Dynamics.
+
 ## What is a constraint?
 
 The essence of a physics engine (and the difficult part of building one) is not
@@ -78,14 +82,68 @@ and an acceptable range of values. That's what every kind of constraint boils
 down to. The constraint solver's job is to try to find a state where every
 constraint function returns an acceptable value.
 
-Next: more examples of constraints, one or two with functions.
-Refer to [tam15] for more.
-Then start talking about actual solvers.
+<p class="sidenote">
+Note:
+Usually, the accepted range is either $C = 0$ (called an equality constraint),
+or one of $C \leq 0$ and $C \geq 0$ (called inequality constraints).
+Something other than zero on the right hand side is possible, but zeroes make
+things a little more convenient for the solver.
+</p>
+
+Let's look at a couple more examples to make it easier to believe that all
+constraints really look the same. Another simple case is a distance
+constraint, which attaches two objects such that the distance between
+selected points on them is always in some range.
+
+<div class="code-like-img">
+  <img
+    alt="Two boxes attached with a distance constraint"
+    src="/assets/TODO"
+  />
+</div>
+
+To achieve this we can simply measure the difference between the actual
+distance and the desired one $d$:
+
+$$
+C_{dist}(x_1, \omega_1, x_2, \omega_2) =
+  \|p_2(x_2, \omega_2) - p_1(x_1, \omega_1)\| - d
+$$
+
+For the accepted range we have a choice: $C \leq 0$ will only pull the bodies
+towards each other, $C \geq 0$ will only push them apart, and $C = 0$ will do
+both.
+
+The idea of a constraint is very flexible. Putting the right math in $C$ can
+produce a variety of effects like friction, all sorts of joints, and with some
+additional trickery even things like motors and springs. You can also remove
+one body from constraint function's parameters and attach bodies to places in
+the world instead. Like [Erin Catto][cattotwit] (of [Box2D] fame) said in [his
+2014 GDC presentation][cat14], constraints are a place where physics
+programmers get to apply creativity. Check out e.g. the aforementioned
+presentation or [this paper][tam15] for some more examples.
+
+## Solvers
+
+I've built three solvers so far: Impulses with Projected
+Gauss-Seidel, Iterated Impulses, and Extended Position-Based Dynamics.
+Let's take a look at the theory and source material of each.
+
+### Impulses with Projected Gauss-Seidel
+
+I based this solver almost entirely on [this 2005 paper by Erin Catto][cat05].
+It took me a long time to really understand the concept of a constraint, and in
+hindsight I should definitely have looked up more sources at this point, but
+just reading this over and over about fifty times ended up working surprisingly
+well for me in the end.
 
 <!-- source documents -->
 
 [cat05]: https://www.gamedevs.org/uploads/iterative-dynamics-with-temporal-coherence.pdf
+[cat14]: https://box2d.org/files/ErinCatto_UnderstandingConstraints_GDC2014.pdf
 [tam15]: http://www.mft-spirit.nl/files/MTamis_Constraints.pdf
+[mmcjk20]: https://matthias-research.github.io/pages/publications/PBDBodies.pdf
+[2mp-vid]: https://www.youtube.com/watch?v=F0QwAhUnpr4
 
 <!-- other links -->
 
