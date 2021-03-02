@@ -131,9 +131,7 @@ Functions that do this are called Systems.
 
 Here's how I picture the difference in my head. Imagine different colors are different component types.
 
-<div class="code-like-img">
-    <img alt="Structs vs. ECS" src="/assets/graph_pics/structs_to_ecs.png" />
-</div>
+![Structs vs. ECS](/assets/graph_pics/structs_to_ecs.png)
 
 This improves performance by grouping data in memory more efficiently than those big everything-structs from earlier.
 To put it briefly, memory lookups are extremely slow, and processors do best when they get to go from one memory location
@@ -220,9 +218,9 @@ It's a concise but human-readable way to express scenes and helps a lot when a t
 
 A `Pool` is an optimization for types of objects that are frequently spawned and deleted, such as bullets or other projectiles in an action game.
 What it does is preallocate and take control of entity slots so that entities it manages are always placed in those slots.
-The benefit of this is twofold — firstly, it prevents memory fragmentation from objects getting deleted and respawned far away in memory.  
+The benefit of this is twofold — firstly, it prevents memory fragmentation from objects getting deleted and respawned far away in memory.
 <small>(In my understading this isn't actually an issue in an _archetypal_ ECS which does some tricks to organize things automatically,
-but I didn't even know those were a thing at this point.)</small>  
+but I didn't even know those were a thing at this point.)</small>
 Secondly, it lets you limit the number of instances of an object type that can exist at one time,
 preventing them from taking up more memory than your budget allows.
 This was especially important in this implementation because my `Space`s had a maximum capacity and weren't growable
@@ -421,9 +419,7 @@ However, things get a little more funky when we start wanting to delete things.
 We need to figure out what it means for a collection of nodes and edges to be one object.
 I'm going to need some pictures for this.
 
-<div class="code-like-img">
-    <img alt="Simple objects" src="/assets/graph_pics/simple_graphs.png" />
-</div>
+![Simple objects](/assets/graph_pics/simple_graphs.png)
 
 Imagine these are four different objects. Different-colored nodes are different types of components.
 What the types actually are doesn't matter, this is just about how you can connect them.
@@ -437,9 +433,7 @@ To delete it we could just get rid of all the edges and nodes we found.
 When we wander into the realm of patterns that are unique to this graph model, things get a little weird.
 Consider this scenario:
 
-<div class="code-like-img">
-    <img alt="Shared component" src="/assets/graph_pics/shared_component.png" />
-</div>
+![Shared component](/assets/graph_pics/shared_component.png)
 
 If we start deleting nodes on the left of the red node, everything on its right will remain untouched
 because there's no arrow that would take us to them, and vice versa.
@@ -455,9 +449,7 @@ I still run the same algorithm from earlier to find every edge and node I have a
 but this time count the number of edges traversed leading to each node, then traverse again and compare this to the node's stored reference count.
 If they're equal, all edges were found and we can delete them. If not, we have identified a shared component and stop traversing in that direction.
 
-<div class="code-like-img">
-    <img alt="Deletion algorithm" src="/assets/graph_pics/delete_algo.png" />
-</div>
+![Deletion algorithm](/assets/graph_pics/delete_algo.png)
 
 If we start on the node marked with red in step 1 and traverse every edge we find, we get the collection marked with red in step 2.
 The node at the center has more references to it than we found, so we stop deleting things there.
@@ -470,9 +462,7 @@ Building more complex hierarchies in this framework requires some thinking.
 Am I going to delete instances of this? If so, what will the deletion algorithm do if I start it on node X?
 Consider this pattern of Unity-style hierarchical transforms:
 
-<div class="code-like-img">
-    <img alt="Hierarchical transforms" src="/assets/graph_pics/hiera_transforms.png" />
-</div>
+![Hierarchical transforms](/assets/graph_pics/hiera_transforms.png)
 
 Here we have one object with several others as its "children" which transform in its local space
 (the red squares represent the transform components).
@@ -524,9 +514,7 @@ I think it's neat.
 Elasto Mania also has terrain constructed out of closed loops of line segments,
 which could be graphified as a loop where nodes are individual vertices.
 
-<div class="code-like-img">
-    <img alt="A vertex loop" src="/assets/graph_pics/vert_loop.png" />
-</div>
+![A vertex loop](/assets/graph_pics/vert_loop.png)
 
 Connect a Transform somewhere and you have a movable polygonal collider instead.
 This would allow an arbitrary number of vertices per collider / terrain loop while staying perfectly packed in memory.

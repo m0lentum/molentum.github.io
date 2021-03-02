@@ -32,12 +32,7 @@ constraint, which basically says "bodies aren't allowed to overlap".
 Let's say the collision detection system that I won't
 cover in this post notified us of a situation like this:
 
-<div class="code-like-img">
-  <img
-    alt="Two boxes that overlap"
-    src="/assets/TODO"
-  />
-</div>
+![Two boxes that overlap](/assets/avatar.png)
 
 These bodies overlap, which is a violation of the contact constraint.
 So we know the system is in an illegal state, but that boolean information
