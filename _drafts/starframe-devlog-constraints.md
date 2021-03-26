@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Starframe Physics Devlog: Constraint Solvers"
+title: "Starframe Devlog: Constraints in Physics"
 date: 2021-01-09 00:11 +0300
 categories: engine physics
 usemathjax: true
@@ -51,13 +51,13 @@ move. We get the final form of the constraint function by figuring out how the
 contact points depend on the body poses:
 
 $$
-\displaylines{
-p_1(x_1, q_1) = x_1 + q_1 r_1 \\
-p_2(x_2, q_2) = x_2 + q_2 r_2 \\
-C_{contact}(x_1, q_1, x_2, q_2) =
+\begin{align*}
+p_1(x_1, q_1) &= x_1 + q_1 r_1 \\
+p_2(x_2, q_2) &= x_2 + q_2 r_2 \\
+C_{contact}(x_1, q_1, x_2, q_2) &=
   (p_2(x_2, q_2) - p_1(x_1, q_1)) \cdot \hat{n} \\
-  = (x_2 + q_2 r_2 - x_1 - q_1 r_1) \cdot \hat{n}
-}
+  &= (x_2 + q_2 r_2 - x_1 - q_1 r_1) \cdot \hat{n} \\
+\end{align*}
 $$
 
 where $q_1$ and $q_2$ are the orientations of each body,
@@ -91,8 +91,7 @@ complicate the solver, as constants like this can always be baked into the
 constraint function instead.
 {: .sidenote}
 
-Let's look at a couple more examples to make it easier to believe that all
-constraints really look the same. Another simple case is a distance
+Another simple example of a constraint is a distance
 constraint, which attaches two objects such that the distance between
 selected points on them is always in some range.
 
@@ -122,6 +121,12 @@ presentation][cat14], constraints are a place where physics programmers get to
 apply creativity. Check out e.g. the aforementioned presentation or [this
 paper][tam15] for some more examples of constraint functions.
 
+Constraints aren't just a physics thing! For instance, they're also an
+important concept in optimization problems. The idea is the same there —
+a function that takes some variables and returns a scalar, plus an acceptable
+range for that scalar.
+{: .sidenote}
+
 ## Solvers
 
 I've built three solvers so far: Impulses with Projected
@@ -131,15 +136,16 @@ Let's take a look at the theory and source material of each.
 ### Impulses with Projected Gauss-Seidel
 
 I based this solver almost entirely on [this 2005 paper by Erin Catto][cat05],
-with some input from the book Game Physics by David Eberly. It took me a long
-time to get a sufficient grasp of the math, and in hindsight I should have
-looked up more sources at this point, but just reading this over and over about
-fifty times ended up getting me a working solver. Can't complain about that.
+with some input from the book Game Physics by David Eberly and other content
+from the [Box2D publications page][box2dpub]. This was a long learning process
+that involved a _ton_ of reading the same things over and over, and almost none
+of the code I wrote for this is used anymore, but lots of invaluable
+understanding was gained.
 
 I recommend also reading the paper after (or before) you read this post.
 I might have omitted or been unclear about something that the paper says
 better, or vice versa. In general, reading many different takes on the same
-thing is the most effective way to understand complicated topics!
+thing is an effective way to understand complicated topics!
 {: .sidenote}
 
 This will be by far the longest section of this post because I'll cover
@@ -158,13 +164,17 @@ like for the contact constraint:
 
 $$
 \begin{align}
-&C_{contact}(x_1, q_1, x_2, q_2) =
+C_{contact}(x_1, q_1, x_2, q_2) &=
   (x_2 + q_2 r_2 - x_1 - q_1 r_1) \cdot \hat{n} \\
-&\dot{C}_{contact}(v_1, \omega_1, v_2, \omega_2)
-  = (v_2 + \omega_2 \times q_2 r_2 - v_1 - \omega_1 \times q_1 r_1) \cdot \hat{n}
-  + (x_2 + q_2 r_2 - x_1 - q_1 r_1) \cdot \omega_1 \times \hat{n}
+\dot{C}_{contact}(v_1, \omega_1, v_2, \omega_2)
+  &= (v_2 + \omega_2 \times q_2 r_2 - v_1 - \omega_1 \times q_1 r_1) \cdot \hat{n} \\
+  & \quad + (x_2 + q_2 r_2 - x_1 - q_1 r_1) \cdot \omega_1 \times \hat{n}
 \end{align}
 $$
+
+The dot on $\dot{C}$ is a notation physicists use for the time derivative
+$\frac{\partial C}{\partial t}$.
+{: .sidenote}
 
 where $v_i$ is the linear velocity of body $i$ and $\omega_i$ is its angular
 velocity. The second term is likely to be negligibly small, so this solver
@@ -385,28 +395,168 @@ $$
 
 where the subscripts 1 and 2 denote the contacts C1 and C2.
 
-Hopefully that was helpful. Now that we have the matrices for the whole system,
+So the Jacobian matrix is extremely wide with lots of zeroes. Doesn't this
+consume a huge amount of memory? Not if we don't want it to — if we make the
+restriction that each constraint only affects at most two bodies, we can
+get away with only storing the nonzero elements of the Jacobian and
+the indices of the bodies they correspond to.
+{: .sidenote}
+
+Now that we have the matrices for the whole system,
 the equations of motion look exactly like the single-body versions from earlier
 but without the index subscripts:
 
 $$
 \begin{align}
-M \dot{V} &= J^T \lambda + F_{ext} \\
-JV &= 0
+  M \dot{V} &= J^T \lambda + F_{ext} \\
+  JV &= 0
 \end{align}
 $$
 
-Now we have our equations of motion. There's one more thing we need: because
-the first equation only gives us an acceleration, we need to solve a
-differential equation to get to velocities and positions. This calls for a
-time-stepping method, also known as an integrator. The one we'll use is called
-the semi-implicit Euler method.
+Now we have our equations of motion. There's one more thing (besides $\lambda$
+which we want to solve for) that we don't have: the acceleration $\dot{V}$.
+We'll use a linear approximation: if we have a velocity $V_1$, move forward in
+time by a step $\Delta t$, and the velocity is now $V_2$, then the acceleration
+during that time step is approximately
+
+$$
+\dot{V} \approx \frac{V_2 - V_1}{\Delta t}.
+$$
+
+When we're at the beginning of the timestep, we don't know the value of $V_2$ —
+it's actually the thing we're trying to eventually calculate here! As you'll
+see in a second, this turns out to be less of a problem than it sounds like.
+{: .sidenote}
+
+With this we finally have all the variables needed to actually solve for
+$\lambda$. The steps to get there are many and not entirely obvious, so I'll
+write them out:
+
+$$
+\begin{align*}
+  M\dot{V} &= J^T \lambda + F_{ext} \scriptstyle{\text{ (1st eq. of motion)}} \\
+  M\frac{V_2 - V_1}{\Delta t} &= J^T \lambda + F_{ext} \\
+  \frac{1}{\Delta t}MV_2 &= \frac{1}{\Delta t}MV_1 + J^T \lambda + F_{ext} \\
+  \frac{1}{\Delta t}V_2 &= \frac{1}{\Delta t}V_1 + M^{-1} J^T \lambda + M^{-1} F_{ext} \\
+  \frac{1}{\Delta t}V_2 - M^{-1} J^T \lambda &= \frac{1}{\Delta t}V_1 + M^{-1} F_{ext} \\
+  \frac{1}{\Delta t}JV_2 - JM^{-1} J^T \lambda &= J(\frac{1}{\Delta t}V_1 + M^{-1} F_{ext}) \\
+\end{align*}
+$$
+
+We multiplied by $J$ in the last step because the constraint equation states that
+$JV_2 = 0$. We can now eliminate that term, flip the signs, and we're left with
+
+$$
+JM^{-1}J^T \lambda = -J(\frac{1}{\Delta t}V_1 + M^{-1} F_{ext}).
+$$
+
+We have the values for all the variables in this except $\lambda$, so
+we're ready to solve this!
+
+This is just an equation with an equality symbol, which doesn't do anything to
+address inequality constraints. Those require some additional operations which
+we'll get to in a minute.
+{: .sidenote}
+
+#### The solver itself
+
+It's possible to solve this problem exactly with so-called global methods
+(which I don't know much about), but these methods are too expensive for
+real-time use. We need a faster approximate method. A class of numerical
+methods known as Gauss-Seidel has just what we need.
+
+The basic Gauss-Seidel method for linear systems looks like this in
+(pseudo-)Rust:
+
+The same algorithm is presented as regular pseudocode in the source paper,
+so look there if you prefer that style.
+{: .sidenote}
+
+```rust
+/// approximately solve x in the linear system Ax = b
+/// starting with an initial guess x0
+fn gauss_seidel<const N: usize>(
+  a: [[f64; N]; N],
+  b: [f64; N],
+  lambda_0: [f64; N],
+) -> [f64; N] {
+  let mut lambda = lambda_0;
+  for _iter in 0..MAX_ITERATIONS {
+    for i in 0..N {
+      let delta_lambda_i = (b[i] - dot(a[i], lambda)) / a[i][i];
+      lambda[i] += delta_lambda_i;
+    }
+  }
+  lambda
+}
+```
+
+You might want to check e.g. how much the values of $\lambda$ changed in an
+iteration and exit early if they're all below some threshold, but it's probably
+fine to just run `MAX_ITERATIONS` iterations every time.
+{: .sidenote}
+
+However, we have inequality constraints which can't be expressed as a linear
+system of equations, so this isn't enough. Fortunately, we only need one new
+operation. The trick is that we can allow a range of values of $C$ by
+_limiting_ the allowed range of $\lambda$. For instance, if we want $C \geq 0$,
+we can set $\lambda$ to zero if it comes out negative.
+
+Remember that $\lambda$ represents an impulse that moves things in the gradient
+direction of $C$, meaning that a positive $\lambda$ would cause $C$ to increase
+and a negative $\lambda$ would cause it to decrease. Setting $\lambda$ to zero
+means not moving anything.
+{: .sidenote}
+
+In general, we can clamp $\lambda$ in a range $[\lambda^-, \lambda^+]$.
+This is called _projection_, hence the name Projected Gauss-Seidel
+algorithm, which looks something like this:
+
+```rust
+// changes from normal gauss-seidel denoted with // *
+
+fn projected_gauss_seidel<const N: usize>(
+  a: [[f64; N]; N],
+  b: [f64; N],
+  bounds: [(f64, f64); N], // *
+  lambda_0: [f64; N],
+) -> [f64; N] {
+  let mut lambda = lambda_0;
+  for _iter in 0..MAX_ITERATIONS {
+    for i in 0..N {
+      let delta_lambda_i = (b[i] - dot(a[i], x)) / a[i][i];
+      lambda[i] = clamp(x[i] + delta_lambda_i, bounds[i].0, bounds[i].1); // *
+    }
+  }
+  lambda
+}
+```
+
+This type of problem involving inequalities is called a _linear complementarity
+problem_.
+{: .sidenote}
+
+That's it! We can now take the matrix equation from earlier,
+
+$$
+JM^{-1}J^T \lambda = -J(\frac{1}{\Delta t}V_1 + M^{-1} F_{ext}),
+$$
+
+add appropriate bounds for inequality constraints,
+and feed it into this algoritm. In reality, there's also an indirection
+step to avoid storing lots of zeroes in $J$, but this is the gist of it.
+Refer to the source paper for all the details.
+
+- semi-implicit Euler integration
+
+#### Additional tricks
 
 - bias, Baumgarte stabilisation, problem of adding energy
   and being slow to resolve position errors
 - something about stability and convergence? or just refer to sources
 - warm starting
 - consider dropping the $q$s everywhere to simplify and conform to the paper
+- would it be nice to show the solver's rust code? or is it too much?
 
 ### Iterated impulses
 
@@ -443,6 +593,7 @@ the semi-implicit Euler method.
 
 [cattotwit]: https://twitter.com/erin_catto
 [box2d]: https://box2d.org/
+[box2dpub]: https://box2d.org/publications/
 [pgs-src]: https://github.com/MoleTrooper/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics/constraint.rs#L315
 [ii-src]: https://github.com/MoleTrooper/starframe/blob/3db52efa10a8c505fe352d9bc57f70ce00fea45a/src/physics/constraint/solver.rs#L71
 [xpbd-src]: https://github.com/MoleTrooper/starframe/blob/edaa70ad68cbaffad8c94971e8f31a4f759ac70e/src/physics.rs#L159
