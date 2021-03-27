@@ -115,8 +115,8 @@ additional trickery even things like motors and springs (we'll take a look at
 these things when discussing solvers). You can also remove one body from
 constraint function's parameters and attach bodies to places in the world
 instead. Technically more than two bodies could participate in a single
-constraint too, but this is a bit harder to implement and rarely useful. Like
-[Erin Catto][cattotwit] (of [Box2D] fame) said in [his 2014 GDC
+constraint too, but this is a bit harder to implement efficiently and rarely
+useful. Like [Erin Catto][cattotwit] (of [Box2D] fame) said in [his 2014 GDC
 presentation][cat14], constraints are a place where physics programmers get to
 apply creativity. Check out e.g. the aforementioned presentation or [this
 paper][tam15] for some more examples of constraint functions.
@@ -383,17 +383,19 @@ Here's the constraint vector for the whole system:
 
 $$
 C = JV = \begin{bmatrix}
-  -\hat{n}^T_{1} & -(q_1 r_{1,1} \times \hat{n}_{1})^T
-    & \hat{n}^T_{1} & (q_2 r_{1,2} \times \hat{n}_{1})^T & 0 & 0 \\
-  -\hat{n}^T_{2} & -(q_1 r_{2,1} \times \hat{n}_{2})^T
-    & 0 & 0 & \hat{n}^T_{2} & -(q_3 r_{2,3} \times \hat{n}_{2})^T \\
+  -\hat{n}^T_{C1} & -(q_1 r_{1,C1} \times \hat{n}_{C1})^T
+    & \hat{n}^T_{C1} & (q_2 r_{2,C1} \times \hat{n}_{C1})^T & 0 & 0 \\
+  -\hat{n}^T_{C2} & -(q_1 r_{1,C2} \times \hat{n}_{C2})^T
+    & 0 & 0 & \hat{n}^T_{C2} & -(q_3 r_{3,C2} \times \hat{n}_{C2})^T \\
 \end{bmatrix}
 \begin{bmatrix}
 v_1 \\ \omega_1 \\ v_2 \\ \omega_2 \\ v_3 \\ \omega_3
 \end{bmatrix}
 $$
 
-where the subscripts 1 and 2 denote the contacts C1 and C2.
+The subscripts are a bit of a mess with this many variables around, but
+hopefully you get the idea.
+{: .sidenote}
 
 So the Jacobian matrix is extremely wide with lots of zeroes. Doesn't this
 consume a huge amount of memory? Not if we don't want it to — if we make the
@@ -544,19 +546,205 @@ $$
 
 add appropriate bounds for inequality constraints,
 and feed it into this algoritm. In reality, there's also an indirection
-step to avoid storing lots of zeroes in $J$, but this is the gist of it.
-Refer to the source paper for all the details.
+step to avoid storing lots of zeroes in $J$ and $M$, but this is the gist of
+it. Refer to the source paper for all the details.
 
-- semi-implicit Euler integration
+The initial guess can be anything, but a vector of zeroes is a good choice
+if we have nothing better to go off. More on this later.
+{: .sidenote}
+
+#### Finishing steps
+
+Now that we have $\lambda$, the hard part is done, but a few more things need
+to be done to put it in action. We need to apply it to the system velocity and
+step forward in time.
+
+Solving for $V_2$ from our earlier equations of motion gives
+
+$$
+  V_2 = V_1 + \Delta t (M^{-1} J^T \lambda + M^{-1} F_{ext}).
+$$
+
+The best suited method for stepping forward in time with the information we have
+is the [semi-implicit Euler method](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method),
+which preserves energy well and doesn't require solving any further equations.
+The formula for it is simple: for each body with pre-timestep position $x_1$ and
+newly computed velocity $v_2$ we do
+
+$$
+  x_2 = x_1 + \Delta t v_2.
+$$
+
+Now we run collision detection again to update $J$, re-do all of this math, do
+that 60 times per second and we have a simulation! It's not the most accurate
+one out there, but it's quite fast and good enough for the vast majority of
+games.
 
 #### Additional tricks
 
-- bias, Baumgarte stabilisation, problem of adding energy
-  and being slow to resolve position errors
-- something about stability and convergence? or just refer to sources
-- warm starting
-- consider dropping the $q$s everywhere to simplify and conform to the paper
-- would it be nice to show the solver's rust code? or is it too much?
+There's a variety of little things we can plug on top of this method to improve
+its performance and model more kinds of things. Here's a brief overview of what
+I know of.
+
+##### **Resolving overlaps**
+
+Because this method works on the velocity level, it prevents position-level
+errors from getting worse, but does nothing to _resolve_ them. If two bodies
+overlap, solving the velocity-level contact constraint stops them from moving
+deeper into each other, but won't move them apart. In practice this causes
+stacks of objects to slowly sink into each other. A mechanism for resolving
+position errors is needed.
+
+This solver addresses the problem using something called _Baumgarte
+stabilisation_. By modifying the constraint equation $JV = 0$ to include a
+_bias_: $JV = \zeta$, constraints can be made to cause movement.
+If we feed the position error $C$ into the bias term, the velocity constraint
+will push bodies towards a permissible configuration:
+
+$$
+  \zeta = -\beta C
+$$
+
+where $\beta$ is a tuning coefficient that controls how fast errors are resolved.
+
+With this modification, the equation for $\lambda$ becomes
+
+$$
+JM^{-1}J^T \lambda = \frac{1}{\Delta t} \zeta - J(\frac{1}{\Delta t}V_1 + M^{-1} F_{ext}).
+$$
+
+A problem with this is that constraints with nonzero bias do work, thereby
+adding energy to the system. If $\beta$ is too high, objects can jitter and
+bounce when they collide, but if it's very low, overlaps will take a long time
+to resolve.
+
+In his later work (e.g. [this presentation][cat14]), Catto speaks about
+using _pseudo velocities_ for corrections instead. These are velocities that
+are immediately discarded and don't affect future states, removing the
+problem of generating energy.
+{: .sidenote}
+
+Another option is _projection_, which simply moves objects apart directly on
+the position level. This doesn't create energy, but tends to cause stacked
+objects to jitter due to the projection away from one object moving them into
+overlap with another one.
+
+Whatever method you choose, allowing a bit of slop can make a big difference.
+This means scaling position errors down slightly before solving them, so that
+they're never quite resolved completely. This guarantees that resting contacts
+get a collision every frame, eliminating jitter caused by overcorrections
+pushing objects all the way apart.
+
+##### **Other uses for bias**
+
+Bias can be a useful tool even if you do something else to correct errors.
+For example, elastic collisions (i.e. bouncy things) can be modeled by
+setting the bias to $-eJV_1$, where $e$ is the coefficient of restitution.
+
+I haven't actually implemented this, but I'm pretty sure that's the formula.
+{: .sidenote}
+
+Also, various kinds of motors can be created by varying a constraint over time
+and using bias-based position correction (as described above) to power it.
+
+##### **Friction**
+
+Friction is a bit of a weird phenomenon to represent as a constraint, for a
+few reasons. For one, it only exists at the velocity level. Also, it
+doesn't always completely stop movement; in most cases it merely slows things
+down. How much it slows things down depends on many factors.
+
+Friction slows down movement in the tangent direction of every contact.
+A neat thing about this is that we can reuse the constraint equation from
+the contact, just replacing $\hat{n}$ with its tangent.
+
+In 3D, the tangent is a plane. The paper uses two separate constraints with two
+linearly independent tangent vectors to achieve friction in the whole tangent
+plane. This is results in something called a pyramid-shaped _friction cone_.
+It's not perfectly accurate, but as usual, game physics is all about being fast
+and plausible.
+{: .sidenote}
+
+We can simulate a bounded friction force by limiting the minimum and maximum
+values of $\lambda$ for the friction constraint. The paper uses a simplified
+model with a single coefficient of friction and no regard to other forces in
+the system with
+
+$$
+  -\mu m_c g \leq \lambda \leq \mu m_c g
+$$
+
+where $\mu$ is the coefficient of friction between the participating bodies'
+materials, $m_c$ is a fraction of the bodies' masses depending on the number of
+contact points between them, and $g$ is the acceleration of gravity.
+
+In my solver, I went for a slightly more sophisticated model based on
+Coulomb's friction model, which states that the friction force is bounded by
+the supporting force:
+
+$$
+  -\mu \lambda_n \leq \lambda \leq \mu \lambda_n
+$$
+
+where $\lambda_n$ is the impulse caused by the contact constraint related to
+this friction constraint. This requires a bit more code for finding
+$\lambda_n$ but is more realistic, especially in stacks of bodies where the
+ones at the bottom correctly experience more friction than the ones at the top.
+
+In reality, there's also a difference between static and dynamic friction, i.e.
+friction that prevents motion from starting and friction that slows down
+nonzero motion. I didn't care enough to implement this.
+{: .sidenote}
+
+##### **Impulse caching**
+
+Sometimes the PGS algorithm is slow to converge on the correct solution. These
+cases can be made less common with better initial guesses, and physics has a
+nice property called _temporal coherence_ that can help us here. This means
+that things tend not to change much from one timestep to the next. By caching
+the result $\lambda$ of one timestep and using it as the next step's initial
+guess $\lambda_0$, convergence becomes faster whenever the state of the system
+doesn't change drastically between timesteps. This is called _warm starting_
+the algorithm.
+
+I'm not an expert on when or why convergence is slow, but one such situation
+is when bodies with wildly different masses interact. You can help convergence
+simply by designing systems where big mass discrepancies don't exist.
+{: .sidenote}
+
+This can have a side effect of causing bounces after instantaneous large
+forces, as you start with a large $\lambda_0$ and fail to converge on the small
+correct solution. You may want to tune it e.g. by multiplying with some
+constant $\alpha$ between 0 and 1, $\lambda_0 = \alpha \lambda$.
+{: .sidenote}
+
+This introduces a tricky little problem: contacts are regenerated by collision
+detection every timestep. We need a way to match new contacts with previous
+ones to figure out which element of $\lambda_0$ belongs to them. The paper
+introduces a couple of options for solving this: contact point positions or
+incident edge labels. Contact point positions change, so they need a tolerance
+region where two points are considered the same. This is tricky because it's
+hard to know how much the contact points can move between timesteps. Labeling
+incident edges means assigning numbers to the edges on each body's collider
+that make up the contact point. I used a method similar to this, but my
+implementation had some problems so probably don't copy it :)
+
+##### **Islands and sleeping**
+
+This is an optimization method the paper doesn't cover and I haven't implemented
+either, but it's something worth knowing. By building a graph with bodies as
+nodes and constraints as edges, we can identify sets of bodies that directly or
+indirectly affect each other, called _islands_.
+
+![Two islands of interacting bodies](/assets/TODO)
+
+Having identified these islands, we can send them all to different threads to
+solve with PGS (which itself can't be parallelized) or, more importantly,
+islands where nothing is happening can be set to _sleep_. This means that
+they're skipped entirely by the solver until their topology changes, that is, a
+new constraint appears (a collision happens) or something disappears. You can
+imagine how much time this would save in a large game level where things only
+actually happen near the player.
 
 ### Iterated impulses
 
@@ -595,5 +783,6 @@ Refer to the source paper for all the details.
 [box2d]: https://box2d.org/
 [box2dpub]: https://box2d.org/publications/
 [pgs-src]: https://github.com/MoleTrooper/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics/constraint.rs#L315
+[pgs-phys-rs]: https://github.com/MoleTrooper/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics.rs#L152
 [ii-src]: https://github.com/MoleTrooper/starframe/blob/3db52efa10a8c505fe352d9bc57f70ce00fea45a/src/physics/constraint/solver.rs#L71
 [xpbd-src]: https://github.com/MoleTrooper/starframe/blob/edaa70ad68cbaffad8c94971e8f31a4f759ac70e/src/physics.rs#L159
