@@ -17,8 +17,10 @@ tiny bit of physics knowledge.
 <!--excerpt-->
 
 I'll start with the mathematical definition of constraints and then go over
-three solvers in the order I implemented them myself: Impulses with Projected
-Gauss-Seidel, Sequential Impulses, and Extended Position-Based Dynamics.
+three solvers in the order I implemented them myself: a somewhat abstract
+matrix-based method I call Impulses with Projected Gauss-Seidel, a simpler
+variant of it called Sequential Impulses, and finally a more sophisticated and
+modern yet also simpler method called Extended Position-Based Dynamics.
 
 ## What is a constraint?
 
@@ -143,6 +145,11 @@ Gauss-Seidel, Sequential Impulses, and Extended Position-Based Dynamics.
 Let's take a look at the theory and source material of each.
 
 ### Impulses with Projected Gauss-Seidel
+
+As a bit of motivation before I hit you with pages upon pages of text, here's
+what this solver's results look like in action.
+
+![Running a test scene with the PGS solver](/assets/TODO)
 
 I based this solver almost entirely on [this 2005 paper by Erin Catto][cat05],
 with some input from the book Game Physics by David Eberly and other content
@@ -661,7 +668,7 @@ pushing objects all the way apart.
 
 Bias can be a useful tool even if you do something else to correct errors.
 For example, elastic collisions (i.e. bouncy things) can be modeled by
-setting the bias to $-eJV_1$, where $e$ is the coefficient of restitution.
+setting the bias to $-eJV_1$, where $e$ is called the coefficient of restitution.
 
 I haven't actually implemented this, but I'm pretty sure that's the formula.
 {: .sidenote}
@@ -716,6 +723,12 @@ ones at the bottom correctly experience more friction than the ones at the top.
 In reality, there's also a difference between static and dynamic friction, i.e.
 friction that prevents motion from starting and friction that slows down
 nonzero motion. I didn't care enough to implement this.
+{: .sidenote}
+
+Also in reality, all pairs of two materials have their own coefficients of
+restitution and friction. This level of granularity isn't really necessary in
+games, so we usually store these coefficients with individual materials and
+form the pairwise coefficients with an average, min, or max.
 {: .sidenote}
 
 ##### **Impulse caching**
@@ -832,7 +845,7 @@ equation now. This ends up looking like this:
 
 $$
   \begin{align*}
-    \Delta \lambda &\leftarrow -\frac{Jv + \frac{\beta}{\Delta t} C + \frac{\gamma}{\Delta t}}
+    \Delta \lambda &\leftarrow \frac{-Jv + \frac{\beta}{\Delta t} C + \frac{\gamma}{\Delta t}}
                 {JM^{-1}J^T + \gamma} \\
     \lambda &\leftarrow \lambda + \Delta \lambda
   \end{align*}
@@ -877,6 +890,10 @@ fn pbd_timestep(dt: f64) {
 }
 ```
 
+Velocity is still used to move particles at the beginning of the timestep. The
+point is that it's never manipulated directly.
+{: .sidenote}
+
 Why is this good? Many position constraints are _nonlinear_. For instance, the
 distance constraint wants particles to move in a circle around each other,
 which clearly isn't a linear shape. If we take the time derivative to solve
@@ -902,22 +919,22 @@ deformable bodies such as cloth built out of distance-constrained particles. A
 big advantage of XPBD compared to velocity-based methods is that connecting
 such simulations with rigid bodies becomes very simple.
 
+### Adding rigid bodies
+
 The trouble with rigid bodies compared to particles is that in addition to
 position, they also have an orientation. Regular PBD only deals in positions.
 This is where the X in XPBD comes to the rescue, adding two new correction
 operations.
 
-For a general position constraint $C(x_1, q_1, x_2, q_2) = 0$, starting
-from Newton's second law like we did with the PGS solver, adding compliance
-(familiar from soft constraints) and solving for a position correction
-$\lambda$ gives
+For a general position constraint $$C(\mathbf{x}_1, \mathbf{x}_2) = 0$$ (where
+$\mathbf{x}$ denotes a _pose_ with a position and orientation $$\mathbf{x} =
+\begin{bmatrix}x \\ q\end{bmatrix}$$), starting from Newton's second law like we
+did with the PGS solver, adding compliance (familiar from soft constraints) and
+solving for a position correction $\Delta \lambda$ gives
 
 $$
-\begin{align*}
-  \Delta \lambda &\leftarrow -\frac{C - \frac{\alpha}{(\Delta t)^2} \lambda}
-        {\nabla C M^{-1} \nabla C^T + \frac{\alpha}{(\Delta t)^2}} \\
-  \lambda &\leftarrow \lambda + \Delta \lambda
-\end{align*}
+  \Delta \lambda = \frac{-C - \frac{\alpha}{(\Delta t)^2} \lambda}
+        {\nabla C M^{-1} \nabla C^T + \frac{\alpha}{(\Delta t)^2}}
 $$
 
 The derivation for this can be found in [the original XPBD paper][mmc17].
@@ -925,102 +942,258 @@ This paper uses some advanced language and ideas I don't understand well enough
 to explain, so I won't go over the whole thing here.
 {: .sidenote}
 
-where $\alpha$ is compliance (using a different symbol in this paper). The only
-difference from the velocity-level soft constraints from earlier is using the
-gradient $\nabla C$ in place of $J$ and dividing compliance by timestep one more
-time to get physically correct units at the position level.
+where $\alpha$ is compliance. The only difference from the velocity-level soft
+constraints from earlier is using the gradient $\nabla C$ in place of $J$ and
+dividing compliance by timestep one more time to get physically correct units
+at the position level (and a different symbol for compliance).
 
 In terms of physical properties, compliance is the inverse of _stiffness_.
 Hard constraints like contacts have a compliance of zero, corresponding to
 infinite stiffness.
 {: .sidenote}
 
-For a contact constraint (or any constraint restricting movement at a point in
-a direction), this can be written as
+Having solved for $\Delta \lambda$ we apply it to poses (positions and
+orientations) with
+
+$$
+  \mathbf{x}_2 = \mathbf{x}_1 + M^{-1} \nabla C^T \Delta \lambda.
+$$
+
+You could also use this to resolve overlaps with the projection method in
+velocity-based solvers! (although simpler, less physically accurate ways are
+also available.)
+{: .sidenote}
+
+Note the similarity to the velocity-level formula from earlier,
+
+$$
+  V_2 = V_{1+f} + \Delta t M^{-1} J^T \lambda.
+$$
+
+For inequality constraints, we can use the familiar trick of clamping $\lambda$
+before applying it.
+
+The [paper][mmcjk20] also gives specific formulas for contact-style
+offset-direction constraints and angle-only constraints, but these are just
+special cases of the general formula I just presented. Check them out if this
+feels too abstract.
+{: .sidenote}
+
+### Velocity
+
+The whole point of PBD is to not actually touch velocity, however, this comes
+with some problems. First, when things collide and get projected apart, the
+approximate velocity now depends on how far apart the bodies were at the start
+of the timestep and has no physical relevance. Also, there's no way to make
+things bounce off each other. Secondly, dynamic friction is a fundamentally
+velocity-level phenomenon that simply cannot be simulated with position-level
+constraints. To address these cases, XPBD adds a velocity adjustment step that
+replaces the approximate velocity with a realistic one.
+
+For each contact, we need the relative velocity between the contact points on
+each body. This is computed from the body velocities $v_i$, angular velocities
+$\omega_i$ and body-space contact points $r_i$ with
+
+$$
+  \mathbf{v}_{rel} = (v_1 + \mathbf{\omega_1} \times r_1) - (v_2 + \mathbf{\omega}_2 \times r_2),
+$$
+
+in 3D, or
+
+$$
+  \mathbf{v}_{rel} = (v_1 + \omega_1 r_1^{\perp}) - (v_2 + \omega_2 r_2^{\perp})
+$$
+
+in 2D.
+
+I'm using bolded symbols for vectors here to clarify which variables are
+vectors and which are scalars.
+{: .sidenote}
+
+We split this into normal and tangent velocities (for bounces and friction,
+respectively) with respect to the contact normal $\hat{\mathbf{n}}$ with
 
 $$
 \begin{align*}
-  \Delta \lambda &\leftarrow -\frac{C - \frac{\alpha}{(\Delta t)^2} \lambda}
-        {w_1 + w_2 + \frac{\alpha}{(\Delta t)^2}} \\
-  \lambda &\leftarrow \lambda + \Delta \lambda
+  v_n &= \hat{\mathbf{n}} \cdot \mathbf{v}_{rel} \\
+  \mathbf{v}_t &= \mathbf{v}_{rel} - \hat{\mathbf{n}}v_n. \\
 \end{align*}
 $$
 
-where $w_1$ and $w_2$ are each body's _generalized inverse mass_ or _effective
-inverse mass_,
+What we want is for the normal velocity to be zero (in the case of an inelastic
+collision) or reflected away (in the case of an elastic collision) and the
+tangent velocity to be reduced by some amount (as friction always acts to slow
+things down). Let's calculate how the velocity needs to change to accomplish
+these things.
+
+To achieve an inelastic collision, we can simply add $-v_n \hat{\mathbf{n}}$ to the
+velocity. For elasticity, we also need the normal velocity at the start of the
+timestep $\tilde{v}_n$ so we can reflect it. The formula ends up being
 
 $$
-  w = \frac{1}{m} + (qr \times \hat{n})^T I^{-1} (qr \times \hat{n}).
+  \Delta \mathbf{v}_n = \hat{\mathbf{n}} (-v_n + \max(-e \tilde{v}_n, 0))
 $$
 
-Here $m$ is the body's mass and $r$ and $n$ are the contact's offset and normal
-as discussed in the first chapter of the post.
+where $e$ is the coefficient of restitution between the two bodies and the $\max$
+function avoids "inward" bounces in the case where the reflected velocity
+doesn't point away from the contact surface.
 
-As seen earlier, the cross products only apply in 3D. The 2D equivalent is
+For friction, we use the familiar Coulomb model. In the tanget direction
+$\hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{|\mathbf{v}_t|}$, we apply a correction
 
 $$
-  w = \frac{1}{m} + \frac{(\omega r^\perp)^2}{I}.
+  \Delta \mathbf{v}_t = -\hat{\mathbf{v}} * \min(\Delta t \mu_d f_n, |\mathbf{v}_t|)
 $$
 
-This can be factored like this in 2D because $I$ is a scalar. In 3D it's a
-matrix and order of operations matters.
+where $\mu_d$ is the dynamic friction coefficient for the pair of materials,
+$f_n$ is the _normal force_ applied during position correction $f_n =
+\frac{\lambda_n}{(\Delta t)^2}$, and the $\min$ operation ensures the
+correction doesn't overshoot past the point where $|\mathbf{v}_t| = 0$.
+
+One more velocity correction is used for _damping_ of various constraints,
+which simulates sources of drag such as air resistance. The formula is simple,
+
+$$
+\begin{align*}
+  \Delta \mathbf{v} &= (\mathbf{v}_2 - \mathbf{v}_1)\min(\mu_{lin}\Delta t, 1) \\
+  \Delta \omega &= (\omega_2 - \omega_1)\min(\mu_{ang}\Delta t, 1). \\
+\end{align*}
+$$
+
+This corresponds to multiplying the relative velocity between the bodies by
+some constant smaller than one, creating a nice exponential curve when done
+every timestep. As an example of where this can be useful, I used it in my
+test project to make blocks attached to the mouse pointer with a spring follow
+it calmly instead of oscillating back and forth.
 {: .sidenote}
 
-Once we have $\Delta \lambda$, we turn it into an impulse $p = \Delta \lambda
-\hat{n}$ and apply it to positions right away with
+To apply the velocity update, we take the sum of all of the above and turn it
+into an impulse
 
 $$
-  \begin{align*}
-    x_1 &\leftarrow x_1 + \frac{p}{m_1} \\
-    x_2 &\leftarrow x_2 - \frac{p}{m_2} \\
-  \end{align*}
+  \mathbf{p} = \frac{\Delta \mathbf{v}}{w_1 + w_2}
 $$
 
-and to orientations with
+where $w_i$ is a _generalized inverse mass_ or _effective inverse mass_
+equivalent to $\nabla C M^{-1} \nabla C^T$ from earlier. Its formula here is
 
 $$
-  \begin{align*}
-    q_1 &\leftarrow q_1 + \frac{1}{2}[I_1^{-1}(r_1 \times p),0] q_1 \\
-    q_2 &\leftarrow q_2 - \frac{1}{2}[I_2^{-1}(r_2 \times p),0] q_2 \\
-  \end{align*}
+  w_i = \frac{1}{m_i} + (r_i \times \hat{n})^T I_i^{-1} (r_i \times \hat{n})
 $$
 
-if you're in 3D using quaternions, or
+in 3D or
 
 $$
-  \begin{align*}
-    q_1 &\leftarrow q_1 + I_1^{-1} (p \cdot r_1^\perp) \\
-    q_2 &\leftarrow q_2 - I_2^{-1} (p \cdot r_2^\perp) \\
-  \end{align*}
+  w_i = \frac{1}{m_i} + I_i^{-1} (r_i^{\perp} \cdot \hat{n})^2
 $$
 
-if, like me, you're in 2D using angles.
+in 2D. Here $\hat{n}$ is the normalized direction of the velocity update
+$\frac{\Delta v}{|\Delta v|}$.
 
-An equivalent to the "perp-dot product" used above is the _wedge product_ $p
-\wedge r$ (interpreted as a scalar (in geometric algebra terms, the actual type
-this operation gives (in 2D) is something called a _pseudoscalar_ (confusing
-nested parentheses, woo!))).
+Check Appendix A of the [paper][mmcjk20] for the derivation.
 {: .sidenote}
 
-This is all it takes to solve a constraint of this type.
+With the velocity step done, we get realistic collisions and friction on par
+with velocity-based methods.
 
-This is essentially the same operation you would use to resolve overlaps with
-projection instead of Baumgarte stabilisation in the earlier solvers!
+There's also static friction, which I didn't do in earlier solvers, but it's
+actually quite easy in this framework — because static friction keeps objects
+in place, it can be implemented as an attachment constraint on the position
+level! In the position solve phase, we test if a correction $\lambda_t$
+bringing the contact points together in the tangent direction would be less
+than $\mu_s \lambda_n$, where $\mu_s$ is the static friction coefficient and
+$\lambda_n$ is the correction in the normal direction. If so, we apply the
+correction, if not, do nothing and let dynamic friction do its thing in the
+velocity step instead.
+
+### Details, pros, and cons
+
+The way the earlier solvers did their time-stepping was to step forward once
+per animation frame and spend time iterating the constraint solve algorithm to
+convergence. [As it turns out][m-et-al19], at least with XPBD, it's actually
+optimal (in terms of numerical error) to do it the other way around: spend time
+simulating multiple timesteps per animation frame, but only ever do one
+iteration of the constraint solve. Doing this results in significantly improved
+energy conservation and stiffness, as this comparison shows:
+
+![Running my test scene with the PGS solver](/assets/TODO)
+
+Above is the PGS solver from earlier, and below is the new XPBD solver:
+
+![Running my test scene with the XPBD solver](/assets/TODO)
+
+Pay particular attention to the chains — there's less random jitter and
+stretching, but at the same time they're moving in a much more fast and lively
+way with smooth high-frequency oscillations.
+
+This comes with a couple of tradeoffs. One is that collision detection needs to
+be run again every substep, which costs computation time. It helps to have a
+broad-phase algorithm that you can run once at the start of a frame and only
+re-run narrow-phase queries on pairs it returned. The paper uses an AABB tree.
+
+Collision detection is a likely subject of a future blog post (that hopefully
+won't be as long as this one). In the meantime, I recommend [Metanet Software's
+tutorials](https://www.metanetsoftware.com/dev/tutorials) for more information
+in an easily digestible form.
 {: .sidenote}
 
-- Angle constraint next!
+The other tradeoff from splitting the timestep is that very short timesteps can
+create numbers so small that 64-bit floating point numbers are required to do
+the computations with enough accuracy. This isn't a problem on a CPU, but I
+believe it can be a performance hit if you're implementing this on a GPU.
 
-- working on both position and velocity level
-- substeps instead of iterations
-  - advantage: better energy conservation and stiffness
-  - demonstrate difference from earlier solver
-  - tradeoff: need more collision checking
-- nonlinear at position-level
-  - simpler attachment constraints
-  - no overshoot on contacts and joint limits
-- no need for warm starting shenanigans
+That isn't the only difficulty with a GPU implementation, as none of these
+Gauss-Seidel type algorithms can be run in parallel. _Jacobi_ methods are
+a parallel alternative, but I don't really know how they work.
+{: .sidenote}
 
-- demo also PGS after that chapter!
+Solving constraints at the position level makes some problems that are
+nontrivial in impulse-based solvers extremely easy. First of all, there's
+obviously no need for a separate process like Baumgarte stabilisation for
+resolving overlaps because this method _is_ the projection method. Similarly,
+joint limits (think stops on a hinge or rail) are just projected away, where
+impulse-based methods end up doing things like [predictive
+joints](https://box2d.org/posts/2020/04/predictive-joint-limits/).
+
+Another case that becomes simplified is the attachment constraint, which is
+just a distance constraint of zero. You could imagine it as a nail. It seems
+simple (just make a distance constraint of zero!), but it's deceptively
+complicated because its _gradient is zero_ when its value is zero. Because of
+this, an impulse-based solver can't decide a direction to move things in and
+ends up needing multiple constraints (one for each coordinate axis) to solve
+robustly. The nonlinear position-based solver, on the other hand, can do this
+with just a distance constraint.
+
+One more advantage of XPBD is that it isn't helped by warm starting, which
+sidesteps the entire problem of caching contact points. Overall, this solver is
+a major step down in complexity. I'm really pleased with my implementation and
+excited to start building things with it!
+
+### Code
+
+This is the method I'm still using today (unless I changed again and forgot
+to update this post), so the source code can be found in the latest revision of
+Starframe. The solver resides in [physics.rs][xpbd-src]. At the time of writing
+it's still somewhat of a work in progress, but the core functionality is there.
+
+## Final words
+
+Phew! Writing this post was quite a ride, and I'm sure it was a heck of a heavy
+read as well. My own understanding of the topic grew immensely over the course
+of writing, and I hope I was able to communicate a bit of it to someone else
+too.
+
+To quickly recap the content, we went over the mathematical idea of a
+constraint, two impulse-based methods for solving them — Projected Gauss-Seidel
+and Sequential Impulses — and the new hotness called Extended Position-Based
+Dynamics. All of them derive from Newton's second law, with different
+constraint formulations and time-stepping methods. XPBD comes with some elegant
+solutions to problems impulse-based methods struggle with, but all of these are
+totally viable methods for game purposes.
+
+If you have any questions, compliments, complaints or corrections, feel free to
+ping me on the [Rust-gamedev Discord server](https://discord.gg/yNtPTb2) (I'm
+@MoleTrooper there) or on [Twitter](https://twitter.com/moletrooper).
 
 <!-- source documents -->
 
@@ -1030,6 +1203,7 @@ projection instead of Baumgarte stabilisation in the earlier solvers!
 [tam15]: http://www.mft-spirit.nl/files/MTamis_Constraints.pdf
 [mhhr06]: https://matthias-research.github.io/pages/publications/posBasedDyn.pdf
 [mmc17]: https://matthias-research.github.io/pages/publications/XPBD.pdf
+[m-et-al19]: https://matthias-research.github.io/pages/publications/smallsteps.pdf
 [mmcjk20]: https://matthias-research.github.io/pages/publications/PBDBodies.pdf
 [2mp-vid]: https://www.youtube.com/watch?v=F0QwAhUnpr4
 
