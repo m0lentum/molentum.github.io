@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Starframe Devlog: Solving Constraints in Physics"
-date: 2021-01-09 00:11 +0300
+date: 2021-03-31 17:45 +0300
 categories: engine physics
 usemathjax: true
 ---
