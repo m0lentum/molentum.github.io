@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Starframe Devlog: Constraints in Physics"
+title: "Starframe Devlog: Solving Constraints in Physics"
 date: 2021-01-09 00:11 +0300
 categories: engine physics
 usemathjax: true
@@ -22,22 +22,29 @@ matrix-based method I call Impulses with Projected Gauss-Seidel, a simpler
 variant of it called Sequential Impulses, and finally a more sophisticated and
 modern yet also simpler method called Extended Position-Based Dynamics.
 
+There won't be enough information here to actually build a complete solver
+yourself; that level of detail is what papers are for (and I'll give links to
+all the ones I used). What I'm hoping to do is to give an accessible place to
+start, introduce some options to consider and how they're different, and to
+help understand _why_ the math in the papers is the way it is.
+{: .sidenote}
+
 ## What is a constraint?
 
 The essence of a physics engine (and the difficult part of building one) is not
 making things move — it's making things _stop_ moving or change their
-trajectory in ways that make sense. Things interact with each other.
-A constraint, in a nutshell, is something that generates these interactions by
-telling things where they are allowed to be relative to each other.
+trajectory in ways that make sense. Things interact with each other. A
+constraint, in a nutshell, is something that generates these interactions by
+stopping movement in unwanted directions.
+
 Unfortunately, a nutshell alone isn't something you can feed into a computer,
 so I'll have to elaborate on this a bit. Let's look at a concrete example.
-
 The most important constraint in a rigid body engine is the contact
 constraint, which basically says "bodies aren't allowed to overlap".
-Let's say the collision detection system that I won't
-cover in this post notified us of a situation like this:
+Let's say the collision detection system (that I won't
+cover in this post) notified us of a situation like this:
 
-![Two boxes that overlap](/assets/TODO)
+![Two boxes that overlap](/assets/constraints/contact.png)
 
 These bodies overlap, which is a violation of the contact constraint.
 So we know the system is in an illegal state, but that boolean information
@@ -102,7 +109,11 @@ Another simple example of a constraint is a distance
 constraint, which attaches two objects such that the distance between
 selected points on them is always in some range.
 
-![Two boxes attached with a distance constraint](/assets/TODO)
+![Two boxes attached with a distance constraint](/assets/constraints/distance.png)
+
+The curve illustrates the region in which $p_2$ is allowed to move if box 1
+stays still.
+{: .sidenote}
 
 To achieve this we can simply measure the difference between the actual
 distance and the desired one $d$:
@@ -149,23 +160,22 @@ Let's take a look at the theory and source material of each.
 As a bit of motivation before I hit you with pages upon pages of text, here's
 what this solver's results look like in action.
 
-![Running a test scene with the PGS solver](/assets/TODO)
+![Running a test scene with the PGS solver](/assets/constraints/pgs-demo.gif)
+
+Yes, I know there's a mouse cursor in that gif. No, I'm not going to do
+anything about it.
+{: .sidenote}
 
 I based this solver almost entirely on [this 2005 paper by Erin Catto][cat05],
-with some input from the book Game Physics by David Eberly and other content
-from the [Box2D publications page][box2dpub]. This was a long learning process
-that involved a _ton_ of reading the same things over and over, and almost none
+with some input from other content from the [Box2D publications page][box2dpub]
+and the book Game Physics by David Eberly. This was a long learning process
+that involved a _ton_ of reading the same things over and over, and very little
 of the code I wrote for this is used anymore, but lots of invaluable
 understanding was gained.
 
-I recommend also reading the paper after (or before) you read this post.
-I might have omitted or been unclear about something that the paper says
-better, or vice versa. In general, reading many different takes on the same
-thing is an effective way to understand complicated topics!
-{: .sidenote}
-
-This will be by far the longest section of this post because I'll cover
-a lot of theory that applies to the other solvers as well.
+This is probably the most difficult of these solvers from a math point of view,
+so it may be worth reading the rest of the post even if some of this stuff goes
+over your head.
 {: .sidenote}
 
 #### Constraint formulation
@@ -193,8 +203,8 @@ $\frac{\partial C}{\partial t}$.
 {: .sidenote}
 
 where $v_i$ is the linear velocity of body $i$ and $\omega_i$ is its angular
-velocity. The second term is likely to be negligibly small, so this solver
-drops it entirely, leaving
+velocity. The second term is likely to be negligibly small, so we
+drop it entirely, leaving
 
 $$
 \dot{C}_{contact}(v_1, \omega_1, v_2, \omega_2)
@@ -202,9 +212,9 @@ $$
 $$
 
 The cross products here only apply in 3D where angular velocity is represented
-as a 3D vector. In 2D the equivalent operation is $\omega r^\perp$ where
-$r^\perp$ is the counterclockwise perpendicular (i.e. $r$ rotated 90 degrees
-counterclockwise, also known as the left normal) of $r$.
+as a 3D vector. In 2D $\omega$ is not a vector and the equivalent operation is
+$\omega r^\perp$ where $r^\perp$ is the counterclockwise perpendicular (i.e.
+$r$ rotated 90 degrees counterclockwise, also known as the left normal) of $r$.
 {: .sidenote}
 
 Doing a similar differentiation on all of our position-level constraints (or
@@ -742,15 +752,15 @@ guess $\lambda_0$, convergence becomes faster whenever the state of the system
 doesn't change drastically between timesteps. This is called _warm starting_
 the algorithm.
 
-I'm not an expert on when or why convergence is slow, but one such situation
-is when bodies with wildly different masses interact. You can help convergence
-simply by designing systems where big mass discrepancies don't exist.
-{: .sidenote}
-
 This can have a side effect of causing bounces when large forces suddenly
 disappear, as you start with a large $\lambda_0$ and fail to converge on the
 small correct solution. It may be helpful to tune it e.g. by multiplying with
 some constant $\alpha$ between 0 and 1, $\lambda_0 = \alpha \lambda$.
+{: .sidenote}
+
+I'm not an expert on when or why convergence is slow, but one such situation
+is when bodies with wildly different masses interact. You can help convergence
+simply by designing systems where big mass discrepancies don't exist.
 {: .sidenote}
 
 This introduces a tricky little problem: contacts are regenerated by collision
@@ -771,7 +781,11 @@ implemented (yet) either, but it's something worth knowing. By building a graph
 with bodies as nodes and constraints as edges, we can identify sets of bodies
 that directly or indirectly affect each other, often called _islands_.
 
-![Two islands of interacting bodies](/assets/TODO)
+![Two islands of interacting bodies](/assets/constraints/islands.png)
+
+The graph of bodies (illustrated with circles) and constraints (lines) has no
+connection between the green and blue sets of blocks.
+{: .sidenote}
 
 Having identified these islands, we can send them all to different threads to
 solve with PGS (which itself can't be parallelized) simultaneously or, more
@@ -898,14 +912,14 @@ Why is this good? Many position constraints are _nonlinear_. For instance, the
 distance constraint wants particles to move in a circle around each other,
 which clearly isn't a linear shape. If we take the time derivative to solve
 this type of constraints on the velocity level, we create a linear problem,
-which can be easier to solve, but comes with inaccuracy. Here's an illustration
+which can be easier to solve but comes with inaccuracy. Here's an illustration
 similar to one you can find in the XPBD paper:
 
-![Solving distance constraints on the velocity level and the position level](/assets/TODO)
+![Solving distance constraints on the velocity level and the position level](/assets/constraints/ngs.png)
 
 Here $p_1$ and $p_2$ are fixed positions that the particle $p_3$ is attached to
 with distance constraints $l_1$ and $l_2$. The first image shows how a
-velocity-level solve can only operate in the tangent direction of the distance
+velocity-level solve can only operate in the initial direction of the distance
 constraints, and as a result can never find the position satisfying both
 constraints. The second image shows how a position-level solve can change the
 correction direction, enabling it to converge on the correct solution.
@@ -915,16 +929,16 @@ _nonlinear Gauss-Seidel_ methods.
 {: .sidenote}
 
 Because PBD is good at nonlinear problems, it's popular in simulating
-deformable bodies such as cloth built out of distance-constrained particles. A
-big advantage of XPBD compared to velocity-based methods is that connecting
-such simulations with rigid bodies becomes very simple.
+deformable bodies such as cloth built out of distance-constrained particles. An
+advantage of XPBD compared to velocity-based methods is that connecting such
+simulations with rigid bodies becomes very simple.
 
 ### Adding rigid bodies
 
 The trouble with rigid bodies compared to particles is that in addition to
 position, they also have an orientation. Regular PBD only deals in positions.
-This is where the X in XPBD comes to the rescue, adding two new correction
-operations.
+This is where the X in XPBD comes to the rescue, adding correction operations
+that handle orientations.
 
 For a general position constraint $$C(\mathbf{x}_1, \mathbf{x}_2) = 0$$ (where
 $\mathbf{x}$ denotes a _pose_ with a position and orientation $$\mathbf{x} =
@@ -945,7 +959,7 @@ to explain, so I won't go over the whole thing here.
 where $\alpha$ is compliance. The only difference from the velocity-level soft
 constraints from earlier is using the gradient $\nabla C$ in place of $J$ and
 dividing compliance by timestep one more time to get physically correct units
-at the position level (and a different symbol for compliance).
+at the position level (plus a different symbol for compliance).
 
 In terms of physical properties, compliance is the inverse of _stiffness_.
 Hard constraints like contacts have a compliance of zero, corresponding to
@@ -1060,11 +1074,8 @@ $$
 \end{align*}
 $$
 
-This corresponds to multiplying the relative velocity between the bodies by
-some constant smaller than one, creating a nice exponential curve when done
-every timestep. As an example of where this can be useful, I used it in my
-test project to make blocks attached to the mouse pointer with a spring follow
-it calmly instead of oscillating back and forth.
+This can be handy when used together with compliance, creating springs that
+slow down over time instead of oscillating forever.
 {: .sidenote}
 
 To apply the velocity update, we take the sum of all of the above and turn it
@@ -1105,6 +1116,7 @@ than $\mu_s \lambda_n$, where $\mu_s$ is the static friction coefficient and
 $\lambda_n$ is the correction in the normal direction. If so, we apply the
 correction, if not, do nothing and let dynamic friction do its thing in the
 velocity step instead.
+{: .sidenote}
 
 ### Details, pros, and cons
 
@@ -1116,15 +1128,17 @@ simulating multiple timesteps per animation frame, but only ever do one
 iteration of the constraint solve. Doing this results in significantly improved
 energy conservation and stiffness, as this comparison shows:
 
-![Running my test scene with the PGS solver](/assets/TODO)
+![Running a test scene with the PGS solver](/assets/constraints/pgs-demo.gif)
 
 Above is the PGS solver from earlier, and below is the new XPBD solver:
 
-![Running my test scene with the XPBD solver](/assets/TODO)
+![Running the same test scene with the XPBD solver](/assets/constraints/xpbd-demo.gif)
 
-Pay particular attention to the chains — there's less random jitter and
-stretching, but at the same time they're moving in a much more fast and lively
-way with smooth high-frequency oscillations.
+Pay particular attention to the chains — there's less random jitter
+(unfortunately this is at a scale the gif doesn't show very well), but at the
+same time they're moving in a much more fast and lively way with smooth
+high-frequency oscillations. This is the effect of XPBD's higher accuracy and
+conservation of energy.
 
 This comes with a couple of tradeoffs. One is that collision detection needs to
 be run again every substep, which costs computation time. It helps to have a
@@ -1157,12 +1171,12 @@ joints](https://box2d.org/posts/2020/04/predictive-joint-limits/).
 
 Another case that becomes simplified is the attachment constraint, which is
 just a distance constraint of zero. You could imagine it as a nail. It seems
-simple (just make a distance constraint of zero!), but it's deceptively
-complicated because its _gradient is zero_ when its value is zero. Because of
-this, an impulse-based solver can't decide a direction to move things in and
-ends up needing multiple constraints (one for each coordinate axis) to solve
-robustly. The nonlinear position-based solver, on the other hand, can do this
-with just a distance constraint.
+simple (can't you just make a distance constraint of zero?), but it's
+deceptively complicated because a distance constraint's _gradient is zero_ when
+distance is zero. Because of this, an impulse-based solver can't decide a
+direction to move things in and ends up needing multiple constraints (one for
+each coordinate axis, actually) to solve robustly. The nonlinear position-based
+solver, on the other hand, can do this with just a distance constraint.
 
 One more advantage of XPBD is that it isn't helped by warm starting, which
 sidesteps the entire problem of caching contact points. Overall, this solver is
@@ -1174,7 +1188,8 @@ excited to start building things with it!
 This is the method I'm still using today (unless I changed again and forgot
 to update this post), so the source code can be found in the latest revision of
 Starframe. The solver resides in [physics.rs][xpbd-src]. At the time of writing
-it's still somewhat of a work in progress, but the core functionality is there.
+it's still somewhat of a work in progress, but contacts, friction, and distance
+constraints are already there.
 
 ## Final words
 
