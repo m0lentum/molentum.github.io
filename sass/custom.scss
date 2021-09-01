@@ -1,3 +1,34 @@
+// .header__inner:before {
+//   content: "";
+//   background: url('moleThink.png');
+//   width: 28px;
+//   height: 35px;
+//   background-size: 28px 28px;
+//   background-position: right bottom;
+//   background-repeat: no-repeat;
+// }
+
+.header__inner {
+  align-items: stretch;
+}
+.header__mole {
+  width: 28px;
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+
+  &.left-mole {
+    background: url('moleThink.png');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+  }
+  &.right-mole {
+    background: url('moleYo.png');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+  }
+}
+
+
 .code-like-img {
   border-top: 1px solid rgba(255,255,255,0.1);
   border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -12,7 +43,7 @@
   font-size: 0.8em;
   padding: 8px 10px;
   margin-left: 10px;
-  border-left: 10px solid var(--accent-alpha-20);
+  border-left: 10px solid var(--accent-alpha-70);
 
   & > *:last-child {
     margin-bottom: 0;
