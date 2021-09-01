@@ -1,0 +1,23 @@
+{% extends "index.html" -%}
+{% import "zerm/templates/macros/lists.html" as lists -%}
+
+{%- block title %}
+    <title>{{ section.title }} - {{ config.title }}</title>
+{%- endblock title -%}
+
+{%- block main -%}
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="{{ section.permalink }}">{{ section.title }}</a>
+            </h1>
+            {{ posts::section_meta(section=section, author=config.extra.show_author) }}
+        </header>
+
+        {{ section.content | safe }}
+          
+        {% if paginator.pages is defined %}
+            {{ lists::list_pages() }}
+        {% endif %}
+    </article>
+{%- endblock main -%}

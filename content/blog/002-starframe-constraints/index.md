@@ -1,10 +1,13 @@
----
-layout: post
-title: "Starframe Devlog: Solving Constraints in Physics"
-date: 2021-03-31 17:45 +0300
-categories: engine physics
-usemathjax: true
----
++++
+title = "Starframe Devlog: Solving Constraints in Physics"
+date = 2021-03-31
+slug = "starframe-constraints"
+aliases = ["blog/2021/03/starframe-devlog-constraints/"]
+[taxonomies]
+tags = ["starframe", "physics"]
+[extra]
+use_katex = true
++++
 
 The [Starframe] physics solver has gone through a few iterations recently as my
 understanding of the problem and knowledge of available methods have grown. In
@@ -14,7 +17,7 @@ understandable to someone with approximately the level of knowledge I had
 before starting this: decent linear algebra and calculus skills and a
 tiny bit of physics knowledge.
 
-<!--excerpt-->
+<!-- more -->
 
 I'll start with the mathematical definition of constraints and then go over
 three solvers in the order I implemented them myself: a somewhat abstract
@@ -22,12 +25,13 @@ matrix-based method I call Impulses with Projected Gauss-Seidel, a simpler
 variant of it called Sequential Impulses, and finally a more sophisticated and
 modern yet also simpler method called Extended Position-Based Dynamics.
 
+{% sidenote() %}
 There won't be enough information here to actually build a complete solver
 yourself; that level of detail is what papers are for (and I'll give links to
 all the ones I used). What I'm hoping to do is to give an accessible place to
 start, introduce some options to consider and how they're different, and to
 help understand _why_ the math in the papers is the way it is.
-{: .sidenote}
+{% end %}
 
 ## What is a constraint?
 
@@ -44,7 +48,7 @@ constraint, which basically says "bodies aren't allowed to overlap".
 Let's say the collision detection system (that I won't
 cover in this post) notified us of a situation like this:
 
-![Two boxes that overlap](/assets/constraints/contact.png)
+![Two boxes that overlap](contact.png)
 
 These bodies overlap, which is a violation of the contact constraint.
 So we know the system is in an illegal state, but that boolean information
@@ -54,23 +58,23 @@ and _how it changes when the bodies move_.
 In the case of this contact, we can get these things by measuring
 the distance between points $p_1$ and $p_2$ along the surface normal $\hat{n}$:
 
-$$
+<p>$$
 C_{contact}(p_1, p_2) = (p_2 - p_1) \cdot \hat{n}
-$$
+$$</p>
 
 This gives us the amount of error, but not quite how it changes when the bodies
 move. We get the final form of the constraint function by figuring out how the
 contact points depend on the body poses:
 
-$$
-\begin{align*}
+<p>$$
+\begin{aligned}
 p_1(x_1, q_1) &= x_1 + q_1 \tilde{r}_1 \\
 p_2(x_2, q_2) &= x_2 + q_2 \tilde{r}_2 \\
 C_{contact}(x_1, q_1, x_2, q_2) &=
   (p_2(x_2, q_2) - p_1(x_1, q_1)) \cdot \hat{n} \\
   &= (x_2 + q_2 \tilde{r}_2 - x_1 - q_1 \tilde{r}_1) \cdot \hat{n} \\
-\end{align*}
-$$
+\end{aligned}
+$$</p>
 
 where $q_1$ and $q_2$ are the orientations of each body, $\tilde{r}_1$ and
 $\tilde{r}_2$ are the contact point in each body's local space, and
@@ -78,50 +82,53 @@ multiplication between them denotes a rotation by the orientation. From here on
 I will use $r_1$ and $r_2$ to mean the worldspace offsets $q_1 \tilde{r}_1$ and
 $q_2 \tilde{r}_2$ respectively, as this is the notation used by most papers.
 
+{% sidenote() %}
 There are many ways to represent orientations. Most 3D engines use unit
 quaternions, the 2D equivalent of which is a unit complex number. In 2D, even
 just a single angle can be used. I use _rotors_ from geometric algebra (see
 e.g. [bivector.net](https://bivector.net) for sources).
-{: .sidenote}
+{% end %}
 
 One question remains: what's an acceptable value for this function
 to return? Geometrically it measures the amount of overlap between the
 objects, so anything zero or less means there's no overlap at all.
 Thus, any state where
 
-$$
+<p>$$
 C_{contact}(x_1, q_1, x_2, q_2) \leq 0
-$$
+$$</p>
 
 is legal. This is the whole constraint — a function from world state to a value
 and an acceptable range of values. That's what every kind of constraint boils
 down to. The constraint solver's job is to try to find a state where every
 constraint function returns an acceptable value.
 
+{% sidenote() %}
 Usually, the accepted range is either $C = 0$ (called an equality constraint),
 or one of $C \leq 0$ and $C \geq 0$ (called inequality constraints).
 Allowing something other than zero on the right-hand side would unnecessarily
 complicate the solver, as constants like this can always be baked into the
 constraint function instead.
-{: .sidenote}
+{% end %}
 
 Another simple example of a constraint is a distance
 constraint, which attaches two objects such that the distance between
 selected points on them is always in some range.
 
-![Two boxes attached with a distance constraint](/assets/constraints/distance.png)
+![Two boxes attached with a distance constraint](distance.png)
 
+{% sidenote() %}
 The curve illustrates the region in which $p_2$ is allowed to move if box 1
 stays still.
-{: .sidenote}
+{% end %}
 
 To achieve this we can simply measure the difference between the actual
 distance and the desired one $d$:
 
-$$
+<p>$$
 C_{dist}(x_1, q_1, x_2, q_2) =
   \|p_2(x_2, q_2) - p_1(x_1, q_1)\| - d
-$$
+$$</p>
 
 For the accepted range we have a choice: $C \leq 0$ will only pull the bodies
 towards each other, $C \geq 0$ will only push them apart, and $C = 0$ will do
@@ -143,11 +150,12 @@ presentation][cat14],
 Check out e.g. the aforementioned presentation or [this paper][tam15] for some
 more examples of constraint functions.
 
+{% sidenote() %}
 Constraints aren't just a physics thing! For instance, they're also an
 important concept in optimization problems. The idea is the same there —
 a function that takes some variables and returns a scalar, plus an acceptable
 range for that scalar.
-{: .sidenote}
+{% end %}
 
 ## Solvers
 
@@ -160,11 +168,12 @@ Let's take a look at the theory and source material of each.
 As a bit of motivation before I hit you with pages upon pages of text, here's
 what this solver's results look like in action.
 
-![Running a test scene with the PGS solver](/assets/constraints/pgs-demo.gif)
+![Running a test scene with the PGS solver](pgs-demo.gif)
 
+{% sidenote() %}
 Yes, I know there's a mouse cursor in that gif. No, I'm not going to do
 anything about it.
-{: .sidenote}
+{% end %}
 
 I based this solver almost entirely on [this 2005 paper by Erin Catto][cat05],
 with some input from other content from the [Box2D publications page][box2dpub]
@@ -173,10 +182,11 @@ that involved a _ton_ of reading the same things over and over, and very little
 of the code I wrote for this is used anymore, but lots of invaluable
 understanding was gained.
 
+{% sidenote() %}
 This is probably the most difficult of these solvers from a math point of view,
 so it may be worth reading the rest of the post even if some of this stuff goes
 over your head.
-{: .sidenote}
+{% end %}
 
 #### Constraint formulation
 
@@ -188,34 +198,36 @@ derivative of position, so we can get to the velocity level by taking the time
 derivative of the position constraint function. Here's what this would look
 like for the contact constraint:
 
-$$
-\begin{align}
+<p>$$
+\begin{aligned}
 C_{contact}(x_1, q_1, x_2, q_2) &=
   (x_2 + r_2 - x_1 - r_1) \cdot \hat{n} \\
 \dot{C}_{contact}(v_1, \omega_1, v_2, \omega_2)
   &= (v_2 + \omega_2 \times r_2 - v_1 - \omega_1 \times r_1) \cdot \hat{n} \\
   & \quad + (x_2 + r_2 - x_1 - r_1) \cdot \omega_1 \times \hat{n}
-\end{align}
-$$
+\end{aligned}
+$$</p>
 
+{% sidenote() %}
 The dot on $\dot{C}$ is a notation physicists use for the time derivative
 $\frac{\partial C}{\partial t}$.
-{: .sidenote}
+{% end %}
 
 where $v_i$ is the linear velocity of body $i$ and $\omega_i$ is its angular
 velocity. The second term is likely to be negligibly small, so we
 drop it entirely, leaving
 
-$$
+<p>$$
 \dot{C}_{contact}(v_1, \omega_1, v_2, \omega_2)
   = (v_2 + \omega_2 \times r_2 - v_1 - \omega_1 \times r_1) \cdot \hat{n}
-$$
+$$</p>
 
+{% sidenote() %}
 The cross products here only apply in 3D where angular velocity is represented
 as a 3D vector. In 2D $\omega$ is not a vector and the equivalent operation is
 $\omega r^\perp$ where $r^\perp$ is the counterclockwise perpendicular (i.e.
 $r$ rotated 90 degrees counterclockwise, also known as the left normal) of $r$.
-{: .sidenote}
+{% end %}
 
 Doing a similar differentiation on all of our position-level constraints (or
 defining constraints directly on the velocity level) gives us the building
@@ -228,8 +240,8 @@ containing the parameters of the constraint function (i.e. body velocities) and
 one containing their coefficients from our functions, like this: $\dot{C} =
 JV$. Continuing with the contact constraint as our example,
 
-$$
-\begin{align}
+<p>$$
+\begin{aligned}
 \dot{C}_{contact} &=
   (v_2 + \omega_2 \times r_2 - v_1 - \omega_1 \times r_1) \cdot \hat{n} \\
 &= -\hat{n} \cdot v_1 - (r_1 \times \hat{n}) \cdot \omega_1
@@ -241,24 +253,26 @@ $$
   v_1 \\ \omega_1 \\ v_2 \\ \omega_2
   \end{bmatrix} \\
 &= JV
-\end{align}
-$$
+\end{aligned}
+$$</p>
 
+{% sidenote() %}
 Note that $J$ and $V$ contain vectors as a shorthand notation.
 The concrete matrices would be constructed by writing out the vectors elementwise,
 producing a total of 12 elements in 3D (3 per $v$, 3 per $\omega$) and 6 in 2D
 (2 per $v$, 1 per $\omega$).
-{: .sidenote}
+{% end %}
 
 $J$ here is called the _Jacobian matrix_ of $C$.
 
+{% sidenote() %}
 As far as I understand, calling this the Jacobian isn't entirely accurate, as
 the Jacobian is
 [defined](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) as the
 coefficients of spatial partial derivatives, whereas this one contains the
 coefficients of the time derivative. I don't know of a better word so I'll
 stick to the paper's nomenclature and call it the Jacobian nonetheless.
-{: .sidenote}
+{% end %}
 
 A geometric interpretation of $\dot{C} = JV = 0$ is that $V$ must be orthogonal
 to $J$ to satisfy the constraint. In more intuitive terms, this means that $V$
@@ -274,20 +288,23 @@ only true if the force is orthogonal to $V$ and thus collinear with $J$. A
 force in any other direction would cause an acceleration in a direction
 allowed by the constraint, thereby doing work on the system.
 
+{% sidenote() %}
 This idea is hard to explain in rigorous terms and I may not have done
 it very well. I think it's very intuitive though — imagine a box sitting on a
 flat floor. Clearly, the supporting force keeping the box in place must be
 orthogonal to the floor; otherwise it would cause the box to start sliding in
 some direction.
-{: .sidenote}
+{% end %}
 
 Knowing this, we can express the force as $F_c = J^T \lambda$, where $\lambda$
 is an unknown scalar that we can solve for.
 
+{% sidenote() %}
 $F_c$ here contains both the linear and angular components of the force,
 i.e. the force and the torque:
-$$F_c = \begin{bmatrix} f_c \\ \tau_c \end{bmatrix}$$.
-{: .sidenote}
+
+<p>$$F_c = \begin{bmatrix} f_c \\ \tau_c \end{bmatrix}.$$</p>
+{% end %}
 
 #### Constructing the problem
 
@@ -297,42 +314,44 @@ equations called the _equations of motion_, which are exactly what
 they sound like — equations describing motion. These are given by the
 Newton-Euler equations. For a single body:
 
-$$
-\displaylines{
-m\dot{v} = f_c + f_{ext} \\
-I\dot{\omega} = \tau_c + \tau_{ext}
-}
-$$
+<p>$$
+\begin{gathered}
+  m\dot{v} = f_c + f_{ext} \\
+  I\dot{\omega} = \tau_c + \tau_{ext}
+\end{gathered}
+$$</p>
 
 Here $f_c$ and $\tau_c$ are constraint forces and torques, $f_{ext}$ and
 $\tau_{ext}$ are external forces and torques (gravity, usually), $m$ is the
 mass of a body and $I$ its moment of inertia.
 
+{% sidenote() %}
 In 2D, moment of inertia is a simple scalar. In 3D, it's a 3x3 matrix.
-{: .sidenote}
+{% end %}
 
 Recalling that
-$$F_c = \begin{bmatrix} f_c \\ \tau_c \end{bmatrix} = J^T \lambda$$
-and $$V = \begin{bmatrix} v \\ \omega \end{bmatrix}$$,
+
+<p>$$F_c = \begin{bmatrix} f_c \\ \tau_c \end{bmatrix} = J^T \lambda$$</p>
+and <p>$$V = \begin{bmatrix} v \\ \omega \end{bmatrix},$$</p>
 we can refactor this into one matrix equation
 
-$$
+<p>$$
 M\dot{V} = J^T \lambda + F_{ext}
-$$
+$$</p>
 
 where $M$ is a block-diagonal mass matrix that looks like this in 2D:
 
-$$
+<p>$$
 M = \begin{bmatrix}
 m & 0 & 0 \\
 0 & m & 0 \\
 0 & 0 & I
 \end{bmatrix}
-$$
+$$</p>
 
 and like this in 3D:
 
-$$
+<p>$$
 M = \begin{bmatrix}
 m & 0 & 0 & 0 & 0 & 0 \\
 0 & m & 0 & 0 & 0 & 0 \\
@@ -341,29 +360,30 @@ m & 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & I_{21} & I_{22} & I_{23} \\
 0 & 0 & 0 & I_{31} & I_{32} & I_{33} \\
 \end{bmatrix}
-$$
+$$</p>
 
+{% sidenote() %}
 To understand why the mass matrix is shaped like this, try computing the
 product $M\dot{V}$ and see how the result matches the two Newton-Euler equations
 above.
-{: .sidenote}
+{% end %}
 
 Add the constraint equation $JV = 0$ from earlier and we have all the necessary
 equations of motion. However, so far we've only been considering a single body.
 For the body $i$, the equations of motion are thus
 
-$$
+<p>$$
 \begin{align}
 M_i \dot{V}_i &= J_i^T \lambda_i + F_{ext,i} \\
 J_i V_i &= 0.
 \end{align}
-$$
+$$</p>
 
 Fortunately, extending these to the whole system of bodies is fairly
 straightforward — we can simply stack the matrices from these equations on top
 of each other (give or take a couple of details). For a system of $n$ bodies:
 
-$$
+<p>$$
 \begin{align}
 V &= \begin{bmatrix} v_1 \\ \omega_1 \\ \vdots \\ v_n \\ \omega_n \end{bmatrix} \\
 J &= \begin{bmatrix} J_1 \\ \vdots \\ J_n \end{bmatrix} \\
@@ -371,7 +391,7 @@ J &= \begin{bmatrix} J_1 \\ \vdots \\ J_n \end{bmatrix} \\
 F_{ext} &= \begin{bmatrix} f_{ext,1} \\ \tau_{ext,1} \\ \vdots \\ f_{ext,n} \\ \tau_{ext,n} \end{bmatrix} \\
 M &= \begin{bmatrix} M_1 & 0 & 0 \\ 0 & \ddots & 0 \\ 0 & 0 & M_n \end{bmatrix} \\
 \end{align}
-$$
+$$</p>
 
 One important detail is that the Jacobian rows $J_i$ won't line up correctly if
 they just have the four vector elements they had earlier in our two-body
@@ -379,36 +399,37 @@ example. Here we need to treat them as if the constraint function took the
 entire system's velocity vector as its parameters, which means a lot of padding
 with zeroes.
 
+{% sidenote() %}
 This isn't super relevant to the actual solver because it doesn't really store
 the padding zeroes in memory at all, but I'm mentioning it because
 understanding the theoretical matrix dimensions was an important step in my own
 understanding of the math we're doing here.
-{: .sidenote}
+{% end %}
 
 Let's look at a concrete example. Say we have a system with three bodies.
 There are two contacts, C1 between bodies 1 and 2 and C2 between bodies 1 and 3.
 The velocity vector of this system looks like this:
 
-$$
+<p>$$
 V = \begin{bmatrix} v_1 \\ \omega_1 \\ v_2 \\ \omega_2 \\ v_3 \\ \omega_3 \end{bmatrix}
-$$
+$$</p>
 
 Earlier we defined the contact constraint as
 
-$$
+<p>$$
 \dot{C}_{contact} = \begin{bmatrix}
   -\hat{n}^T & -(r_1 \times \hat{n})^T & \hat{n}^T & (r_2 \times \hat{n})^T
   \end{bmatrix}
   \begin{bmatrix}
   v_1 \\ \omega_1 \\ v_2 \\ \omega_2
   \end{bmatrix}. \\
-$$
+$$</p>
 
 To replace the velocity vector here with the whole system's velocity vector
 which has 6 rows, we need to pad the contact jacobians so they have 6 columns.
 Here's the constraint vector for the whole system:
 
-$$
+<p>$$
 C = JV = \begin{bmatrix}
   -\hat{n}^T_{C1} & -(r_{1,C1} \times \hat{n}_{C1})^T
     & \hat{n}^T_{C1} & (r_{2,C1} \times \hat{n}_{C1})^T & 0 & 0 \\
@@ -418,23 +439,24 @@ C = JV = \begin{bmatrix}
 \begin{bmatrix}
 v_1 \\ \omega_1 \\ v_2 \\ \omega_2 \\ v_3 \\ \omega_3
 \end{bmatrix}
-$$
+$$</p>
 
+{% sidenote() %}
 The subscripts are a bit of a mess with this many variables around, but
 hopefully you get the idea. Also, apologies to mobile users having to scroll
 this horizontally :P
-{: .sidenote}
+{% end %}
 
 Now that we have the matrices for the whole system,
 the equations of motion look exactly like the single-body versions from earlier
 but without the index subscripts:
 
-$$
+<p>$$
 \begin{align}
   M \dot{V} &= J^T \lambda + F_{ext} \\
   JV &= 0
 \end{align}
-$$
+$$</p>
 
 Now we have our equations of motion. There's one more thing (besides $\lambda$
 which we want to solve for) that we don't have: the acceleration $\dot{V}$.
@@ -442,20 +464,21 @@ We'll use a linear approximation: if we have a velocity $V_1$, move forward in
 time by a step $\Delta t$, and the velocity is now $V_2$, then the acceleration
 during that time step is approximately
 
-$$
+<p>$$
 \dot{V} \approx \frac{V_2 - V_1}{\Delta t}.
-$$
+$$</p>
 
+{% sidenote() %}
 When we're at the beginning of the timestep, we don't know the value of $V_2$ —
 it's actually the thing we're trying to eventually calculate here! As you'll
 see in a second, this turns out to be less of a problem than it sounds like.
-{: .sidenote}
+{% end %}
 
 With this we finally have all the variables needed to actually solve for
 $\lambda$. The steps to get there are many and not entirely obvious, so I'll
 write them out:
 
-$$
+<p>$$
 \begin{align*}
   M\dot{V} &= J^T \lambda + F_{ext} \scriptstyle{\text{ (1st eq. of motion)}} \\
   M\frac{V_2 - V_1}{\Delta t} &= J^T \lambda + F_{ext} \\
@@ -464,35 +487,36 @@ $$
   \frac{1}{\Delta t}V_2 - M^{-1} J^T \lambda &= \frac{1}{\Delta t}V_1 + M^{-1} F_{ext} \\
   \frac{1}{\Delta t}JV_2 - JM^{-1} J^T \lambda &= J(\frac{1}{\Delta t}V_1 + M^{-1} F_{ext}) \\
 \end{align*}
-$$
+$$</p>
 
 We multiplied by $J$ in the last step because the constraint equation states that
 $JV_2 = 0$. We can now eliminate that term, flip the signs, and we're left with
 
-$$
+<p>$$
 JM^{-1}J^T \lambda = -J(\frac{1}{\Delta t}V_1 + M^{-1} F_{ext}).
-$$
+$$</p>
 
 We have the values for all the variables in this except $\lambda$, so
 we're ready to solve this!
 
+{% sidenote() %}
 This is just an equation with an equality symbol, which doesn't do anything to
 address inequality constraints. Those require some additional operations which
 we'll get to in a minute.
-{: .sidenote}
+{% end %}
 
 One more thing I do to simplify this further is to apply external forces
 before solving anything with
 
-$$
+<p>$$
   V_{1+f} = V_1 + \frac{1}{\Delta t} M^{-1} F_{ext},
-$$
+$$</p>
 
 leaving just
 
-$$
+<p>$$
   JM^{-1}J^T \lambda = -\frac{1}{\Delta t}JV_{1+f}.
-$$
+$$</p>
 
 #### The solver itself
 
@@ -504,9 +528,10 @@ methods known as Gauss-Seidel has just what we need.
 The basic Gauss-Seidel method for linear systems looks like this in
 (pseudo-)Rust:
 
+{% sidenote() %}
 The same algorithm is presented as regular pseudocode in the [paper][cat05],
 so look there if you prefer that style.
-{: .sidenote}
+{% end %}
 
 ```rust
 /// approximately solve x in the linear system Ax = b
@@ -527,10 +552,11 @@ fn gauss_seidel<const N: usize>(
 }
 ```
 
+{% sidenote() %}
 You might want to check e.g. how much the values of $\lambda$ changed in an
 iteration and exit early if they're all below some threshold, but it's probably
 fine to just run `MAX_ITERATIONS` iterations every time.
-{: .sidenote}
+{% end %}
 
 However, we have inequality constraints which can't be expressed as a linear
 system of equations, so this isn't enough. Fortunately, we only need one new
@@ -538,11 +564,12 @@ operation. The trick is that we can allow a range of values of $C$ by
 _limiting_ the allowed range of $\lambda$. For instance, if we want $C \geq 0$,
 we can disallow negative values for $\lambda$.
 
+{% sidenote() %}
 Remember that $\lambda$ represents an impulse that moves things in the gradient
 direction of $C$, meaning that a positive $\lambda$ would cause $C$ to increase
 and a negative $\lambda$ would cause it to decrease. Thus, a negative $\lambda$
 would only appear when $C > 0$.
-{: .sidenote}
+{% end %}
 
 In general, we can clamp $\lambda$ in a range $[\lambda^-, \lambda^+]$. For
 example, the range for an inequality constraint $C \geq 0$ would be $[0,
@@ -572,24 +599,26 @@ fn projected_gauss_seidel<const N: usize>(
 }
 ```
 
+{% sidenote() %}
 The initial guess can be anything, but a vector of zeroes is a good choice
 if we have nothing better to go off. More on this later.
-{: .sidenote}
+{% end %}
 
 That's it! We can now take the matrix equation from earlier,
 
-$$
+<p>$$
 JM^{-1}J^T \lambda = -\frac{1}{\Delta t}JV_{1+f},
-$$
+$$</p>
 
 add appropriate bounds for inequality constraints,
 and feed it into this algoritm. In reality, there's also an indirection
 step to avoid storing lots of zeroes in $J$ and $M$, but this is the gist of
 it. Refer to the [paper][cat05] for all the details.
 
+{% sidenote() %}
 By the way, this type of matrix problem involving inequalities is called a
 _linear complementarity problem_.
-{: .sidenote}
+{% end %}
 
 #### Finishing steps
 
@@ -599,9 +628,9 @@ velocity and step forward in time.
 
 Solving for $V_2$ from our earlier equations of motion gives
 
-$$
+<p>$$
   V_2 = V_{1+f} + \Delta t M^{-1} J^T \lambda.
-$$
+$$</p>
 
 The best suited method for stepping forward in time with the information we have
 is the [semi-implicit Euler method](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method),
@@ -609,9 +638,9 @@ which preserves energy well and doesn't require solving any further equations.
 The formula for it is simple: for each body with pre-timestep position $x_1$ and
 newly computed velocity $v_2$ we do
 
-$$
+<p>$$
   x_2 = x_1 + \Delta t v_2.
-$$
+$$</p>
 
 Now we run collision detection again to update $J$, re-do all of this math, do
 that 60 times per second and we have a simulation! It's not the most accurate
@@ -640,28 +669,29 @@ stop it, doing work in the process. If we feed the position error $C$ into the
 bias term, the velocity constraint will push bodies towards a permissible
 configuration:
 
-$$
+<p>$$
   \zeta = -\beta C
-$$
+$$</p>
 
 where $\beta$ is a tuning coefficient that controls how fast errors are resolved.
 
 With this modification, the equation for $\lambda$ becomes
 
-$$
+<p>$$
 JM^{-1}J^T \lambda = \frac{1}{\Delta t} (\zeta - JV_{1+f}).
-$$
+$$</p>
 
 A problem with this is that constraints with nonzero bias do work, thereby
 adding energy to the system. If $\beta$ is too high, objects can jitter and
 bounce when they collide, but if it's very low, overlaps will take a long time
 to resolve.
 
+{% sidenote() %}
 In his later work (e.g. [this presentation][cat14]), Catto speaks about
 using _pseudo velocities_ for corrections instead. These are velocities that
 are immediately discarded and don't affect future states, removing the
 problem of generating energy.
-{: .sidenote}
+{% end %}
 
 Another option is _projection_, which simply moves objects apart directly on
 the position level. This doesn't create energy, but tends to cause stacked
@@ -680,8 +710,9 @@ Bias can be a useful tool even if you do something else to correct errors.
 For example, elastic collisions (i.e. bouncy things) can be modeled by
 setting the bias to $-eJV_1$, where $e$ is called the coefficient of restitution.
 
+{% sidenote() %}
 I haven't actually implemented this, but I'm pretty sure that's the formula.
-{: .sidenote}
+{% end %}
 
 Also, various kinds of motors can be created by varying a constraint over time
 and using bias-based position correction (as described above) to power it.
@@ -697,21 +728,22 @@ Friction slows down movement in the tangent direction of every contact.
 A neat thing about this is that we can reuse the constraint equation from
 the contact, just replacing $\hat{n}$ with its tangent.
 
+{% sidenote() %}
 In 3D, the tangent is a plane. The paper uses two separate constraints with two
 linearly independent tangent vectors to achieve friction in the whole tangent
 plane. This is results in something called a pyramid-shaped _friction cone_.
 It's not perfectly accurate, but as usual, game physics is all about being fast
 and plausible.
-{: .sidenote}
+{% end %}
 
 We can simulate a bounded friction force by limiting the minimum and maximum
 values of $\lambda$ for the friction constraint. The paper uses a simplified
 model with a single coefficient of friction and no regard to other forces in
 the system with
 
-$$
+<p>$$
   -\mu m_c g \leq \lambda \leq \mu m_c g
-$$
+$$</p>
 
 where $\mu$ is the coefficient of friction between the colliding bodies'
 materials, $m_c$ is a fraction of the bodies' masses depending on the number of
@@ -721,25 +753,27 @@ In my solver, I went for a slightly more sophisticated model based on
 Coulomb's friction model, which states that the friction force is bounded by
 the supporting force:
 
-$$
+<p>$$
   -\mu \lambda_n \leq \lambda \leq \mu \lambda_n
-$$
+$$</p>
 
 where $\lambda_n$ is the impulse caused by the contact constraint related to
 this friction constraint. This requires a bit more code for finding
 $\lambda_n$ but is more realistic, especially in stacks of bodies where the
 ones at the bottom correctly experience more friction than the ones at the top.
 
+{% sidenote() %}
 In reality, there's also a difference between static and dynamic friction, i.e.
 friction that prevents motion from starting and friction that slows down
 nonzero motion. I didn't care enough to implement this.
-{: .sidenote}
+{% end %}
 
+{% sidenote() %}
 Also in reality, all pairs of two materials have their own coefficients of
 restitution and friction. This level of granularity isn't really necessary in
 games, so we usually store these coefficients with individual materials and
 form the pairwise coefficients with an average, min, or max.
-{: .sidenote}
+{% end %}
 
 ##### **Impulse caching**
 
@@ -752,16 +786,18 @@ guess $\lambda_0$, convergence becomes faster whenever the state of the system
 doesn't change drastically between timesteps. This is called _warm starting_
 the algorithm.
 
+{% sidenote() %}
 This can have a side effect of causing bounces when large forces suddenly
 disappear, as you start with a large $\lambda_0$ and fail to converge on the
 small correct solution. It may be helpful to tune it e.g. by multiplying with
 some constant $\alpha$ between 0 and 1, $\lambda_0 = \alpha \lambda$.
-{: .sidenote}
+{% end %}
 
+{% sidenote() %}
 I'm not an expert on when or why convergence is slow, but one such situation
 is when bodies with wildly different masses interact. You can help convergence
 simply by designing systems where big mass discrepancies don't exist.
-{: .sidenote}
+{% end %}
 
 This introduces a tricky little problem: contacts are regenerated by collision
 detection every timestep. We need a way to match new contacts with previous
@@ -781,11 +817,12 @@ implemented (yet) either, but it's something worth knowing. By building a graph
 with bodies as nodes and constraints as edges, we can identify sets of bodies
 that directly or indirectly affect each other, often called _islands_.
 
-![Two islands of interacting bodies](/assets/constraints/islands.png)
+![Two islands of interacting bodies](islands.png)
 
+{% sidenote() %}
 The graph of bodies (illustrated with circles) and constraints (lines) has no
 connection between the green and blue sets of blocks.
-{: .sidenote}
+{% end %}
 
 Having identified these islands, we can send them all to different threads to
 solve with PGS (which itself can't be parallelized) simultaneously or, more
@@ -834,15 +871,15 @@ The difference between hard and soft constraints is that soft constraints
 resolve over multiple timesteps and not immediately. This is achieved by
 augmenting the constraint equation from
 
-$$
+<p>$$
   Jv = 0
-$$
+$$</p>
 
 to
 
-$$
+<p>$$
   Jv + \frac{\beta}{\Delta t} C + \frac{\gamma}{\Delta t} \lambda = 0.
-$$
+$$</p>
 
 Here $\beta$ is a position correction coefficient similar to Baumgarte
 stabilisation earlier, responsible for steering the constraint towards $C = 0$,
@@ -857,18 +894,19 @@ way $\lambda$ is treated. Instead of just computing a $\lambda$, applying and
 then discarding it, we need to hold on to it because it's on both sides of the
 equation now. This ends up looking like this:
 
-$$
-  \begin{align*}
+<p>$$
+  \begin{aligned}
     \Delta \lambda &\leftarrow \frac{-Jv + \frac{\beta}{\Delta t} C + \frac{\gamma}{\Delta t}}
                 {JM^{-1}J^T + \gamma} \\
     \lambda &\leftarrow \lambda + \Delta \lambda
-  \end{align*}
-$$
+  \end{aligned}
+$$</p>
 
+{% sidenote() %}
 All the tricks like warm starting and Baumgarte stabilisation discussed at the
 end of the last chapter still apply here, but warm starting in particular
 requires some care as it doesn't play as well with soft constraints.
-{: .sidenote}
+{% end %}
 
 The code for this one is a bit messy because it heavily reuses PGS code, and I
 don't think I used harmonic oscillator parameters correctly, but for the sake
@@ -904,9 +942,10 @@ fn pbd_timestep(dt: f64) {
 }
 ```
 
+{% sidenote() %}
 Velocity is still used to move particles at the beginning of the timestep. The
 point is that it's never manipulated directly.
-{: .sidenote}
+{% end %}
 
 Why is this good? Many position constraints are _nonlinear_. For instance, the
 distance constraint wants particles to move in a circle around each other,
@@ -915,7 +954,7 @@ this type of constraints on the velocity level, we create a linear problem,
 which can be easier to solve but comes with inaccuracy. Here's an illustration
 similar to one you can find in the XPBD paper:
 
-![Solving distance constraints on the velocity level and the position level](/assets/constraints/ngs.png)
+![Solving distance constraints on the velocity level and the position level](ngs.png)
 
 Here $p_1$ and $p_2$ are fixed positions that the particle $p_3$ is attached to
 with distance constraints $l_1$ and $l_2$. The first image shows how a
@@ -924,9 +963,10 @@ constraints, and as a result can never find the position satisfying both
 constraints. The second image shows how a position-level solve can change the
 correction direction, enabling it to converge on the correct solution.
 
+{% sidenote() %}
 This type of iterative solution methods where the direction can change are called
 _nonlinear Gauss-Seidel_ methods.
-{: .sidenote}
+{% end %}
 
 Because PBD is good at nonlinear problems, it's popular in simulating
 deformable bodies such as cloth built out of distance-constrained particles. An
@@ -940,58 +980,62 @@ position, they also have an orientation. Regular PBD only deals in positions.
 This is where the X in XPBD comes to the rescue, adding correction operations
 that handle orientations.
 
-For a general position constraint $$C(\mathbf{x}_1, \mathbf{x}_2) = 0$$ (where
-$\mathbf{x}$ denotes a _pose_ with a position and orientation $$\mathbf{x} =
-\begin{bmatrix}x \\ q\end{bmatrix}$$), starting from Newton's second law like we
+For a general position constraint $C(\mathbf{x}_1, \mathbf{x}_2) = 0$ (where
+$\mathbf{x}$ denotes a _pose_ with a position and orientation $\mathbf{x} =
+\begin{bmatrix}x \\ q\end{bmatrix}$), starting from Newton's second law like we
 did with the PGS solver, adding compliance (familiar from soft constraints) and
 solving for a position correction $\Delta \lambda$ gives
 
-$$
+<p>$$
   \Delta \lambda = \frac{-C - \frac{\alpha}{(\Delta t)^2} \lambda}
         {\nabla C M^{-1} \nabla C^T + \frac{\alpha}{(\Delta t)^2}}
-$$
+$$</p>
 
+{% sidenote() %}
 The derivation for this can be found in [the original XPBD paper][mmc17].
 This paper uses some advanced language and ideas I don't understand well enough
 to explain, so I won't go over the whole thing here.
-{: .sidenote}
+{% end %}
 
 where $\alpha$ is compliance. The only difference from the velocity-level soft
 constraints from earlier is using the gradient $\nabla C$ in place of $J$ and
 dividing compliance by timestep one more time to get physically correct units
 at the position level (plus a different symbol for compliance).
 
+{% sidenote() %}
 In terms of physical properties, compliance is the inverse of _stiffness_.
 Hard constraints like contacts have a compliance of zero, corresponding to
 infinite stiffness.
-{: .sidenote}
+{% end %}
 
 Having solved for $\Delta \lambda$ we apply it to poses (positions and
 orientations) with
 
-$$
+<p>$$
   \mathbf{x}_2 = \mathbf{x}_1 + M^{-1} \nabla C^T \Delta \lambda.
-$$
+$$</p>
 
+{% sidenote() %}
 You could also use this to resolve overlaps with the projection method in
 velocity-based solvers! (although simpler, less physically accurate ways are
 also available.)
-{: .sidenote}
+{% end %}
 
 Note the similarity to the velocity-level formula from earlier,
 
-$$
+<p>$$
   V_2 = V_{1+f} + \Delta t M^{-1} J^T \lambda.
-$$
+$$</p>
 
 For inequality constraints, we can use the familiar trick of clamping $\lambda$
 before applying it.
 
+{% sidenote() %}
 The [paper][mmcjk20] also gives specific formulas for contact-style
 offset-direction constraints and angle-only constraints, but these are just
 special cases of the general formula I just presented. Check them out if this
 feels too abstract.
-{: .sidenote}
+{% end %}
 
 ### Velocity
 
@@ -1008,31 +1052,32 @@ For each contact, we need the relative velocity between the contact points on
 each body. This is computed from the body velocities $v_i$, angular velocities
 $\omega_i$ and body-space contact points $r_i$ with
 
-$$
+<p>$$
   \mathbf{v}_{rel} = (v_1 + \mathbf{\omega_1} \times r_1) - (v_2 + \mathbf{\omega}_2 \times r_2),
-$$
+$$</p>
 
 in 3D, or
 
-$$
+<p>$$
   \mathbf{v}_{rel} = (v_1 + \omega_1 r_1^{\perp}) - (v_2 + \omega_2 r_2^{\perp})
-$$
+$$</p>
 
 in 2D.
 
+{% sidenote() %}
 I'm using bolded symbols for vectors here to clarify which variables are
 vectors and which are scalars.
-{: .sidenote}
+{% end %}
 
 We split this into normal and tangent velocities (for bounces and friction,
 respectively) with respect to the contact normal $\hat{\mathbf{n}}$ with
 
-$$
-\begin{align*}
+<p>$$
+\begin{aligned}
   v_n &= \hat{\mathbf{n}} \cdot \mathbf{v}_{rel} \\
   \mathbf{v}_t &= \mathbf{v}_{rel} - \hat{\mathbf{n}}v_n. \\
-\end{align*}
-$$
+\end{aligned}
+$$</p>
 
 What we want is for the normal velocity to be zero (in the case of an inelastic
 collision) or reflected away (in the case of an elastic collision) and the
@@ -1044,9 +1089,9 @@ To achieve an inelastic collision, we can simply add $-v_n \hat{\mathbf{n}}$ to 
 velocity. For elasticity, we also need the normal velocity at the start of the
 timestep $\tilde{v}_n$ so we can reflect it. The formula ends up being
 
-$$
+<p>$$
   \Delta \mathbf{v}_n = \hat{\mathbf{n}} (-v_n + \max(-e \tilde{v}_n, 0))
-$$
+$$</p>
 
 where $e$ is the coefficient of restitution between the two bodies and the $\max$
 function avoids "inward" bounces in the case where the reflected velocity
@@ -1055,9 +1100,9 @@ doesn't point away from the contact surface.
 For friction, we use the familiar Coulomb model. In the tanget direction
 $\hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{|\mathbf{v}_t|}$, we apply a correction
 
-$$
+<p>$$
   \Delta \mathbf{v}_t = -\hat{\mathbf{v}} * \min(\Delta t \mu_d f_n, |\mathbf{v}_t|)
-$$
+$$</p>
 
 where $\mu_d$ is the dynamic friction coefficient for the pair of materials,
 $f_n$ is the _normal force_ applied during position correction $f_n =
@@ -1067,46 +1112,49 @@ correction doesn't overshoot past the point where $|\mathbf{v}_t| = 0$.
 One more velocity correction is used for _damping_ of various constraints,
 which simulates sources of drag such as air resistance. The formula is simple,
 
-$$
-\begin{align*}
+<p>$$
+\begin{aligned}
   \Delta \mathbf{v} &= (\mathbf{v}_2 - \mathbf{v}_1)\min(\mu_{lin}\Delta t, 1) \\
   \Delta \omega &= (\omega_2 - \omega_1)\min(\mu_{ang}\Delta t, 1). \\
-\end{align*}
-$$
+\end{aligned}
+$$</p>
 
+{% sidenote() %}
 This can be handy when used together with compliance, creating springs that
 slow down over time instead of oscillating forever.
-{: .sidenote}
+{% end %}
 
 To apply the velocity update, we take the sum of all of the above and turn it
 into an impulse
 
-$$
+<p>$$
   \mathbf{p} = \frac{\Delta \mathbf{v}}{w_1 + w_2}
-$$
+$$</p>
 
 where $w_i$ is a _generalized inverse mass_ or _effective inverse mass_
 equivalent to $\nabla C M^{-1} \nabla C^T$ from earlier. Its formula here is
 
-$$
+<p>$$
   w_i = \frac{1}{m_i} + (r_i \times \hat{n})^T I_i^{-1} (r_i \times \hat{n})
-$$
+$$</p>
 
 in 3D or
 
-$$
+<p>$$
   w_i = \frac{1}{m_i} + I_i^{-1} (r_i^{\perp} \cdot \hat{n})^2
-$$
+$$</p>
 
 in 2D. Here $\hat{n}$ is the normalized direction of the velocity update
 $\frac{\Delta v}{|\Delta v|}$.
 
+{% sidenote() %}
 Check Appendix A of the [paper][mmcjk20] for the derivation.
-{: .sidenote}
+{% end %}
 
 With the velocity step done, we get realistic collisions and friction on par
 with velocity-based methods.
 
+{% sidenote() %}
 There's also static friction, which I didn't do in earlier solvers, but it's
 actually quite easy in this framework — because static friction keeps objects
 in place, it can be implemented as an attachment constraint on the position
@@ -1116,7 +1164,7 @@ than $\mu_s \lambda_n$, where $\mu_s$ is the static friction coefficient and
 $\lambda_n$ is the correction in the normal direction. If so, we apply the
 correction, if not, do nothing and let dynamic friction do its thing in the
 velocity step instead.
-{: .sidenote}
+{% end %}
 
 ### Details, pros, and cons
 
@@ -1128,11 +1176,11 @@ simulating multiple timesteps per animation frame, but only ever do one
 iteration of the constraint solve. Doing this results in significantly improved
 energy conservation and stiffness, as this comparison shows:
 
-![Running a test scene with the PGS solver](/assets/constraints/pgs-demo.gif)
+![Running a test scene with the PGS solver](pgs-demo.gif)
 
 Above is the PGS solver from earlier, and below is the new XPBD solver:
 
-![Running the same test scene with the XPBD solver](/assets/constraints/xpbd-demo.gif)
+![Running the same test scene with the XPBD solver](xpbd-demo.gif)
 
 Pay particular attention to the chains — there's less random jitter
 (unfortunately this is at a scale the gif doesn't show very well), but at the
@@ -1145,21 +1193,23 @@ be run again every substep, which costs computation time. It helps to have a
 broad-phase algorithm that you can run once at the start of a frame and only
 re-run narrow-phase queries on pairs it returned. The paper uses an AABB tree.
 
+{% sidenote() %}
 Collision detection is a likely subject of a future blog post (that hopefully
 won't be as long as this one). In the meantime, I recommend [Metanet Software's
 tutorials](https://www.metanetsoftware.com/dev/tutorials) for more information
 in an easily digestible form.
-{: .sidenote}
+{% end %}
 
 The other tradeoff from splitting the timestep is that very short timesteps can
 create numbers so small that 64-bit floating point numbers are required to do
 the computations with enough accuracy. This isn't a problem on a CPU, but I
 believe it can be a performance hit if you're implementing this on a GPU.
 
+{% sidenote() %}
 That isn't the only difficulty with a GPU implementation, as none of these
 Gauss-Seidel type algorithms can be run in parallel. _Jacobi_ methods are
 a parallel alternative, but I don't really know how they work.
-{: .sidenote}
+{% end %}
 
 Solving constraints at the position level makes some problems that are
 nontrivial in impulse-based solvers extremely easy. First of all, there's

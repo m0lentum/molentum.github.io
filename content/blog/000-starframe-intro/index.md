@@ -1,9 +1,11 @@
----
-layout: post
-title: "Starframe devlog: Introduction"
-date: 2018-09-23 16:10:00 +0300
-categories: engine
----
++++
+title = "Starframe devlog: Introduction"
+date = 2018-09-23
+slug = "starframe-intro"
+aliases = ["blog/2018/09/moleengine-part-0-introduction/"]
+[taxonomies]
+tags = ["starframe"]
++++
 
 Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D
 game engine suitable for rapid prototyping and game jams as well as more polished, hopefully commercial-quality products.
@@ -11,7 +13,7 @@ This blog is meant to document the development and ideas behind it in a fair bit
 revise my own thoughts, but with the hope that someone else might also find it interesting and/or helpful.
 In this first post I will outline what exactly I am trying to accomplish and why I am doing it.
 
-<!--excerpt-->
+<!-- more -->
 
 2020 note: I've edited this post a little to remove some obsolete information.
 I don't think this is a great introduction to the project as it is today, but I'm keeping it up for history's sake.

@@ -1,0 +1,37 @@
+title = "Mole's Nerd Cave"
+description = "One Finnish kid's adventures in software, art, and software as art."
+base_url = "https://moletrooper.me"
+default_language = "en"
+
+generate_feed = true
+feed_filename = "rss.xml"
+compile_sass = true
+build_search_index = false
+
+theme = "zerm"
+
+taxonomies = [
+  {name = "tags"},
+]
+
+[markdown]
+highlight_code = true
+
+[extra]
+favicon = "favicon.ico"
+
+author = "Mikael Myyrä"
+show_author = false
+show_tags = true
+show_categories = true
+logo_text = "Mole's Nerd Cave"
+read_more = "read more"
+main_menu = [
+  {url="/about/", name="about"},
+  {url="/blog/", name="blog"},
+  {url="https://www.artstation.com/moletrooper", name="art", external=true},
+]
+
+theme_color = "green"
+center = true
+custom_css = true
