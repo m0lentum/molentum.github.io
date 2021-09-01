@@ -529,7 +529,8 @@ The basic Gauss-Seidel method for linear systems looks like this in
 (pseudo-)Rust:
 
 {% sidenote() %}
-The same algorithm is presented as regular pseudocode in the [paper][cat05],
+The same algorithm is presented as regular pseudocode in the
+[paper](https://www.gamedevs.org/uploads/iterative-dynamics-with-temporal-coherence.pdf),
 so look there if you prefer that style.
 {% end %}
 
@@ -992,7 +993,7 @@ solving for a position correction $\Delta \lambda$ gives
 $$</p>
 
 {% sidenote() %}
-The derivation for this can be found in [the original XPBD paper][mmc17].
+The derivation for this can be found in [the original XPBD paper](https://matthias-research.github.io/pages/publications/XPBD.pdf).
 This paper uses some advanced language and ideas I don't understand well enough
 to explain, so I won't go over the whole thing here.
 {% end %}
@@ -1031,7 +1032,8 @@ For inequality constraints, we can use the familiar trick of clamping $\lambda$
 before applying it.
 
 {% sidenote() %}
-The [paper][mmcjk20] also gives specific formulas for contact-style
+The [paper](https://matthias-research.github.io/pages/publications/PBDBodies.pdf)
+also gives specific formulas for contact-style
 offset-direction constraints and angle-only constraints, but these are just
 special cases of the general formula I just presented. Check them out if this
 feels too abstract.
@@ -1148,7 +1150,7 @@ in 2D. Here $\hat{n}$ is the normalized direction of the velocity update
 $\frac{\Delta v}{|\Delta v|}$.
 
 {% sidenote() %}
-Check Appendix A of the [paper][mmcjk20] for the derivation.
+Check Appendix A of the [paper](https://matthias-research.github.io/pages/publications/pbdbodies.pdf) for the derivation.
 {% end %}
 
 With the velocity step done, we get realistic collisions and friction on par
