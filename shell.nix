@@ -1,15 +1,11 @@
-{ sources ? import ./nix/sources.nix }:
+{ sources ? import ./nix/sources.nix
+, pkgs ? import sources.nixpkgs {}
+}:
 
-let
-  pkgs = import sources.nixpkgs {};
-  jekyll_env = pkgs.bundlerEnv {
-    name = "jekyll_env";
-    gemdir = ./.;
-  };
-in
 pkgs.mkShell {
   buildInputs = [
     pkgs.niv
-    jekyll_env
+
+    pkgs.zola
   ];
 }
