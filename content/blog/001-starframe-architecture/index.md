@@ -1,15 +1,17 @@
----
-layout: post
-title: "Starframe devlog: Architecture"
-date: 2020-08-30 00:11 +0300
-categories: engine
----
++++
+title = "Starframe devlog: Architecture"
+date = 2020-08-30
+slug = "starframe-architecture"
+aliases = ["blog/2020/08/starframe-1-architecture/"]
+[taxonomies]
+tags = ["starframe", "data structures"]
++++
 
 I've spent a large portion of the past two years writing and rewriting
 the basic structures that describe a game and its content in [Starframe] (formerly known as MoleEngine).
 These are some notes on what I've done so far and what I've learned from it.
 
-<!--excerpt-->
+<!-- more -->
 
 I'll start with some rambling about the nature of game engines and game objects
 before diving into rambling about the Entity-Component-System architecture and my efforts at implementing it.
@@ -131,7 +133,7 @@ Functions that do this are called Systems.
 
 Here's how I picture the difference in my head. Imagine different colors are different component types.
 
-![Structs vs. ECS](/assets/graph_pics/structs_to_ecs.png)
+![Structs vs. ECS](structs_to_ecs.png)
 
 This improves performance by grouping data in memory more efficiently than those big everything-structs from earlier.
 To put it briefly, memory lookups are extremely slow, and processors do best when they get to go from one memory location
@@ -419,7 +421,7 @@ However, things get a little more funky when we start wanting to delete things.
 We need to figure out what it means for a collection of nodes and edges to be one object.
 I'm going to need some pictures for this.
 
-![Simple objects](/assets/graph_pics/simple_graphs.png)
+![Simple objects](simple_graphs.png)
 
 Imagine these are four different objects. Different-colored nodes are different types of components.
 What the types actually are doesn't matter, this is just about how you can connect them.
@@ -433,7 +435,7 @@ To delete it we could just get rid of all the edges and nodes we found.
 When we wander into the realm of patterns that are unique to this graph model, things get a little weird.
 Consider this scenario:
 
-![Shared component](/assets/graph_pics/shared_component.png)
+![Shared component](shared_component.png)
 
 If we start deleting nodes on the left of the red node, everything on its right will remain untouched
 because there's no arrow that would take us to them, and vice versa.
@@ -449,7 +451,7 @@ I still run the same algorithm from earlier to find every edge and node I have a
 but this time count the number of edges traversed leading to each node, then traverse again and compare this to the node's stored reference count.
 If they're equal, all edges were found and we can delete them. If not, we have identified a shared component and stop traversing in that direction.
 
-![Deletion algorithm](/assets/graph_pics/delete_algo.png)
+![Deletion algorithm](delete_algo.png)
 
 If we start on the node marked with red in step 1 and traverse every edge we find, we get the collection marked with red in step 2.
 The node at the center has more references to it than we found, so we stop deleting things there.
@@ -462,7 +464,7 @@ Building more complex hierarchies in this framework requires some thinking.
 Am I going to delete instances of this? If so, what will the deletion algorithm do if I start it on node X?
 Consider this pattern of Unity-style hierarchical transforms:
 
-![Hierarchical transforms](/assets/graph_pics/hiera_transforms.png)
+![Hierarchical transforms](hiera_transforms.png)
 
 Here we have one object with several others as its "children" which transform in its local space
 (the red squares represent the transform components).
@@ -514,7 +516,7 @@ I think it's neat.
 Elasto Mania also has terrain constructed out of closed loops of line segments,
 which could be graphified as a loop where nodes are individual vertices.
 
-![A vertex loop](/assets/graph_pics/vert_loop.png)
+![A vertex loop](vert_loop.png)
 
 Connect a Transform somewhere and you have a movable polygonal collider instead.
 This would allow an arbitrary number of vertices per collider / terrain loop while staying perfectly packed in memory.
