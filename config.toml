@@ -32,6 +32,7 @@ main_menu = [
   {url="https://www.artstation.com/moletrooper", name="art", external=true},
 ]
 
-theme_color = "green"
+# custom color defined in my own sass dir
+theme_color = "lime"
 center = true
 custom_css = true
