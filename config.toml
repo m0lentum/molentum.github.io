@@ -1,5 +1,5 @@
 title = "Mole's Nerd Cave"
-description = "One Finnish kid's adventures in software, art, and software as art."
+description = "Code, math, physics, graphics, games, art, music, and not enough time."
 base_url = "https://moletrooper.me"
 default_language = "en"
 
@@ -21,6 +21,7 @@ highlight_code = true
 favicon = "favicon.ico"
 
 author = "Mikael Myyrä"
+copyright = "Mikael Myyrä"
 show_author = false
 show_tags = true
 show_categories = true
@@ -29,7 +30,9 @@ read_more = "read more"
 main_menu = [
   {url="/about/", name="about"},
   {url="/blog/", name="blog"},
-  {url="https://www.artstation.com/moletrooper", name="art", external=true},
+  {url="https://twitter.com/moletrooper", name="Twitter", external=true},
+  {url="https://github.com/moletrooper", name="GitHub", external=true},
+  {url="https://www.artstation.com/moletrooper", name="ArtStation", external=true},
 ]
 
 # custom color defined in my own sass dir

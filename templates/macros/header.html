@@ -8,11 +8,12 @@
         <div class="menu-trigger">menu</div>
         <div class="header__mole right-mole"></div>
     </div>
-    {# Check if there are menu items to render, yes if > 0 #}
-    {%- set num = config.extra.main_menu | length -%}
-    {% if num > 0 -%}
-        {{ menu::menu() }}
-    {% endif -%}
+    {% if not section.extra.hide_menu %}
+        {%- set num = config.extra.main_menu | length -%}
+        {% if num > 0 -%}
+            {{ menu::menu() }}
+        {% endif -%}
+    {% endif %}
 </header>
 {% endmacro header %}
 
