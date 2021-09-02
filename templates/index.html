@@ -88,8 +88,13 @@
                     <div class="footer__inner">
                         {%- block copyright -%}
                             <div class="copyright">
-                                <span>© {{ now() | date(format="%Y") }} {{ config.extra.copyright }} :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
-                                <span>:: Theme based on <a href="https://github.com/ejmg/zerm">zerm</a> by <a href="https://github.com/ejmg">ejmg</a></span>
+                                <span>© {{ now() | date(format="%Y") }} {{ config.extra.copyright }}</span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Theme based on <a href="https://github.com/ejmg/zerm">zerm</a> by <a href="https://github.com/ejmg">ejmg</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Font: <a href="https://www.jetbrains.com/lp/mono/">JetBrains Mono</a></span>
                             </div>
                         {%- endblock copyright -%}
 
