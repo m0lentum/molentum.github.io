@@ -1,12 +1,14 @@
-// .header__inner:before {
-//   content: "";
-//   background: url('moleThink.png');
-//   width: 28px;
-//   height: 35px;
-//   background-size: 28px 28px;
-//   background-position: right bottom;
-//   background-repeat: no-repeat;
-// }
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', Menlo, DejaVu Sans Mono, Monaco, Consolas, Ubuntu Mono, monospace;
+}
+
+.copyright {
+  flex-flow: row wrap;
+  & > * {
+    // use spaces instead of css for consistent spacing
+    margin: 0 !important;
+  }
+}
 
 .header__inner {
   align-items: stretch;
