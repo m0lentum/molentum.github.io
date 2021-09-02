@@ -66,8 +66,20 @@
                 {{ header::header() }}
             {%- endblock header -%}
             <div class="content">
-                {%-  block main -%}
-                    {{ config.description }}
+                {%- block main -%}
+                    <div class="post">
+                        <p>
+                            {{ config.description }}
+                        </p>
+                        {{ section.content | safe }}
+                        <ul>
+                        {% for menu_item in config.extra.main_menu -%}
+                            <li>
+                                <a href="{{ menu::get_link(item=menu_item) }}">{{ menu_item.name }}</a>
+                            </li>
+                        {% endfor -%}
+                        </ul>
+                    </div>
                 {%- endblock main -%}
             </div>
 
@@ -75,14 +87,16 @@
                 <footer class="footer">
                     <div class="footer__inner">
                         {%- block copyright -%}
-                            {{ footer::copyright() }}
+                            <div class="copyright">
+                                <span>© {{ now() | date(format="%Y") }} {{ config.extra.copyright }} :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                                <span>:: Theme based on <a href="https://github.com/ejmg/zerm">zerm</a> by <a href="https://github.com/ejmg">ejmg</a></span>
+                            </div>
                         {%- endblock copyright -%}
 
                         {%- block script -%}
                             {{ footer::script() }}
                         {%- endblock script -%}
                     </div>
-                    {{ extended_footer::extended_footer() }}
                 </footer>
             {%- endblock footer -%}
         </div>
