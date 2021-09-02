@@ -19,6 +19,7 @@ highlight_code = true
 
 [extra]
 favicon = "favicon.ico"
+og_preview_img = "moleThink112.png"
 
 author = "Mikael Myyrä"
 copyright = "Mikael Myyrä"
