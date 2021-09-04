@@ -1,0 +1,11 @@
+{% extends "section.html" -%}
+
+{% block page_list %}
+<ul>
+    {% for page in paginator.pages %}
+        <li>
+            <a href={{ page.permalink }}>{{ page.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock page_list %}

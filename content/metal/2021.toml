@@ -1,0 +1,29 @@
+[[albums]]
+band = "Alustrium"
+name = "A Monument To Silence"
+date = "2021-06-18"
+genres = ["death", "prog"]
+cover = "alustrium_a_monument_to_silence.jpg"
+song_link = "https://www.youtube.com/watch?v=BDiuTbBen2Y"
+song_name = "This Hollow Ache"
+description = "WIP"
+
+[[albums]]
+band = "Light the Torch"
+name = "You Will Be The Death Of Me"
+date = "2021-06-25"
+genres = ["metalcore", "alt"]
+cover = "light_the_torch_you_will_be_the_death_of_me.jpg"
+song_link = "https://www.youtube.com/watch?v=p61YGaugy_Y"
+song_name = "Wilting In The Light"
+description = "WIP"
+
+[[albums]]
+band = "Iotunn"
+name = "Access All Worlds"
+date = "2021-02-26"
+genres = ["prog", "death"]
+cover = "iotunn_access_all_worlds.jpg"
+song_link = "https://www.youtube.com/watch?v=GcZ98eS8JR0"
+song_name = "Tower of Cosmic Nihility"
+description = "_markdown works here_"

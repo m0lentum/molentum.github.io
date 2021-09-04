@@ -55,3 +55,29 @@ body {
   margin-top: 10px;
 }
 
+.album-entry {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  flex-flow: row nowrap;
+  .album-media {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+    .album-media {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+
+  .album-text {
+    flex: 1 1 auto;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
