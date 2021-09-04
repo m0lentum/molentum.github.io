@@ -17,12 +17,14 @@
         {{ section.content | safe }}
           
         {% if paginator.pages is defined %}
-            {% if section.extra.show_rss_link %}
-                <p class="feed-subscribe">
-                    <a href="{{ get_url(path='rss.xml') }}">Subscribe with RSS</a>
-                </p>
-            {% endif %}
-            {{ lists::list_pages() }}
+            {%- block page_list -%}
+                {% if section.extra.show_rss_link %}
+                    <p class="feed-subscribe">
+                        <a href="{{ get_url(path='rss.xml') }}">Subscribe with RSS</a>
+                    </p>
+                {% endif %}
+                {{ lists::list_pages() }}
+            {%- endblock page_list-%}
         {% endif %}
     </article>
 {%- endblock main -%}
