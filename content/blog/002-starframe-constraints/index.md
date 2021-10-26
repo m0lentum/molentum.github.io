@@ -1,5 +1,5 @@
 +++
-title = "Starframe Devlog: Solving Constraints in Physics"
+title = "Starframe devlog: Solving Constraints in Physics"
 date = 2021-03-31
 slug = "starframe-constraints"
 aliases = ["blog/2021/03/starframe-devlog-constraints/"]
