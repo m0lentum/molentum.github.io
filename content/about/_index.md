@@ -4,7 +4,7 @@ title = "About"
 no_wrap_images = true
 +++
 
-{{ float_img(float="left", src="about/selfie.jpg", alt="Mole taking a selfie") }}
+{{ float_img(float="right", width=300, src="about/avatar.jpg", alt="Mole's self-portrait profile picture") }}
 
 Mikael Myyrä, perhaps more often known by his online alias MoleTrooper, is a
 professional programmer, university student majoring in computer science, and
@@ -18,8 +18,6 @@ time to write exhaustingly long run-on sentences about himself in third person
 on his website in a (likely doomed) attempt to sound just pretentious enough to
 come across as competent and respectable but not so much as to be offputtingly
 pompous.
-
-{{ float_img(float="right", src="about/avatar.png", alt="Mole's profile picture") }}
 
 When it comes to coding for fun, Mole's passions lie in geometry and movement.
 In other words, if it involves vectors and matrices, he's probably interested.
