@@ -5,6 +5,7 @@
 pkgs.mkShell {
   buildInputs = [
     pkgs.niv
+    pkgs.just
 
     pkgs.zola
   ];
