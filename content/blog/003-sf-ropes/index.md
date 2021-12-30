@@ -130,10 +130,11 @@ To this end, I implemented a special angular constraint between three particles.
 ![Illustration of three particles and the angle between them](angle-constraint.png)
 
 For each group of three rope particles, I take the angle `Θ` and move the third
-particle `P` in a circle until that angle is above a limit value `Θ'`, with
-some compliance ([see my post on constraints][sf-constraints]) to allow more
-extreme angles to occur under pressure. I also added some velocity damping to
-slow down angular movement, simulating internal friction in the rope.
+particle `P` in a circle until that angle is above a limit value `Θ'`, ending
+up with the particle at `P'`. I gave the constraint some compliance ([see my post on
+constraints][sf-constraints]) to allow more extreme angles to occur under
+pressure. I also added some velocity damping to slow down angular movement,
+simulating internal friction in the rope.
 
 This is hardly a realistic model, but I'm making graphics and games here, where
 appearance is all that matters. And I generally like how this looks — ropes
