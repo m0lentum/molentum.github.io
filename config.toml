@@ -34,6 +34,7 @@ main_menu = [
   {url="https://twitter.com/moletrooper", name="Twitter", external=true},
   {url="https://github.com/moletrooper", name="GitHub", external=true},
   {url="https://www.artstation.com/moletrooper", name="ArtStation", external=true},
+  {url="https://mastodon.art/@moletrooper", name="Mastodon.ART", external=true, rel_me=true},
 ]
 
 # custom color defined in my own sass dir

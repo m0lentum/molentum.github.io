@@ -75,7 +75,12 @@
                         <ul>
                         {% for menu_item in config.extra.main_menu -%}
                             <li>
-                                <a href="{{ menu::get_link(item=menu_item) }}">{{ menu_item.name }}</a>
+                                {%- if menu_item.rel_me -%}
+                                {# rel=me used for Mastodon verification #}
+                                <a rel="me" href="{{ menu::get_link(item=menu_item) }}" >{{ menu_item.name }}</a>
+                                {%- else -%}
+                                <a href="{{ menu::get_link(item=menu_item) }}" >{{ menu_item.name }}</a>
+                                {%- endif -%}
                             </li>
                         {% endfor -%}
                         </ul>
