@@ -167,7 +167,7 @@ more experiences to talk about ;)
 {% sidenote() %}
 For now, the most comprehensive explanation of the current incarnation of this
 system is in the [module documentation in the
-source code](https://github.com/MoleTrooper/starframe/blob/master/src/graph.rs).
+source code](https://github.com/m0lentum/starframe/blob/master/src/graph.rs).
 {% end %}
 
 Long story short, I ended up changing the whole conceptual model from a
@@ -202,8 +202,8 @@ out of existence. It's open source (though I've yet to figure out exact
 licensing) and you can find it (or what exists of it so far) [on
 GitHub][flamegrower].
 
-[starframe]: https://github.com/MoleTrooper/starframe/
+[starframe]: https://github.com/m0lentum/starframe/
 [sublucid]: https://zalo.github.io/blog/constraints/#
 [sf-constraints]: /blog/starframe-constraints/#extended-position-based-dynamics
 [sf-graph]: /blog/starframe-architecture/#attempt-3-graph
-[flamegrower]: https://github.com/MoleTrooper/flamegrower/
+[flamegrower]: https://github.com/m0lentum/flamegrower/
