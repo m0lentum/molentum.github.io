@@ -1260,7 +1260,7 @@ totally viable methods for game purposes.
 
 If you have any questions, compliments, complaints or corrections, feel free to
 ping me on the [Rust-gamedev Discord server](https://discord.gg/yNtPTb2) (I'm
-@MoleTrooper there) or on [Twitter](https://twitter.com/moletrooper).
+@Molentum there) or on [Twitter](https://twitter.com/molentum_).
 
 <!-- source documents -->
 
@@ -1276,11 +1276,11 @@ ping me on the [Rust-gamedev Discord server](https://discord.gg/yNtPTb2) (I'm
 
 <!-- other links -->
 
-[starframe]: https://github.com/MoleTrooper/starframe/
+[starframe]: https://github.com/m0lentum/starframe/
 [cattotwit]: https://twitter.com/erin_catto
 [box2d]: https://box2d.org/
 [box2dpub]: https://box2d.org/publications/
-[pgs-src]: https://github.com/MoleTrooper/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics/constraint.rs#L315
-[pgs-src-tick]: https://github.com/MoleTrooper/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics.rs#L152
-[si-src]: https://github.com/MoleTrooper/starframe/blob/3db52efa10a8c505fe352d9bc57f70ce00fea45a/src/physics/constraint/solver.rs#L71
-[xpbd-src]: https://github.com/MoleTrooper/starframe/blob/master/src/physics.rs
+[pgs-src]: https://github.com/m0lentum/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics/constraint.rs#L315
+[pgs-src-tick]: https://github.com/m0lentum/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics.rs#L152
+[si-src]: https://github.com/m0lentum/starframe/blob/3db52efa10a8c505fe352d9bc57f70ce00fea45a/src/physics/constraint/solver.rs#L71
+[xpbd-src]: https://github.com/m0lentum/starframe/blob/master/src/physics.rs

@@ -538,7 +538,7 @@ If you'd like to talk about it, you can find me on [Twitter] or the [Rust gamede
 
 <!-- links -->
 
-[starframe]: https://github.com/MoleTrooper/starframe
+[starframe]: https://github.com/m0lentum/starframe
 [amethyst]: https://amethyst.rs/
 [way-of-rhea]: https://www.anthropicstudios.com/2019/06/05/entity-systems/
 [specs]: https://github.com/amethyst/specs
@@ -548,11 +548,11 @@ If you'd like to talk about it, you can find me on [Twitter] or the [Rust gamede
 [anymap]: https://github.com/chris-morgan/anymap
 [hibitset]: https://github.com/amethyst/hibitset
 [serde]: https://github.com/serde-rs/serde
-[ecs-impl-1]: https://github.com/MoleTrooper/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
-[ecs-impl-1-recipes]: https://github.com/MoleTrooper/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
-[ecs-impl-2]: https://github.com/MoleTrooper/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
-[ecs-impl-2-iters]: https://github.com/MoleTrooper/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
+[ecs-impl-1]: https://github.com/m0lentum/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
+[ecs-impl-1-recipes]: https://github.com/m0lentum/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
+[ecs-impl-2]: https://github.com/m0lentum/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
+[ecs-impl-2-iters]: https://github.com/m0lentum/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
 [froggy]: https://github.com/kvark/froggy
 [elma]: https://elastomania.com/
-[twitter]: https://twitter.com/moletrooper
+[twitter]: https://twitter.com/molentum_
 [rgd-discord]: https://discord.gg/yNtPTb2

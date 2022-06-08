@@ -6,7 +6,7 @@ no_wrap_images = true
 
 {{ float_img(float="right", width=300, src="about/avatar.jpg", alt="Mole's self-portrait profile picture") }}
 
-Mikael Myyrä, perhaps more often known by his online alias MoleTrooper, is a
+Mikael Myyrä, known online as Molentum (a pun on his last name which translates to Mole), is a
 professional programmer, university student majoring in computer science, and
 general nerdlord from Jyväskylä, Finland. He has unreasonably high ambitions in
 all areas of his life, especially his hobbies. The most prominent of these are
@@ -23,7 +23,7 @@ When it comes to coding for fun, Mole's passions lie in geometry and movement.
 In other words, if it involves vectors and matrices, he's probably interested.
 If it makes pictures appear on a screen, he's already hooked. His pet project
 and the primary subject of his blog is
-[Starframe](https://github.com/MoleTrooper/starframe), a 2D game engine with a
+[Starframe](https://github.com/m0lentum/starframe), a 2D game engine with a
 focus on side-scrolling physics. He has strong opinions on game design and
 considers himself an expert on platformers.
 
