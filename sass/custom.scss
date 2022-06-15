@@ -6,6 +6,16 @@ code {
   color: var(--color);
 }
 
+.content {
+  flex-flow: column nowrap;
+}
+
+.dagamez0ne {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 .copyright {
   flex-flow: row wrap;
   & > * {
