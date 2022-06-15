@@ -1,0 +1,26 @@
+{% extends "index.html" -%}
+
+{%- block title %}
+    <title>{{ page.title }} - {{ config.title }}</title>
+{%- endblock title -%}
+
+{%- block main -%}
+    <script type="module">
+        import init from "{{ get_url(path=page.extra.app_path) }}";
+        window.addEventListener("load", () => {
+            init();
+        });
+    </script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+            </h1>
+        </header>
+        {{ page.content | safe }}
+
+    </article>
+    <div class="dagamez0ne">
+        <div id="starframe-game" />
+    </div>
+{%- endblock main -%}
