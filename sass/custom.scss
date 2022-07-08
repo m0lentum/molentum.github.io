@@ -45,16 +45,13 @@ code {
 }
 
 
-.code-like-img {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  background-color: #2b303b;
-  width: 100%;
+img {
+  display: block;
   margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5px;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
 }
 
 .sidenote {
