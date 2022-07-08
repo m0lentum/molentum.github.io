@@ -7,6 +7,9 @@ generate_feed = true
 feed_filename = "rss.xml"
 compile_sass = true
 build_search_index = false
+# source.md are files with LaTeX,
+# which I manually render into index.md files with HTML math
+ignored_content = ["**/source.md"]
 
 theme = "zerm"
 
