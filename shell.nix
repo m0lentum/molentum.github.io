@@ -3,10 +3,12 @@
 }:
 
 pkgs.mkShell {
-  buildInputs = [
-    pkgs.niv
-    pkgs.just
+  buildInputs = with pkgs; [
+    niv
+    just
 
-    pkgs.zola
+    nodejs
+    nodePackages.katex
+    zola
   ];
 }
