@@ -111,12 +111,4 @@
             {%- endblock footer -%}
         </div>
     </body>
-    {% if not section.extra.no_wrap_images and not page.extra.no_wrap_images %}
-        <script>
-            // wrap images in "code-like" containers by default
-            document.querySelectorAll('img').forEach(img => {
-                img.parentNode.classList.add('code-like-img');
-            });
-        </script>
-    {% endif %}
 </html>
