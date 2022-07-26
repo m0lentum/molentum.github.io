@@ -1,0 +1,7 @@
+# make markdown files show up in github language stats
+# source: https://joshuatz.com/posts/2019/how-to-get-github-to-recognize-a-pure-markdown-repo/
+**/*.md linguist-vendored=false
+**/*.md linguist-generated=false
+**/*.md linguist-documentation=false
+**/*.md linguist-detectable=true
+README.md linguist-detectable=false
