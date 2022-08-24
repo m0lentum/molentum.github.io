@@ -15,15 +15,18 @@ const render = () => {
 
   for (const { re, displayMode } of [
     { re: /\$\$(.+?)\$\$/ms, displayMode: true },
-    { re: /\$(.+?)\$/, displayMode: false },
+    { re: /\$(.+?)\$/ms, displayMode: false },
   ]) {
     let match;
     while ((match = content.match(re))) {
       // console.log(match[1]);
-      const rendered = katex.renderToString(match[1], {
-        throwOnError: false,
-        displayMode,
-      });
+      const rendered = katex
+        .renderToString(match[1], {
+          throwOnError: false,
+          displayMode,
+        })
+        // replace underscores so they come out of the markdown renderer correctly
+        .replace("_", "\\_");
       content =
         content.substring(0, match.index) +
         rendered +
