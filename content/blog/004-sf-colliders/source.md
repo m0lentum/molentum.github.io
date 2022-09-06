@@ -328,27 +328,109 @@ axis test.
 The original motivation for this collision detection rework was to make it
 generic, and fortunately making this slightly more complex algorithm generic
 wasn't any more difficult than doing that to the original polygon-only
-algorithm. It merely added a couple of extra steps. I'll talk about that a bit
-in the tidbits section at the end.
+algorithm. It merely added a couple of extra steps. I'll talk about what this
+entailed a little later.
 
-That's all there is to the cool part of this post, so here's a reward for
-making it all the way here — a nice gif of shapes colliding with each other
-using this algorithm:
+That's all there is to collision detection between two shapes like this.
+Here's our reward for making it all the way here — a nice gif of shapes
+colliding with each other using this algorithm:
 
 ![Screen recording of a scene with various rounded shapes moving around](result.gif)
 
-## Tidbits
+## Other operations
 
-Now that we're done with the main story, there are still a whole bunch of
-details I wanted to mention but didn't warrant mid-story digressions. This
-section is for all interesting math, implementation details, and effects on
-the rest of the engine that I didn't have a better place for.
+This is great, but it's not the end of the story. There are still a few other
+things we need to do with these shapes. For one, in the previous section I
+completely ignored the case where one of the shapes is a circle. We also want
+some other queries for gameplay purposes, and there are some physical
+properties we need to extract from these shapes.
+
+### Point queries
+
+It's often very useful to know whether or not a point is inside a shape. For
+instance, I use a query like this to implement selecting objects with the mouse
+cursor. Sometimes if the answer is no, you might still want to know where the
+closest point on the shape is. For circles and rectangles this question is
+trivial to answer, but less so for other shapes. Here's an algorithm that works
+for any shape defined as a polygon-circle sum like we've been doing and finds
+two things: the closest point on the shape's boundary, as well as whether the
+queried point is inside or outside of the shape.
+
+{% sidenote() %}
+If the shape was a simple polygon without a circle component and we just wanted
+to know whether $\mathbf{p}$ is inside or outside of it, we wouldn't need to
+get the closest point. We could simply do a separating axis test using the edge
+normals. With the circle component added, however, we need the closest point
+for the same reason we needed it in the SAT earlier, so we might as well
+compute it even if we only want the yes/no result.
+{% end %}
+
+Let's define a bit of notation first to make this easier to write. We'll be
+operating on edges of the shape's inner polygon, and each edge is defined as a
+starting point $\mathbf{s}$, a direction $\hat{\mathbf{d}}$ and a length $l$.
+Each edge also has a normal $\hat{\mathbf{n}}$ which is perpendicular to
+$\hat{\mathbf{d}}$ and points outward. Let's call the point we're querying for
+$\mathbf{p}$ and the radius of the shape's circle component $r_c$.
+
+![Illustration of an edge line segment and its parameters](edge_params.png)
+
+Now for the algorithm.
+
+1. Project $\mathbf{p}$ onto each inner edge with
+   $t_{proj} = (\mathbf{s} - \mathbf{p}) \cdot \hat{\mathbf{d}}$
+   and clamp it to the edge's bounds with
+   $t_{c} = \text{clamp}(t_{proj}, 0, l)$.
+   The closest point to $\mathbf{p}$ on the edge is then
+   $\mathbf{p}_{proj} = s + t_{c} \cdot \hat{\mathbf{d}}$.
+2. Find the edge where the distance $||\mathbf{p} - \mathbf{p}_{proj}||$
+   is the smallest. The variables in the following steps refer to this edge and
+   the point projected to it.
+3. If $0 \leq t_{proj} \leq l$ (i.e. the projected point lies inside the edge,
+   no clamping necessary), $\mathbf{p}$ might be inside the inner polygon. We
+   need to know if this is the case, so check against the edge normal:
+   $\mathbf{p}$ is inside the polygon if and only if
+   $(\mathbf{s} - \mathbf{p}) \cdot \hat{\mathbf{n}} \leq 0$.
+4. We now have the closest point on the inner polygon's boundary. To get the
+   closest point on the sum shape's boundary, first define the direction
+   from the projected point to the query point,
+   $\hat{\mathbf{d}}_p = \frac{\mathbf{p} - \mathbf{p}_{proj}}{||\mathbf{p} - \mathbf{p}_{proj}||}$.
+   Then,
+   - If $\mathbf{p}$ is inside the inner polygon, return "inside" and the point
+     $\mathbf{p}_{proj} - r_c\hat{\mathbf{d}}_p$
+   - If not, return the point
+     $\mathbf{p}_{proj} + r_c\hat{\mathbf{d}}_p$
+     and "inside" if $||\mathbf{p} - \mathbf{p}_{proj}|| \leq r_c$,
+     "outside" otherwise.
+
+{% sidenote() %}
+The step 3 check for being inside the inner polygon is necessary not just to
+get the correct direction vector to add in step 4, but also because the
+distance check at the end of step 4 would miss points that are too close to the
+polygon's center (and thus too far from its edges).
+{% end %}
+
+That's all. TL;DR: first compute the closest point on the inner polygon's boundary,
+then expand towards the query point until we reach the sum shape's boundary.
+While you do that, see if the query point is inside the shape.
+
+{% sidenote() %}
+While writing this post I realized I had made a mistaken assumption in my
+original version of this algorithm, and reimplemented the whole thing. Fixing
+bugs by writing blogs! 😛
+{% end %}
+
+This information actually allows us to implement collision detection between
+these sum shapes and circles. Simply compute the closest point to the
+circle center, check if it's inside the circle, and you're done!
+
+### Raycasts and spherecasts
 
 todos:
 
-- implementation details: closest point, edge clip math, other operations needed
+- implementation details: ~~closest point~~, edge clip math, other operations needed
 - raycast / spherecast discussion, AABB tree mention maybe?
-- moment of inertia math
+- area and moment of inertia math
+- performance
 
 [starframe]: https://github.com/m0lentum/starframe
 [sht]: https://en.wikipedia.org/wiki/Hyperplane_separation_theorem
