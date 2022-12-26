@@ -37,7 +37,14 @@
         {%- endblock favicon -%}
 
         {%- block rss -%}
-            {{ head::rss() }}
+        {% if section.extra.show_rss_link %}
+        {% set rss_path = section.path ~ "rss.xml" %}
+        {% set rss_title = section.title %}
+        {% else %}
+        {% set rss_path = config.feed_filename %}
+        {% set rss_title = "All" %}
+        {% endif %}
+        <link rel="alternate" type="application/rss+xml" title="{{ config.title }} - {{ rss_title }}" href="{{ get_url(path=rss_path) }}">
         {%- endblock rss -%}
         
         {%- if page.extra.use_katex -%}

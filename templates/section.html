@@ -20,7 +20,8 @@
             {%- block page_list -%}
                 {% if section.extra.show_rss_link %}
                     <p class="feed-subscribe">
-                        <a href="{{ get_url(path='rss.xml') }}">Subscribe with RSS</a>
+                        {# rss_path for the section, defined in index.html #}
+                        <a href="{{ rss_path }}">Subscribe with RSS</a>
                     </p>
                 {% endif %}
                 {{ lists::list_pages() }}
