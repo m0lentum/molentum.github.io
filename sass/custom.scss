@@ -10,6 +10,13 @@ code {
   flex-flow: column nowrap;
 }
 
+.pagination {
+  margin: 1rem 0;
+  .button {
+    max-width: none;
+  }
+}
+
 .dagamez0ne {
   display: flex;
   flex-flow: column nowrap;
@@ -68,3 +75,82 @@ img {
   margin-top: 10px;
 }
 
+// art gallery
+
+article.artwork {
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  img {
+    border-radius: 2px;
+    background: var(--border-color);
+    max-width: 1080px;
+    max-height: 1080px;
+    @media(max-width: 1080px) {
+      max-width: 90vw;
+    }
+  }
+}
+
+.gallery-container {
+  align-items: center;
+
+  header, .post, .artwork p {
+    // max-width and padding of the normal `container center` used elsewhere
+    max-width: 864px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  header {
+    text-align: center;
+    width: 100%;
+  }
+
+  .post {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+}
+
+.gallery {
+  width: 100vw;
+  max-width: 1920px;
+  padding: 1em;
+  text-align: center;
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.gallery-post {
+  padding-bottom: 15px;
+  flex: 1 1 auto;
+  min-width: 300px;
+  a {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline var(--accent);
+    }
+  }
+  img {
+    margin: 0;
+  }
+}
+
+.gallery-title {
+  color: var(--accent);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.license {
+  color: #aaa;
+}

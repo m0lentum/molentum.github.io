@@ -1,0 +1,62 @@
+{% extends "index.html" -%}
+{% import "zerm/templates/macros/lists.html" as lists -%}
+{% import "licenses/cc0.html" as cc0 -%}
+
+{%- block title %}
+    <title>{{ section.title }} - {{ config.title }}</title>
+{%- endblock title -%}
+
+{%- block main -%}
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="{{ section.permalink }}">{{ section.title }}</a>
+            </h1>
+            {{ posts::section_meta(section=section, author=config.extra.show_author) }}
+        </header>
+
+        {{ section.content | safe }}
+          
+    </article>
+    {% if paginator.pages is defined %}
+        {%- block page_list -%}
+            {% if section.extra.show_rss_link %}
+                <p class="feed-subscribe">
+                    <a href="{{ get_url(path='rss.xml') }}">Subscribe with RSS</a>
+                </p>
+            {% endif %}
+            <section class="posts gallery">
+                {%- for page in paginator.pages -%}
+                <div class="gallery-post">
+                    {% set path = page.path ~ page.extra.main_image %}
+                    {% set meta = get_image_metadata(path=path) %}
+                    {# crop the image such that the shorter side is section.extra.image_size #}
+                    {% if meta.width < meta.height %}
+                        {% set image = resize_image(
+                            path=path,
+                            width=section.extra.image_size,
+                            op="fit_width",
+                            quality=100,
+                        ) %}
+                    {% else %}
+                        {% set image = resize_image(
+                            path=path,
+                            height=section.extra.image_size,
+                            op="fit_height",
+                            quality=100,
+                        ) %}
+                    {% endif %}
+                    <a href={{ page.permalink }}>
+                        <img src={{ image.url }} alt="{{ page.extra.main_image_alt }}" />
+                        <h2 class="gallery-title">{{ page.title }}</h2>
+                    </a>
+                </div>
+                {%- endfor -%}
+            </section>
+        {%- endblock page_list-%}
+    {% endif %}
+{%- endblock main -%}
+
+{%- block license -%}
+{{ cc0::license() }}
+{%- endblock license -%}

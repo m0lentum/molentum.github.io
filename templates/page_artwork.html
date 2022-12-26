@@ -1,0 +1,25 @@
+{% extends "index.html" -%}
+{% import "licenses/cc0.html" as cc0 -%}
+
+{%- block title %}
+    <title>{{ page.title }} - {{ config.title }}</title>
+{%- endblock title -%}
+
+{%- block main -%}
+    <article class="artwork">
+        <header>
+            <h1 class="post-title">
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+            </h1>
+            {{ posts::meta(page=page, author=config.extra.show_author) }}
+        </header>
+
+        <img src={{ page.extra.main_image }} alt="{{ page.extra.main_image_alt }}" />
+
+        {{ page.content | safe }}
+    </article>
+{%- endblock main -%}
+
+{%- block license -%}
+{{ cc0::license() }}
+{%- endblock license -%}

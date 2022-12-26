@@ -45,17 +45,18 @@
         {%- endif -%}
     </head>
     <body>
-        {#
-        "container full" when width == True, regardless of center
-        "container center" when only center == True
-        "container" when both false.
-        #}
         {%- if config.extra.full_width -%}
             {%- set container = "container full" -%}
         {%- elif config.extra.center -%}
             {%- set container = "container center" -%}
         {%- else -%}
             {%- set container = "container" -%}
+        {%- endif -%}
+
+        {%- if page.extra.container_classes -%}
+            {%- set container = container ~ " " ~ page.extra.container_classes -%}
+        {%- elif section.extra.container_classes -%}
+            {%- set container = container ~ " " ~ section.extra.container_classes -%}
         {%- endif -%}
 
         <div class="{{ container }}">
@@ -84,6 +85,14 @@
                     </div>
                 {%- endblock main -%}
             </div>
+
+            {%- block pagination -%}
+                {{ pagination::paginate() }}
+            {%- endblock pagination -%}
+
+            {%- block license -%}
+            {# license empty by default, defined on artwork pages #}
+            {%- endblock license -%}
 
             {%- block footer -%}
                 <footer class="footer">
