@@ -17,14 +17,14 @@
 
         {{ section.content | safe }}
           
+        {% if section.extra.show_rss_link %}
+            <p class="feed-subscribe">
+                <a href="{{ get_url(path=rss_path) }}">Subscribe with RSS</a>
+            </p>
+        {% endif %}
     </article>
     {% if paginator.pages is defined %}
         {%- block page_list -%}
-            {% if section.extra.show_rss_link %}
-                <p class="feed-subscribe">
-                    <a href="{{ get_url(path='rss.xml') }}">Subscribe with RSS</a>
-                </p>
-            {% endif %}
             <section class="posts gallery">
                 {%- for page in paginator.pages -%}
                 <div class="gallery-post">
