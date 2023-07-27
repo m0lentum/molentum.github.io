@@ -8,3 +8,5 @@ main_image_alt = """A digital painting of a mermaid composed of glowing magma an
 +++
 
 A fun quick design for Mermay 2021.
+
+<!-- more -->

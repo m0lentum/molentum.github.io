@@ -18,3 +18,5 @@ He's tipping his cap, which has the text
 Sketches exploring the idea of
 "wouldn't it be funny if merfolk wore regular human clothes"
 for this year's Mermay.
+
+<!-- more -->

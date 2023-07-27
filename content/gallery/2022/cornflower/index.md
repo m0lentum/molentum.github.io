@@ -13,3 +13,5 @@ frame with a cornflower motif."""
 
 Flower series, part 3. Continuing to challenge my sense of values with a
 strongly lit scene, as well as trying to push the complexity of my backgrounds.
+
+<!-- more -->

@@ -10,3 +10,5 @@ above the ground, holding some kind of shadowy magic orb in her hands."""
 +++
 
 In an edgy dark fantasy kind of mood, trying out an edgy style to match.
+
+<!-- more -->

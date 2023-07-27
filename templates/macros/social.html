@@ -2,7 +2,9 @@
     <meta property="og:title" content="{{ social::og_title() }}" />
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ current_url }}"/>
-    <meta property="og:description" content="{{ social::og_description() }}"/>
+    {%- if social::og_description() -%}
+        <meta property="og:description" content="{{ social::og_description() }}"/>
+    {%- endif -%}
     {%- if page.extra.main_image -%}
         <meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="{{ get_url(path=page.path ~ page.extra.main_image) }}"/>
@@ -19,12 +21,10 @@
             {{ config.description }}
         {%- endif -%}
     {%- elif page -%}
-        {%- if page.summary | string -%}
-            {{ page.summary | striptags | truncate(length=200) }}
+        {%- if page.summary -%}
+            {{ page.summary | striptags | trim | truncate(length=200) }}
         {%- elif page.description -%}
             {{ page.description }}
-        {%- else -%}
-            {{ config.description }}
         {%- endif -%}
     {%- endif -%}
 {% endmacro og_description %}

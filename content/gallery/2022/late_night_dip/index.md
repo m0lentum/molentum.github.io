@@ -13,3 +13,5 @@ planets, reflected by the calm water."""
 
 My standard art process: painting a cool background to distract from the fact
 that I just felt like drawing a pretty lady.
+
+<!-- more -->
