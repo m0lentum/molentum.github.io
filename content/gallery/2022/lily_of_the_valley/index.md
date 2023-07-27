@@ -12,3 +12,5 @@ lilies of the valley and a decorative frame in the shape of an ellipse."""
 
 The beginning of an Art Nouveau -inspired series based on flowers. Aiming to
 learn the shape language of plants and improve my abstract decorative designs.
+
+<!-- more -->

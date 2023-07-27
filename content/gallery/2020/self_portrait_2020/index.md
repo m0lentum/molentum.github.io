@@ -11,3 +11,5 @@ KX500MS electric guitar."""
 
 Celebrating three years of daily drawing practice. A breakthrough in terms of
 style for me, introducing many features I still use two years later.
+
+<!-- more -->

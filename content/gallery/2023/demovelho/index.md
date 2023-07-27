@@ -13,3 +13,5 @@ An exercise in combining 3D modelling and digital painting.
 The title is Finnish for "Demowizard's Workshop".
 This was my entry for the graphic art compo at local demoparty Instanssi,
 where it won second place!
+
+<!-- more -->

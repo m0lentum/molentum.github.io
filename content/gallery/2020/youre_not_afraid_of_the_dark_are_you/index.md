@@ -11,3 +11,5 @@ the viewer with an amused expression."""
 
 For Mermay 2020. This was a huge leap in skill for me, both in linework and
 painting.
+
+<!-- more -->

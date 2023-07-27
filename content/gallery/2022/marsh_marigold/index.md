@@ -14,3 +14,5 @@ galaxy lights up the sky."""
 Flower series, part 4. Simultaneously experimenting with rougher, more textured
 painting and cleaner decorative shapes using vector tools. There's a certain
 tension between lines and painting that I'm finding very interesting.
+
+<!-- more -->

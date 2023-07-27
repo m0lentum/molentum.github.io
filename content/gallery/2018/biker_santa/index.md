@@ -10,3 +10,5 @@ and sunglasses."""
 +++
 
 Christmas greeting card for 2018, first one of these I ever made.
+
+<!-- more -->

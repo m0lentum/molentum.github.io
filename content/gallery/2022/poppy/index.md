@@ -15,3 +15,5 @@ pink glass rapier in front of her face, looking down at it."""
 Flower series, part 2. A challenging lighting scenario that taught me a great
 deal about values, with the help of valuable feedback from some artists on
 Discord.
+
+<!-- more -->

@@ -13,3 +13,5 @@ clusters of crystals where their heads used to be."""
 
 A "quick" doodle that I accidentally thought about too much and turned into a
 whole concept with multiple characters.
+
+<!-- more -->
