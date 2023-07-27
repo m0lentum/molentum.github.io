@@ -35,9 +35,8 @@ main_menu = [
   {url="/about/", name="about"},
   {url="/blog/", name="blog"},
   {url="/gallery/", name="gallery"},
-  {url="https://twitter.com/molentum_", name="Twitter", external=true},
+  {url="https://mastodon.art/@molentum", name="Mastodon", external=true, rel_me=true},
   {url="https://github.com/m0lentum", name="GitHub", external=true},
-  {url="https://mastodon.art/@molentum", name="Mastodon.ART", external=true, rel_me=true},
 ]
 
 # custom color defined in my own sass dir
