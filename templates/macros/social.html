@@ -3,7 +3,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ current_url }}"/>
     {%- if social::og_description() -%}
-        <meta property="og:description" content="{{ social::og_description() }}"/>
+        <meta property="og:description" content="{{ social::og_description() | trim }}"/>
     {%- endif -%}
     {%- if page.extra.main_image -%}
         <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,14 @@
         {%- endif -%}
     {%- elif page -%}
         {%- if page.summary -%}
-            {{ page.summary | striptags | trim | truncate(length=200) }}
+            {# for some reason markdown line breaks are preserved in this,
+                hackery to remove them #}
+            {{ page.summary
+                | striptags
+                | linebreaksbr
+                | replace(from="<br>", to=" ")
+                | truncate(length=300)
+            }}
         {%- elif page.description -%}
             {{ page.description }}
         {%- endif -%}
