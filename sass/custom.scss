@@ -1,5 +1,7 @@
-body, code {
-  font-family: 'JetBrains Mono', 'Fira Code', Menlo, DejaVu Sans Mono, Monaco, Consolas, Ubuntu Mono, monospace;
+body,
+code {
+  font-family: "JetBrains Mono", "Fira Code", Menlo, DejaVu Sans Mono, Monaco,
+    Consolas, Ubuntu Mono, monospace;
 }
 
 code {
@@ -40,17 +42,16 @@ code {
   background-repeat: no-repeat;
 
   &.left-mole {
-    background: url('moleThink.png');
+    background: url("moleThink.png");
     background-position: bottom right;
     background-repeat: no-repeat;
   }
   &.right-mole {
-    background: url('moleYo.png');
+    background: url("moleYo.png");
     background-position: bottom right;
     background-repeat: no-repeat;
   }
 }
-
 
 img {
   display: block;
@@ -87,7 +88,7 @@ article.artwork {
     background: var(--border-color);
     max-width: 1080px;
     max-height: 1080px;
-    @media(max-width: 1080px) {
+    @media (max-width: 1080px) {
       max-width: 90vw;
     }
   }
@@ -96,9 +97,11 @@ article.artwork {
 .gallery-container {
   align-items: center;
 
-  header, .post, .artwork p {
-    // max-width and padding of the normal `container center` used elsewhere
-    max-width: 864px;
+  header,
+  .post,
+  .artwork p {
+    // same max-width and padding as the normal `container center` used elsewhere
+    width: 864px;
     padding-left: 40px;
     padding-right: 40px;
   }
