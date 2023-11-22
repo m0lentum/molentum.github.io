@@ -1,5 +1,5 @@
 +++
-title = "Molenia of the large sword"
+title = "Molenia of the Large Sword"
 date = 2023-11-21
 [extra]
 container_classes = "gallery-container"
