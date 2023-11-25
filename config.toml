@@ -35,7 +35,7 @@ main_menu = [
   {url="/about/", name="about"},
   {url="/blog/", name="blog"},
   {url="/gallery/", name="gallery"},
-  {url="https://mastodon.art/@molentum", name="Mastodon", external=true, rel_me=true},
+  {url="https://mastoart.social/@molentum", name="Mastodon", external=true, rel_me=true},
   {url="https://github.com/m0lentum", name="GitHub", external=true},
 ]
 
