@@ -16,6 +16,8 @@ My recurring RPG character Molenia
 and [Nox Dragonslayer](../../2022/nox-dragonslayer/)),
 this time in their Diablo IV rogue gear.
 
+<!-- more -->
+
 Alternative version without color:
 ![The same drawing as above, but shaded only in pencil
 without using colors.](sharpshooter_colorless.jpg)

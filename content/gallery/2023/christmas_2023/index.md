@@ -10,3 +10,5 @@ with decorations painted on top in red and yellow gouache.
 +++
 
 My annual Christmas greeting card, this time using traditional media.
+
+<!-- more -->
