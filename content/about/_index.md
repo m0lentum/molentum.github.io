@@ -26,7 +26,7 @@ with skills in all major programming paradigms
 and a particular affinity for functional and data-oriented styles.
 Their PhD research concerns the simulation
 of various wave and fluid flow phenomena
-using a formalism known as Discrete Exterior Calculus.
+using a discretization scheme known as Discrete Exterior Calculus.
 During these studies they hope to reach an advanced skill level
 in differential geometry, numerical methods for differential equations,
 and general mathematical literacy.
