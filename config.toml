@@ -1,5 +1,5 @@
-title = "Mole's Nerd Cave"
-description = "Code, math, physics, graphics, games, art, music, and not enough time."
+title = "/home/mole"
+description = "Creations and ramblings of Mikael \"Molentum\" Myyrä."
 base_url = "https://molentum.me"
 default_language = "en"
 
@@ -27,7 +27,7 @@ copyright = "Mikael Myyrä"
 show_author = false
 show_tags = true
 show_categories = true
-logo_text = "Mole's Nerd Cave"
+logo_text = "/home/mole"
 read_more = "read more"
 main_menu = [
   { url = "/about/", name = "about" },
