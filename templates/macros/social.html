@@ -38,14 +38,14 @@
 {% endmacro og_description %}
 
 {% macro og_title() -%}
+    {{ config.title }}/
     {%- if section -%}
         {%- if section.title -%}
-            {{ section.title | striptags }} -&nbsp;
+            {{ section.title | striptags }}
         {%- endif -%}
     {%- elif page -%}
         {%- if page.title -%}
-            {{ page.title | striptags }} -&nbsp;
+            {{ page.title | striptags }}
         {%- endif -%}
     {%- endif -%}
-    {{ config.title }}
 {%- endmacro og_title %}
