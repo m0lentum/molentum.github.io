@@ -20,7 +20,7 @@ highlight_code = true
 
 [extra]
 favicon = "favicon.ico"
-og_preview_img = "moleThink112.png"
+og_preview_img = "self_square.jpg"
 
 author = "Mikael Myyrä"
 copyright = "Mikael Myyrä"
