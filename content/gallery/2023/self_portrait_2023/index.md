@@ -14,3 +14,5 @@ holding an electric guitar, and making the devil horns sign with their free hand
 
 New self-portrait and profile picture to show off my improved skills
 since the [last one from 2020](../../2020/self-portrait-2020/).
+
+<!-- more -->
