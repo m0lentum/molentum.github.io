@@ -33,7 +33,7 @@ and general mathematical literacy.
 
 In their free time Mikael is enthusiastic about all things creative,
 whether it's graphic art, video games, or heavy metal music.
-Their medium of choice is typically open-source digital software,
+Their tools of choice are typically open-source digital software,
 from Krita and Blender for art to Neovim and Rust for games.
 Their tastes are a world of contrasts —
 the delicate femininity of Art Nouveau and the grotesquery of surrealist horror,
