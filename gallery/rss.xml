@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>&#x2F;home&#x2F;mole - Gallery</title>
+        <link>https://molentum.me/gallery/</link>
+        <description>Creations and ramblings of Mikael &quot;Molentum&quot; Myyrä.</description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="https://molentum.me/gallery/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Tue, 23 Jan 2024 00:00:00 +0000</lastBuildDate>
+        <item>
+            <title>Heather</title>
+            <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2024/heather/</link>
+            <guid>https://molentum.me/gallery/2024/heather/</guid>
+            <description>&lt;p&gt;Continuing my series of flower-themed, vaguely Art Nouveau -inspired
+illustrations from 2022 (previous entries:
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;lily-of-the-valley&#x2F;&quot;&gt;Lily of the Valley&lt;&#x2F;a&gt;,
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;poppy&#x2F;&quot;&gt;Poppy&lt;&#x2F;a&gt;,
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;cornflower&#x2F;&quot;&gt;Cornflower&lt;&#x2F;a&gt;,
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;marsh-marigold&#x2F;&quot;&gt;Marsh Marigold&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Self-portrait 2023</title>
+            <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/self-portrait-2023/</link>
+            <guid>https://molentum.me/gallery/2023/self-portrait-2023/</guid>
+            <description>&lt;p&gt;New self-portrait and profile picture to show off my improved skills
+since the &lt;a href=&quot;..&#x2F;..&#x2F;2020&#x2F;self-portrait-2020&#x2F;&quot;&gt;last one from 2020&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Christmas greeting card 2023</title>
+            <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/christmas-2023/</link>
+            <guid>https://molentum.me/gallery/2023/christmas-2023/</guid>
+            <description>&lt;p&gt;My annual Christmas greeting card, this time using traditional media.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Molenia of the Large Sword</title>
+            <pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/molenia-of-the-large-sword/</link>
+            <guid>https://molentum.me/gallery/2023/molenia-of-the-large-sword/</guid>
+            <description>&lt;p&gt;This character again, this time from a recent Dark Souls 3 playthrough.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Inktober 2023</title>
+            <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/inktober-2023/</link>
+            <guid>https://molentum.me/gallery/2023/inktober-2023/</guid>
+            <description>&lt;p&gt;Quick drawings done every other day for Inktober 2023,
+all made with a Pentel Pocket Brush brush pen.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Wandering Sharpshooter</title>
+            <pubDate>Sat, 09 Sep 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/wandering-sharpshooter/</link>
+            <guid>https://molentum.me/gallery/2023/wandering-sharpshooter/</guid>
+            <description>&lt;p&gt;My recurring RPG character Molenia
+(also featured in &lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;irithyll-battlemage&#x2F;&quot;&gt;Irithyll Battlemage&lt;&#x2F;a&gt;
+and &lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;nox-dragonslayer&#x2F;&quot;&gt;Nox Dragonslayer&lt;&#x2F;a&gt;),
+this time in their Diablo IV rogue gear.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Break in the Canopy</title>
+            <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/canopy/</link>
+            <guid>https://molentum.me/gallery/2023/canopy/</guid>
+            <description></description>
+        </item>
+        <item>
+            <title>Mermay 2023</title>
+            <pubDate>Sat, 06 May 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/mermay-2023/</link>
+            <guid>https://molentum.me/gallery/2023/mermay-2023/</guid>
+            <description>&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;molentum.me&#x2F;gallery&#x2F;2023&#x2F;mermay-2023&#x2F;fishermerm.jpg&quot; alt=&quot;Digital painting of a merman with a shark tail wearing a fisherman&#x27;s vest on top of a plaid button-up shirt. He&#x27;s tipping his cap, which has the text  &amp;quot;women want me, fish fear me&amp;quot; on it.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Sketches exploring the idea of
+&amp;quot;wouldn&#x27;t it be funny if merfolk wore regular human clothes&amp;quot;
+for this year&#x27;s Mermay.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Void Sorceress</title>
+            <pubDate>Tue, 18 Apr 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/void-sorceress/</link>
+            <guid>https://molentum.me/gallery/2023/void-sorceress/</guid>
+            <description></description>
+        </item>
+        <item>
+            <title>Demovelhon työpaja</title>
+            <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/demovelho/</link>
+            <guid>https://molentum.me/gallery/2023/demovelho/</guid>
+            <description>&lt;p&gt;An exercise in combining 3D modelling and digital painting.
+The title is Finnish for &amp;quot;Demowizard&#x27;s Workshop&amp;quot;.
+This was my entry for the graphic art compo at local demoparty Instanssi,
+where it won second place!&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Crystal Reaper</title>
+            <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/crystal-reaper/</link>
+            <guid>https://molentum.me/gallery/2023/crystal-reaper/</guid>
+            <description>&lt;p&gt;A &amp;quot;quick&amp;quot; doodle that I accidentally thought about too much and turned into a
+whole concept with multiple characters.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Infernal Butterfly</title>
+            <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2023/infernal-butterfly/</link>
+            <guid>https://molentum.me/gallery/2023/infernal-butterfly/</guid>
+            <description>&lt;p&gt;In an edgy dark fantasy kind of mood, trying out an edgy style to match.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Christmas greeting card 2022</title>
+            <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/christmas2022/</link>
+            <guid>https://molentum.me/gallery/2022/christmas2022/</guid>
+            <description></description>
+        </item>
+        <item>
+            <title>Marsh Marigold</title>
+            <pubDate>Tue, 20 Dec 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/marsh-marigold/</link>
+            <guid>https://molentum.me/gallery/2022/marsh-marigold/</guid>
+            <description>&lt;p&gt;Flower series, part 4. Simultaneously experimenting with rougher, more textured
+painting and cleaner decorative shapes using vector tools. There&#x27;s a certain
+tension between lines and painting that I&#x27;m finding very interesting.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Cornflower</title>
+            <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/cornflower/</link>
+            <guid>https://molentum.me/gallery/2022/cornflower/</guid>
+            <description>&lt;p&gt;Flower series, part 3. Continuing to challenge my sense of values with a
+strongly lit scene, as well as trying to push the complexity of my backgrounds.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Poppy</title>
+            <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/poppy/</link>
+            <guid>https://molentum.me/gallery/2022/poppy/</guid>
+            <description>&lt;p&gt;Flower series, part 2. A challenging lighting scenario that taught me a great
+deal about values, with the help of valuable feedback from some artists on
+Discord.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Lily of the Valley</title>
+            <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/lily-of-the-valley/</link>
+            <guid>https://molentum.me/gallery/2022/lily-of-the-valley/</guid>
+            <description>&lt;p&gt;The beginning of an Art Nouveau -inspired series based on flowers. Aiming to
+learn the shape language of plants and improve my abstract decorative designs.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Late Night Dip</title>
+            <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/late-night-dip/</link>
+            <guid>https://molentum.me/gallery/2022/late-night-dip/</guid>
+            <description>&lt;p&gt;My standard art process: painting a cool background to distract from the fact
+that I just felt like drawing a pretty lady.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Bloodmage Mermaid</title>
+            <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/bloodmage-mermaid/</link>
+            <guid>https://molentum.me/gallery/2022/bloodmage-mermaid/</guid>
+            <description>&lt;p&gt;Another cheesy murder-mermaid for Mermay 2022.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Heart Hands</title>
+            <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/heart-hands/</link>
+            <guid>https://molentum.me/gallery/2022/heart-hands/</guid>
+            <description>&lt;p&gt;A cheesy murder-mermaid for Mermay 2022.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Nox Dragonslayer</title>
+            <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/nox-dragonslayer/</link>
+            <guid>https://molentum.me/gallery/2022/nox-dragonslayer/</guid>
+            <description>&lt;p&gt;My player character from Elden Ring with her coolest gear.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Irithyll Battlemage</title>
+            <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/irithyll-battlemage/</link>
+            <guid>https://molentum.me/gallery/2022/irithyll-battlemage/</guid>
+            <description>&lt;p&gt;My player character from Dark Souls 3 with her coolest gear.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Isidora, Voice of the Dead</title>
+            <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2022/isidora/</link>
+            <guid>https://molentum.me/gallery/2022/isidora/</guid>
+            <description>&lt;p&gt;Fanart of my favorite boss from Blasphemous.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Christmas greeting card 2021</title>
+            <pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2021/christmas2021/</link>
+            <guid>https://molentum.me/gallery/2021/christmas2021/</guid>
+            <description></description>
+        </item>
+        <item>
+            <title>A Cool Tree</title>
+            <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2021/a-cool-tree/</link>
+            <guid>https://molentum.me/gallery/2021/a-cool-tree/</guid>
+            <description></description>
+        </item>
+        <item>
+            <title>Magmerm</title>
+            <pubDate>Wed, 19 May 2021 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2021/magmerm/</link>
+            <guid>https://molentum.me/gallery/2021/magmerm/</guid>
+            <description>&lt;p&gt;A fun quick design for Mermay 2021.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Self-portrait 2020</title>
+            <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2020/self-portrait-2020/</link>
+            <guid>https://molentum.me/gallery/2020/self-portrait-2020/</guid>
+            <description>&lt;p&gt;Celebrating three years of daily drawing practice. A breakthrough in terms of
+style for me, introducing many features I still use two years later.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Severance Ceremony</title>
+            <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2020/severance-ceremony/</link>
+            <guid>https://molentum.me/gallery/2020/severance-ceremony/</guid>
+            <description></description>
+        </item>
+        <item>
+            <title>You&#x27;re not afraid of the dark, are you?</title>
+            <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2020/youre-not-afraid-of-the-dark-are-you/</link>
+            <guid>https://molentum.me/gallery/2020/youre-not-afraid-of-the-dark-are-you/</guid>
+            <description>&lt;p&gt;For Mermay 2020. This was a huge leap in skill for me, both in linework and
+painting.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Biker Santa</title>
+            <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2018/biker-santa/</link>
+            <guid>https://molentum.me/gallery/2018/biker-santa/</guid>
+            <description>&lt;p&gt;Christmas greeting card for 2018, first one of these I ever made.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Self-portrait 2018</title>
+            <pubDate>Sat, 21 Apr 2018 00:00:00 +0000</pubDate>
+            <link>https://molentum.me/gallery/2018/self-portrait-2018/</link>
+            <guid>https://molentum.me/gallery/2018/self-portrait-2018/</guid>
+            <description></description>
+        </item>
+    </channel>
+</rss>
