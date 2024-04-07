@@ -14,15 +14,12 @@ all made with a Pentel Pocket Brush brush pen.
 
 <!-- more -->
 
+This page contains original work licensed under CC0.
+The rest is [fanart](../../fanart/2023/inktober-2023/).
+
 ![A dagger-wielding elven assassin narrowly dodging a large arrow aimed at their head.
 The impact of the arrow has made their long hair billow to the side
 and cracked the wall behind them in a radial pattern.](04_dodge.jpg)
-
-![Airyn from Spelunky 2 carrying a golden idol
-and running away from a large boulder.](06_golden.jpg)
-
-![Toad (the character from Super Mario)
-riding a toad (the animal from real life) and holding up a little sword.](08_toad.jpg)
 
 ![Porky the Capitalist Pig sitting on a pile of big money bags.](10_fortune.jpg)
 
@@ -58,4 +55,3 @@ and a voice off the page says "ah, fu-".](26_remove.jpg)
 
 ![A waiter in a suit and tie pouring sparkling water out of a plastic bottle.](28_sparkle.jpg)
 
-![The ninja from N++ running away from a distressingly large collection of enemies.](30_rush.jpg)
