@@ -23,6 +23,12 @@ code {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  // scale canvas to screen if it doesn't fit
+  canvas {
+    max-width: 100%;
+    height: unset !important;
+  }
 }
 
 .copyright {
