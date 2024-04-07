@@ -58,5 +58,7 @@
 {%- endblock main -%}
 
 {%- block license -%}
+{%- if section.extra.cc0 -%}
 {{ cc0::license() }}
+{%- endif -%}
 {%- endblock license -%}

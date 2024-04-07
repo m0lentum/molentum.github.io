@@ -1,5 +1,4 @@
 {% extends "index.html" -%}
-{% import "licenses/cc0.html" as cc0 -%}
 
 {%- block title %}
     <title>{{ config.title }}/{{ page.title }}</title>
@@ -19,7 +18,3 @@
         {{ page.content | safe }}
     </article>
 {%- endblock main -%}
-
-{%- block license -%}
-{{ cc0::license() }}
-{%- endblock license -%}

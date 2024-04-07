@@ -14,6 +14,3 @@ This character again, this time from a recent Dark Souls 3 playthrough.
 
 <!-- more -->
 
-Note that this artwork contains design elements from a video game,
-which the CC-0 license does not apply to.
-Use with care.
