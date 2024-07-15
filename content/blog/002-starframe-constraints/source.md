@@ -1268,7 +1268,7 @@ totally viable methods for game purposes.
 
 If you have any questions, compliments, complaints or corrections, feel free to
 ping me on the [Rust-gamedev Discord server](https://discord.gg/yNtPTb2) (I'm
-@Molentum there) or on [Twitter](https://twitter.com/molentum_).
+@Molentum there) or on Mastodon (link at the top of this page).
 
 <!-- source documents -->
 

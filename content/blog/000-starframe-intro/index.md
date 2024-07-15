@@ -78,6 +78,4 @@ This is the road I'm currently on - rewriting what I had done with C++ in this n
 and revisiting old decisions along the way. I'm still in the very early stages of this and
 plan to write up a blog post whenever I'm finished with a major feature (which won't be often - I'm working
 and studying so time is scarce). I won't go into language specifics much, but all the code examples will obviously be in Rust.
-If all this happens to interest you, or if you want to give me feedback, you may want to hit me up on [Twitter](https://twitter.com/molentum_),
-where I post various garbage but also occasional engine-related stuff and blog links.
 Also, for those interested, the full source code to this project lives on [GitHub](https://github.com/m0lentum/starframe).
