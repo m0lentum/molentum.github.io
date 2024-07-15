@@ -244,8 +244,8 @@ $$
 \begin{aligned}
 \dot{C}_{contact} &=
   (v_2 + \omega_2 \times r_2 - v_1 - \omega_1 \times r_1) \cdot \hat{n} \\
-&= -\hat{n} \cdot v_1 - (r_1 \times \hat{n}) \cdot \omega_1
-  + \hat{n} \cdot v_2 + (r_2 \times \hat{n}) \cdot \omega_2 \\
+&= -\hat{n} \cdot v_1 - (r_1 \times \hat{n}) \cdot \omega_1 +
+  \hat{n} \cdot v_2 + (r_2 \times \hat{n}) \cdot \omega_2 \\
 &= \begin{bmatrix}
   -\hat{n}^T & -(r_1 \times \hat{n})^T & \hat{n}^T & (r_2 \times \hat{n})^T
   \end{bmatrix}
