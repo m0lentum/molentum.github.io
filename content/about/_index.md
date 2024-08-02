@@ -11,21 +11,18 @@ no_wrap_images = true
     alt="Mikael's self-portrait profile picture"
 )}}
 
-Mikael Myyrä (he/they), known online as Molentum
-(a pun on their last name which translates to Mole),
+Mikael Myyrä (he/they), known online as Molentum,
 is a programmer, student in computational physics,
 artist, game developer, and generally huge nerd from Jyväskylä, Finland.
-As of early 2024, they're 27 years old, working as a full-stack web developer
-at the University of Jyväskylä's Digital Services
-building interactive tools for students and staff,
-while also preparing for their PhD studies at the same university
-slated to begin in the fall semester.
+As of fall 2024, they're 28 years old
+and just left their job as a full-stack web developer
+to become a full-time PhD student
+at the University of Jyväskylä.
 
 Mikael is most comfortable writing code,
 with skills in all major programming paradigms
 and a particular affinity for functional and data-oriented styles.
-Their PhD research concerns the simulation
-of various wave and fluid flow phenomena
+Their PhD research concerns the simulation of plasma flows
 using a discretization scheme known as Discrete Exterior Calculus.
 During these studies they hope to reach an advanced skill level
 in differential geometry, numerical methods for differential equations,
