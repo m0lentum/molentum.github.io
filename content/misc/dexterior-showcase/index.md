@@ -20,7 +20,9 @@ simulations built for WebGL. More to come later, probably.
     });
 </script>
 
-<div id="membrane-canvas"></div>
+<div class="dagamez0ne">
+    <div id="membrane-canvas"></div>
+</div>
 
 ## Plane wave
 
