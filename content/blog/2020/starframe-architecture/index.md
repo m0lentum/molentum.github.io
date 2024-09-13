@@ -2,7 +2,7 @@
 title = "Starframe devlog: Architecture"
 date = 2020-08-30
 slug = "starframe-architecture"
-aliases = ["blog/2020/08/starframe-1-architecture/"]
+aliases = ["blog/2020/08/starframe-1-architecture/", "blog/starframe-architecture"]
 [taxonomies]
 tags = ["starframe", "data structures"]
 +++

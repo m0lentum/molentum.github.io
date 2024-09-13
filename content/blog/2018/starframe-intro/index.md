@@ -2,7 +2,7 @@
 title = "Starframe devlog: Introduction"
 date = 2018-09-23
 slug = "starframe-intro"
-aliases = ["blog/2018/09/moleengine-part-0-introduction/"]
+aliases = ["blog/2018/09/moleengine-part-0-introduction/", "blog/starframe-intro"]
 [taxonomies]
 tags = ["starframe"]
 +++

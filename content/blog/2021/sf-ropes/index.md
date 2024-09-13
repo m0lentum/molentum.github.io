@@ -2,6 +2,7 @@
 title = "Starframe devlog: Rope physics"
 date = 2021-12-30
 slug = "starframe-ropes"
+aliases = ["blog/starframe-ropes"]
 [taxonomies]
 tags = ["starframe", "physics"]
 +++

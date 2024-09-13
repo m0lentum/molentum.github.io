@@ -1,7 +1,7 @@
 +++
 title = "Starframe devlog: Rounding collider corners"
 draft = true
-date = 2022-07-21
+date = 2024-09-13
 slug = "rounding-collider-corners"
 [taxonomies]
 tags = ["starframe", "physics", "collision"]
@@ -9,9 +9,14 @@ tags = ["starframe", "physics", "collision"]
 use_katex = true
 +++
 
-Earlier this year I entirely rewrote one of the most complicated parts of
-[Starframe], the collision detection system. A notable feature of the new system
-is the ability to give any shape rounded corners. Here's why and how I did it.
+Back in 2022 I entirely rewrote one of the most complicated parts of
+[Starframe], the collision detection system.
+A notable feature of the new system
+is the ability to give any shape rounded corners.
+I also wrote most of this post back then,
+but things happened and it was left unfinished.
+Here it is now, two years later.
+Better late than never I suppose.
 
 <!-- more -->
 
