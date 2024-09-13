@@ -2,7 +2,7 @@
 title = "Starframe devlog: Solving Constraints in Physics"
 date = 2021-03-31
 slug = "starframe-constraints"
-aliases = ["blog/2021/03/starframe-devlog-constraints/"]
+aliases = ["blog/2021/03/starframe-devlog-constraints/", "blog/starframe-constraints"]
 [taxonomies]
 tags = ["starframe", "physics"]
 [extra]
