@@ -4,6 +4,17 @@ code {
     Consolas, Ubuntu Mono, monospace;
 }
 
+// fix sizing issues on mobile
+.footer__inner {
+  width: auto;
+}
+// be consistent with header margin when menu is gone
+header {
+  @media (max-width: 683px) {
+    margin-bottom: 20px;
+  }
+}
+
 code {
   color: var(--color);
 }
