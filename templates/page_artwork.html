@@ -13,7 +13,9 @@
             {{ posts::meta(page=page, author=config.extra.show_author) }}
         </header>
 
+        {%- if not page.extra.skip_main_image -%}
         <img src={{ page.extra.main_image }} alt="{{ page.extra.main_image_alt }}" />
+        {%- endif -%}
 
         {{ page.content | safe }}
     </article>
