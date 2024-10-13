@@ -35,6 +35,7 @@ main_menu = [
   { url = "/gallery/", name = "gallery" },
   { url = "https://mastoart.social/@molentum", name = "Mastodon", external = true, rel_me = true },
   { url = "https://github.com/m0lentum", name = "GitHub", external = true },
+  { url = "https://molentum.itch.io/", name = "Itch.io", external = true },
 ]
 
 # custom color defined in my own sass dir
