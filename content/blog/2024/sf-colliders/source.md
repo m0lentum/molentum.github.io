@@ -1,7 +1,7 @@
 +++
-title = "Starframe devlog: Rounding collider corners"
+title = "Rounding collider corners"
 draft = true
-date = 2022-07-21
+date = 2024-10-13
 slug = "rounding-collider-corners"
 [taxonomies]
 tags = ["starframe", "physics", "collision"]
@@ -9,9 +9,12 @@ tags = ["starframe", "physics", "collision"]
 use_katex = true
 +++
 
-Earlier this year I entirely rewrote one of the most complicated parts of
-[Starframe], the collision detection system. A notable feature of the new system
-is the ability to give any shape rounded corners. Here's why and how I did it.
+Back in 2022 I entirely rewrote one of the most complicated parts of [Starframe],
+the collision detection system.
+A notable feature of the new system is the ability to give any shape rounded corners.
+I also wrote most of this post back then, but things happened and it was left unfinished.
+Here it is now, two years later.
+Better late than never I suppose.
 
 <!-- more -->
 
@@ -61,7 +64,7 @@ axis test does.
 ## The separating axis test
 
 The [Separating Hyperplane Theorem][sht] states something to the effect of: two
-[**convex**][convex] shapes do not intersect if and only if you can draw a straight
+[**convex**][convex] shapes intersect if and only if you cannot draw a straight
 line between them that doesn't touch either of them.
 
 {% sidenote() %}
@@ -70,21 +73,21 @@ the general theorem calls it a hyperplane.
 {% end %}
 
 ![Illustration of two pairs of shapes, one intersecting and one not, and a line
-drawn between them.](sat_line.png)
+drawn between the non-intersecting ones.](sat_line.svg)
 
 Now, how do we find such a line (or the lack thereof)? The first step is to
 consider all possible _directions_ the line can go in. For every such
 direction, there is a perpendicular _axis_.
 
 ![The previous illustration with the axis perpendicular to the line
-added.](sat_axis.png)
+added.](sat_axis.svg)
 
 With this we can transform the question "can a line in this direction fit between the shapes?"
 into "is there room between the shapes when measured along this axis?".
 This is a question we can actually answer by projecting each shape onto the axis!
 
 ![The previous illustration with projections of the shapes to the
-axis.](sat_proj.png)
+axis.](sat_proj.svg)
 
 This still doesn't help all that much considering there are an infinite number of
 possible directions. However, in games we're working with polygons, which have
@@ -98,8 +101,8 @@ little more complicated because polyhedra have both faces and edges, which
 results in more possible ways to intersect.
 {% end %}
 
-![Illustration of a rectangle and a circle, along with their potential
-separating axes.](sat_sep.png)
+![Illustration of a rectangle and a triangle, along with their potential
+separating axes.](sat_sep.svg)
 
 So, a simple separating axis test that tells us whether or not two convex shapes intersect
 goes as follows:
@@ -114,8 +117,8 @@ enough information to do physics with, but we'll get back to that later.
 I'm glossing over a lot of detail here to keep this brief.
 For a more comprehensive look at separating axis tests, I recommend the book
 Real-Time Collision Detection by Christer Ericson or [this tutorial by Metanet Software][metanet-tut].
-The tutorial has some fantastic interactive visualizations which unfortunately have been
-lost to time due to the death of Flash, but it's still very good.
+The tutorial has some fantastic interactive visualizations made with Flash,
+which isn't available in browsers anymore, but I hear [Ruffle] can still run them.
 
 ## Circles
 
@@ -145,18 +148,13 @@ $$
 A + B = \{ a + b \,|\, a \in A, b \in B \}.
 $$
 
-{% sidenote() %}
-The operation is defined on sets, but I'm talking about shapes.
-A shape is really just a kind of set — the set of all points contained by it.
-{% end %}
-
-A more intuitive way to understand this operation in the context of solid
-shapes (i.e. ones without holes in them) is that we're taking one shape,
-sweeping it along the edge of another shape, and making the outer edge of the
-swept area the new shape's boundary.
+A more intuitive way to understand this operation in the context of shapes
+is that we're taking one shape,
+sliding its center of mass along the boundary of another shape,
+and making the outer edge of the covered area the new shape's boundary.
 
 ![Illustration of sweeping a circle along the edges of a
-triangle](minkowski.png)
+triangle](minkowski.svg)
 
 Cool. How would we use this in collision detection? From what we've learned so
 far, we need a projection operation and a set of possible axes for the
@@ -170,8 +168,8 @@ closest points on the two shapes. Determining what the closest points are isn't
 a trivial matter, but before we get to that another digression is in order.
 
 {% sidenote() %}
-Replace addition with subtraction and you get the Minkowski difference, the
-core operation of another collision detection algorithm called
+Replace addition with subtraction and you get the Minkowski difference, 
+a crucial operation in another collision detection algorithm called
 [Gilbert-Johnson-Keerthi](https://en.wikipedia.org/wiki/Gilbert%E2%80%93Johnson%E2%80%93Keerthi_distance_algorithm)
 (GJK). I won't cover that one here.
 {% end %}
@@ -191,7 +189,7 @@ objects probably came into contact from the direction where they overlap least.
 Thus that should be the direction our physics response should push them in.
 
 ![Illustration of two intersecting rectangles with the direction of contact
-marked with a red arrow](contact_dir.png)
+marked with a red arrow](contact_dir.svg)
 
 We can easily find this direction during the separating axis test. The test
 finds the amount of overlap between the two shapes in all relevant directions,
@@ -257,21 +255,16 @@ point inaccuracy. It's also possible the clip would give a line segment, but
 the incident edge turns out to be entirely outside the reference shape. In both
 these cases we can report that no collision happened.
 
-{% sidenote() %}
-It takes a bit of a math workout to actually do the calculations illustrated
-here. I'll put that at the end as an appendix for those interested.
-{% end %}
-
 A separating axis test followed by this edge clip technique is a robust way to
 generate contact manifolds for any pair of polygons. With polygon-circle sums
 it's not quite as simple, but we now have all the building blocks for the full
 algorithm.
 
 {% sidenote() %}
-Note that this isn't strictly speaking a _correct_ solution, in fact such a
-thing is impossible (at least without continuous techniques), as we're in a
-physically incorrect situation to begin with. This is just a reasonable guess
-that tends to give well-behaved results.
+Note that this isn't strictly speaking a _correct_ solution from a physics point of view,
+in fact such a thing is impossible (at least without continuous techniques),
+as we're in a physically incorrect situation to begin with.
+This is just a reasonable guess that tends to give well-behaved results.
 {% end %}
 
 ## The rounded polygon algorithm
@@ -332,18 +325,17 @@ algorithm. It merely added a couple of extra steps. I'll talk about what this
 entailed a little later.
 
 That's all there is to collision detection between two shapes like this.
-Here's our reward for making it all the way here — a nice gif of shapes
-colliding with each other using this algorithm:
-
-![Screen recording of a scene with various rounded shapes moving around](result.gif)
+It's probably not the only thing you want to do with these shapes, though.
+Let's look at a couple more questions 
+that collision detection systems commonly need to answer.
 
 ## Other operations
 
-This is great, but it's not the end of the story. There are still a few other
-things we need to do with these shapes. For one, in the previous section I
-completely ignored the case where one of the shapes is a circle. We also want
-some other queries for gameplay purposes, and there are some physical
-properties we need to extract from these shapes.
+So what are the questions that we haven't aswered yet?
+For one, in the previous section I
+ignored the case where one of the shapes is just a circle.
+We also want some other queries for gameplay purposes,
+namely closest points and raycasts.
 
 ### Point queries
 
@@ -415,8 +407,8 @@ While you do that, see if the query point is inside the shape.
 
 {% sidenote() %}
 While writing this post I realized I had made a mistaken assumption in my
-original version of this algorithm, and reimplemented the whole thing. Fixing
-bugs by writing blogs! 😛
+original version of this algorithm, and reimplemented the whole thing.
+Blog-mediated rubber duck debugging! 😛
 {% end %}
 
 This information actually allows us to implement collision detection between
@@ -425,15 +417,136 @@ circle center, check if it's inside the circle, and you're done!
 
 ### Raycasts and spherecasts
 
-todos:
+{% sidenote() %}
+This is where the part I wrote in 2022 ends.
+I hope you'll forgive me for cutting some corners
+from here on to get the post finished in reasonable time
+and move on with my life 😅
+{% end %}
 
-- implementation details: ~~closest point~~, edge clip math, other operations needed
-- raycast / spherecast discussion, AABB tree mention maybe?
-- area and moment of inertia math
-- performance
+Another important question game developers need to ask their physics engine
+is where the closest thing in some specific direction is.
+A raycast is a way to answer this question:
+given a starting point and a direction,
+walk along a line defined by these parameters
+and return the first object touched.
+This information can be applied in myriad creative ways,
+from shots and lines of sight in a shooter game
+to keeping track of the ground under a hovercraft.
+
+Sometimes you might have small gaps between things
+where a thin ray can get lost.
+What if you want something that can't pass through tiny gaps?
+A simple solution (at least conceptually)
+is, instead of just walking a point along the ray,
+make it a shape with some nonzero width instead
+and find the first thing that shape runs into.
+This is called a _shapecast_.
+
+Attentive readers may find a resemblance here to an idea we've talked about quite a bit in this post
+(hint: it starts with M and ends with 'inkowski sum').
+A shapecast is like a Minkowski sum of a ray and a shape.
+And the objects we're looking for with the cast are Minkowski sums of polygons and circles.
+Turns out we can move terms of these sums around,
+and this test can be expressed as a regular raycast
+against the Minkowski sum of the target shape with the shape being cast!
+
+How convenient. We already have a way to add a circle to a polygon,
+so if we want to do a shapecast with a circle (called a spherecast) in this framework,
+we just need to add the circle to the shapes we're testing against
+and run a plain old raycast.
+Neat! So let's take a look at how to raycast against a polygon-circle sum.
+This isn't as easy as raycasting against a simple polygon,
+but getting spherecasts for free is a heck of a benefit.
+
+{% sidenote() %}
+This isn't quite the whole story when using a spatial structure
+such as a grid or a tree to speed up the search,
+as the shape needs to traverse this structure.
+Explaining this in detail is out of this post's scope,
+but I'm using an AABB tree where this redistributed Minkowski sum idea can also be applied —
+simply expand each node by the circle's radius and traverse a regular ray through it.
+{% end %}
+
+First, to check if the ray intersects with a shape _somewhere_,
+we can make use of the fact that we're in 2D space
+and use a trick we already know.
+The only separating axis between a ray and anything in 2D
+is the one perpendicular to the ray,
+so we can find out if the ray misses or hits by running a separating axis test
+on the ray's origin point and the target shape along this axis.
+
+If the test says we have a hit, we once again find
+that the harder part is finding the point where the ray intersected the shape.
+It's not too complicated, just a bit of work.
+First, note that the boundaries of our shapes are composed of only two kinds of things,
+circle arcs and line segments.
+
+![Illustration of a shape's boundary decomposed into arcs and line segments.](shape_boundary.svg)
+
+So all we really need is a ray-line segment and ray-circle intersection test.
+We could simply check against every boundary segment
+and pick the closest intersection found,
+but with a bit of cleverness we can skip all but at most one of the circle arcs.
+Here's what my implementation does:
+- Start by considering the polygon obtained by extending the outer edges until they meet.
+  Check for intersection against each of the edges and find the closest one.
+- If this intersection is inside the part of the segment
+  that's part of the actual shape, we're done.
+  Return this intersection point.
+- Otherwise, we now know which side of the edge we've overshot,
+  which tells us which circle arc we must have hit instead.
+  Run a ray-circle test against this circle and return the result.
+
+TODO each of these steps probably needs a picture
+
+{% sidenote() %}
+Note that the endpoints of the boundary line segments
+are not just the inner polygon's edges extruded out in the normal direction.
+I'll leave computing the exact endpoints
+as a trigonometry exercise for the reader.
+{% end %}
+
+And that's how you compute a ray-shape intersection, with one caveat:
+Special cases are needed for circles and capsules,
+since the construction of the boundary here
+relies on two different edges starting from each vertex.
+I won't go over the details here, but the ideas are the same.
+
+TODO finish this section, mention what information is needed from colliders now
+(do I say that anywhere yet?), add a teaser image to the start and animation to the end,
+then we're done here methinks
+
+## Conclusion
+
+We've looked at three fundamental operations of a collision detection system —
+shape intersections, closest point queries, and ray-/shapecasts,
+and how I've implemented them for shapes expressed as Minkowski sums
+of convex polygons and circles.
+Most of the complexity comes from finding points of contact,
+which are not always important but are entirely crucial for realistic physics.
+
+Here's a little animation of this system in action
+as a reward for making it this far,
+also showcasing the graphics and lighting I've been working on lately.
+I know better than to promise blog posts now,
+but I'm hoping do a bit of writing about what's been going on there soon.
+
+![Various shapes with rounded corners falling into a pile.
+Some of the shapes are emitting light, while others are absorbing it,
+casting colored shadows.](TODO.gif)
+
+I've left out many mathematical details to save time.
+If you'd like to see how to compute the line intersections needed in edge clipping and raycasting,
+or how to compute the area and moment of inertia of these shapes for the purposes of physics
+(moment of inertia in particular is an interesting exercise in surface integrals),
+feel free to ping me on Mastodon
+and I'll be happy to dig up my old notes (I think I still have them somewhere..)
+to post as an appendix.
 
 [starframe]: https://github.com/m0lentum/starframe
 [sht]: https://en.wikipedia.org/wiki/Hyperplane_separation_theorem
 [convex]: https://en.wikipedia.org/wiki/Convex_set
 [metanet-tut]: https://www.metanetsoftware.com/2016/n-tutorial-a-collision-detection-and-response
+[ruffle]: https://ruffle.rs/
 [minkowski]: https://en.wikipedia.org/wiki/Minkowski_addition

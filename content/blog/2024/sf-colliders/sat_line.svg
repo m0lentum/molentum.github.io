@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="863.99994"
+   height="277.08176"
+   viewBox="0 0 228.59995 73.311205"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="sat_line.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#232323"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="424.97116"
+     inkscape:cy="129.40054"
+     inkscape:window-width="2436"
+     inkscape:window-height="1300"
+     inkscape:window-x="1140"
+     inkscape:window-y="76"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-17.871964,-35.775895)">
+    <rect
+       style="opacity:1;fill:#72b51b;fill-opacity:0.252626;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1"
+       width="38.319309"
+       height="23.682634"
+       x="35.649445"
+       y="75.410263" />
+    <rect
+       style="fill:#1bb2b5;fill-opacity:0.251426;stroke:#4bcdc9;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-5"
+       width="38.319309"
+       height="23.682634"
+       x="81.456665"
+       y="3.6711669"
+       transform="rotate(33.863803)" />
+    <rect
+       style="fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-2"
+       width="38.674511"
+       height="23.902159"
+       x="127.55148"
+       y="75.374001" />
+    <rect
+       style="fill:#1bb2b5;fill-opacity:0.247284;stroke:#4bcdc9;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-5-9"
+       width="35.368065"
+       height="21.858664"
+       x="197.48988"
+       y="-68.094398"
+       transform="rotate(33.863803)"
+       inkscape:transform-center-x="-3.1495813"
+       inkscape:transform-center-y="-1.0848066" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:0.403869;stroke:#ff3b3b;stroke-width:0.559066;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.6772, 0.559066;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 171.61431,35.824054 12.80525,73.214896"
+       id="path1"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.40187px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;stroke-width:0.637851"
+       x="114.47665"
+       y="63.383156"
+       id="text1"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.40187px;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3b3b;fill-opacity:1;stroke-width:0.637851"
+         x="114.47665"
+         y="63.383156"
+         id="tspan2">separating hyperplane exists</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.40187px;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3b3b;fill-opacity:1;stroke-width:0.637851"
+         x="114.47665"
+         y="67.676819"
+         id="tspan3">      ⇒ no intersection</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.5875, 0.529167;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3"
+       width="228.59999"
+       height="4.184864"
+       x="17.871964"
+       y="44.772503"
+       inkscape:label="sizer" />
+  </g>
+</svg>
