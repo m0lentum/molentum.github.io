@@ -115,7 +115,7 @@ article.artwork {
   .post,
   .artwork p {
     // same max-width and padding as the normal `container center` used elsewhere
-    width: 864px;
+    max-width: 864px;
     padding-left: 40px;
     padding-right: 40px;
     img {
