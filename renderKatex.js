@@ -5,10 +5,16 @@
 
 const katex = require("katex");
 const fs = require("fs");
+const path = require("path");
 
-const dir = process.argv[2];
-const inputPath = `${dir}/source.md`;
+// input path given as an argument
+// for easy use with `entr`
+const inputPath = process.argv[2];
+const dir = path.dirname(inputPath);
 const outputPath = `${dir}/index.md`;
+if (inputPath == outputPath) {
+  throw new Error("Input file must not be called index.md");
+}
 
 const render = () => {
   let content = fs.readFileSync(inputPath).toString();
@@ -36,7 +42,7 @@ const render = () => {
 
   fs.writeFileSync(outputPath, content);
 
-  console.log("wrote it");
+  console.log(`wrote ${outputPath}`);
 };
 
 render();

@@ -16,6 +16,7 @@
           pkgs.mkShell {
             buildInputs = [
               pkgs.just
+              pkgs.entr
               pkgs.nodejs
               pkgs.nodePackages.katex
               pkgs.zola
