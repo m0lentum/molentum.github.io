@@ -12,6 +12,14 @@ code {
   flex-flow: column nowrap;
 }
 
+// colored highlights and headings
+.post strong, .post em {
+  color: var(--accent-desaturated);
+}
+h1, h2, h3 {
+  color: var(--accent);
+}
+
 .pagination {
   margin: 1rem 0;
   .button {
