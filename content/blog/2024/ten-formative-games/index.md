@@ -83,7 +83,7 @@ HL2 feels like a long and treacherous _journey_
 in a way that few games have been able to replicate.
 That sense of uneasy solitude in the quiet moments between encounters
 is one that I've craved all the time ever since I first played this game,
-often finding it in horror games like Darkwood and the Metro series.
+often finding it in horror games like Darkwood and SOMA.
 
 ## 5. Ecco the Dolphin: Defender of the Future
 
@@ -201,6 +201,8 @@ Here's a list of names I wrote down but couldn't fit into the top 10:
 - Wings of Vi
 - Spyro 2: Ripto's Rage
 - Elasto Mania
+- Outer Wilds
+- Dark Souls
 
 [eggplant]: https://eggplant.show/
 [chaoscave]: https://delicious-fruit.com/ratings/game_details.php?id=19003
