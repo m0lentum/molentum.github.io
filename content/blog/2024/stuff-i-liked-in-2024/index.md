@@ -1,7 +1,6 @@
 +++
 title = "Stuff I liked in 2024"
-draft = true
-date = 2024-10-15
+date = 2024-12-29
 slug = "stuff-i-liked-in-2024"
 [taxonomies]
 tags = ["music", "books", "games"]
@@ -33,14 +32,14 @@ Impeccably produced high-intensity symphonic deathcore;
 technical, melodic, and inventive.
 Features possibly first breakdown I've ever liked.
 
-**2. Seven Spires — A Fortress Called Home**<br>
+**2. IOTUNN — Kinship**<br>
+An entire hour of beautiful progressive metal
+with a massive, ostentatious sound and a grand sense of adventure.
+
+**3. Seven Spires — A Fortress Called Home**<br>
 Every member of this band is a master of their craft,
 and the variety of influences they blend with their symphonic metal core
 is equal parts fun and impressive.
-
-**3. IOTUNN — Kinship**<br>
-An entire hour of progressive metal with a massive, ostentatious sound
-and a grand sense of adventure.
 
 **4. Ankor — Shoganai**<br>
 Well-crafted metalcore with plenty of catchy melodies and emotional intensity,
@@ -51,7 +50,7 @@ A novel blend of deathcore, thrash, and various other influences,
 including the best pop chorus of the year in _Blood and Teeth_.
 
 And then a whole bunch more that I liked in no particular order.
-There are way too many to describe all of them,
+There are too many to describe all of them,
 but I'll include subgenres to give an idea of what to expect.
 
 - **Wintersun — Time II** (symphonic prog/melodeath)
@@ -84,14 +83,15 @@ This year I started reading fiction again too.
 Here are some books I read and enjoyed in 2024.
 
 {% sidenote() %}
-Shoutout to [Rob Haines](https://www.robhainescreative.space/writing/nonfiction/on-fiction/a-curated-selection-of-modern-speculative-fiction/)
+Big thanks to [Rob Haines](https://www.robhainescreative.space/writing/nonfiction/on-fiction/a-curated-selection-of-modern-speculative-fiction/)
 for recommending me most of the fiction listed here.
 {% end %}
 
 ### Nonfiction
 
 **David Graeber & David Wengrow — The Dawn of Everything**<br>
-A semi-speculative history of how past humans have organized their societies.
+A semi-speculative history of how past humans have organized their societies
+based on anthropological and archaeological evidence.
 Eye-opening and politically inspiring.
 
 **Jason Schreier — Press Reset: Ruin and Recovery in the Video Game Industry**<br>
@@ -152,8 +152,9 @@ which puts her at odds with her tribe
 and forces her to forge her own path through the world.
 
 **Amal El-Mohtar & Max Gladstone — This is How You Lose the Time War**<br>
-
-
+A convoluted time-travel story taking place over unimaginable lengths of time on the one hand,
+an impressively written piece of love poetry on the other.
+I've never read anything else like it.
 
 ## Games
 
@@ -168,17 +169,79 @@ that I continued to play throughout the year.
 ### 2024 releases
 
 **UFO 50**<br>
+A collection of 50 games designed for a fictional NES-style console,
+each with something interesting to say and enough substance to feel like a real game.
+An absolute box of delights for anyone
+who likes learning to play a game and engaging with its design.
+{% sidenote() %}
+Shoutout to the [Eggplant Show](https://eggplant.show/)
+and their weekly "bookclub" podcast about the game,
+which has made engaging with it that much more fun.
+{% end %}
 
 **Elden Ring: Shadow of the Erdtree**<br>
+An excellent distillation of the already amazing world of Elden Ring
+into a more compact, intense, and satisfying package.
 
 **Mouthwashing**<br>
+A short surreal horror story about the crew of a crashed spaceship.
+Disturbing in a thought-provoking kind of way,
+dealing with themes of disability, dependency and betrayal.
 
 ### older
 
 **Beat Saber**<br>
+I've been playing this game nonstop since it came out in 2018
+and I'm still not even a little bit bored of it.
+A simple idea simply executed, but so expressive and fun,
+and made infinitely replayable by the creative and competitive modding community.
+Plus, it's good physical exercise too.
 
 **Spelunky 2**<br>
+I consider _Spelunky_ the most beautifully designed game of all time.
+The sequel is not quite as elegant,
+but I find it even more fun to replay
+thanks to its branching paths and the endurance challenge of the Cosmic Ocean.
+I spent a lot of time playing the daily challenge this year,
+and to brag a little, beat 7-99 quite a few times,
+ending up in first place on the challenge leaderboard twice.
 
 **N++: Community Tab Project**<br>
+A massive mod that replaces the entire original collection of levels
+in N++ (the best platformer of all time) with community-made ones.
+Very polished with tons of variety,
+including obscure mechanics and glitches
+that the base game understandably never foregrounds.
+It has made N++ feel fresh and new again.
+{% sidenote() %}
+It's a little hard to access this mod at the time of writing,
+as the instructions are only available on the [community Discord](http://discord.gg/nplusplus).
+Here's a link to the [trailer on YouTube](https://www.youtube.com/watch?v=7aotfrD757U).
+{% end %}
+{% sidenote() %}
+Also, I've been streaming my progress with the mod on [Twitch](https://www.twitch.tv/molentum)
+on Sunday evenings and will continue to do so next year.
+Feel free to join me for a chat there.
+{% end %}
 
 
+## Personal achievements
+
+Now that I've highlighted a bunch of other people's work,
+let me also indulge in a little retrospection on my own year.
+2024 has been great for me overall,
+not without its struggles but with many successes, including
+- completed my master's degree and got a new job as a doctoral researcher,
+  which I've loved so far
+- made 50 ink drawings, gaining tons of confidence with the medium,
+  and many digital paintings I'm proud of
+- did some cool graphics programming (blog post about that coming later, hopefully)
+  and published [my first game on itch.io](https://molentum.itch.io/velgi)
+- learned to sew and made some actually wearable and good-looking clothes
+- came out of my shell a little bit and participated in some social events
+
+Good times. I'll refrain from making any promises for 2025,
+but I look forward to continuing to improve myself and do creative work.
+
+Thanks for reading; I hope you found something to like in the lists.
+May the upcoming year treat you well.
