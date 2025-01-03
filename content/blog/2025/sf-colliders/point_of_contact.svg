@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="784"
+   height="198.49397"
+   viewBox="0 0 207.4333 52.518189"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="point_of_contact.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#232323"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="463.15493"
+     inkscape:cy="106.06601"
+     inkscape:window-width="2436"
+     inkscape:window-height="1300"
+     inkscape:window-x="1140"
+     inkscape:window-y="76"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-17.871964,-32.006874)">
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.7857;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:5.35709, 1.7857;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3"
+       width="207.4333"
+       height="52.518196"
+       x="17.871964"
+       y="32.006874"
+       inkscape:label="sizer" />
+    <rect
+       style="opacity:1;fill:#72b51b;fill-opacity:0.101766;stroke:#a4cd4b;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.346346"
+       id="rect7"
+       width="104.91506"
+       height="49.216686"
+       x="69.131081"
+       y="58.212067" />
+    <path
+       style="font-variation-settings:normal;opacity:1;fill:#72b51b;fill-opacity:0.252626;stroke:#a4cd4b;stroke-width:1.5875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.501026;stop-color:#000000;stop-opacity:1"
+       d="M 69.243253,58.324244 H 173.93397"
+       id="path23"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;fill:#1bb2b5;fill-opacity:0.0967895;stroke:#4bcdc9;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.353695;stop-color:#000000;stop-opacity:1"
+       id="rect8"
+       width="65.276169"
+       height="51.310776"
+       x="81.670357"
+       y="-44.266403"
+       transform="rotate(27.05489)"
+       ry="0"
+       rx="0" />
+    <path
+       style="font-variation-settings:normal;opacity:1;fill:#1bb2b5;fill-opacity:0.251426;stroke:#4bcdc9;stroke-width:1.5875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.501997;stop-color:#000000;stop-opacity:1"
+       d="M 69.529204,43.420741 127.66227,73.111204"
+       id="path22" />
+    <path
+       style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:1.32292, 1.32292;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
+       d="M 127.66227,73.111204 V 58.324244"
+       id="path4" />
+    <circle
+       style="font-variation-settings:normal;opacity:1;fill:#ff3b3b;fill-opacity:1;stroke:none;stroke-width:1.13888;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:1.13888, 1.13888;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
+       id="path5"
+       cx="127.66226"
+       cy="58.324242"
+       r="2.2695794" />
+    <circle
+       style="font-variation-settings:normal;opacity:1;fill:#ff3b3b;fill-opacity:1;stroke:none;stroke-width:1.13888;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:1.13888, 1.13888;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
+       id="circle5"
+       cx="127.66226"
+       cy="73.111206"
+       r="2.2695794" />
+  </g>
+</svg>
