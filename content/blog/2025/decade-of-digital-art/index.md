@@ -30,7 +30,7 @@ one that I kept using for quite a few years:
 
 {{ fit_img(width=800, height=800,
 alt="Low-resolution pixel art of a mole peeking out of the ground."
-src="/blog/2025/a-decade-of-digital-art/pixel_mole.png"
+src="/blog/2025/decade-of-digital-art/pixel_mole.png"
 )}}
 
 The nice thing about low-resolution pixel art like this
@@ -43,7 +43,7 @@ of one of Vi's ridiculous outfits from Wings of Vi
 
 {{ fit_img(width=800, height=800,
 alt="Digital drawing of a gray-skinned woman with wings wearing silly leotard-shaped gold armor."
-src="/blog/2025/a-decade-of-digital-art/2015-vi.jpg"
+src="/blog/2025/decade-of-digital-art/2015-vi.jpg"
 )}}
 
 I didn't manage to do much beyond this before I was conscripted for military service
@@ -61,7 +61,7 @@ took some clumsy attempts at exercising it,
 
 {{ fit_img(width=800, height=800,
 alt="A grid of wonky heads with basic construction lines."
-src="/blog/2025/a-decade-of-digital-art/2016-head-practice.jpg"
+src="/blog/2025/decade-of-digital-art/2016-head-practice.jpg"
 )}}
 
 and painted this Christmas greeting card,
@@ -69,7 +69,7 @@ which would later become quite a long-lasting tradition.
 
 {{ fit_img(width=800, height=800,
 alt="Digital painting of a mole peeking out of a pile of wrapped presents."
-src="/blog/2025/a-decade-of-digital-art/2016-christmas-card.jpg"
+src="/blog/2025/decade-of-digital-art/2016-christmas-card.jpg"
 )}}
 
 
@@ -86,7 +86,7 @@ including this self-portrait
 
 {{ fit_img(width=800, height=800,
 alt="Digital painting of me raising an eyebrow."
-src="/blog/2025/a-decade-of-digital-art/2017-self-portrait.jpg"
+src="/blog/2025/decade-of-digital-art/2017-self-portrait.jpg"
 )}}
 
 and another, much more successful greeting card.
@@ -94,7 +94,7 @@ and another, much more successful greeting card.
 {{ fit_img(width=800, height=800,
 alt="Digital painting of a spruce tree with a ball of light at its top
 in a snowy forest at night."
-src="/blog/2025/a-decade-of-digital-art/2017-christmas-card.jpg"
+src="/blog/2025/decade-of-digital-art/2017-christmas-card.jpg"
 )}}
 
 
@@ -107,7 +107,7 @@ with a basic sense of perspective and structure.
 
 {{ fit_img(width=800, height=800,
 alt="Digital painting of a harpy wearing a dress."
-src="/blog/2025/a-decade-of-digital-art/2018-harpy.jpg"
+src="/blog/2025/decade-of-digital-art/2018-harpy.jpg"
 )}}
 
 This self-portrait was so successful for the time
@@ -116,7 +116,7 @@ I've even [featured it](/gallery/2018/self-portrait-2018/) in the gallery sectio
 {{ fit_img(width=800, height=800,
 alt="A digital painting of a brown-haired young man in a green
 flannel shirt looking to the side with a pondering expression."
-src="/gallery/2018/self-portrait-2018/self_portrait_2018.jpg"
+src="/gallery/2018/self_portrait_2018/self_portrait_2018.jpg"
 )}}
 
 
@@ -136,7 +136,7 @@ and surprisingly won third place.
 
 {{ fit_img(width=800, height=800,
 alt="Digital painting of a chameleon sitting amongst some very green leaves."
-src="/blog/2025/a-decade-of-digital-art/2019-chameleonogram.jpg"
+src="/blog/2025/decade-of-digital-art/2019-chameleonogram.jpg"
 )}}
 
 This one was my first artwork for Mermay,
@@ -144,7 +144,7 @@ a social media event I've since participated in every year.
 
 {{ fit_img(width=800, height=800,
 alt="Digital painting of mermaid playing a game of solitaire on a rock on the seafloor."
-src="/blog/2025/a-decade-of-digital-art/2019-mermay.jpg"
+src="/blog/2025/decade-of-digital-art/2019-mermay.jpg"
 )}}
 
 
@@ -160,7 +160,7 @@ and semi-accidentally also pretty nicely composed and painted.
 {{ fit_img(width=800, height=800,
 alt="Digital painting of a mermaid with a green tail large orange fins, and orange hair.
 She heads towards a dark cave, looking back at the viewer with an amused expression."
-src="/gallery/2020/youre-not-afraid-of-the-dark-are-you/merm.jpg"
+src="/gallery/2020/youre_not_afraid_of_the_dark_are_you/merm.jpg"
 )}}
 
 I also made another attempt at a [self-portrait](/gallery/2020/self-portrait-2020/),
@@ -172,7 +172,7 @@ a style feature I would proceed to take a little too far.
 {{ fit_img(width=800, height=800,
 alt="A digital painting of a young man with pale skin and dark brown hair dyed green on top,
 sitting on a stone pillar playing a 7-string Cort KX500MS electric guitar."
-src="/gallery/2020/self-portrait-2020/self_portrait_2020.jpg"
+src="/gallery/2020/self_portrait_2020/self_portrait_2020.jpg"
 )}}
 
 
@@ -185,7 +185,7 @@ inspired by The King's Bird
 {{ fit_img(width=800, height=800,
 alt="Digital drawing of an arc-shaped bridge crossing a small river.
 There are trees and a windmill in the background. Stylized shapes with entirely flat colors."
-src="/blog/2025/a-decade-of-digital-art/2021-bridge.jpg"
+src="/blog/2025/decade-of-digital-art/2021-bridge.jpg"
 )}}
 
 and this [tree](/gallery/2021/a-cool-tree/), which felt like a breakthrough of sorts at the time,
@@ -196,7 +196,7 @@ as I thought I had.
 alt="A digital drawing of a leafy tree standing on a steep slope in warm orange sunlight.
 Its leaves are in the process of changing color, with red on top, yellow in the middle, and green at the bottom.
 Behind it are some rolling hills and the dark clouds of an oncoming thunderstorm."
-src="/gallery/2021/a-cool-tree/a_cool_tree.jpg"
+src="/gallery/2021/a_cool_tree/a_cool_tree.jpg"
 )}}
 
 
@@ -219,7 +219,7 @@ I then stepped up the level of detail even further with [this Elden Ring fanart 
 alt="A digital drawing of a green-haired woman wearing ornate leather armor with a white cloth cape.
 She's carrying a large corkscrew-shaped sword over her shoulder, and a magic staff in the other hand.
 She's standing confidently in front of a slain two-headed dragon."
-src="/gallery/fanart/2022/nox-dragonslayer/nox_dragonslayer.jpg"
+src="/gallery/fanart/2022/nox_dragonslayer/nox_dragonslayer.jpg"
 )}}
 
 However, the real revelation came when I joined a Discord community called Art Corner
@@ -270,7 +270,7 @@ and a first step in a more coarsely textured direction.
 alt="Digital drawing of a green-haired woman standing on a muddy road in the snowy wilderness of Fractured Peaks.
 She's wearing light leather and plate armor with a green cloth hood,
 and carries a crossbow, two swords, and several small daggers."
-src="/gallery/fanart/2023/wandering-sharpshooter/sharpshooter.jpg"
+src="/gallery/fanart/2023/wandering_sharpshooter/sharpshooter.jpg"
 )}}
 
 Finally, I participated in [Inktober](/gallery/2023/inktober-2023/)
@@ -279,7 +279,7 @@ for the first time and discovered a love for ink which really blossomed in 2024.
 {{ fit_img(width=800, height=800,
 alt="Ink drawing of a Toad (the character from Super Mario) riding a toad (the animal from real life)
 and holding up a little sword."
-src="/gallery/fanart/2023/inktober-2023/08_toad.jpg"
+src="/gallery/fanart/2023/inktober_2023/08_toad.jpg"
 )}}
 
 
