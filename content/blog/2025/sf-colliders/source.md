@@ -1,7 +1,7 @@
 +++
 title = "Rounding collider corners"
 draft = true
-date = 2024-10-13
+date = 2025-01-04
 slug = "rounding-collider-corners"
 [taxonomies]
 tags = ["starframe", "physics", "collision"]
