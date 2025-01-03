@@ -1,6 +1,5 @@
 +++
 title = "Rounding collider corners"
-draft = true
 date = 2025-01-04
 slug = "rounding-collider-corners"
 [taxonomies]
@@ -13,12 +12,20 @@ Back in 2022 I entirely rewrote one of the most complicated parts of [Starframe]
 the collision detection system.
 A notable feature of the new system is the ability to give any shape rounded corners.
 I also wrote most of this post back then, but things happened and it was left unfinished.
-Here it is now, two years later.
+Here it is now, more than two years later.
 Better late than never I suppose.
 
 <!-- more -->
 
+The results of this system look something like this
+(with fancy lighting I've been working on in 2024, more on that some other day):
+
+![A stack of rounded shapes in a physics engine test scene.](demo_image.jpg)
+
+We'll go over a few different queries a physics engine needs to do on its shapes,
+namely shape intersections (the bulk of this post), closest points, and ray-/spherecasts.
 Some basic linear algebra knowledge like dot products and projections will be assumed.
+Algebraic details are omitted in favor of a visual/geometric approach.
 
 To begin, let's examine the situation before this rework took place.
 
@@ -60,6 +67,11 @@ operation from the specifics of each shape. While I was working that out I came
 up with a way to extend the algorithm for rounded shapes. We'll need a bunch of
 theory to get to that point, so first, let's talk about what the separating
 axis test does.
+
+{% sidenote() %}
+I'm hardly the first to do this type of thing;
+I only came up with this independently because I'm too lazy to do proper research.
+{% end %}
 
 ## The separating axis test
 
@@ -171,7 +183,11 @@ a trivial matter, but before we get to that another digression is in order.
 Replace addition with subtraction and you get the Minkowski difference, 
 a crucial operation in another collision detection algorithm called
 [Gilbert-Johnson-Keerthi](https://en.wikipedia.org/wiki/Gilbert%E2%80%93Johnson%E2%80%93Keerthi_distance_algorithm)
-(GJK). I won't cover that one here.
+(GJK). I won't cover that one here because, frankly,
+I haven't done my due research.
+It's probably a good alternative to what I'm presenting here,
+although in my understanding it also has
+equally tricky challenges with finding contact points.
 {% end %}
 
 ## Contact points
@@ -201,13 +217,19 @@ That's not all though. We're dealing with polygons which have flat edges,
 making for a few different contact scenarios.
 
 ![Illustration of two rectangles in four different contact
-situations](contact_scenarios.png)
+situations](contact_scenarios.svg)
 
-Many of these cases involve two parallel edges, where we would naturally like
+Case a) is nice; there's an obvious single point of contact.
+In case b) we have two parallel edges, where we would naturally like
 our physics system to understand there is a contact along the entire
-overlapping part of those edges. In other cases (???) there's just one extreme
-point. Then there are cases like (???) where it's not clear if the contact
-happened at a point or along a surface. And how do we identify these cases to begin with?
+overlapping part of those edges (but only the overlapping part).
+However, in practice cases like b)
+where we have exactly parallel edges are vanishingly rare,
+generally actually looking like c),
+where the contact could plausibly be either at a point or over an edge.
+How do we decide which one it is?
+And how do we identify these situations to begin with?
+
 The general idea of the shape of the contact area between two shapes is often called
 a _contact manifold_. Here's the most robust way I've found for figuring it out in 2D.
 
@@ -224,14 +246,16 @@ out to be very useful.
 
 Because the axes tested in the separating axis test all correspond to edges of
 these polygons, one of these edges is given directly by the axis of least
-overlap (labelled $\hat{\mathbf{a}}$ in the following illustration). This edge
-is sometimes called the _reference edge_. The other shape's edge closest to
-parallel with the reference edge, sometimes called the _incident edge_, can be
-found by looping over that shape's edges and picking the one whose normal
-vector's dot product with $\hat{\mathbf{a}}$ is lowest.
+overlap (labelled $\hat{\mathbf{a}}$ in the following illustration).
+We'll call this edge the _<span style="color: #4bcdc9">reference edge</span>_.
+The other shape's edge closest to parallel with the reference edge,
+called the _<span style="color: #a4cd4b">incident edge</span>_,
+can be found by looping over that shape's edges and picking the one whose normal
+vector's dot product with $\hat{\mathbf{a}}$ is lowest
+(it's -1 when they're exactly parallel).
 
 ![Illustration of two overlapping rectangles and the reference and incident
-edges of the intersection](edges.png)
+edges of the intersection](inc_ref_edge.svg)
 
 The first question to ask about these edges is: do they intersect? If they do,
 we can conclude this is probably not an edge-to-edge collision. For our contact
@@ -239,17 +263,17 @@ manifold, then, we say the point at the far end of the incident edge collided
 with the closest point to it on the reference edge.
 
 ![Illustration of two intersecting edges and the resulting points of
-contact](point_of_contact.png)
+contact](point_of_contact.svg)
 
 If, on the other hand, the edges do not intersect, we decide this is a contact
 along a line segment. We can define that line segment by examining the
 projection of the incident edge onto the reference edge as illustrated here:
 
-![Illustration of three different cases of nonintersecting edges and the
-corresponding line segments of contact](line_of_contact.png)
+![Illustration of two different cases of nonintersecting edges and the
+corresponding line segments of contact](line_of_contact.svg)
 
-The separating axis test should rule out all cases that don't look like one of
-these, but in practice there's another possible case where the projection of
+The separating axis test should rule out all cases that don't look like this,
+but in practice there's another possible case where the projection of
 the incident edge lies entirely outside of the reference edge due to floating
 point inaccuracy. It's also possible the clip would give a line segment, but
 the incident edge turns out to be entirely outside the reference shape. In both
@@ -260,13 +284,6 @@ generate contact manifolds for any pair of polygons. With polygon-circle sums
 it's not quite as simple, but we now have all the building blocks for the full
 algorithm.
 
-{% sidenote() %}
-Note that this isn't strictly speaking a _correct_ solution from a physics point of view,
-in fact such a thing is impossible (at least without continuous techniques),
-as we're in a physically incorrect situation to begin with.
-This is just a reasonable guess that tends to give well-behaved results.
-{% end %}
-
 ## The rounded polygon algorithm
 
 Finally, the thing we've been building towards for the last, like, several
@@ -275,11 +292,12 @@ manifolds for any pair of polygon-circle Minkowski sums. First, let's make up
 some terms to make this easier to explain.
 
 ![Illustration of a rounded polygon with parts of it highlighted and
-named](sum_parts.png)
+named](sum_parts.svg)
 
-The polygon component of the Minkowski sum is the _inner polygon_ and its edges
-the _inner edges_. The edges of the sum shape are the _outer edges_ and between
-them are the _corner circles_.
+The polygon component of the Minkowski sum is the _<span style="color: #a4cd4b">inner polygon</span>_ 
+and its edges the _<span style="color: #a4cd4b">inner edges</span>_. 
+The edges of the sum shape are the _<span style="color: #ee8f2a">outer edges</span>_
+and between them are the _<span style="color: #4bcdc9">corner circles</span>_.
 
 Recall that the possible separating axes between the two shapes are the axes
 defined by the inner polygons, plus one more axis between the closest points on
@@ -287,22 +305,23 @@ each shape's boundary. The algorithm I came up with goes like this:
 
 1. Perform a separating axis test on all the axes of the inner polygons. If an
    axis with no overlap is found, stop and return no contact.
-2. Pick a reference and incident edge from the outer edges of each shape,
+2. Pick a reference and incident edge from the **outer** edges of each shape,
    and perform the clip operation discussed earlier.
 3. Depending on the result of the clip:
-   - If it's line segment contact, stop and return it.
-     ![Illustration of a line segment contact](result_line_seg.png)
-   - If it's a point contact, return the farthest point in the axis direction on the
-     incident shape's corner circle.
-     ![Illustration of a point contact derived from the edge clip](result_point_early.png)
-   - If it's no contact, continue to step 4.
+   - If the edges neither intersect nor overlap, skip to step 4.
+   - If the edges overlap but don't intersect,
+     return the overlapping part as a line segment contact.
+     ![Illustration of two rounded polygons with overlapping edges.](edges_overlap.svg)
+   - If the edges intersect, return a point contact
+     between the reference edge and the corner circle at the incident edge's end.
+     ![Illustration of two rounded polygons with intersecting edges.](edges_intersect.svg)
 4. If neither of the shapes has a circle component, stop and return no contact.
 5. Get the endpoint of the **inner** incident edge and the closest point to it
    on the **inner** reference edge. Check if the distance between these points
    is less than the sum of the shapes' circle components. If so, return a point
    contact, otherwise, return no contact.
-   ![Illustration of two different point contacts and one no-contact that would
-result from this step of the algorithm](result_point_late.png)
+   ![Illustration of a point contact and a no-contact that would
+result from this step of the algorithm.](edges_miss.svg)
 
 {% sidenote() %}
 Step 5 corresponds to a separating axis test on the final axis between the
@@ -321,8 +340,10 @@ axis test.
 The original motivation for this collision detection rework was to make it
 generic, and fortunately making this slightly more complex algorithm generic
 wasn't any more difficult than doing that to the original polygon-only
-algorithm. It merely added a couple of extra steps. I'll talk about what this
-entailed a little later.
+algorithm. It merely added a couple of extra steps.
+Now all it takes to add a new shape (give or take some details)
+is to give enough information about the shape's edges
+to perform the separating axis test and the edge clip.
 
 That's all there is to collision detection between two shapes like this.
 It's probably not the only thing you want to do with these shapes, though.
@@ -345,8 +366,9 @@ cursor. Sometimes if the answer is no, you might still want to know where the
 closest point on the shape is. For circles and rectangles this question is
 trivial to answer, but less so for other shapes. Here's an algorithm that works
 for any shape defined as a polygon-circle sum like we've been doing and finds
-two things: the closest point on the shape's boundary, as well as whether the
-queried point is inside or outside of the shape.
+two things given a point $\mathbf{p}$:
+the closest point to $\mathbf{p}$ on the shape's boundary,
+as well as whether $\mathbf{p}$ is inside or outside of the shape.
 
 {% sidenote() %}
 If the shape was a simple polygon without a circle component and we just wanted
@@ -357,42 +379,28 @@ for the same reason we needed it in the SAT earlier, so we might as well
 compute it even if we only want the yes/no result.
 {% end %}
 
-Let's define a bit of notation first to make this easier to write. We'll be
-operating on edges of the shape's inner polygon, and each edge is defined as a
-starting point $\mathbf{s}$, a direction $\hat{\mathbf{d}}$ and a length $l$.
-Each edge also has a normal $\hat{\mathbf{n}}$ which is perpendicular to
-$\hat{\mathbf{d}}$ and points outward. Let's call the point we're querying for
-$\mathbf{p}$ and the radius of the shape's circle component $r_c$.
-
-![Illustration of an edge line segment and its parameters](edge_params.png)
-
-Now for the algorithm.
-
-1. Project $\mathbf{p}$ onto each inner edge with
-   $t_{proj} = (\mathbf{s} - \mathbf{p}) \cdot \hat{\mathbf{d}}$
-   and clamp it to the edge's bounds with
-   $t_{c} = \text{clamp}(t_{proj}, 0, l)$.
-   The closest point to $\mathbf{p}$ on the edge is then
-   $\mathbf{p}_{proj} = s + t_{c} \cdot \hat{\mathbf{d}}$.
-2. Find the edge where the distance $||\mathbf{p} - \mathbf{p}_{proj}||$
+1. Find the closest point to $\mathbf{p}$ on each edge
+   by projecting $\mathbf{p}$ onto the line parallel to the edge
+   and then clamping within the bounds of the edge.
+2. Pick the edge where the distance between $\mathbf{p}$ and the projected point $\mathbf{p}_{proj}$
    is the smallest. The variables in the following steps refer to this edge and
    the point projected to it.
-3. If $0 \leq t_{proj} \leq l$ (i.e. the projected point lies inside the edge,
-   no clamping necessary), $\mathbf{p}$ might be inside the inner polygon. We
-   need to know if this is the case, so check against the edge normal:
-   $\mathbf{p}$ is inside the polygon if and only if
-   $(\mathbf{s} - \mathbf{p}) \cdot \hat{\mathbf{n}} \leq 0$.
-4. We now have the closest point on the inner polygon's boundary. To get the
-   closest point on the sum shape's boundary, first define the direction
-   from the projected point to the query point,
-   $\hat{\mathbf{d}}_p = \frac{\mathbf{p} - \mathbf{p}_{proj}}{||\mathbf{p} - \mathbf{p}_{proj}||}$.
-   Then,
-   - If $\mathbf{p}$ is inside the inner polygon, return "inside" and the point
-     $\mathbf{p}_{proj} - r_c\hat{\mathbf{d}}_p$
-   - If not, return the point
-     $\mathbf{p}_{proj} + r_c\hat{\mathbf{d}}_p$
-     and "inside" if $||\mathbf{p} - \mathbf{p}_{proj}|| \leq r_c$,
-     "outside" otherwise.
+3. If $\mathbf{p}_{proj}$ lies inside the edge,
+   $\mathbf{p}$ might be inside the inner polygon.
+   Check for this.
+4. $\mathbf{p}_{proj}$ is the closest point on the inner polygon's boundary.
+   To get the closest point on the sum shape's boundary,
+   take the direction vector $\hat{\mathbf{d}}$ between $\mathbf{p}$ and $\mathbf{p}_{proj}$.
+   Then extrude away from $\mathbf{p}_{proj}$ by the circle component's radius as follows:
+   - If $\mathbf{p}$ is inside the inner polygon,
+     we're definitely inside the sum shape
+     and the boundary point is found by moving away from $\mathbf{p}$.
+     ![Illustration of a point inside the inner polygon and the corresponding boundary point.](boundary_inside.svg)
+   - If not, check if we're inside the sum shape by seeing
+     if the distance between $\mathbf{p}$ and $\mathbf{p}_{proj}$ is less than the circle radius.
+     Get the boundary point by moving from $\mathbf{p}_{proj}$ towards $\mathbf{p}$.
+     ![Illustration of a few different points outside of the inner polygon and the corresponding boundary points.](boundary_outside.svg)
+
 
 {% sidenote() %}
 The step 3 check for being inside the inner polygon is necessary not just to
@@ -420,8 +428,8 @@ circle center, check if it's inside the circle, and you're done!
 {% sidenote() %}
 This is where the part I wrote in 2022 ends.
 I hope you'll forgive me for cutting some corners
-from here on to get the post finished in reasonable time
-and move on with my life 😅
+(as opposed to, ahem, rounding them)
+to get the post finished in reasonable time and move on with my life 😅
 {% end %}
 
 Another important question game developers need to ask their physics engine
@@ -439,7 +447,7 @@ where a thin ray can get lost.
 What if you want something that can't pass through tiny gaps?
 A simple solution (at least conceptually)
 is, instead of just walking a point along the ray,
-make it a shape with some nonzero width instead
+make it a shape with some nonzero width
 and find the first thing that shape runs into.
 This is called a _shapecast_.
 
@@ -480,9 +488,9 @@ If the test says we have a hit, we once again find
 that the harder part is finding the point where the ray intersected the shape.
 It's not too complicated, just a bit of work.
 First, note that the boundaries of our shapes are composed of only two kinds of things,
-circle arcs and line segments.
+<span style="color: #ee8f2a">circle arcs</span> and <span style="color: #4bcdc9">line segments</span>.
 
-![Illustration of a shape's boundary decomposed into arcs and line segments.](shape_boundary.svg)
+![Illustration of a shape's boundary decomposed into arcs and line segments.](shape_boundary_decomp.svg)
 
 So all we really need is a ray-line segment and ray-circle intersection test.
 We could simply check against every boundary segment
@@ -491,55 +499,36 @@ but with a bit of cleverness we can skip all but at most one of the circle arcs.
 Here's what my implementation does:
 - Start by considering the polygon obtained by extending the outer edges until they meet.
   Check for intersection against each of the edges and find the closest one.
+  ![Illustration of the outer polygon's edges extended to meet.](extruded_polygon.svg)
 - If this intersection is inside the part of the segment
   that's part of the actual shape, we're done.
   Return this intersection point.
 - Otherwise, we now know which side of the edge we've overshot,
   which tells us which circle arc we must have hit instead.
   Run a ray-circle test against this circle and return the result.
-
-TODO each of these steps probably needs a picture
-
-{% sidenote() %}
-Note that the endpoints of the boundary line segments
-are not just the inner polygon's edges extruded out in the normal direction.
-I'll leave computing the exact endpoints
-as a trigonometry exercise for the reader.
-{% end %}
+  ![Illustration of checking a ray against one of the circle arcs.](ray_arc_check.svg)
 
 And that's how you compute a ray-shape intersection, with one caveat:
-Special cases are needed for circles and capsules,
-since the construction of the boundary here
+special cases are needed for circles and capsules,
+since the construction of the outer polygon here
 relies on two different edges starting from each vertex.
 I won't go over the details here, but the ideas are the same.
-
-TODO finish this section, mention what information is needed from colliders now
-(do I say that anywhere yet?), add a teaser image to the start and animation to the end,
-then we're done here methinks
 
 ## Conclusion
 
 We've looked at three fundamental operations of a collision detection system —
-shape intersections, closest point queries, and ray-/shapecasts,
+shape intersections, closest point queries, and ray-/spherecasts,
 and how I've implemented them for shapes expressed as Minkowski sums
 of convex polygons and circles.
 Most of the complexity comes from finding points of contact,
 which are not always important but are entirely crucial for realistic physics.
 
-Here's a little animation of this system in action
-as a reward for making it this far,
-also showcasing the graphics and lighting I've been working on lately.
-I know better than to promise blog posts now,
-but I'm hoping do a bit of writing about what's been going on there soon.
-
-![Various shapes with rounded corners falling into a pile.
-Some of the shapes are emitting light, while others are absorbing it,
-casting colored shadows.](TODO.gif)
-
-I've left out many mathematical details to save time.
+I've left out the algebra to save time and focus on geometric intuitions.
 If you'd like to see how to compute the line intersections needed in edge clipping and raycasting,
 or how to compute the area and moment of inertia of these shapes for the purposes of physics
-(moment of inertia in particular is an interesting exercise in surface integrals),
+(moment of inertia in particular is an interesting exercise in surface integrals
+that I really didn't need an exact value for but computed it anyway),
+or anything else that got glossed over here,
 feel free to ping me on Mastodon
 and I'll be happy to dig up my old notes (I think I still have them somewhere..)
 to post as an appendix.

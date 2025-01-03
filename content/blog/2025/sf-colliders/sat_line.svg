@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="863.99994"
+   width="784"
    height="277.08176"
-   viewBox="0 0 228.59995 73.311205"
+   viewBox="0 0 207.4333 73.311205"
    version="1.1"
    id="svg1"
    sodipodi:docname="sat_line.svg"
@@ -22,9 +22,9 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
+     inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="424.97116"
+     inkscape:cx="424.26406"
      inkscape:cy="129.40054"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -44,60 +44,60 @@
        id="rect1"
        width="38.319309"
        height="23.682634"
-       x="35.649445"
+       x="24.93145"
        y="75.410263" />
     <rect
        style="fill:#1bb2b5;fill-opacity:0.251426;stroke:#4bcdc9;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-5"
        width="38.319309"
        height="23.682634"
-       x="81.456665"
-       y="3.6711669"
+       x="72.556824"
+       y="9.6434555"
        transform="rotate(33.863803)" />
     <rect
        style="fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-2"
        width="38.674511"
        height="23.902159"
-       x="127.55148"
+       x="116.83349"
        y="75.374001" />
     <rect
        style="fill:#1bb2b5;fill-opacity:0.247284;stroke:#4bcdc9;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-5-9"
        width="35.368065"
        height="21.858664"
-       x="197.48988"
-       y="-68.094398"
+       x="188.59004"
+       y="-62.122108"
        transform="rotate(33.863803)"
        inkscape:transform-center-x="-3.1495813"
        inkscape:transform-center-y="-1.0848066" />
     <path
        style="opacity:1;fill:none;fill-opacity:0.403869;stroke:#ff3b3b;stroke-width:0.559066;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.6772, 0.559066;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 171.61431,35.824054 12.80525,73.214896"
+       d="m 160.89631,35.824054 12.80525,73.214896"
        id="path1"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-size:3.40187px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;stroke-width:0.637851"
-       x="114.47665"
+       x="103.75865"
        y="63.383156"
        id="text1"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.40187px;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3b3b;fill-opacity:1;stroke-width:0.637851"
-         x="114.47665"
+         x="103.75865"
          y="63.383156"
          id="tspan2">separating hyperplane exists</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.40187px;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff3b3b;fill-opacity:1;stroke-width:0.637851"
-         x="114.47665"
+         x="103.75865"
          y="67.676819"
          id="tspan3">      ⇒ no intersection</tspan></text>
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.5875, 0.529167;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.504074;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.51222, 0.504074;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="228.59999"
+       width="207.43333"
        height="4.184864"
-       x="17.871964"
+       x="7.1539679"
        y="44.772503"
        inkscape:label="sizer" />
   </g>

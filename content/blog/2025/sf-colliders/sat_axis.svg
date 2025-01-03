@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="863.99994"
+   width="784"
    height="286.09885"
-   viewBox="0 0 228.59995 75.696976"
+   viewBox="0 0 207.4333 75.696976"
    version="1.1"
    id="svg1"
    sodipodi:docname="sat_axis.svg"
@@ -22,9 +22,9 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
+     inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="407.64705"
+     inkscape:cx="407.2935"
      inkscape:cy="200.81832"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -64,37 +64,37 @@
        id="rect1-2"
        width="30.541363"
        height="18.875599"
-       x="78.336792"
+       x="70.240845"
        y="81.648087" />
     <rect
        style="fill:#1bb2b5;fill-opacity:0.247284;stroke:#4bcdc9;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-5-9"
        width="28.710968"
        height="17.744352"
-       x="151.06512"
-       y="-32.780792"
+       x="144.34254"
+       y="-28.269564"
        transform="rotate(33.863803)"
        inkscape:transform-center-x="-2.5567559"
        inkscape:transform-center-y="-0.88062227" />
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.5875, 0.529167;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.504074;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.51222, 0.504074;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="228.59999"
+       width="207.43333"
        height="4.184864"
        x="17.871964"
        y="44.772503"
        inkscape:label="sizer" />
     <path
        style="fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:0.529167;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
-       d="M 68.766201,120.21392 185.84538,88.842651"
+       d="M 60.670254,120.21392 177.74943,88.842651"
        id="path8" />
     <path
        style="fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:0.264583;stroke-linejoin:round;stroke-dasharray:0.529167, 0.264583;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 128.99961,104.21612 -15.531,-57.962485"
+       d="m 120.90366,104.21612 -15.531,-57.962485"
        id="path9" />
     <path
        style="fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:0.264583;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 128.55303,102.38908 1.7249,-0.46218 0.44462,1.65932"
+       d="m 120.45708,102.38908 1.7249,-0.46218 0.44462,1.65932"
        id="path10" />
   </g>
 </svg>
