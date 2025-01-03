@@ -1,7 +1,7 @@
 +++
 title = "Gallery"
 sort_by = "date"
-paginate_by = 14
+paginate_by = 15
 template = "section_gallery.html"
 page_template = "page_artwork_cc0.html"
 generate_feed = true
@@ -13,5 +13,5 @@ cc0 = true
 +++
 
 All art on this page is original work licensed under CC0 (public domain).
-Art featuring designs which I don't technically have the rights for
+Art featuring designs which I don't have the rights for
 and can't make CC0 can be found in the [fanart](/gallery/fanart) section.
