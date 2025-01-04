@@ -247,9 +247,9 @@ out to be very useful.
 Because the axes tested in the separating axis test all correspond to edges of
 these polygons, one of these edges is given directly by the axis of least
 overlap (labelled $\hat{\mathbf{a}}$ in the following illustration).
-We'll call this edge the _<span style="color: #4bcdc9">reference edge</span>_.
+We'll call this edge the _<span style="color: #a4cd4b">reference edge</span>_.
 The other shape's edge closest to parallel with the reference edge,
-called the _<span style="color: #a4cd4b">incident edge</span>_,
+called the _<span style="color: #4bcdc9">incident edge</span>_,
 can be found by looping over that shape's edges and picking the one whose normal
 vector's dot product with $\hat{\mathbf{a}}$ is lowest
 (it's -1 when they're exactly parallel).
