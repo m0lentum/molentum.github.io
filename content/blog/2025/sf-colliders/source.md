@@ -385,7 +385,7 @@ compute it even if we only want the yes/no result.
 2. Pick the edge where the distance between $\mathbf{p}$ and the projected point $\mathbf{p}_{proj}$
    is the smallest. The variables in the following steps refer to this edge and
    the point projected to it.
-3. If $\mathbf{p}_{proj}$ lies inside the edge,
+3. If $\mathbf{p}_{proj}$ lies inside the edge (not at one of its endpoints),
    $\mathbf{p}$ might be inside the inner polygon.
    Check for this.
 4. $\mathbf{p}_{proj}$ is the closest point on the inner polygon's boundary.
