@@ -168,6 +168,13 @@ and making the outer edge of the covered area the new shape's boundary.
 ![Illustration of sweeping a circle along the edges of a
 triangle](minkowski.svg)
 
+{% sidenote() %}
+Note that this isn't quite the same thing as what you'd intuitively think of
+as "rounding the corners" of a polygon — this adds a layer around the polygon instead.
+To sand off the corners without changing its size
+using this method, you'd also need to shrink the polygon.
+{% end %}
+
 Cool. How would we use this in collision detection? From what we've learned so
 far, we need a projection operation and a set of possible axes for the
 separating axis test. As it turns out, projecting a Minkowski sum of two shapes

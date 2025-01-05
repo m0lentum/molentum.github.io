@@ -146,6 +146,14 @@ these little bends instead of falling completely flat.
 
 ### Data structures
 
+{% sidenote() %}
+2025 note: I'm not using this entity system anymore —
+consider this part a historical curiosity.
+There's still a graph structure inside the physics engine,
+which allows multiple colliders to attach to one body,
+but the rest of the engine uses a regular ECS.
+{% end %}
+
 I have this weird entity system I call the Component Graph that I've [written a
 bit about before][sf-graph] (though much has changed since). I thought it would
 be a fun test of its capabilities to try and represent my ropes entirely in the

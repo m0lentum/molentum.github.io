@@ -19,6 +19,17 @@ Finally, I'll ramble about my latest approach, which represents objects as a mor
 There will be a lot of implementation details and code examples that are specific to the Rust language,
 but also many ideas that can be applied elsewhere.
 
+{% sidenote() %}
+2025 note: None of the structures covered here are being used in Starframe anymore.
+In fact, I've given up the idea of making my own entity system and adopted [hecs](https://crates.io/crates/hecs)
+(a nice off-the-shelf ECS) instead.
+The Component Graph structure detailed in this post was an interesting experiment,
+but had some tradeoffs that made it cumbersome to use.
+With sufficient effort it could probably be developed into a viable alternative to ECS,
+but I think something like [flecs](https://github.com/SanderMertens/flecs)
+with its relationships system strikes a better balance.
+{% end %}
+
 # Intro: Engines and objects
 
 When I started this project I had this vague idea that it should follow an architecture of some kind.
