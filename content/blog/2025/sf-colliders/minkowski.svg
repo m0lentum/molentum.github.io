@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
-   height="240.31993"
-   viewBox="0 0 207.4333 63.58464"
+   width="516.01892"
+   height="239.45808"
+   viewBox="0 0 136.52998 63.35661"
    version="1.1"
    id="svg1"
    sodipodi:docname="minkowski.svg"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="0.7071068"
-     inkscape:cx="469.51889"
-     inkscape:cy="162.63456"
+     inkscape:cx="292.7422"
+     inkscape:cy="141.42135"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
      inkscape:window-x="1140"
@@ -38,15 +38,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-54.003236)">
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.277691;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:0.833072, 0.277691;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect3"
-       width="207.4333"
-       height="1.2700359"
-       x="17.871964"
-       y="93.97316"
-       inkscape:label="sizer" />
+     transform="translate(-59.567414,-54.243458)">
     <text
        xml:space="preserve"
        style="font-size:1.41111px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;stroke-width:0.264583"

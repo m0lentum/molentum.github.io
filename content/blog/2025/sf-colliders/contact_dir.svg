@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784.00012"
+   width="236.75085"
    height="175.25699"
-   viewBox="0 0 207.43333 46.370072"
+   viewBox="0 0 62.640319 46.370072"
    version="1.1"
    id="svg1"
    sodipodi:docname="contact_dir.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="473.05442"
+     inkscape:cx="182.07999"
      inkscape:cy="54.447221"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -58,7 +58,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-48.833642)">
+     transform="translate(-94.680368,-48.833642)">
     <rect
        style="opacity:1;fill:#72b51b;fill-opacity:0.252626;stroke:#a4cd4b;stroke-width:0.613508;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.602501"
        id="rect1"
@@ -75,14 +75,6 @@
        x="127.31688"
        y="-58.199493"
        transform="rotate(45.904976)" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.552579;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.65774, 0.552579;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect3"
-       width="207.43333"
-       height="5.0289674"
-       x="17.871964"
-       y="64.92588"
-       inkscape:label="sizer" />
     <path
        style="font-variation-settings:normal;opacity:1;fill:#4e0d0d;fill-opacity:0.763294;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
        d="m 113.75647,67.42543 7.83593,8.078842 -0.0147,-15.66013"

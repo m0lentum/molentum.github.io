@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
+   width="428.4924"
    height="173.8629"
-   viewBox="0 0 207.43331 46.00122"
+   viewBox="0 0 113.37194 46.00122"
    version="1.1"
    id="svg1"
    sodipodi:docname="boundary_outside.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.6614194"
-     inkscape:cx="359.3313"
+     inkscape:cx="181.77228"
      inkscape:cy="95.701302"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -38,18 +38,18 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-78.074974)">
+     transform="translate(-64.902649,-78.074974)">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.67123;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:5.0137, 1.67123;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.23552;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:3.70657, 1.23552;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="207.4333"
+       width="113.37193"
        height="46.001221"
-       x="17.871964"
+       x="64.902649"
        y="78.074974"
        inkscape:label="sizer" />
     <path
        d="m 110.06411,181.56523 c 4.99156,-0.0416 9.2184,-3.37393 11.75427,-7.48106 v 0 l 45.13005,-57.53442 1.8571,-2.36778 c 0.0983,-0.12346 0.19434,-0.24861 0.28806,-0.37554 l 0.0135,-0.0242 c 0.0901,-0.2031 0.17506,-0.40848 0.25463,-0.61595 0.94165,-1.80077 1.44534,-3.79824 1.47017,-5.83019 1.8e-4,-7.13688 -5.78527,-12.922645 -12.92215,-12.922865 H 85.268199 c -7.13713,-1.8e-4 -12.92304,5.785745 -12.92286,12.922865 0.004,1.86809 0.41376,3.71306 1.19989,5.40769 l -0.008,0.0124 24.446658,60.4648 0.10392,0.25748 c 0.0566,0.13422 0.11534,0.26749 0.1764,0.39973 2.068803,4.66877 6.693173,7.68144 11.799773,7.68728 z"
-       style="fill:#1bb2b5;fill-opacity:0.0991861;stroke:#4bcdc9;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.60414404"
+       style="fill:#1bb2b5;fill-opacity:0.0991861;stroke:#4bcdc9;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.604144"
        id="path35"
        sodipodi:nodetypes="ccccccccccccccccccc" />
     <path
@@ -108,7 +108,7 @@
          x="142.91663"
          y="112.39149">proj</tspan></text>
     <path
-       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff3b3b;fill-opacity:1;stroke:#ff3b3b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.529167,1.05833;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff3b3b;fill-opacity:1;stroke:#ff3b3b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.529167, 1.05833;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
        d="M 138.97023,94.466682 V 107.34912"
        id="path58" />
     <circle
@@ -163,7 +163,7 @@
          x="100.02941"
          y="112.39149">proj</tspan></text>
     <path
-       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff3b3b;fill-opacity:1;stroke:#ff3b3b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.529167,1.05833;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff3b3b;fill-opacity:1;stroke:#ff3b3b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.529167, 1.05833;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
        d="m 96.045618,84.994011 0.0374,22.355109"
        id="path68"
        sodipodi:nodetypes="cc" />
@@ -268,7 +268,7 @@
          x="82.600868"
          y="112.39149">proj</tspan></text>
     <path
-       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff3b3b;fill-opacity:1;stroke:#ff3b3b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.529167,1.05833;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff3b3b;fill-opacity:1;stroke:#ff3b3b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.529167, 1.05833;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#DartArrow);stop-color:#000000;stop-opacity:1"
        d="M 85.268027,107.33596 68.676826,89.901016"
        id="path8" />
     <circle

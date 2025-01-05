@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
-   height="198.49397"
-   viewBox="0 0 207.4333 52.518189"
+   width="425.37466"
+   height="198.494"
+   viewBox="0 0 112.54703 52.518197"
    version="1.1"
    id="svg1"
    sodipodi:docname="point_of_contact.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="463.15493"
+     inkscape:cx="283.54981"
      inkscape:cy="106.06601"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -38,13 +38,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-32.006874)">
+     transform="translate(-65.315102,-32.006874)">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.7857;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:5.35709, 1.7857;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.31533;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:3.946, 1.31533;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="207.4333"
+       width="112.54703"
        height="52.518196"
-       x="17.871964"
+       x="65.315102"
        y="32.006874"
        inkscape:label="sizer" />
     <rect

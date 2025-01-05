@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
+   width="406.40652"
    height="173.8629"
-   viewBox="0 0 207.43331 46.00122"
+   viewBox="0 0 107.52838 46.00122"
    version="1.1"
    id="svg1"
    sodipodi:docname="edges_intersect.svg"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="2.1222788"
-     inkscape:cx="382.37201"
-     inkscape:cy="55.600613"
+     inkscape:cx="261.51135"
+     inkscape:cy="40.051288"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
      inkscape:window-x="1140"
@@ -38,13 +38,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-78.074974)">
+     transform="translate(-58.817921,-78.074974)">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.67123;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:5.0137, 1.67123;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.20325;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:3.60978, 1.20325;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="207.4333"
+       width="107.52838"
        height="46.001221"
-       x="17.871964"
+       x="58.817921"
        y="78.074974"
        inkscape:label="sizer" />
     <g
@@ -82,11 +82,11 @@
        d="M 149.36169,109.1938 100.8812,170.28301 76.260808,108.96452 Z"
        id="path36" />
     <path
-       style="font-variation-settings:normal;opacity:1;fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.728329;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.728329,0.728329;stroke-dashoffset:0;stroke-opacity:0.402179;vector-effect:none;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.728329;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.728329, 0.728329;stroke-dashoffset:0;stroke-opacity:0.402179;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
        d="M 149.3617,109.1938 V 96.049793"
        id="path38" />
     <path
-       style="font-variation-settings:normal;opacity:1;fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.728329;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.728329,0.728329;stroke-dashoffset:0;stroke-opacity:0.402179;vector-effect:none;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.728329;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.728329, 0.728329;stroke-dashoffset:0;stroke-opacity:0.402179;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
        d="M 76.260808,108.96452 V 96.041763"
        id="path39" />
     <path
@@ -94,7 +94,7 @@
        d="m 76.260808,96.041763 73.100892,0.008"
        id="path40" />
     <path
-       style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.79374999, 0.79374999;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
+       style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
        d="M 101.35033,90.211487 V 103.11752"
        id="path44" />
     <circle

@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
-   height="277.08176"
-   viewBox="0 0 207.4333 73.311205"
+   width="741.46887"
+   height="277.08179"
+   viewBox="0 0 196.18027 73.311213"
    version="1.1"
    id="svg1"
    sodipodi:docname="sat_line.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="424.26406"
+     inkscape:cx="398.80821"
      inkscape:cy="129.40054"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -38,7 +38,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-35.775895)">
+     transform="translate(-24.666866,-35.775895)">
     <rect
        style="opacity:1;fill:#72b51b;fill-opacity:0.252626;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1"
@@ -92,13 +92,5 @@
          x="103.75865"
          y="67.676819"
          id="tspan3">      ⇒ no intersection</tspan></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.504074;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.51222, 0.504074;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect3"
-       width="207.43333"
-       height="4.184864"
-       x="7.1539679"
-       y="44.772503"
-       inkscape:label="sizer" />
   </g>
 </svg>

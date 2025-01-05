@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
-   height="153.56323"
-   viewBox="0 0 207.4333 40.630266"
+   width="693.935"
+   height="153.56326"
+   viewBox="0 0 183.60361 40.630274"
    version="1.1"
    id="svg1"
    sodipodi:docname="contact_scenarios.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="494.26763"
+     inkscape:cx="437.69909"
      inkscape:cy="79.903064"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -38,7 +38,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-42.325696)">
+     transform="translate(-32.835192,-42.325696)">
     <rect
        style="opacity:1;fill:#72b51b;fill-opacity:0.252626;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.603503"
        id="rect1"
@@ -55,14 +55,6 @@
        x="11.787175"
        y="76.611122"
        transform="rotate(-30)" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.504074;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.51222, 0.504074;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect3"
-       width="207.43333"
-       height="4.184864"
-       x="17.871964"
-       y="44.772503"
-       inkscape:label="sizer" />
     <rect
        style="opacity:1;fill:#72b51b;fill-opacity:0.252626;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.603166"
        id="rect2"
