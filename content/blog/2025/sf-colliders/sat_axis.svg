@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
-   height="286.09885"
-   viewBox="0 0 207.4333 75.696976"
+   width="454.83694"
+   height="280.63031"
+   viewBox="0 0 120.34226 74.250093"
    version="1.1"
    id="svg1"
    sodipodi:docname="sat_axis.svg"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="407.2935"
-     inkscape:cy="200.81832"
+     inkscape:cx="246.07315"
+     inkscape:cy="195.16147"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
      inkscape:window-x="1140"
@@ -58,7 +58,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-44.772503)">
+     transform="translate(-60.601775,-46.219395)">
     <rect
        style="fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-2"
@@ -76,14 +76,6 @@
        transform="rotate(33.863803)"
        inkscape:transform-center-x="-2.5567559"
        inkscape:transform-center-y="-0.88062227" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.504074;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1.51222, 0.504074;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect3"
-       width="207.43333"
-       height="4.184864"
-       x="17.871964"
-       y="44.772503"
-       inkscape:label="sizer" />
     <path
        style="fill:none;fill-opacity:0.254453;stroke:#ff3b3b;stroke-width:0.529167;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
        d="M 60.670254,120.21392 177.74943,88.842651"

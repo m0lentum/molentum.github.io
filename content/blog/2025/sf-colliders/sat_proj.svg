@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
+   width="496.40414"
    height="240.56572"
-   viewBox="0 0 207.4333 63.649671"
+   viewBox="0 0 131.34024 63.649671"
    version="1.1"
    id="svg1"
    sodipodi:docname="sat_proj.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="437.69909"
+     inkscape:cx="294.15641"
      inkscape:cy="117.37972"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -58,13 +58,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-56.692025)">
+     transform="translate(-55.91851,-56.692022)">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.277691;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:0.833072, 0.277691;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.220964;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:0.662891, 0.220964;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="207.43333"
+       width="131.34024"
        height="1.2700359"
-       x="17.871964"
+       x="55.91851"
        y="93.97316"
        inkscape:label="sizer" />
     <rect

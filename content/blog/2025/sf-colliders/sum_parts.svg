@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
+   width="519.4624"
    height="173.8629"
-   viewBox="0 0 207.43331 46.00122"
+   viewBox="0 0 137.44108 46.00122"
    version="1.1"
    id="svg1"
    sodipodi:docname="sum_parts.svg"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="2.0000001"
-     inkscape:cx="410.24999"
-     inkscape:cy="99.999997"
+     inkscape:cx="277.24999"
+     inkscape:cy="98.999995"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
      inkscape:window-x="1140"
@@ -38,13 +38,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-78.074974)">
+     transform="translate(-52.868076,-78.074974)">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.67123;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:5.0137, 1.67123;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.36036;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4.0811, 1.36036;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3"
-       width="207.4333"
+       width="137.44107"
        height="46.001221"
-       x="17.871964"
+       x="52.868076"
        y="78.074974"
        inkscape:label="sizer" />
     <path

@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="784"
-   height="117.43763"
-   viewBox="0 0 207.4333 31.072035"
+   width="303.0643"
+   height="117.43765"
+   viewBox="0 0 80.18575 31.072041"
    version="1.1"
    id="svg1"
    sodipodi:docname="sat_sep.svg"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="339.41125"
+     inkscape:cx="119.8546"
      inkscape:cy="82.731491"
      inkscape:window-width="2436"
      inkscape:window-height="1300"
@@ -77,15 +77,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-17.871964,-73.803212)">
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.277691;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:0.833072, 0.277691;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect3"
-       width="207.43333"
-       height="1.2700359"
-       x="17.871964"
-       y="93.97316"
-       inkscape:label="sizer" />
+     transform="translate(-76.067364,-73.803212)">
     <rect
        style="fill:#72b51b;fill-opacity:0.254453;stroke:#a4cd4b;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-2"
