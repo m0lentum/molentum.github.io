@@ -214,14 +214,16 @@ including obscure mechanics and glitches
 that the base game understandably never foregrounds.
 It has made N++ feel fresh and new again.
 {% sidenote() %}
-It's a little hard to access this mod at the time of writing,
-as the instructions are only available on the [community Discord](http://discord.gg/nplusplus).
-Here's a link to the [trailer on YouTube](https://www.youtube.com/watch?v=7aotfrD757U).
+You can find installation instructions for this and many other mods
+in [this Steam community guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3396684470).
+Also, here's the [trailer on YouTube](https://www.youtube.com/watch?v=7aotfrD757U).
 {% end %}
 {% sidenote() %}
-Also, I've been streaming my progress with the mod on [Twitch](https://www.twitch.tv/molentum)
-on Sunday evenings and will continue to do so next year.
-Feel free to join me for a chat there.
+I should also mention
+I've been streaming my progress with the mod on [Twitch](https://www.twitch.tv/molentum)
+on Sunday evenings.
+I'm probably still playing it if you're reading this in early 2025.
+Come say hi in chat if that sounds fun.
 {% end %}
 
 
