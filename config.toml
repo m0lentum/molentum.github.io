@@ -37,6 +37,7 @@ main_menu = [
   { url = "https://github.com/m0lentum", name = "GitHub", external = true },
   { url = "https://molentum.itch.io/", name = "Itch.io", external = true },
 ]
+fedi_account = "@molentum@mastoart.social"
 
 # custom color defined in my own sass dir
 theme_color = "lime"

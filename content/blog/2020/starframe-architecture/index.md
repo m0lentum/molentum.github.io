@@ -5,6 +5,8 @@ slug = "starframe-architecture"
 aliases = ["blog/2020/08/starframe-1-architecture/", "blog/starframe-architecture"]
 [taxonomies]
 tags = ["starframe", "data structures"]
+[extra]
+og_type = "article"
 +++
 
 I've spent a large portion of the past two years writing and rewriting

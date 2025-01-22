@@ -5,6 +5,7 @@ slug = "rounding-collider-corners"
 [taxonomies]
 tags = ["starframe", "physics", "collision"]
 [extra]
+og_type = "article"
 use_katex = true
 +++
 

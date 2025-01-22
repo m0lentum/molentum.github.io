@@ -5,6 +5,8 @@ slug = "new-blog-post"
 draft = true
 [taxonomies]
 tags = []
+[extra]
+og_type = "article"
 +++
 
 New blog post

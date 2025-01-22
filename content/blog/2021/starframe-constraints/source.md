@@ -6,6 +6,7 @@ aliases = ["blog/2021/03/starframe-devlog-constraints/", "blog/starframe-constra
 [taxonomies]
 tags = ["starframe", "physics"]
 [extra]
+og_type = "article"
 use_katex = true
 +++
 

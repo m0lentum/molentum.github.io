@@ -6,6 +6,7 @@ slug = "ten-formative-games"
 [taxonomies]
 tags = ["games"]
 [extra]
+og_type = "article"
 use_katex = false
 +++
 
