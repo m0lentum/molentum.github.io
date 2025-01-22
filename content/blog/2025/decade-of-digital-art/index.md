@@ -77,10 +77,7 @@ in certain communities
 (shoutout to the I Wanna Be the Guy and N++ folks,
 many of whom I'm still friends with to this day).
 
-{{ fit_img(width=800, height=800,
-alt="Small pixel art squares of a mole making various expressions while wearing a green beret"
-src="/blog/2025/decade-of-digital-art/2016-mole-emotes.png"
-)}}
+![Small pixel art squares of a mole making various expressions while wearing a green beret](2016-mole-emotes.png)
 
 {% sidenote() %}
 Some deep lore about the mole character:
