@@ -256,8 +256,6 @@ but at the end of the year I finally gave up the habit
 after a little over five years without missing a day.
 I believe that habit was crucial in carrying me past the struggles of early learning
 and into a stage where drawing is consistently fun and rewarding.
-I recommend a similar path if you're a newcomer reading this
-and looking to learn.
 
 
 ## 2023
