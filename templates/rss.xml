@@ -36,7 +36,7 @@
           <description xml:base="{{ page.permalink | escape_xml | safe }}">{% if page.summary %}{{ page.summary }}{% endif %}</description>
 	  {%- if page.extra.main_image -%}
 	  {% set path = page.path ~ page.extra.main_image %}
-	  <enclosure url="{{ path }}" type="image/jpeg" />
+	  <enclosure url="{{ get_url(path=path) }}" type="image/jpeg" />
 	  {%- endif -%}
       </item>
       {%- endfor %}
