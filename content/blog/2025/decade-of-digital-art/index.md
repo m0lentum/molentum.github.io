@@ -1,6 +1,5 @@
 +++
 title = "A decade of digital art"
-draft = true
 date = 2025-01-27
 slug = "a-decade-of-digital-art"
 [taxonomies]
@@ -38,7 +37,7 @@ is that you can kind of brute-force it
 by swapping pixels around until it looks alright,
 but I wanted to really learn to draw.
 So I bought a tablet, downloaded GnuIMP, and started scribbling some awful fanart
-of one of Vi's ridiculous outfits from Wings of Vi
+of one of Vi's silly outfits from Wings of Vi
 (a fun precision platformer I was speedrunning at the time).
 
 {{ fit_img(width=800, height=800,
@@ -71,6 +70,24 @@ which would later become quite a long-lasting tradition.
 alt="Digital painting of a mole peeking out of a pile of wrapped presents."
 src="/blog/2025/decade-of-digital-art/2016-christmas-card.jpg"
 )}}
+
+I also made some "mole" emotes for Discord,
+which went on to become surprisingly popular
+in certain communities
+(shoutout to the I Wanna Be the Guy and N++ folks,
+many of whom I'm still friends with to this day).
+
+{{ fit_img(width=800, height=800,
+alt="Small pixel art squares of a mole making various expressions while wearing a green beret"
+src="/blog/2025/decade-of-digital-art/2016-mole-emotes.png"
+)}}
+
+{% sidenote() %}
+Some deep lore about the mole character:
+the thing on its head is a green beret,
+in reference to my username at the time "MoleTrooper"
+and my recent service in the Finnish military.
+{% end %}
 
 
 ## 2017
@@ -110,7 +127,7 @@ alt="Digital painting of a harpy wearing a dress."
 src="/blog/2025/decade-of-digital-art/2018-harpy.jpg"
 )}}
 
-This self-portrait was so successful for the time
+This self-portrait was so good for the time
 I've even [featured it](/gallery/2018/self-portrait-2018/) in the gallery section on this website.
 
 {{ fit_img(width=800, height=800,
@@ -167,7 +184,7 @@ I also made another attempt at a [self-portrait](/gallery/2020/self-portrait-202
 which again stepped up my painting skills.
 This one finally replaced my mole profile picture from 2015
 and also introduced Very Thick Outlines,
-a style feature I would proceed to take a little too far.
+a style feature I then proceeded to take a little too far.
 
 {{ fit_img(width=800, height=800,
 alt="A digital painting of a young man with pale skin and dark brown hair dyed green on top,
@@ -179,8 +196,8 @@ src="/gallery/2020/self_portrait_2020/self_portrait_2020.jpg"
 ## 2021
 
 In 2021 I did a lot of exploration with more stylized ways of drawing,
-such as this experiment in a flat style for video game purposes
-inspired by The King's Bird
+such as this experiment in a flat style for video game purposes inspired by
+[The King's Bird](https://store.steampowered.com/app/812550/The_Kings_Bird/),
 
 {{ fit_img(width=800, height=800,
 alt="Digital drawing of an arc-shaped bridge crossing a small river.
@@ -189,7 +206,7 @@ src="/blog/2025/decade-of-digital-art/2021-bridge.jpg"
 )}}
 
 and this [tree](/gallery/2021/a-cool-tree/), which felt like a breakthrough of sorts at the time,
-although I later realized I hadn't actually learned as much from this
+although I later realized I hadn't actually learned as much from it
 as I thought I had.
 
 {{ fit_img(width=800, height=800,
@@ -287,7 +304,8 @@ src="/gallery/fanart/2023/inktober_2023/08_toad.jpg"
 
 By far my most prolific year hitherto recorded.
 I made [fifty](/gallery/2024/mermay-inks/) [ink](/gallery/2024/inktober-2024/) [drawings](/gallery/2024/blooming/),
-incorporated demoscene-style [computer graphics](/gallery/2024/moonstaff/) into my work,
+incorporated [demoscene-style](/gallery/2024/demodemonini/)
+[computer graphics](/gallery/2024/moonstaff/) into my work,
 started a worldbuilding project where I designed some of my first
 [real](/gallery/2024/miriel/) [characters](/gallery/2024/ivu/)
 with actual backstories,
