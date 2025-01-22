@@ -341,3 +341,14 @@ And that brings us to present day!
 I'm quite proud of my progress,
 happy I discovered this hobby and pushed through the hard times,
 and looking forward to the next decade of making and learning.
+
+I mostly wrote this post for my own enjoyment,
+but I hope it might serve as a reminder that what people call "talent"
+is actually just being very interested in a thing and doing a lot of work.
+Anybody can learn to draw, it just takes years of effort
+(good learning methods and teachers are a must though —
+years of aimless scribbling will just make you good at aimless scribbling).
+There's tons of free education about art fundamentals available on the internet.
+Give it a try if you're interested at all!
+Learning to draw is quite possibly the most rewarding thing I've done in my entire life
+and I hope more people get to experience it.
