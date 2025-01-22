@@ -5,6 +5,7 @@ slug = "a-decade-of-digital-art"
 [taxonomies]
 tags = ["art"]
 [extra]
+og_type = "article"
 +++
 
 The oldest digital drawing I have on my computer turns ten years old today.

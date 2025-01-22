@@ -5,7 +5,7 @@ slug = "stuff-i-liked-in-2024"
 [taxonomies]
 tags = ["music", "books", "games"]
 [extra]
-use_katex = false
+og_type = "article"
 +++
 
 In recent years I've made a habit of posting

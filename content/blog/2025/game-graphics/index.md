@@ -4,6 +4,8 @@ date = 2025-01-19
 slug = "game-graphics"
 [taxonomies]
 tags = ["starframe", "graphics", "art"]
+[extra]
+og_type = "article"
 +++
 
 The majority of my recent game development work

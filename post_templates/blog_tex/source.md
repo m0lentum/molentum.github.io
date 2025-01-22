@@ -6,6 +6,7 @@ draft = true
 [taxonomies]
 tags = []
 [extra]
+og_type = "article"
 use_katex = true
 +++
 

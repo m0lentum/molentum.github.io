@@ -5,6 +5,8 @@ slug = "starframe-ropes"
 aliases = ["blog/starframe-ropes"]
 [taxonomies]
 tags = ["starframe", "physics"]
+[extra]
+og_type = "article"
 +++
 
 [Starframe]'s rope physics is the first piece of physics code I've written that

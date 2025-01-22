@@ -5,6 +5,8 @@ slug = "starframe-intro"
 aliases = ["blog/2018/09/moleengine-part-0-introduction/", "blog/starframe-intro"]
 [taxonomies]
 tags = ["starframe"]
+[extra]
+og_type = "article"
 +++
 
 Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D
