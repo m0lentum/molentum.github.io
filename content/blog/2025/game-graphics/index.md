@@ -188,10 +188,9 @@ and I'm glad I did, because it ended up transforming my general painting process
 for the better in many more ways than expected.
 
 {% sidenote() %}
-Hit me up if you'd like to see a more detailed look into this
-and my other Krita workflows —
-I think I've gathered enough tips and tricks over the years
-to make a dedicated post about if people are interested.
+I have [another post here](../krita-tips/) going into detail
+about the painting process for these normal maps,
+along with general digital painting tips.
 {% end %}
 
 Here are the first textures painted with this process:
