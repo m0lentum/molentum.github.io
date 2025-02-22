@@ -1,8 +1,7 @@
 +++
 title = "Painting normal maps, and other Krita tips"
-date = 2025-02-01
+date = 2025-03-08
 slug = "krita-tips"
-draft = true
 [taxonomies]
 tags = ["art"]
 [extra]
@@ -108,15 +107,17 @@ Here's a list of some that I like:
     (tip: if you've made a selection with e.g. the lasso tool
     and then add a transparency mask,
     that selection automatically becomes the shape of the mask)
-  - inherit alpha: Only display parts of the layer that are on top of
+  - Inherit alpha: only display parts of the layer that are on top of
     other layers in the same group.
   ![Krita's layer menu with an example of each stenciled layer type.](stencil_layers.jpg)
 - Blend modes: alter the way color on a layer interacts with the layers below it.
   I'm not a fan of using these for basic things like shading,
-  but they're great for effects and final adjustments.
+  but they're great for effects and adjustments.
   See the [docs][docs-blend] for an illustrated list;
   some I use a lot are
-  - Soft light: subtle light effect that saturates colors; nice for bloom.
+  - Soft light: fairly subtle light effect that tends to saturate colors.
+    I finish most of my works with some airbrushed soft light
+    to give my most important lights an extra push.
   - Addition: a physically-plausible way to quickly add stronger lights.
   - Multiply: a quick way to darken shadows.
 - Fill layers
@@ -127,7 +128,7 @@ Here's a list of some that I like:
     to avoid colors getting altered too much.
   - Add a black fill layer with the Color blend mode
     to quickly check how your work looks in grayscale.
-  - (The effect of a fill layer can also be achieved with a normal layer and the fill tool,
+  - (The effect of a fill layer can also be achieved with a regular layer and the fill tool,
     but a fill layer has some advantages: it's easier to adjust afterwards
     and responds automatically to changes in canvas size.)
 - Filter layers: a non-destructive way to add a filter
@@ -135,10 +136,16 @@ Here's a list of some that I like:
   unlike if applied from the Filter menu),
   which you can adjust or remove later.
   I often use this to add a blur over distant parts for a depth-of-field effect.
+  Also comes in handy for normal maps, as we'll see in part 2.
 - Vector layers: when you want particularly precise geometric shapes,
-  these can be really handy.
+  these can be really nice.
   Gives you a similar path editing tool to what you'd find in a vector editing program like Inkscape.
   You can also alpha-inherit a regular layer to one of these to paint on top of the vector shapes.
+- Clone layers: make a copy of another layer of group that updates when the original is edited.
+  You can move it around, apply filters using filter layers,
+  and even transform it to a limited extent with a transform mask.
+  My most common use case for these is
+  to duplicate my base pose when I'm sketching clothing designs for characters.
 - Layer styles: there are some neat effects here
   that typically do something around the edges of a layer,
   such as drop shadows and glows,
@@ -150,7 +157,8 @@ Here's a list of some that I like:
 Each of these special types of layer can be created via the little dropdown arrow
 next to the "new layer" button,
 or with keyboard shortcuts (which aren't configured by default).
-Layer styles are in the right-click menu of an individual layer or group.
+Layer styles are in the right-click menu of an individual layer or group,
+and blend modes are a dropdown at the top of the layer menu.
 {% end %}
 
 
@@ -219,8 +227,9 @@ I set the `Rotation` of the brush by tilt direction
 (just like that bristle brush earlier),
 and for some prefabs I also control the `Ratio` by tilt angle
 such that tilting more squishes the prefab as if in perspective.
-Also, for some plants and such I add a `Mirror` modifier depending on tilt direction
-such that when I tilt up, I get the plant facing left,
+Also, for some plants and such things with a clear "up" direction,
+I add a `Mirror` modifier depending on tilt direction
+so that when I tilt up, I get the plant facing left,
 and when I tilt down, I get it facing right.
 
 ![Animation demonstrating two different prefab brushes.](prefab_brush_demo.gif)
@@ -228,7 +237,7 @@ and when I tilt down, I get it facing right.
 {% sidenote() %}
 Notice how I can now pick whatever color I want!
 This is both an advantage and a limitation —
-the whole prefab must be one color for this to work well.
+the whole prefab must be one color to be made into a brush.
 That's one of the reasons why I only use this technique for small details.
 {% end %}
 
@@ -294,11 +303,12 @@ This one gets a little technical, but it's totally worth understanding a little 
 #### Linear color space
 
 Let's talk about transparency, blending, and color spaces.
-A common issue artists have with digital painting
+A common issue artists encounter with digital painting
 is that blending feels "muddy".
-Specifically, when transparent layers are overlaid on top of one another,
+Specifically, when transparent layers (or brushes)
+are overlaid on top of one another,
 you'd intuitively expect it to look like
-how a stack of two transparent sheets looks in reality,
+how a stack of transparent sheets looks in reality,
 but with default settings this is not the case.
 The result is darker and less saturated, causing that muddy feeling.
 
@@ -323,12 +333,13 @@ linear color requires more precision than gamma-corrected does
 (16 bits per channel, vs. the default 8 bits),
 so there's a performance tradeoff here —
 switching to linear color doubles memory usage.
-The benefit is that it's much easier to keep your colors vibrant and bright
+The benefit is that it's easier to keep your colors vibrant and bright
 and your gradients smooth when stacking multiple transparent layers
 or using transparent brushes such as the airbrush.
 Give it a try if you have the memory to spare
 (it can take up a lot — I've crashed my computer several times
-by filling my 16GB of RAM with 16-bit colors and a large undo stack).
+by filling my 16GB of RAM with a high-resolution 16-bit/channel project
+and a large undo stack).
 The difference is subtle but you'll probably feel it.
 
 {% sidenote() %}
@@ -381,8 +392,8 @@ Some tips for making and modifying selections:
   for modifying selections, such as grow and shrink.
 - Right-clicking a layer or group and selecting `Select Opaque`
   will select that layer's currently opaque pixels.
-  Combine with, say, growing the selection to make an outline
-  or using it to create a transparency mask for another layer.
+  Combine with, say, growing the selection to make an outline,
+  or use it to create a transparency mask for another layer.
 
 #### Rulers
 
@@ -433,35 +444,39 @@ it's an amazing free project that deserves all the support in the world.
 
 Alright, now that the crowd-pleaser part is out of the way,
 let's get to the extremely nerdy niche I actually wanted to talk about :v)
+If this is where your interest ends, fair enough;
+I hope you learned something useful.
 
 
 ## Part 2: Normal maps
 
 A [normal map][normalmap] is a 3D graphics technique
-that adds fine detail to a low-polygon surface;
+that adds detail to a polygon surface;
 specifically, detail that is revealed by lighting.
 It's an image that tells a 3D surface which direction it's pointing in.
-Here's an example of the kind of thing I'm doing with them:
+Here's a heavily compressed example
+of the kind of thing I'm doing with them in [Velgi]:
 
-TODO finish the Heather piece
+![A rectangle of green light does stuff](velgi_demo.gif)
 
 {% sidenote() %}
-For more context on how I arrived at this style and methods,
+For more context on how I arrived at this style and set of methods,
 see [this recent post](../game-graphics/).
 {% end %}
 
 ### What a normal map looks like
 
-As an example, here's the normal map of Heather seen previously:
+As an example, here are the normal maps of the blocks seen above:
 
-TODO
+![Three square normal maps. A cloud, a wooden box, and a block of rock.](velgi_blocks_normals.jpg)
 
 A normal map is an image and can be visualized as such,
 but the pixels in it do not actually represent colors —
 the red, green, and blue channels contain the x, y, and z coordinates
 of vectors pointing out of the surface at any given point.
 
-TODO illustration of unit hemisphere
+![Illustration of a hemisphere
+and vectors colored with the corresponding normal map color.](normal_hemisphere.jpg)
 
 These vectors are restricted to ones with length 1,
 which significantly limits the range of allowable colors,
@@ -478,11 +493,254 @@ Hence, painting them in Krita.
 
 ### How to paint them
 
-- must be 8 bit gamma-corrected sRGB to work correctly
-- brush engine, tilt brush, bevel brushes
-- combine normal map blend mode
-- normalize filter
-- batch exporter
+The simplest way to go about this would be to grab a reference normal map of a sphere
+and pick colors from it, using the regular brushes already present.
+That would work just fine
+(here's a [video tutorial][nm-tut-yt] I saw years ago demonstrating this method),
+but it wouldn't make a particularly interesting blog post,
+so let's see if we can do better.
+
+First, if you read the first part
+and I managed to convince you to join the linear color space gang,
+you can't do that here — Krita's normal map tools
+only work correctly in the default gamma-corrected sRGB color space.
+So be sure to flip back to 8-bit colors when creating a project file containing normal maps.
+
+Now, let's get painting.
+Krita has a variety of hidden tools to help with this process,
+including brushes, filters and blend modes.
+
+#### Brushes
+
+The first and most important tool is the [tangent normal brush engine][nm-brush-eng],
+which gives us a couple of different ways
+to turn stylus movements directly into normals.
+Here's what the relevant part of the brush editor looks like:
+
+![Screenshot of the brush editor with the tangent normal brush engine's
+Tangent Tilt tab open.](normal_brush_editor.jpg)
+
+{% sidenote() %}
+_Tangent_-space normals means these normal maps can be applied to any 3D surface
+and they'll behave like you'd expect
+(adding detail to the existing surface),
+as opposed to _object_-space normals
+which include information about a specific surface
+and thus aren't reusable.
+Here's a [cool workflow by Cody Gindy](https://www.youtube.com/watch?v=s8N00rjil_4)
+making use of object-space normals in 3D.
+{% end %}
+
+The first way to use this brush engine is to determine the normal by stroke direction,
+which works with any tablet.
+This is designed for flow maps first and foremost
+and is a little cumbersome for normal maps by default,
+but here's a trick I came up with that makes it extremely handy:
+instead of using the stroke direction directly,
+have the brush engine rotate the normal
+so that it faces the stroke direction at a 90 degree angle.
+Now the brush makes a "bevel" effect when you paint around the edges of a shape.
+
+{% sidenote() %}
+The previous screenshot of the brush editor shows
+how to set this up with the Tangent Encoding axis controls.
+{% end %}
+
+![Animation demonstrating a bevel normal brush painting around a polygon shape
+and then making a crack in its center.](bevel_brush_demo.gif)
+
+Notice how it can very conveniently do cracks and similar surface details too!
+
+{% sidenote() %}
+The black lines are not part of the normal map;
+they're on a separate layer to guide my painting.
+Speaking of which, a lineart-based art style
+is very convenient for this — if you paint without lines
+it's harder to match the normal map to the painting.
+{% end %}
+
+You can control the steepness of the effect
+with the Elevation Sensitivity slider in the brush editor.
+That one sadly cannot be modulated with pen pressure or the like,
+so I have a set of these brushes with different sensitivity settings.
+Notably, this value should never be higher than around 70% for normals —
+higher values will turn the normal so far
+it actually begins to point into the surface,
+which can create all sorts of strange artifacts.
+A bit more on that in the next section.
+
+The second way, and in my opinion the more convenient one for most situations,
+relies on the tilt sensor whose praises I've already sung in part 1.
+It's very intuitive — point your stylus in the direction you want the normal to face
+(with the plane of your tablet being the baseline surface),
+and the brush engine does the rest.
+
+![Side by side view of me tilting my pen on my tablet
+and the corresponding normals appearing on a canvas.](tilt_normal_demo.gif)
+
+{% sidenote() %}
+This would be even nicer with a screen tablet,
+but I prefer a screenless one for ergonomic reasons.
+{% end %}
+
+You can also combine all of this with different brush tips to add texture
+(as I did in the clip above)!
+
+For more detailed reference, I've included a few of these brushes
+in [another bundle](Molentums_normalmap_example.bundle).
+
+
+#### Layers and filters
+
+Sometimes it's easier to make an effect one part at a time.
+To this end, Krita provides the `Combine Normal Map` blend mode,
+whose output is the sum of rotations caused by two different normal maps.
+This is probably easiest to explain with an example —
+here's a tree trunk I made by painting the bark pattern on a flat surface first
+and then overlaying it onto a simple cylinder.
+
+![Normal map with a cylinder shape, another with a tree bark texture,
+and one more with both combined so the bark wraps around the cylinder.](combine_normal_map.jpg)
+
+{% sidenote() %}
+The examples in this section are from an as yet unfinished project.
+You can think of them as teasers;
+for me they're reminders that I need to work on this thing to get it done :v)
+{% end %}
+
+This blend mode also allows the easy combination
+of normal maps made with different techniques;
+for instance, you could take a sphere normal map
+and distort it to make a rounded overall form,
+then add finer detail via a painted layer.
+
+Even with these tools you're most likely going to end up with some colors on the canvas
+that don't have exactly length 1 and therefore aren't valid normals.
+I'm not sure how 3D software typically responds to this,
+but just to be sure you get perfectly consistent lighting,
+it's a good idea to _normalize_ the map.
+Fortunately, Krita has a filter that does just this, called `Normalize`.
+A nice way to use it is to put it on top of your layer hierarchy as a filter layer.
+
+As mentioned in the previous section,
+the bevel-type brushes with the elevation sensitivity turned up too high
+can rotate normals to face the surface they're supposed to point out of,
+potentially causing all sorts of strangeness.
+This can also happen when more than one normal map
+is combined using the Combine Normal Map blend mode.
+This can be hard to avoid while painting,
+but I came up with another filter to mitigate the problem:
+a `Color Adjustment curve` can be set up to enforce the z coordinate of the normal to be positive.
+I do this with a curve like this applied to the blue channel:
+
+![A color adjustment filter with a curve that is approximately constant
+until the halfway point, then approximately linear for the rest.](blue_channel_adjustment.jpg)
+
+{% sidenote() %}
+A piecewise linear adjustment curve could do this exactly,
+but sadly that isn't possible as far as I can tell,
+so I've approximated the correct curve with a few spline control points instead.
+If there's a better way to enforce a lower limit for a channel's values,
+I'd love to hear about it.
+{% end %}
+
+What this does is to force all blue channel values to be at least 127
+(which is what zero is mapped to in the encoding scheme of the normals),
+while keeping values above this approximately unchanged.
+Putting a filter layer like this just below the Normalize filter layer
+ensures all your normals point out of the surface.
+
+There's one more cool filter I want to mention: `Phong Bumpmap`.
+This one doesn't modify the normal map in a useful way;
+instead, it applies a simple lighting model to it
+so you can see an approximation of what the results in a 3D engine may look like.
+Add as a filter layer on top of your normal map,
+activate the "Use Normal map" checkbox in the filter settings,
+(optionally) adjust the lights, and you'll see something like this
+which you can toggle on and off by changing the filter layer's visibility:
+
+![A figure of a lady sitting on the ground next to a tree,
+lit from two directions with different-colored lights.](bumpmap_filter.jpg)
+
+{% sidenote() %}
+There's also the _Height to Normal Map_ filter,
+which enables a different workflow where you paint a grayscale height map
+and convert it to a normal map.
+This is conceptually a little more intuitive,
+but I've found it very difficult to get smooth results with it.
+{% end %}
+
+
+#### Putting it to use
+
+Now that we've painted a normal map,
+it would be nice to make use of it somehow.
+This is a standard technique supported by just about any
+of the myriad 3D modelling programs out there,
+and your workflow will not look exactly like mine,
+but here's a brief overview of what I do as an example.
+
+The first step is to export the normal map to png
+along with any other textures you're going to use.
+My project files have several different textures in them
+(at least a diffuse texture along with the normal map),
+so this is cumbersome to do manually, but fortunately
+Krita has a built-in plugin called the Batch Exporter
+that helps a lot with projects like this —
+you add instructions to the names of layers you want to export,
+and the plugin exports all of them in one click.
+Here's an example layer hierarchy:
+
+![Screenshot of a layer hierarchy where some layer names have annotations
+for the export format and size.](normal_layer_hierarchy.jpg)
+
+When I click "Export All Layers" in the Batch Exporter docker,
+textures are created in a directory hierarchy determined by the layers.
+Specifically, the part seen here generates
+`char/diffuse.png`, and `char/normals.png` for me
+and scales them down by 50% from the original size.
+See the documentation found in the plugin manager for more options.
+
+{% sidenote() %}
+This plugin is not on by default.
+You can activate it via the Python Plugin Manager section
+in the configuration menu.
+{% end %}
+
+Now I move over to Blender,
+where I import my diffuse texture as a plane,
+cut out the transparent edges,
+and add my normal map to the material.
+For some models I'll then add an armature and animate it.
+
+![Screenshot of Blender displaying a normal-mapped character
+with a light shining on them.](heather_blender.jpg)
+
+{% sidenote() %}
+I'm experimenting with the [COA Tools](https://github.com/Aodaruma/coa_tools2)
+Blender plugin to help create and animate these models more effectively.
+I don't quite know how to use it yet but it seems promising.
+{% end %}
+
+Finally, I export the scene to glTF
+and load it into my custom game engine [Starframe],
+which renders it with some fancy lighting (more on that [here][graphics-post]).
+
+![Screenshot of the previously seen Blender scene rendered in-engine.
+The butterfly is a light source now.](heather_starframe.jpg)
+
+{% sidenote() %}
+I'm going to pose and animate that butterfly,
+I just couldn't be bothered to do so before finishing this post 😅
+{% end %}
+
+And that's it!
+I'm still learning how to make these things look good
+and how to do so efficiently,
+but I'm having a lot of fun with it.
+It's an unusual workflow and I don't expect most readers
+to go and implement something similar for themselves,
+but I hope you enjoyed learning about it.
 
 
 [krita]: https://krita.org/
@@ -493,3 +751,8 @@ Hence, painting them in Krita.
 [pureref]: https://pureref.com/
 [krita-donations]: https://krita.org/en/donations/
 [normalmap]: https://en.wikipedia.org/wiki/Normal_mapping
+[nm-tut-yt]: https://www.youtube.com/watch?v=D0tD0ZzOH4I
+[nm-brush-eng]: https://docs.krita.org/en/reference_manual/brushes/brush_engines/tangen_normal_brush_engine.html
+[starframe]: https://github.com/m0lentum/starframe
+[velgi]: https://molentum.itch.io/velgi
+[graphics-post]: ../game-graphics/
