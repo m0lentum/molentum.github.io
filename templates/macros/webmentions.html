@@ -39,7 +39,6 @@ so it may take a while for yours to show up.
 {% endif %}
 
 {%- for comment in comments -%}
-{% set source = comment | get(key='wm-source') %}
 
 {% if comment.published %}
 {% set pub_time = comment.published %}
@@ -55,8 +54,14 @@ so it may take a while for yours to show up.
 {% endif %}
 
 <p class="webmention">
-<b><a href={{ source }}>{{ comment.author.name }}</a></b>
-({{ pub_time | date }}) {{ verb }}
+<b>{% if comment.author.url %}
+<a href={{ comment.author.url }}>{{ comment.author.name }}</a>
+{% else %}
+{{ comment.author.name }}
+{% endif %}
+</b>
+({{ pub_time | date }})
+<a href={{ comment.url }}>{{ verb }}</a>
 {% if comment.content.text %}
 <br/>
 {{ comment.content.text }}
