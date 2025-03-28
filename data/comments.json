@@ -1,0 +1,28 @@
+{
+  "type": "feed",
+  "name": "Webmentions",
+  "children": [
+    {
+      "type": "entry",
+      "author": {
+        "type": "card",
+        "name": "Molentum",
+        "photo": "https://webmention.io/avatar/commentpara.de/ef200c8b639d79d1cfbc0abf0e25f42dcbc585b4398003dd90f5a56c9d56e3bf.svg",
+        "url": ""
+      },
+      "url": "https://commentpara.de/comment/1552.htm",
+      "published": null,
+      "wm-received": "2025-03-30T11:11:45Z",
+      "wm-id": 1900769,
+      "wm-source": "https://commentpara.de/comment/1552.htm",
+      "wm-target": "https://molentum.me/blog/2025/krita-tips/",
+      "wm-protocol": "webmention",
+      "content": {
+        "text": "Testing webmention-based comments"
+      },
+      "in-reply-to": "https://molentum.me/blog/2025/krita-tips/",
+      "wm-property": "in-reply-to",
+      "wm-private": false
+    }
+  ]
+}
