@@ -10,6 +10,7 @@ image_size = 300
 container_classes = "gallery-container"
 show_rss_link = true
 cc0 = true
+enable_webmentions = true
 +++
 
 All art on this page is original work licensed under CC0 (public domain).

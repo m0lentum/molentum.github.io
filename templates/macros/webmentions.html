@@ -1,0 +1,35 @@
+{% macro webmentions() %}
+{# I need the actual website url for filtering in dev mode too,
+but config.base_url doesn't have that info so it's just hardcoded here #}
+{% set url = "https://molentum.me" ~ current_path %}
+{% set data = load_data(path = "/data/comments.json") %}
+{% set comments = data.children | filter(attribute='wm-target', value=url) | sort(attribute='wm-received') | reverse %}
+
+<section class="webmentions">
+<h2>Webmentions (experimental)</h2>
+<p>
+Cited this page on your website?
+Send me a <a href="https://indieweb.org/Webmention">webmention</a>!
+Mastodon replies are also displayed here (this feature still in progress).
+Webmentions are collected and reviewed manually,
+so it may take a while for yours to show up.
+</p>
+
+{%- for comment in comments -%}
+{% set source = comment | get(key='wm-source') %}
+{% set target = comment | get(key='wm-target') %}
+
+{%- if not target is ending_with(current_path) -%}
+{% continue %}
+{%- endif -%}
+
+<p class="webmention">
+<b><a href={{ source }}>{{ comment.author.name }}</a></b>
+({{ comment | get(key='wm-received') | date }}):
+<br/>
+{{ comment.content.text }}
+</p>
+
+{%- endfor -%}
+</section>
+{% endmacro webmentions %}

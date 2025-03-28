@@ -6,6 +6,7 @@ slug = "krita-tips"
 tags = ["art"]
 [extra]
 og_type = "article"
+enable_webmentions = true
 +++
 
 I'm a big fan of using software effectively and optimizing my workflows,

@@ -10,7 +10,7 @@
 {% import "macros/pagination.html" as pagination -%}
 {% import "macros/footer.html" as footer -%}
 {% import "macros/extended_footer.html" as extended_footer -%}
-{% import "macros/comments.html" as comments -%}
+{% import "macros/webmentions.html" as webmentions -%}
 
 <!DOCTYPE html>
 <html lang="{{ lang }}">
@@ -99,6 +99,12 @@
             {%- block pagination -%}
                 {{ pagination::paginate() }}
             {%- endblock pagination -%}
+
+            {%- block webmentions -%}
+                {%- if page.extra.enable_webmentions or section.extra.enable_webmentions -%}
+                    {{ webmentions::webmentions() }}
+                {%- endif -%}
+            {%- endblock webmentions -%}
 
             {%- block license -%}
             {# license empty by default, defined on artwork pages #}
