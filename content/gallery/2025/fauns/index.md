@@ -1,6 +1,8 @@
 +++
 title = "Character design: Olivia & Basil"
 date = 2025-03-23
+[taxonomies]
+characters = ["Olivia", "Basil"]
 [extra]
 container_classes = "gallery-container"
 main_image = "fauns.jpg"

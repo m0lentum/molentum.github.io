@@ -1,6 +1,8 @@
 +++
 title = "Character design: Elegil"
 date = 2025-03-02
+[taxonomies]
+characters = ["Elegil"]
 [extra]
 container_classes = "gallery-container"
 main_image = "elegil.jpg"

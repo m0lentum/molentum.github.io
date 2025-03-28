@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{%- block main -%}
+<div class="post">
+    <h1 class="post-title">Characters</h1>
+    <ul>
+        {%- for term in terms -%}
+            <li class="tag-list">
+                <a href="{{ get_taxonomy_url(kind="characters", name=term.name) }}">{{ term.name }}</a>
+                ({{ term.pages | length }} artwork{{ term.pages | length | pluralize}})
+            </li>
+        {%- endfor -%}
+    </ul>
+</div>
+{%- endblock main -%}

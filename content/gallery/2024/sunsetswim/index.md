@@ -1,6 +1,8 @@
 +++
 title = "Summer night at the lake"
 date = 2024-08-03
+[taxonomies]
+characters = ["Miriel"]
 [extra]
 container_classes = "gallery-container"
 main_image = "sunsetswim.jpg"

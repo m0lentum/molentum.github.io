@@ -1,6 +1,7 @@
 +++
-path = "dexterior"
 title = "Dexterior showcase"
+slug = "dexterior"
+updated = "2024-08-22"
 +++
 
 An experimental collection of [dexterior](https://github.com/m0lentum/dexterior)
@@ -14,7 +15,7 @@ simulations built for WebGL. More to come later, probably.
 
 <script type="module">
     // for some reason the full path is needed here
-    import init from "/dexterior/membrane.js";
+    import init from "/notes/dexterior/membrane.js";
     window.addEventListener("load", () => {
         init();
     });
@@ -27,7 +28,7 @@ simulations built for WebGL. More to come later, probably.
 ## Plane wave
 
 <script type="module">
-    import init from "/dexterior/plane_wave_2d.js";
+    import init from "/notes/dexterior/plane_wave_2d.js";
     window.addEventListener("load", () => {
         init();
     });

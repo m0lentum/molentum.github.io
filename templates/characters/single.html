@@ -1,0 +1,38 @@
+{%- extends "index.html"-%}
+{%- block main-%}
+    <div class="post">
+        <h1 class="post-title">
+            Artworks featuring {{ term.name }}
+        </h1>
+
+        <div>
+            {%- for page in term.pages -%}
+            <div class="gallery-post">
+                {% set path = page.path ~ page.extra.main_image %}
+                {% set meta = get_image_metadata(path=path) %}
+                {# crop the image such that the shorter side is section.extra.image_size #}
+                {% if meta.width < meta.height %}
+                    {% set image = resize_image(
+                        path=path,
+                        width=300,
+                        op="fit_width",
+                        quality=100,
+                    ) %}
+                {% else %}
+                    {% set image = resize_image(
+                        path=path,
+                        height=300,
+                        op="fit_height",
+                        quality=100,
+                    ) %}
+                {% endif %}
+                <a href={{ page.permalink }}>
+                    <img src={{ image.url }} alt="{{ page.extra.main_image_alt }}" />
+                    <h2 class="gallery-title">{{ page.title }}</h2>
+                </a>
+            </div>
+            {%- endfor -%}
+        </div>
+
+</div>
+{%- endblock main-%}

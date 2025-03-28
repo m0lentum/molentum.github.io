@@ -1,6 +1,8 @@
 +++
 title = "Character design: Miriel"
 date = 2024-07-14
+[taxonomies]
+characters = ["Miriel"]
 [extra]
 container_classes = "gallery-container"
 main_image = "miriel.jpg"
