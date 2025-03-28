@@ -38,6 +38,7 @@ main_menu = [
   { url = "https://molentum.itch.io/", name = "Itch.io", external = true },
 ]
 fedi_account = "@molentum@mastoart.social"
+webmention_target = "https://webmention.io/molentum.me/webmention"
 
 # custom color defined in my own sass dir
 theme_color = "lime"
