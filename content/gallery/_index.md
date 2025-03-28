@@ -11,6 +11,7 @@ container_classes = "gallery-container"
 show_rss_link = true
 cc0 = true
 enable_webmentions = true
+mastodon_url = "https://mastoart.social/@molentum/114251697779377300"
 +++
 
 All art on this page is original work licensed under CC0 (public domain).
