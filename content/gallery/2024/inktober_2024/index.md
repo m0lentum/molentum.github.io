@@ -1,6 +1,8 @@
 +++
 title = "Inktober 2024"
 date = 2024-10-31
+[taxonomies]
+characters = ["Miriel"]
 [extra]
 container_classes = "gallery-container"
 main_image = "camera.jpg"

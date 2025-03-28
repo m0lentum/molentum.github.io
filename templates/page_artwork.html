@@ -10,7 +10,24 @@
             <h1 class="post-title">
                 <a href="{{ page.permalink }}">{{ page.title }}</a>
             </h1>
-            {{ posts::meta(page=page, author=config.extra.show_author) }}
+            {# custom meta section to include character taxonomy #}
+            <div class="post-meta">
+                <span class="post-date">
+                    {%- if page.date -%}
+                        {{ page.date | date(format="%Y.%m.%d") }}
+                    {%- endif -%}
+                </span>
+                {%- if page.taxonomies.characters -%}
+                <br/>
+                Characters:
+                {% for char in page.taxonomies.characters %}
+                    <a href="{{get_taxonomy_url(kind="characters", name=char )}}">{{ char }}</a>
+                    {%- if not loop.last -%}
+                    ,
+                    {%- endif -%}
+                {% endfor %}
+                {%- endif -%}
+            </div>
         </header>
 
         {%- if not page.extra.skip_main_image -%}

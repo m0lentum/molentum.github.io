@@ -13,7 +13,7 @@ ignored_content = ["**/source.md"]
 
 theme = "zerm"
 
-taxonomies = [{ name = "tags" }]
+taxonomies = [{ name = "tags" }, { name = "characters" }]
 
 [markdown]
 highlight_code = true
@@ -33,6 +33,7 @@ main_menu = [
   { url = "/about/", name = "about" },
   { url = "/blog/", name = "blog" },
   { url = "/gallery/", name = "gallery" },
+  { url = "/notes/", name = "notes" },
   { url = "https://mastoart.social/@molentum", name = "Mastodon", external = true, rel_me = true },
   { url = "https://github.com/m0lentum", name = "GitHub", external = true, rel_me = true },
   { url = "https://molentum.itch.io/", name = "Itch.io", external = true },

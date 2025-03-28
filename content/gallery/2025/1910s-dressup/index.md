@@ -1,6 +1,8 @@
 +++
 title = "1910s dress-up"
 date = 2025-02-20
+[taxonomies]
+characters = ["Miriel"]
 [extra]
 container_classes = "gallery-container"
 main_image = "1910s-dressup.jpg"

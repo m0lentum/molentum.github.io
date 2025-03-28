@@ -1,6 +1,8 @@
 +++
 title = "Character design: Ivu"
 date = 2024-12-02
+[taxonomies]
+characters = ["Ivu"]
 [extra]
 container_classes = "gallery-container"
 main_image = "ivu.jpg"

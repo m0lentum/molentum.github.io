@@ -5,6 +5,12 @@
     {% for page in paginator.pages %}
         <li>
             <a href={{ page.permalink }}>{{ page.title }}</a>
+            {%- if page.description -%}
+            : {{ page.description | striptags }}
+            {%- endif -%}
+            {% if page.updated %}
+            (updated {{ page.updated }})
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

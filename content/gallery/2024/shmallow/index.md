@@ -1,6 +1,8 @@
 +++
 title = "Very important application of dryad magic"
 date = 2024-12-16
+[taxonomies]
+characters = ["Ivu"]
 [extra]
 container_classes = "gallery-container"
 main_image = "shmallow.jpg"
