@@ -2,32 +2,65 @@
 {# I need the actual website url for filtering in dev mode too,
 but config.base_url doesn't have that info so it's just hardcoded here #}
 {% set url = "https://molentum.me" ~ current_path %}
+
+{# no need for sorting, they're already in the right order #}
 {% set data = load_data(path = "/data/comments.json") %}
-{% set comments = data.children | filter(attribute='wm-target', value=url) | sort(attribute='wm-received') | reverse %}
+{% set all_wms = data | filter(attribute='wm-target', value=url) %}
+{% set replies = all_wms | filter(attribute='wm-property', value='in-reply-to') %}
+{% set mentions = all_wms | filter(attribute='wm-property', value='mention-of') %}
+{% set comments = replies | concat(with=mentions) %}
+
+{% set likes = all_wms | filter(attribute='wm-property', value='like-of') %}
+{% set boosts = all_wms | filter(attribute='wm-property', value='repost-of') %}
+{% set like_count = likes | length %}
+{% set boost_count = boosts | length %}
+
+{% if page.extra.mastodon_url %}
+{% set mastodon_url = page.extra.mastodon_url %}
+{% elif section.extra.mastodon_url %}
+{% set mastodon_url = section.extra.mastodon_url %}
+{% endif %}
 
 <section class="webmentions">
 <h2>Webmentions (experimental)</h2>
 <p>
 Cited this page on your website?
 Send me a <a href="https://indieweb.org/Webmention">webmention</a>!
-Mastodon replies are also displayed here (this feature still in progress).
-Webmentions are collected and reviewed manually,
+{% if mastodon_url %}
+Public interactions with <a href="{{ mastodon_url }}">this Mastodon post</a>
+are also displayed here.
+{% endif %}
+These are collected and reviewed manually,
 so it may take a while for yours to show up.
 </p>
 
+{% if mastodon_url %}
+<p>{{ like_count }} favorites, {{ boost_count }} boosts</p>
+{% endif %}
+
 {%- for comment in comments -%}
 {% set source = comment | get(key='wm-source') %}
-{% set target = comment | get(key='wm-target') %}
 
-{%- if not target is ending_with(current_path) -%}
-{% continue %}
-{%- endif -%}
+{% if comment.published %}
+{% set pub_time = comment.published %}
+{% else %}
+{% set pub_time = comment | get(key='wm-received') %}
+{% endif %}
+
+{% set wm_prop = comment | get(key='wm-property') %}
+{% if wm_prop == 'in-reply-to' %}
+{% set verb = "replied" %}
+{% elif wm_prop == 'mention-of' %}
+{% set verb = "mentioned" %}
+{% endif %}
 
 <p class="webmention">
 <b><a href={{ source }}>{{ comment.author.name }}</a></b>
-({{ comment | get(key='wm-received') | date }}):
+({{ pub_time | date }}) {{ verb }}
+{% if comment.content.text %}
 <br/>
 {{ comment.content.text }}
+{% endif %}
 </p>
 
 {%- endfor -%}

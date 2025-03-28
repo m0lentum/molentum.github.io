@@ -7,6 +7,7 @@ tags = ["art"]
 [extra]
 og_type = "article"
 enable_webmentions = true
+mastodon_url = "https://mastoart.social/@molentum/114128294988703680"
 +++
 
 I'm a big fan of using software effectively and optimizing my workflows,
