@@ -7,6 +7,7 @@ tags = ["starframe", "physics", "collision"]
 [extra]
 og_type = "article"
 use_katex = true
+show_toc = true
 +++
 
 Back in 2022 I entirely rewrote one of the most complicated parts of [Starframe],

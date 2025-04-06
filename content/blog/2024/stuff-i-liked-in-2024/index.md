@@ -6,6 +6,7 @@ slug = "stuff-i-liked-in-2024"
 tags = ["music", "books", "games"]
 [extra]
 og_type = "article"
+show_toc = true
 +++
 
 In recent years I've made a habit of posting

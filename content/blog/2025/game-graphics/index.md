@@ -6,6 +6,7 @@ slug = "game-graphics"
 tags = ["starframe", "graphics", "art"]
 [extra]
 og_type = "article"
+show_toc = true
 +++
 
 The majority of my recent game development work
