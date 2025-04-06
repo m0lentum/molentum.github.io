@@ -1,5 +1,6 @@
 {% macro toc() %}
 {% if page.toc %}
+<div class="toc">
     <h2>Table of contents</h2>
     <ul>
     {% for h1 in page.toc %}
@@ -26,5 +27,6 @@
         </li>
     {% endfor %}
     </ul>
+</div>
 {% endif %}
 {% endmacro toc %}
