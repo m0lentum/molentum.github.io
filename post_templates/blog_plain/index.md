@@ -7,6 +7,8 @@ draft = true
 tags = []
 [extra]
 og_type = "article"
+show_toc = true
+enable_webmentions = true
 +++
 
 New blog post
