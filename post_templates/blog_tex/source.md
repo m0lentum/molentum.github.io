@@ -10,6 +10,7 @@ og_type = "article"
 use_katex = true
 show_toc = true
 enable_webmentions = true
+mastodon_url = ""
 +++
 
 New blog post with tex

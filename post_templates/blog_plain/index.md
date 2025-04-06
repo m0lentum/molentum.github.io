@@ -9,6 +9,7 @@ tags = []
 og_type = "article"
 show_toc = true
 enable_webmentions = true
+mastodon_url = ""
 +++
 
 New blog post
