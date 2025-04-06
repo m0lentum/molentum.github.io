@@ -4,8 +4,6 @@ updated = 2025-04-06
 slug = "yon"
 [extra]
 show_toc = true
-enable_webmentions = true
-mastodon_url = "https://mastoart.social/@molentum/114291109899400696"
 +++
 
 Much of my art from 2024 onwards has been situated
