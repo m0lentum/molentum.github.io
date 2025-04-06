@@ -8,6 +8,8 @@ tags = []
 [extra]
 og_type = "article"
 use_katex = true
+show_toc = true
+enable_webmentions = true
 +++
 
 New blog post with tex
