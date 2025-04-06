@@ -8,6 +8,7 @@ container_classes = "gallery-container"
 main_image = "image.jpg"
 main_image_alt = """Alt text."""
 enable_webmentions = true
+mastodon_url = ""
 +++
 
 Preview description
