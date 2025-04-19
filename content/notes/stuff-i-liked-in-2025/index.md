@@ -1,6 +1,6 @@
 +++
 title = "Stuff I liked in 2025"
-updated = 2025-06-15
+updated = 2025-07-02
 slug = "stuff-i-liked-in-2025"
 [taxonomies]
 # can't have tags until this has a publication date
@@ -45,6 +45,7 @@ The rest in no particular order:
 - **Embrium — Timekeeper** (melodic black)
 - **Buried Realm — The Dormant Darkness** (tech/melodeath)
 - **Novelists — CODA** (prog/metalcore)
+- **Shadow of Intent — Imperium Delirium** (symphonic deathcore)
 
 
 ## Books
@@ -134,8 +135,18 @@ A little more combat-oriented and gory than my usual horror preference,
 but the game does some cool things with the weapon mechanics
 and world design that made it very compelling for me.
 
+**[Still Wakes the Deep]**<br/>
+A horror story about an oil rig and its crew
+who encounter a mysterious organism hidden in the bedrock.
+The setting is beautifully realized and perfect for horror —
+no way out, and plenty of high places, dark rooms, and massive underwater structures.
+Plus some delightfully Scottish character acting.
+There's not much in the way of gameplay,
+but with atmosphere like this I had a great time just walking through the story.
+
 
 [saturnalia]: https://store.steampowered.com/app/916350/Saturnalia/
 [archipelago]: https://archipelago.gg/
 [beton brutal]: https://store.steampowered.com/app/2330500/BETON_BRUTAL/
 [dead space (2023)]: https://store.steampowered.com/app/1693980/Dead_Space/
+[still wakes the deep]: https://store.steampowered.com/app/1622910/Still_Wakes_the_Deep/
