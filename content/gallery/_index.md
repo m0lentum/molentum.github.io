@@ -10,7 +10,7 @@ image_size = 300
 container_classes = "gallery-container"
 show_rss_link = true
 cc0 = true
-enable_webmentions = true
+enable_webmentions = false
 mastodon_url = "https://mastoart.social/@molentum/114251697779377300"
 +++
 
