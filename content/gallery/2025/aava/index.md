@@ -16,7 +16,7 @@ mastodon_url = "https://mastoart.social/@molentum/114364420610898911"
 +++
 
 Aava is a marine biologist studying river ecosystems
-and amateur sculpture artist.
+and an amateur sculpture artist.
 Like most merfolk, she likes to wear ostentatious clothes and jewelry,
 even if they aren't always entirely practical.
 
