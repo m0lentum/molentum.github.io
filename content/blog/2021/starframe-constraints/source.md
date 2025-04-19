@@ -69,19 +69,19 @@ contact points depend on the body poses:
 
 $$
 \begin{aligned}
-p_1(x_1, q_1) &= x_1 + q_1 \tilde{r}_1 \\
-p_2(x_2, q_2) &= x_2 + q_2 \tilde{r}_2 \\
+p_1(x_1, q_1) &= x_1 + q_1 \bar{r}_1 \\
+p_2(x_2, q_2) &= x_2 + q_2 \bar{r}_2 \\
 C_{contact}(x_1, q_1, x_2, q_2) &=
   (p_2(x_2, q_2) - p_1(x_1, q_1)) \cdot \hat{n} \\
-  &= (x_2 + q_2 \tilde{r}_2 - x_1 - q_1 \tilde{r}_1) \cdot \hat{n} \\
+  &= (x_2 + q_2 \bar{r}_2 - x_1 - q_1 \bar{r}_1) \cdot \hat{n} \\
 \end{aligned}
 $$
 
-where $q_1$ and $q_2$ are the orientations of each body, $\tilde{r}_1$ and
-$\tilde{r}_2$ are the contact point in each body's local space, and
+where $q_1$ and $q_2$ are the orientations of each body, $\bar{r}_1$ and
+$\bar{r}_2$ are the contact point in each body's local space, and
 multiplication between them denotes a rotation by the orientation. From here on
-I will use $r_1$ and $r_2$ to mean the worldspace offsets $q_1 \tilde{r}_1$ and
-$q_2 \tilde{r}_2$ respectively, as this is the notation used by most papers.
+I will use $r_1$ and $r_2$ to mean the worldspace offsets $q_1 \bar{r}_1$ and
+$q_2 \bar{r}_2$ respectively, as this is the notation used by most papers.
 
 {% sidenote() %}
 There are many ways to represent orientations. Most 3D engines use unit
