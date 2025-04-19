@@ -4,7 +4,7 @@ sort_by = "date"
 paginate_by = 15
 template = "section_gallery.html"
 page_template = "page_artwork_cc0.html"
-generate_feed = true
+generate_feeds = true
 [extra]
 image_size = 300
 container_classes = "gallery-container"

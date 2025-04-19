@@ -3,8 +3,8 @@ description = "Creations and ramblings of Mikael \"Molentum\" Myyrä."
 base_url = "https://molentum.me"
 default_language = "en"
 
-generate_feed = true
-feed_filename = "rss.xml"
+generate_feeds = true
+feed_filenames = ["rss.xml"]
 compile_sass = true
 build_search_index = false
 # source.md are files with LaTeX,
