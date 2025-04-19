@@ -7,7 +7,8 @@ characters = []
 container_classes = "gallery-container"
 main_image = "image.jpg"
 main_image_alt = """Alt text."""
-enable_webmentions = true
+skip_main_image = false
+enable_webmentions = false
 mastodon_url = ""
 +++
 
