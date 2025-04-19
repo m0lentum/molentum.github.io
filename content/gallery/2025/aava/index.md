@@ -12,7 +12,7 @@ She also wears various other jewelry around the arms and the head and heavy smok
 Her body is colored with drab greens and grays, evoking some kind of Nordic freshwater fish.
 """
 enable_webmentions = true
-mastodon_url = ""
+mastodon_url = "https://mastoart.social/@molentum/114364420610898911"
 +++
 
 Aava is a marine biologist studying river ecosystems
