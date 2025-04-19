@@ -20,11 +20,12 @@ and amateur sculpture artist.
 Like most merfolk, she likes to wear ostentatious clothes and jewelry,
 even if they aren't always entirely practical.
 
+<!-- more -->
+
 See also: [Yon](/notes/yon/)
 
 Body details and alternative outfits:
 
-<!-- more -->
 
 ![Naked version of the above image of Aava,
 along with two more views from the side and the back
