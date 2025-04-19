@@ -1,6 +1,6 @@
 +++
 title = "Stuff I liked in 2025"
-updated = 2025-05-07
+updated = 2025-06-15
 slug = "stuff-i-liked-in-2025"
 [taxonomies]
 # can't have tags until this has a publication date
@@ -11,7 +11,7 @@ og_type = "article"
 
 This is the 2025 edition of my "good stuff" list,
 where this time I'm collecting things over time as I experience them.
-Metal albums, books, and games I've enjoyed so far in 2025,
+Metal records, books, and games I've enjoyed so far in 2025,
 with the music restricted to new releases.
 
 <!-- more -->
@@ -22,10 +22,12 @@ See also [last year's post](/blog/2024/stuff-i-liked-in-2024/).
 
 ## Heavy metal
 
-Current top 3:
+Current top 5:
 1. **Kardashev — Alunea** (deathgaze)
-2. **Eluveitie — Ànv** (folk/melodeath)
-3. **Allegaeon — The Ossuary Lens** (prog/tech/melodeath)
+2. **Rivers of Nihil — Rivers of Nihil** (prog/death)
+3. **Fallujah — Xenotaph** (atmospheric tech-death)
+4. **Eluveitie — Ànv** (folk/melodeath)
+5. **Allegaeon — The Ossuary Lens** (prog/tech/melodeath)
 
 The rest in no particular order:
 
@@ -38,6 +40,11 @@ The rest in no particular order:
 - **Bleed From Within — Zenith** (metalcore)
 - **Hypermass — Apparition Day** (groove/melodeath)
 - **Elvenking — Reader of the Runes - Luna** (folk/power)
+- **Voidfallen — The Rituals of Resilience** (melodeath)
+- **Slow Fall — Blood Eclipse** (melodeath)
+- **Embrium — Timekeeper** (melodic black)
+- **Buried Realm — The Dormant Darkness** (tech/melodeath)
+- **Novelists — CODA** (prog/metalcore)
 
 
 ## Books
@@ -48,9 +55,7 @@ where the arcane rules of law and ownership
 are the basis of actual magic and gods.
 A fun hodgepodge of aesthetics, often quite funny satire,
 and many great characters.
-I read through the entire series without a break
-(except for the final entry, which is not out yet at the time of writing)
-and was sad to have it end.
+Quite a long series which stayed interesting all the way through.
 
 **Mary Robinette Kowal — The Martian Contingency**<br/>
 The latest entry in the Lady Astronaut series mentioned in last year's list,
@@ -77,6 +82,21 @@ slowly revealing the true nature and scale of the world.
 This is my kind of weird — unusual storytelling structures,
 high-flying philosophical ponderings,
 topped off with touches of dry humor and body horror.
+
+**Susanna Clarke — Piranesi**<br/>
+A mysterious world of endless corridors and statues,
+inhabited by an equally mysterious lone explorer
+whose journals tell us the story.
+A captivating tale with a palpable sense of place
+that I would have loved to spend more time exploring.
+
+**Aliette De Bodard — The Red Scholar's Wake**<br/>
+Sufficiently advanced technology is indistinguishable from magic,
+and this spacefaring pirate story could just as well be about wizards instead
+with its sentient spaceships, micro-robots and mind-controlled computers.
+The core of the story, though, is in romance and political machinations
+which I found quite compelling.
+Also, "lesbian space pirates" is a hell of a tagline.
 
 
 ## Games
@@ -107,6 +127,15 @@ but has good pacing and solid controls
 that still feel good when you're going through the same room for the 30th time
 to get back to that one spot where you keep falling off.
 
+**[Dead Space (2023)]**<br/>
+I never played the original so I can't say how it measures up,
+but the remake was a thoroughly enjoyable horror shooter.
+A little more combat-oriented and gory than my usual horror preference,
+but the game does some cool things with the weapon mechanics
+and world design that made it very compelling for me.
+
+
 [saturnalia]: https://store.steampowered.com/app/916350/Saturnalia/
 [archipelago]: https://archipelago.gg/
 [beton brutal]: https://store.steampowered.com/app/2330500/BETON_BRUTAL/
+[dead space (2023)]: https://store.steampowered.com/app/1693980/Dead_Space/
