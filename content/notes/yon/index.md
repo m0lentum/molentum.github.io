@@ -1,6 +1,6 @@
 +++
 title = "Yon — worldbuilding notes"
-updated = 2025-04-06
+updated = 2025-04-19
 slug = "yon"
 [extra]
 show_toc = true
