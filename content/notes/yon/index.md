@@ -268,7 +268,23 @@ build grand halls decorated with paintings and sculptures,
 and give musical performances
 which are prized and sought after all over the world.
 
-No individual characters designed yet.
+#### Aava
+
+Merfolk are uniquely well suited for the study of marine biology
+(on account of the ability to stay underwater indefinitely),
+so many of their institutes of higher learning are focused on the topic.
+Aava is one young researcher in the field and an amateur sculptor,
+with an ostentatious fashion sense typical of her people.
+
+[{{ fit_img(width=600, height=600,
+alt="Digital drawing of a mermaid wearing a skimpy halter top
+with an embroidered belt around the waist and chains of jewelry hanging off it.
+She also wears various other jewelry around the arms and the head and heavy smoky-eye makeup.
+Her body is colored with drab greens and grays, evoking some kind of Nordic freshwater fish."
+src="/gallery/2025/aava/aava_halter_fancy.jpg"
+)}}](/gallery/2025/aava/)
+
+[List of art featuring Aava](/characters/aava/)
 
 ## City life
 
