@@ -9,7 +9,7 @@ og_type = "article"
 use_katex = true
 show_toc = true
 enable_webmentions = true
-mastodon_url = ""
+mastodon_url = "https://mastoart.social/@molentum/114784038026370224"
 +++
 
 There are many shorthands and rules of thumb
