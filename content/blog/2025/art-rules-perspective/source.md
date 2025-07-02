@@ -163,13 +163,14 @@ vanishing points.
 ![Digital drawing of blocky structures in five-point perspective.](curvilinear_perspective_sketch.jpg)
 
 As noted in the previous section,
-linear perspective approximates the image surface as a plane in 3D space.
-This is a good approximation when the field of view is narrow,
+linear perspective treats the image surface as a plane in 3D space.
+This is a good approximation of human vision when the field of view is narrow,
 but the wider you make it, the more you get distortions around the edges
 (imagine bringing the image plane illustrated in the previous section
 right up to your face and looking towards its edge —
 it'll be much farther away from you than the middle).
-A common alternative is so-called five-point perspective,
+A common alternative enabling a wider field of view
+is so-called five-point perspective,
 in which lines in 3D space become sections of an ellipse on paper.
 
 The grid setup of five-point perspective is as follows.
