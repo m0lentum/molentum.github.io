@@ -3,20 +3,19 @@ title = "Gallery"
 sort_by = "date"
 paginate_by = 15
 template = "section_gallery.html"
-page_template = "page_artwork_cc0.html"
+page_template = "page_artwork.html"
 generate_feeds = true
 [extra]
 image_size = 300
 container_classes = "gallery-container"
 show_rss_link = true
-cc0 = true
 enable_webmentions = false
-mastodon_url = "https://mastoart.social/@molentum/114251697779377300"
 +++
 
-All art on this page is original work licensed under CC0 (public domain).
-Art featuring designs which I don't have the rights for
-and can't make CC0 can be found in the [fanart](/gallery/fanart) section.
+Most, but not all, art here is licensed under CC0 (public domain).
+Feel free to use my art for anything you like, 
+but please make sure to check the license for each individual image.
+Pages where all images are CC0 are also marked with a little corner badge.
 
 {% sidenote() %}
 Note: this gallery contains work featuring nudity and body horror.

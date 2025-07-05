@@ -2,6 +2,7 @@
 title = "Mermay inks"
 date = 2024-05-23
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "mermay02.jpg"
 main_image_alt = """Ink drawing of a mermaid looking upward with a focused expression.

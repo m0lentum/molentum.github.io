@@ -2,6 +2,7 @@
 title = "Infernal Butterfly"
 date = 2023-01-15
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "infernal_butterfly.jpg"
 main_image_alt = """Digital ink drawing of a demon lady with goat legs, long

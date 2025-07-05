@@ -2,6 +2,7 @@
 title = "Irithyll Battlemage"
 date = 2022-03-15
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "irithyll_battlemage.jpg"
 main_image_alt = """Digital painting of a green-haired woman wearing steel

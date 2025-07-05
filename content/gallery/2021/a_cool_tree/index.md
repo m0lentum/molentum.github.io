@@ -2,6 +2,7 @@
 title = "A Cool Tree"
 date = 2021-09-25
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "a_cool_tree.jpg"
 main_image_alt = """A digital drawing of a leafy tree standing on a steep slope

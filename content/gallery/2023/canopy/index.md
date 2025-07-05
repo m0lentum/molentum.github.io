@@ -2,6 +2,7 @@
 title = "Break in the Canopy"
 date = 2023-07-23
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "break_in_the_canopy.jpg"
 main_image_alt = """Digital drawing of a foggy forest at sunset,

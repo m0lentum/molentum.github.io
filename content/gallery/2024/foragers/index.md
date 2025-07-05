@@ -2,6 +2,7 @@
 title = "Foragers"
 date = 2024-05-10
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "foragers.jpg"
 main_image_alt = """Digital painting of two blue-colored merfolk

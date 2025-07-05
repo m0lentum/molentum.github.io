@@ -2,6 +2,7 @@
 title = "Late Night Dip"
 date = 2022-07-14
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "late_night_dip.jpg"
 main_image_alt = """A digital painting of a lady sitting at the end of a pier,

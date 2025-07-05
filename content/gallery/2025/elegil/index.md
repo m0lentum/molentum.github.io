@@ -4,6 +4,7 @@ date = 2025-03-02
 [taxonomies]
 characters = ["Elegil"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "elegil.jpg"
 main_image_alt = """Digital sketch of a male-presenting elf with long purple hair tied into a bun.

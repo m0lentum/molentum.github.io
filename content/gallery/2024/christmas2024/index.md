@@ -2,6 +2,7 @@
 title = "Christmas greeting card 2024"
 date = 2024-12-23
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "christmas2024.jpg"
 main_image_alt = """Digital painting of a snowy landscape at night, lit by the moon and northern lights.

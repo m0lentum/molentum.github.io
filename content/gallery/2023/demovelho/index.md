@@ -2,6 +2,7 @@
 title = "Demovelhon työpaja"
 date = 2023-03-04
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "demovelho.jpg"
 main_image_alt = """Digital illustration of a dark room cluttered with gadgets,

@@ -2,6 +2,7 @@
 title = "Mermay 2023"
 date = 2023-05-06
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "snowjacketmerm.jpg"
 main_image_alt = """Digital painting of a pale blue mermaid

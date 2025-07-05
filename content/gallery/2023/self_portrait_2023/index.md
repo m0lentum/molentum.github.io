@@ -2,6 +2,7 @@
 title = "Self-portrait 2023"
 date = 2023-12-31
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "self_2023.jpg"
 main_image_alt = """Digital painting of a white guy

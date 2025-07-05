@@ -2,11 +2,13 @@
 title = "Inktober 2023"
 date = 2023-10-31
 [extra]
+license = "Multiple"
 container_classes = "gallery-container"
 main_image = "02_spiders.jpg"
 main_image_alt = """A lady wearing a black dress
 with a spiderweb pattern on the back.
 She has a spiderweb hanging on her arm and spiders crawling all around."""
+skip_main_image = true
 +++
 
 Quick drawings done every other day for Inktober 2023,
@@ -14,8 +16,14 @@ all made with a Pentel Pocket Brush brush pen.
 
 <!-- more -->
 
-This page contains original work licensed under CC0.
-The rest is [fanart](../../fanart/2023/inktober-2023/).
+Everything under the "Originals" header is licensed CC0.
+The fanart is all rights reserved by the respective IP holders.
+
+## Originals
+
+![A lady wearing a black dress
+with a spiderweb pattern on the back.
+She has a spiderweb hanging on her arm and spiders crawling all around.](02_spiders.jpg)
 
 ![A dagger-wielding elven assassin narrowly dodging a large arrow aimed at their head.
 The impact of the arrow has made their long hair billow to the side
@@ -55,3 +63,12 @@ and a voice off the page says "ah, fu-".](26_remove.jpg)
 
 ![A waiter in a suit and tie pouring sparkling water out of a plastic bottle.](28_sparkle.jpg)
 
+## Fanart
+
+![Airyn from Spelunky 2 carrying a golden idol
+and running away from a large boulder.](06_golden.jpg)
+
+![Toad (the character from Super Mario)
+riding a toad (the animal from real life) and holding up a little sword.](08_toad.jpg)
+
+![The ninja from N++ running away from a distressingly large collection of enemies.](30_rush.jpg)

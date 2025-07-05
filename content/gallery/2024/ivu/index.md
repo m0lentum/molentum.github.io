@@ -4,6 +4,7 @@ date = 2024-12-02
 [taxonomies]
 characters = ["Ivu"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "ivu.jpg"
 main_image_alt = """Digital painting of a feminine figure whose skin looks like birch bark

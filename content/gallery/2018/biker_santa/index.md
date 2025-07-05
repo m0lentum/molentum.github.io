@@ -2,6 +2,7 @@
 title = "Biker Santa"
 date = 2018-12-23
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "biker_santa.jpg"
 main_image_alt = """A digital painting imagining Santa Claus as a biker. He's

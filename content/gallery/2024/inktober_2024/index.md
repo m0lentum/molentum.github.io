@@ -4,6 +4,7 @@ date = 2024-10-31
 [taxonomies]
 characters = ["Miriel"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "camera.jpg"
 main_image_alt = """Black and white ink drawing of Miriel the forest elf

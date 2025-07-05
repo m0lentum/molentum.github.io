@@ -4,6 +4,7 @@ date = 2025-04-19
 [taxonomies]
 characters = ["Aava"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "aava_halter_fancy.jpg"
 main_image_alt = """Digital drawing of a mermaid wearing a skimpy halter top

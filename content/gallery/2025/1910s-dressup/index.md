@@ -4,6 +4,7 @@ date = 2025-02-20
 [taxonomies]
 characters = ["Miriel"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "1910s-dressup.jpg"
 main_image_alt = """Three portraits of a red-haired elven woman

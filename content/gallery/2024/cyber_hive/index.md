@@ -2,6 +2,7 @@
 title = "Cyber Hive"
 date = 2024-11-09
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "cyber_hive.jpg"
 main_image_alt = """Digital painting of a naked purple-skinned woman with bee wings on her back.

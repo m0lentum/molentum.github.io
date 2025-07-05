@@ -2,6 +2,7 @@
 title = "Isidora, Voice of the Dead"
 date = 2022-01-06
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "isidora.jpg"
 main_image_alt = """Digital painting depicting Isidora, Voice of the Dead from

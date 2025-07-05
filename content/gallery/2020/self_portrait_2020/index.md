@@ -2,6 +2,7 @@
 title = "Self-portrait 2020"
 date = 2020-11-25
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "self_portrait_2020.jpg"
 main_image_alt = """A digital painting of a young man with pale skin and dark

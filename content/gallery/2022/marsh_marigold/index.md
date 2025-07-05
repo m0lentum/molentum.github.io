@@ -2,6 +2,7 @@
 title = "Marsh Marigold"
 date = 2022-12-20
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "marsh_marigold.jpg"
 main_image_alt = """Digital painting of an elven woman in a long yellow and

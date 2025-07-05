@@ -4,6 +4,7 @@ date = 2024-07-14
 [taxonomies]
 characters = ["Miriel"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "miriel.jpg"
 main_image_alt = """Drawing of a red-haired elven woman wearing her hunting/fishing gear:

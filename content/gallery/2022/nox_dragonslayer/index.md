@@ -2,6 +2,7 @@
 title = "Nox Dragonslayer"
 date = 2022-04-10
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "nox_dragonslayer.jpg"
 main_image_alt = """A digital drawing of a green-haired woman wearing ornate
