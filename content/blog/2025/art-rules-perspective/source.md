@@ -1,6 +1,7 @@
 +++
 title = "Art rules from first principles, part 1: Perspective"
 date = 2025-07-02
+updated = 2025-07-05
 slug = "art-rules-perspective"
 [taxonomies]
 tags = ["art", "geometry"]
@@ -124,9 +125,11 @@ demonstrating that they meet at a vanishing point](linear_vanishing.jpg)
 This one is from [another Desmos plot](https://www.desmos.com/3d/54ef687d08).
 {% end %}
 
-This even gives us an explicit formula for the location of the vanishing point!
+This even gives us an explicit formula for the location of the vanishing point,
+with a remarkably simple geometric meaning:
+the vanishing point is precisely $\hat{d}$ projected onto the canvas plane!
 The formula matches intuition nicely —
-lines that face directly away from the observer (i.e. $\hat{d} = (0, 0, 1)$)
+lines that face directly forward (i.e. $\hat{d} = (0, 0, 1)$)
 meet at the origin of the canvas plane (a common one-point perspective setup!)
 and as $z'$ gets closer to zero,
 the corresponding vanishing point gets farther and farther away
@@ -228,7 +231,7 @@ Furthermore, when the line is horizontal (aligned with the x-axis),
 the projected great semicircle always touches the points $(\pm 1, 0, 0)$
 where the sphere intersects with the x-axis,
 and vertical lines similarly meet at $(0, \pm 1, 0)$.
-Finally, lines facing directly away from the observer project to 
+Finally, lines facing forward project to 
 great semicircles that end at $(0, 0, \pm 1)$,
 which is the center of our image surface.
 These are precisely the vanishing points of five-point perspective!
