@@ -2,6 +2,7 @@
 title = "Night out"
 date = 2025-03-06
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "night_out.jpg"
 main_image_alt = """Digital painting of a woman with long curved horns on her head

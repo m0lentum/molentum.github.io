@@ -4,6 +4,7 @@ date = 2024-12-16
 [taxonomies]
 characters = ["Ivu"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "shmallow.jpg"
 main_image_alt = """Digital painting of a woman with birch bark for skin

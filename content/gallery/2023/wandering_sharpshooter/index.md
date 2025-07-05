@@ -2,6 +2,7 @@
 title = "Wandering Sharpshooter"
 date = 2023-09-09
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "sharpshooter.jpg"
 main_image_alt = """Digital drawing of a green-haired woman

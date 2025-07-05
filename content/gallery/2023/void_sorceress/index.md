@@ -2,6 +2,7 @@
 title = "Void Sorceress"
 date = 2023-04-18
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "void_sorceress.jpg"
 main_image_alt = """A digital painting of a blue-skinned woman,

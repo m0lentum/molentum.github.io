@@ -1,6 +1,5 @@
 {% extends "index.html" -%}
 {% import "zerm/templates/macros/lists.html" as lists -%}
-{% import "licenses/cc0.html" as cc0 -%}
 
 {%- block title %}
     <title>{{ config.title }}/{{ section.title }}</title>
@@ -47,7 +46,14 @@
                         ) %}
                     {% endif %}
                     <a href={{ page.permalink }}>
-                        <img src={{ image.url }} alt="{{ page.extra.main_image_alt }}" />
+                        <div class="gallery-image">
+                            <img src={{ image.url }} alt="{{ page.extra.main_image_alt }}" />
+                            {% if page.extra.license and page.extra.license == "CC0" %}
+                            <div class="license-badge">
+                                <span>CC0</span>
+                            </div>
+                            {% endif %}
+                        </div>
                         <h2 class="gallery-title">{{ page.title }}</h2>
                     </a>
                 </div>
@@ -56,9 +62,3 @@
         {%- endblock page_list-%}
     {% endif %}
 {%- endblock main -%}
-
-{%- block license -%}
-{%- if section.extra.cc0 -%}
-{{ cc0::license() }}
-{%- endif -%}
-{%- endblock license -%}

@@ -2,6 +2,7 @@
 title = "Poppy"
 date = 2022-10-06
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "poppy.jpg"
 main_image_alt = """A digital painting featuring a large and brightly lit

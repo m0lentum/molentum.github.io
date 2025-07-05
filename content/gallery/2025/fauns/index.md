@@ -4,6 +4,7 @@ date = 2025-03-23
 [taxonomies]
 characters = ["Olivia", "Basil"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "fauns.jpg"
 main_image_alt = """Digital painting of two fauns with deer-like features.

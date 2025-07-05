@@ -2,6 +2,7 @@
 title = "Blooming"
 date = 2024-12-28
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "queen.jpg"
 main_image_alt = """Ink drawing of a woman in a loose dress

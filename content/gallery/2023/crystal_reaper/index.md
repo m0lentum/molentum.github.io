@@ -2,6 +2,7 @@
 title = "Crystal Reaper"
 date = 2023-02-05
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "crystal_reaper.jpg"
 main_image_alt = """Digital ink drawing of a woman dressed in black adorned

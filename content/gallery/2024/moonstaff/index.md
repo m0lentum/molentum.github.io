@@ -2,6 +2,7 @@
 title = "Don't forget to charge your moon staff"
 date = 2024-04-30
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "moonstaff.jpg"
 main_image_alt = """

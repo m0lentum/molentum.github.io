@@ -2,6 +2,7 @@
 title = "Lily of the Valley"
 date = 2022-09-04
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "lily_of_the_valley.jpg"
 main_image_alt = """A digital painting of an elven woman walking in a forest at

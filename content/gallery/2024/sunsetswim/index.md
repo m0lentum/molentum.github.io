@@ -4,6 +4,7 @@ date = 2024-08-03
 [taxonomies]
 characters = ["Miriel"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "sunsetswim.jpg"
 main_image_alt = """Digital painting depicting a quiet lake at sunset.

@@ -2,6 +2,7 @@
 title = "Heather"
 date = 2024-01-23
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "heather.jpg"
 main_image_alt = """Digital painting of a green-skinned fairy

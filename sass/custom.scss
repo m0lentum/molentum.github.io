@@ -182,6 +182,32 @@ article.artwork {
   }
 }
 
+.gallery-image {
+  // for positioning of the license badge
+  position: relative;
+}
+
+.license-badge {
+  position: absolute;
+  // there's 5px of padding on the image
+  top: 5px;
+  right: 5px;
+  width: 0;
+  height: 0;
+  // background but lighter
+  border: 16px solid lighten(#161f2e, 10%);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  font-size: 0.5rem;
+  font-weight: bold;
+  span {
+    position: absolute;
+    top: -14px;
+    left: -2px;
+    transform: rotate(10deg);
+  }
+}
+
 .gallery-title {
   color: var(--accent);
   margin: 0;

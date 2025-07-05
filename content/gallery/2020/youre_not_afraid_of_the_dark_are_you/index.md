@@ -2,6 +2,7 @@
 title = "You're not afraid of the dark, are you?"
 date = 2020-05-17
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "merm.jpg"
 main_image_alt = """Digital painting of a mermaid with a green tail large

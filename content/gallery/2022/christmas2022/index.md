@@ -2,6 +2,7 @@
 title = "Christmas greeting card 2022"
 date = 2022-12-22
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "christmas2022.jpg"
 main_image_alt = """Digital painting of a snowy forest landscape at night with

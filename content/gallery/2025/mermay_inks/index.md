@@ -4,6 +4,7 @@ date = 2025-06-01
 [taxonomies]
 characters = ["Aava"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "mermay07.jpg"
 main_image_alt = """Ink drawing of a mermaid sitting on the sea floor, leaning on a rock.

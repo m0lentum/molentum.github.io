@@ -2,6 +2,7 @@
 title = "Cornflower"
 date = 2022-11-12
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "cornflower.jpg"
 main_image_alt = """Digital painting featuring a purple-haired elven woman

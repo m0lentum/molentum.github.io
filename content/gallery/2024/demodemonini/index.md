@@ -2,6 +2,7 @@
 title = "Demodemonini"
 date = 2024-02-28
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "demodemons.gif"
 main_image_alt = """

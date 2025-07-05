@@ -2,6 +2,7 @@
 title = "Bloodmage Mermaid"
 date = 2022-05-14
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "bloodmage_mermaid.jpg"
 main_image_alt = """A digital drawing of a porcelain-white mermaid with a bald

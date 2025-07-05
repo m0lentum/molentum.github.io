@@ -4,6 +4,7 @@ date = 2025-05-21
 [taxonomies]
 characters = ["Aava"]
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "window.jpg"
 main_image_alt = """Digital painting of a mermaid

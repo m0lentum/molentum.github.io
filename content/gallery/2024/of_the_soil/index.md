@@ -2,6 +2,7 @@
 title = "Of the Soil"
 date = 2024-10-27
 [extra]
+license = "CC0"
 container_classes = "gallery-container"
 main_image = "of_the_soil.jpg"
 main_image_alt = """Digital drawing of a woman with floral tattoos along her leg 

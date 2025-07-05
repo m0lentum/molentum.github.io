@@ -218,23 +218,23 @@ src="/gallery/2021/a_cool_tree/a_cool_tree.jpg"
 ## 2022
 
 Now we're getting to some really productive years.
-In January I made [this fanart of Isidora from Blasphemous](/gallery/fanart/2022/isidora/),
+In January I made [this fanart of Isidora from Blasphemous](/gallery/2022/isidora/),
 where I was very proud of the level of detail and subtle perspective.
 
 {{ fit_img(width=800, height=800,
 alt="Digital painting depicting Isidora, Voice of the Dead from the game Blasphemous.
 She's floating in the air with her cape billowing behind her,
 singing with her eyes closed, while fireballs circle around her in the background."
-src="/gallery/fanart/2022/isidora/isidora.jpg"
+src="/gallery/2022/isidora/isidora.jpg"
 )}}
 
-I then stepped up the level of detail even further with [this Elden Ring fanart piece](/gallery/fanart/2022/nox-dragonslayer/).
+I then stepped up the level of detail even further with [this Elden Ring fanart piece](/gallery/2022/nox-dragonslayer/).
 
 {{ fit_img(width=800, height=800,
 alt="A digital drawing of a green-haired woman wearing ornate leather armor with a white cloth cape.
 She's carrying a large corkscrew-shaped sword over her shoulder, and a magic staff in the other hand.
 She's standing confidently in front of a slain two-headed dragon."
-src="/gallery/fanart/2022/nox_dragonslayer/nox_dragonslayer.jpg"
+src="/gallery/2022/nox_dragonslayer/nox_dragonslayer.jpg"
 )}}
 
 However, the real revelation came when I joined a Discord community called Art Corner
@@ -275,7 +275,7 @@ Her boots, bow and quiver are hanging on the branches below her."
 src="/gallery/2023/canopy/break_in_the_canopy.jpg"
 )}}
 
-[This Diablo IV fanart piece](/gallery/fanart/2023/wandering-sharpshooter/) was
+[This Diablo IV fanart piece](/gallery/2023/wandering-sharpshooter/) was
 an extremely successful attempt at a completely different style,
 and a first step in a more coarsely textured direction.
 
@@ -283,7 +283,7 @@ and a first step in a more coarsely textured direction.
 alt="Digital drawing of a green-haired woman standing on a muddy road in the snowy wilderness of Fractured Peaks.
 She's wearing light leather and plate armor with a green cloth hood,
 and carries a crossbow, two swords, and several small daggers."
-src="/gallery/fanart/2023/wandering_sharpshooter/sharpshooter.jpg"
+src="/gallery/2023/wandering_sharpshooter/sharpshooter.jpg"
 )}}
 
 Finally, I participated in [Inktober](/gallery/2023/inktober-2023/)
@@ -292,7 +292,7 @@ for the first time and discovered a love for ink which really blossomed in 2024.
 {{ fit_img(width=800, height=800,
 alt="Ink drawing of a Toad (the character from Super Mario) riding a toad (the animal from real life)
 and holding up a little sword."
-src="/gallery/fanart/2023/inktober_2023/08_toad.jpg"
+src="/gallery/2023/inktober_2023/08_toad.jpg"
 )}}
 
 

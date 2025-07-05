@@ -1,4 +1,5 @@
 {% extends "index.html" -%}
+{% import "licenses/cc0.html" as cc0 -%}
 
 {%- block title %}
     <title>{{ config.title }}/{{ page.title }}</title>
@@ -27,6 +28,10 @@
                     {%- endif -%}
                 {% endfor %}
                 {%- endif -%}
+                {%- if page.extra.license -%}
+                <br/>
+                License: {{ page.extra.license }}
+                {%- endif -%}
             </div>
         </header>
 
@@ -37,3 +42,9 @@
         {{ page.content | safe }}
     </article>
 {%- endblock main -%}
+
+{%- block license -%}
+{%- if page.extra.license and page.extra.license == "CC0" -%}
+{{ cc0::license() }}
+{%- endif -%}
+{%- endblock license -%}

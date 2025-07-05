@@ -2,6 +2,7 @@
 title = "Molenia of the Large Sword"
 date = 2023-11-21
 [extra]
+license = "All rights reserved"
 container_classes = "gallery-container"
 main_image = "molenia_of_the_large_sword.jpg"
 main_image_alt = """Digital painting of a green-haired woman in a long dress
