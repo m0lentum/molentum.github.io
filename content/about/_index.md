@@ -4,6 +4,12 @@ title = "About"
 no_wrap_images = true
 +++
 
+<div class="post-meta">
+<span class="post-date">
+[Updated: 2025.07.23]
+</span>
+</div>
+
 {{ float_img(
     float="right",
     width=300,
