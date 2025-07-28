@@ -127,6 +127,7 @@ article.artwork {
 
 .gallery-container {
   align-items: center;
+  text-align: center;
 
   header,
   .post,
@@ -216,4 +217,8 @@ article.artwork {
 
 .license {
   color: #aaa;
+}
+
+.webmentions {
+  text-align: start;
 }
