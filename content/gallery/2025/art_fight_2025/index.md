@@ -9,7 +9,8 @@ container_classes = "gallery-container"
 main_image = "thumbnail.jpg"
 main_image_alt = """A grid of four drawings in different styles featuring various characters."""
 skip_main_image = true
-enable_webmentions = false
+enable_webmentions = true
+mastodon_url = "https://mastoart.social/@molentum/114954252095833210"
 +++
 
 I participated in [Art Fight] for the first time,
