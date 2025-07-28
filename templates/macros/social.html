@@ -41,11 +41,13 @@
     {%- elif page -%}
         {%- if page.summary -%}
             {# for some reason markdown line breaks are preserved in this,
-                hackery to remove them #}
+                hackery to remove them
+                and also quotes which break the html #}
             {{ page.summary
                 | striptags
                 | linebreaksbr
                 | replace(from="<br>", to=" ")
+                | replace(from='"', to="'")
                 | truncate(length=300)
                 | safe
             }}
