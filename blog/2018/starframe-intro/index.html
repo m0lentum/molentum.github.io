@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>&#x2F;home&#x2F;mole/Starframe devlog: Introduction</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    
+    
+    
+    <meta name="author" content="Mikael Myyrä" />
+    <meta name="creator" content="Mikael Myyrä" />
+    <meta name="article:author" content="Mikael Myyrä" />
+    <meta name="fediverse:creator" content="@molentum@mastoart.social" />
+    <meta property="og:title" content="&#x2F;home&#x2F;mole/Starframe devlog: Introduction" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;molentum.me&#x2F;blog&#x2F;2018&#x2F;starframe-intro&#x2F;"/><meta name="description" content="Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D game engine suitable for rapid prototyping and game jams as well as more polished, hopefully commercial-quality products. This blog is meant to document the development and ideas behind it i…"/>
+        <meta property="og:description" content="Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D game engine suitable for rapid prototyping and game jams as well as more polished, hopefully commercial-quality products. This blog is meant to document the development and ideas behind it i…"/><meta property="og:image" content="https://molentum.me/self_square.jpg"/><meta property="article:published_time" content="2018-09-23T00:00:00+0000" /><meta property="article:modified_time" content="2018-09-23T00:00:00+0000" />
+    <link rel="stylesheet" href="https://molentum.me/style.css?h=1f6038239e9a49801985">
+    <link rel="stylesheet" href="https://molentum.me/color/lime.css?h=9e2ee27fa360b7fd8766"><link rel="stylesheet" href="https://molentum.me/custom.css?h=886d0bf1e8c05b697541">
+    
+<link rel="shortcut icon" href="https://molentum.me/favicon.ico" type="image/x-icon" />
+        
+        
+        
+        <link rel="alternate" type="application/rss+xml" title="All/&#x2F;home&#x2F;mole" href="https://molentum.me/rss.xml"><link rel="webmention" href="https:&#x2F;&#x2F;webmention.io&#x2F;molentum.me&#x2F;webmention" /></head>
+    <body><div class="container center">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__mole left-mole"></div>
+        <div class="header__logo">
+            <a href="https:&#x2F;&#x2F;molentum.me">
+    <div class="logo">
+        &#x2F;home&#x2F;mole
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+        <div class="header__mole right-mole"></div>
+    </div>
+    
+    <nav class="menu">
+        <ul class="menu__inner menu__inner--desktop">
+            
+            
+        <li>
+            <a href="https://molentum.me/about">about</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/blog">blog</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/gallery">gallery</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/notes">notes</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;mastoart.social&#x2F;@molentum">Mastodon</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;m0lentum">GitHub</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;molentum.itch.io&#x2F;">Itch.io</a>
+        </li></ul>
+
+        <ul class="menu__inner menu__inner--mobile">
+            
+        <li>
+            <a href="https://molentum.me/about">about</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/blog">blog</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/gallery">gallery</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/notes">notes</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;mastoart.social&#x2F;@molentum">Mastodon</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;m0lentum">GitHub</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;molentum.itch.io&#x2F;">Itch.io</a>
+        </li>
+        </ul>
+    </nav>
+
+        
+</header>
+<div class="content"><article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https:&#x2F;&#x2F;molentum.me&#x2F;blog&#x2F;2018&#x2F;starframe-intro&#x2F;">Starframe devlog: Introduction</a>
+            </h1>
+            
+    <div class="post-meta">
+        <span class="post-date">2018.09.23
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    ::
+    #<a href="https://molentum.me/tags/starframe/">starframe</a>
+        
+    
+            
+        
+    </div>
+
+        </header>
+        
+
+        <p>Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D
+game engine suitable for rapid prototyping and game jams as well as more polished, hopefully commercial-quality products.
+This blog is meant to document the development and ideas behind it in a fair bit of detail - mostly to organize and
+revise my own thoughts, but with the hope that someone else might also find it interesting and/or helpful.
+In this first post I will outline what exactly I am trying to accomplish and why I am doing it.</p>
+<span id="continue-reading"></span>
+<p>2020 note: I've edited this post a little to remove some obsolete information.
+I don't think this is a great introduction to the project as it is today, but I'm keeping it up for history's sake.
+If you just want to know what the project is about, check out the <a href="https://github.com/m0lentum/starframe">GitHub repo's</a> README.</p>
+<h1 id="but-why">But why?<a class="zola-anchor" href="#but-why" aria-label="Anchor link for: but-why">§</a>
+</h1>
+<p>I'm the kind of person whose first thought when seeing something cool is "how can I do this too?".
+Probably the second coolest thing in the universe to me, right after computers, is movement and the mathematics therein.
+It blows my mind that we can mathematically describe objects and the ways in which they interact.
+It naturally follows that I would want to program movement. Another thing I love very much is video games,
+especially platformers, which just so happens to be a perfect platform to put movement on.</p>
+<p>Alright, so I want to do movement, but what's the best way to involve this type of math in my work?
+I've tried many game development tools over the years. While using an existing engine is undeniably the most
+efficient way to "just make games" and I would absolutely recommend Unity to anyone, I always have this
+nagging desire to know more about the inner workings of what I'm using and modify it to look more like me.
+Thus begins Starframe - an entire game engine framework with as few dependencies as I can manage.
+This is my attempt to make the tool I want to have, something that I know inside and
+out and is fully in my control to modify when I feel like it. Something that is truly mine.
+With great movement physics, of course. But more importantly than that end goal,
+which may or may not ever be fully realized, I love learning about this stuff. It's just fun.</p>
+<h1 id="so-what-s-in-it">So, what's in it?<a class="zola-anchor" href="#so-what-s-in-it" aria-label="Anchor link for: so-what-s-in-it">§</a>
+</h1>
+<p>I won't go into much detail in this post, but here's a quick list of things I want to do,
+roughly in order of priority (and probability of actually happening).</p>
+<p>(2020 note: this isn't accurate at all anymore, check the <a href="/blog">blog</a> for writings on things that actually came to be)</p>
+<ul>
+<li>flexible game object architecture (ECS)
+<ul>
+<li>serializable level data, file I/O</li>
+</ul>
+</li>
+<li>collision detection and realistic rigid body physics interaction
+<ul>
+<li>optimized via spatial partitioning</li>
+</ul>
+</li>
+<li>graphics via OpenGL
+<ul>
+<li>sprite-sheet animation</li>
+<li>dynamic camera system</li>
+<li>keyframe-based, smoothed motion animation</li>
+</ul>
+</li>
+<li>GUI framework for menus and HUDs</li>
+<li>multithreading</li>
+<li>soft body / liquid physics</li>
+<li>graphical level editor</li>
+</ul>
+<h1 id="the-platform">The platform<a class="zola-anchor" href="#the-platform" aria-label="Anchor link for: the-platform">§</a>
+</h1>
+<p>Sure, I'm making this more or less from scratch, but I still need <em>some</em> tools.</p>
+<p>When I first started working on this project in June 2017, I chose C++ as my language and SFML
+to help with cross-platform compatibility and OS interaction. C++ is still the standard language
+in the game industry due to its speed and this felt like a great time to learn it. It still does,
+and I'm happy I did, but I eventually got fed up with how laborious it is to write.
+I figured, since this is a fun hobby project above everything else, that I should look into easier to write alternatives.</p>
+<p>Shortly after this decision I settled on Rust. It provides comparable performance to C++ with a far
+more concise syntax and many neat modern features. Cross-platform compatibility is provided out of the
+box and Cargo handles fetching my dependencies for me, which is wonderful as I develop a lot on both Windows
+and Linux. No more messing with CMake, header files and .dlls.
+I don't have enough experience to say whether or not I recommend it to others yet, but it is
+certainly many steps above C++ in terms of user experience.</p>
+<p>This is the road I'm currently on - rewriting what I had done with C++ in this new and exciting language
+and revisiting old decisions along the way. I'm still in the very early stages of this and
+plan to write up a blog post whenever I'm finished with a major feature (which won't be often - I'm working
+and studying so time is scarce). I won't go into language specifics much, but all the code examples will obviously be in Rust.
+Also, for those interested, the full source code to this project lives on <a href="https://github.com/m0lentum/starframe">GitHub</a>.</p>
+
+    </article></div>
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+                    <div class="footer__inner"><div class="copyright">
+                                <span>© 2025 Mikael Myyrä</span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Theme based on <a href="https://github.com/ejmg/zerm">zerm</a> by <a href="https://github.com/ejmg">ejmg</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Font: <a href="https://www.jetbrains.com/lp/mono/">JetBrains Mono</a></span>
+                            </div>
+    <script type="text/javascript" src="https://molentum.me/assets/js/main.js"></script>
+</div>
+                </footer></div>
+    </body>
+</html>

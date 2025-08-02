@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>&#x2F;home&#x2F;mole - Blog</title>
+      <link>https://molentum.me/blog/</link>
+      <description>Creations and ramblings of Mikael &quot;Molentum&quot; Myyrä.</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://molentum.me/blog/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Sat, 05 Jul 2025 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Art rules from first principles, part 1: Perspective</title>
+          <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/art-rules-perspective/</link>
+          <guid>https://molentum.me/blog/2025/art-rules-perspective/</guid>
+          <description xml:base="https://molentum.me/blog/2025/art-rules-perspective/">&lt;p&gt;There are many shorthands and rules of thumb
+one encounters when learning the fundamentals of representational art —
+vanishing points, warm-cool contrasts,
+grouping of values into light, midtone and shadow, etc.
+There are many good non-technical explanations of these ideas out there,
+but I wanted to dive deeper
+and investigate how they arise from the physics of light
+and geometry of space.
+In this first part we&#x27;ll look at geometric interpretations
+of common perspective drawing methods.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Painting normal maps, and other Krita tips</title>
+          <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/krita-tips/</link>
+          <guid>https://molentum.me/blog/2025/krita-tips/</guid>
+          <description xml:base="https://molentum.me/blog/2025/krita-tips/">&lt;p&gt;I&#x27;m a big fan of using software effectively and optimizing my workflows,
+so over my years using &lt;a href=&quot;https:&#x2F;&#x2F;krita.org&#x2F;&quot;&gt;Krita&lt;&#x2F;a&gt; I&#x27;ve spent quite a bit of time digging into its features.
+In this post I want to talk about how I use this wonderful piece of software
+and highlight some not-so-obvious bits
+that have made a difference in my process.
+I&#x27;ll do general painting first, hopefully in a way that is useful to beginners,
+and then indulge in some nerding out about normal maps and how to make them.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>A decade of digital art</title>
+          <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/a-decade-of-digital-art/</link>
+          <guid>https://molentum.me/blog/2025/a-decade-of-digital-art/</guid>
+          <description xml:base="https://molentum.me/blog/2025/a-decade-of-digital-art/">&lt;p&gt;The oldest digital drawing I have on my computer turns ten years old today.
+This post is a self-indulgent trip down memory lane,
+looking back at landmark pieces and lessons learned throughout the years.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Game graphics: the journey so far</title>
+          <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/game-graphics/</link>
+          <guid>https://molentum.me/blog/2025/game-graphics/</guid>
+          <description xml:base="https://molentum.me/blog/2025/game-graphics/">&lt;p&gt;The majority of my recent game development work
+has revolved around graphics —
+both workflows for making them
+and technology for rendering them.
+Many ideas have been had and many scrapped along the way,
+and the journey certainly isn&#x27;t over yet,
+but I think I&#x27;m moving towards something pretty unique and cool.
+This is a devlog-style post where I meander through
+some of the more noteworthy moments so far
+without going very deep into technical details
+(but providing technical sources where relevant).&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Rounding collider corners</title>
+          <pubDate>Sat, 04 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/rounding-collider-corners/</link>
+          <guid>https://molentum.me/blog/2025/rounding-collider-corners/</guid>
+          <description xml:base="https://molentum.me/blog/2025/rounding-collider-corners/">&lt;p&gt;Back in 2022 I entirely rewrote one of the most complicated parts of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&quot;&gt;Starframe&lt;&#x2F;a&gt;,
+the collision detection system.
+A notable feature of the new system is the ability to give any shape rounded corners.
+I also wrote most of this post back then, but things happened and it was left unfinished.
+Here it is now, more than two years later.
+Better late than never I suppose.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Stuff I liked in 2024</title>
+          <pubDate>Sun, 29 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2024/stuff-i-liked-in-2024/</link>
+          <guid>https://molentum.me/blog/2024/stuff-i-liked-in-2024/</guid>
+          <description xml:base="https://molentum.me/blog/2024/stuff-i-liked-in-2024/">&lt;p&gt;In recent years I&#x27;ve made a habit of posting
+a list of my favorite heavy metal releases of the year on Mastodon.
+This year I decided to list more than just music
+and do it in a more permanent place here on my website.
+So here are some metal albums, books, and games I enjoyed in 2024.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Ten formative games</title>
+          <pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2024/ten-formative-games/</link>
+          <guid>https://molentum.me/blog/2024/ten-formative-games/</guid>
+          <description xml:base="https://molentum.me/blog/2024/ten-formative-games/">&lt;p&gt;Inspired by recent discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;eggplant.show&#x2F;&quot;&gt;Eggplant Show&lt;&#x2F;a&gt; Discord community,
+here&#x27;s a list of ten video games.
+Not my favorite games (though many of them are that too),
+but ones that had a notable influence on who I am today.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Starframe devlog: Rope physics</title>
+          <pubDate>Thu, 30 Dec 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2021/starframe-ropes/</link>
+          <guid>https://molentum.me/blog/2021/starframe-ropes/</guid>
+          <description xml:base="https://molentum.me/blog/2021/starframe-ropes/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&#x2F;&quot;&gt;Starframe&lt;&#x2F;a&gt;&#x27;s rope physics is the first piece of physics code I&#x27;ve written that
+I designed entirely myself. This is a short story of that design process
+and the challenges and solutions found along the way.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Starframe devlog: Solving Constraints in Physics</title>
+          <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2021/starframe-constraints/</link>
+          <guid>https://molentum.me/blog/2021/starframe-constraints/</guid>
+          <description xml:base="https://molentum.me/blog/2021/starframe-constraints/">&lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&#x2F;&quot;&gt;Starframe&lt;&#x2F;a&gt; physics solver has gone through a few iterations recently as my
+understanding of the problem and knowledge of available methods have grown. In
+this post I attempt to explain what constraints are and detail a few
+game-engine-friendly ways of solving them. I&#x27;ll try to make this
+understandable to someone with approximately the level of knowledge I had
+before starting this: decent linear algebra and calculus skills and a
+tiny bit of physics knowledge.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Starframe devlog: Architecture</title>
+          <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2020/starframe-architecture/</link>
+          <guid>https://molentum.me/blog/2020/starframe-architecture/</guid>
+          <description xml:base="https://molentum.me/blog/2020/starframe-architecture/">&lt;p&gt;I&#x27;ve spent a large portion of the past two years writing and rewriting
+the basic structures that describe a game and its content in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&quot;&gt;Starframe&lt;&#x2F;a&gt; (formerly known as MoleEngine).
+These are some notes on what I&#x27;ve done so far and what I&#x27;ve learned from it.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Starframe devlog: Introduction</title>
+          <pubDate>Sun, 23 Sep 2018 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2018/starframe-intro/</link>
+          <guid>https://molentum.me/blog/2018/starframe-intro/</guid>
+          <description xml:base="https://molentum.me/blog/2018/starframe-intro/">&lt;p&gt;Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D
+game engine suitable for rapid prototyping and game jams as well as more polished, hopefully commercial-quality products.
+This blog is meant to document the development and ideas behind it in a fair bit of detail - mostly to organize and
+revise my own thoughts, but with the hope that someone else might also find it interesting and&#x2F;or helpful.
+In this first post I will outline what exactly I am trying to accomplish and why I am doing it.&lt;&#x2F;p&gt;</description></item>
+    </channel>
+</rss>

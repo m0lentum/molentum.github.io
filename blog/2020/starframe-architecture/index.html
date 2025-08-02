@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>&#x2F;home&#x2F;mole/Starframe devlog: Architecture</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    
+    
+    
+    <meta name="author" content="Mikael Myyrä" />
+    <meta name="creator" content="Mikael Myyrä" />
+    <meta name="article:author" content="Mikael Myyrä" />
+    <meta name="fediverse:creator" content="@molentum@mastoart.social" />
+    <meta property="og:title" content="&#x2F;home&#x2F;mole/Starframe devlog: Architecture" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;molentum.me&#x2F;blog&#x2F;2020&#x2F;starframe-architecture&#x2F;"/><meta name="description" content="I've spent a large portion of the past two years writing and rewriting the basic structures that describe a game and its content in Starframe (formerly known as MoleEngine). These are some notes on what I've done so far and what I've learned from it."/>
+        <meta property="og:description" content="I've spent a large portion of the past two years writing and rewriting the basic structures that describe a game and its content in Starframe (formerly known as MoleEngine). These are some notes on what I've done so far and what I've learned from it."/><meta property="og:image" content="https://molentum.me/self_square.jpg"/><meta property="article:published_time" content="2020-08-30T00:00:00+0000" /><meta property="article:modified_time" content="2020-08-30T00:00:00+0000" />
+    <link rel="stylesheet" href="https://molentum.me/style.css?h=1f6038239e9a49801985">
+    <link rel="stylesheet" href="https://molentum.me/color/lime.css?h=9e2ee27fa360b7fd8766"><link rel="stylesheet" href="https://molentum.me/custom.css?h=886d0bf1e8c05b697541">
+    
+<link rel="shortcut icon" href="https://molentum.me/favicon.ico" type="image/x-icon" />
+        
+        
+        
+        <link rel="alternate" type="application/rss+xml" title="All/&#x2F;home&#x2F;mole" href="https://molentum.me/rss.xml"><link rel="webmention" href="https:&#x2F;&#x2F;webmention.io&#x2F;molentum.me&#x2F;webmention" /></head>
+    <body><div class="container center">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__mole left-mole"></div>
+        <div class="header__logo">
+            <a href="https:&#x2F;&#x2F;molentum.me">
+    <div class="logo">
+        &#x2F;home&#x2F;mole
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+        <div class="header__mole right-mole"></div>
+    </div>
+    
+    <nav class="menu">
+        <ul class="menu__inner menu__inner--desktop">
+            
+            
+        <li>
+            <a href="https://molentum.me/about">about</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/blog">blog</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/gallery">gallery</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/notes">notes</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;mastoart.social&#x2F;@molentum">Mastodon</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;m0lentum">GitHub</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;molentum.itch.io&#x2F;">Itch.io</a>
+        </li></ul>
+
+        <ul class="menu__inner menu__inner--mobile">
+            
+        <li>
+            <a href="https://molentum.me/about">about</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/blog">blog</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/gallery">gallery</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/notes">notes</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;mastoart.social&#x2F;@molentum">Mastodon</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;m0lentum">GitHub</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;molentum.itch.io&#x2F;">Itch.io</a>
+        </li>
+        </ul>
+    </nav>
+
+        
+</header>
+<div class="content"><article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https:&#x2F;&#x2F;molentum.me&#x2F;blog&#x2F;2020&#x2F;starframe-architecture&#x2F;">Starframe devlog: Architecture</a>
+            </h1>
+            
+    <div class="post-meta">
+        <span class="post-date">2020.08.30
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    ::
+    #<a href="https://molentum.me/tags/starframe/">starframe</a>
+        
+    #<a href="https://molentum.me/tags/data-structures/">data structures</a>
+        
+    
+            
+        
+    </div>
+
+        </header>
+        
+
+        <p>I've spent a large portion of the past two years writing and rewriting
+the basic structures that describe a game and its content in <a href="https://github.com/m0lentum/starframe">Starframe</a> (formerly known as MoleEngine).
+These are some notes on what I've done so far and what I've learned from it.</p>
+<span id="continue-reading"></span>
+<p>I'll start with some rambling about the nature of game engines and game objects
+before diving into rambling about the Entity-Component-System architecture and my efforts at implementing it.
+Finally, I'll ramble about my latest approach, which represents objects as a more general graph.
+There will be a lot of implementation details and code examples that are specific to the Rust language,
+but also many ideas that can be applied elsewhere.</p>
+<div class="sidenote">
+    <p>2025 note: None of the structures covered here are being used in Starframe anymore.
+In fact, I've given up the idea of making my own entity system and adopted <a href="https://crates.io/crates/hecs">hecs</a>
+(a nice off-the-shelf ECS) instead.
+The Component Graph structure detailed in this post was an interesting experiment,
+but had some tradeoffs that made it cumbersome to use.
+With sufficient effort it could probably be developed into a viable alternative to ECS,
+but I think something like <a href="https://github.com/SanderMertens/flecs">flecs</a>
+with its relationships system strikes a better balance.</p>
+</div>
+<h1 id="intro-engines-and-objects">Intro: Engines and objects<a class="zola-anchor" href="#intro-engines-and-objects" aria-label="Anchor link for: intro-engines-and-objects">§</a>
+</h1>
+<p>When I started this project I had this vague idea that it should follow an architecture of some kind.
+After some thought and experience I realized I didn't know what that even meant or if it made any sense.
+Let me take a moment to ponder about it here.</p>
+<p>First of all, it's difficult to define exactly what a game engine is in the first place. The best-known ones sold as products of their own,
+like Unity, Unreal and Godot, are huge suites of reusable tools for every aspect of game production.
+Everything from physics libraries to graphical editing tools is considered part of the package that is the engine.
+On the other hand, many games have tools and background libraries built specifically for them.
+In these cases the separation between "engine" and "gameplay" code can get very blurry.</p>
+<p>So there isn't really a generally agreed upon way to build an engine, nor a well-defined architecture of such a thing.
+However, there is one concept at the heart of an engine that almost every tool operates on in some way,
+and that is the <strong>game object</strong>, also known as the <strong>entity</strong>.
+I'll speak about game objects here to create some separation between this concept and the specific idea of an Entity in the Entity-Component-System model.</p>
+<p>Game objects are another thing whose definition is quite hard to nail down.
+If you'll forgive the hand-waving, they're <em>things</em> that exist in a game world in a similar,
+but not quite the same, way to real objects in the real world. Things with a function and an identity
+(in the metaphysical sense, not the mathematical).</p>
+<p>In order to have any purpose or behavior, game objects need to have some data associated with them.
+These associations can be implemented in many ways, and any tool or system
+that touches game objects (i.e. most of them) needs to be able to follow them.
+Well, either that or you need additional compatibility code converting things to whatever formats each system wants,
+which is the only option if you want your systems to be usable outside of the engine they were made for.
+A large part of the <a href="https://amethyst.rs/">Amethyst</a> game engine's job, for instance, is to glue various libraries
+(many of them also developed by the Amethyst team, but intentionally made independent of the engine)
+into their entity system of choice.</p>
+<p>Anyway, this is where architecture suddenly becomes crucial in a fully integrated engine like mine –
+almost every higher-level system depends on how you compose game objects.
+So in a sense, you could call the architecture of game objects the fundamental architecture of a game engine.
+This is why I've spent so much time thinking about this and doing it over and over.
+I don't want to build too big of a pile of code on top of my object model until I'm happy with it,
+because every time I redo it I have to update large parts of everything else.</p>
+<p><small>If I actually wanted to make games I should just use a library made by smarter people than me
+instead of spending years figuring this stuff out for myself,
+but I guess I'm finding this more fun ¯\_(ツ)_/¯
+</small></p>
+<h1 id="building-up">Building up<a class="zola-anchor" href="#building-up" aria-label="Anchor link for: building-up">§</a>
+</h1>
+<p>Before we get to the things I've been building, let's establish a starting point that we can compare to.
+I've made a thing that's considerably complicated, and there are reasons why I want to have that thing,
+but you can boil the same concept down to a very simple thing indeed.</p>
+<p>We already have a type system provided by our programming language, why not just use it to represent our objects?</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">struct </span><span>Goblin {
+</span><span>    </span><span style="color:#bf616a;">position</span><span>: Vector2&lt;</span><span style="color:#b48ead;">f32</span><span>&gt;,
+</span><span>    </span><span style="color:#bf616a;">attack_power</span><span>: </span><span style="color:#b48ead;">u32</span><span>,
+</span><span>    </span><span style="color:#bf616a;">health</span><span>: </span><span style="color:#b48ead;">u32</span><span>,
+</span><span>    </span><span style="color:#bf616a;">catchphrase</span><span>: String,
+</span><span>    </span><span style="color:#bf616a;">has_a_gun</span><span>: </span><span style="color:#b48ead;">bool</span><span>,
+</span><span>}
+</span></code></pre>
+<p>In languages with support for sum types (a.k.a. tagged unions or fat enums)
+you can even build a single all-encompassing object type (or multiple some-encompassing ones)
+that can be queried for components in a similar fashion to the more complicated systems we're about to discuss.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">enum </span><span>GameObject {
+</span><span>    Player(Player),
+</span><span>    Goblin(Goblin),
+</span><span>    Projectile(Projectile),
+</span><span>    Decoration(Decoration),
+</span><span>    </span><span style="color:#65737e;">// ...
+</span><span>}
+</span><span style="color:#b48ead;">impl </span><span>GameObject {
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">get_rigid_body</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; Option&lt;&amp;RigidBody&gt; {
+</span><span>        </span><span style="color:#b48ead;">match </span><span style="color:#bf616a;">self </span><span>{
+</span><span>            GameObject::Projectile(p) =&gt; Some(p.body),
+</span><span>            GameObject::Decoration(_) =&gt; None,
+</span><span>            </span><span style="color:#65737e;">// ... you get the idea
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">get_position</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; Option&lt;&amp;Vector2&lt;</span><span style="color:#b48ead;">f32</span><span>&gt;&gt; { </span><span style="color:#65737e;">/* ... */ </span><span>}
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">get_sprite</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; Option&lt;&amp;Sprite&gt; { </span><span style="color:#65737e;">/* ... */ </span><span>}
+</span><span>}
+</span></code></pre>
+<p><small>(In real life I would probably implement these getters as traits
+and use them to make code generic to the concrete object type, but that's not relevant to the example)
+</small></p>
+<p>Depending on how many object types you have, how large your team is and how much of a concern performance is,
+this may well be flexible enough to support an entire game.
+Check out <a href="https://www.anthropicstudios.com/2019/06/05/entity-systems/">this post by Mason Remaley</a> for a more detailed description of such a system, as implemented in the game Way of Rhea.
+This approach is dead simple and has some genuine advantages over other models (simplicity in itself is a big one!),
+but is not quite as efficient as we might like. We'll talk about why in a minute.</p>
+<h1 id="attempt-1-generic-ecs">Attempt 1: Generic ECS<a class="zola-anchor" href="#attempt-1-generic-ecs" aria-label="Anchor link for: attempt-1-generic-ecs">§</a>
+</h1>
+<p>Entity-Component-System, or ECS for short, seems (to my limited perspective)
+to be a de-facto standard in most of the game dev world at the moment.
+There are various Rust crates implementing it, such as <a href="https://github.com/amethyst/specs">specs</a>, <a href="https://github.com/TomGillen/legion">legion</a>, and <a href="https://github.com/Ralith/hecs">hecs</a>.
+At the time I started, <code>specs</code> was the big ECS crate everyone was using, I saw <a href="https://www.youtube.com/watch?v=aKLntZcp27M">this popular talk by Catherine West</a>,
+and was naturally led to look into the <code>specs</code> source as my primary reference.</p>
+<p><strong>So what is it?</strong></p>
+<p>ECS takes the struct from our initial example, gives it an identifier, rips all its fields out and distributes them
+into what are essentially database tables where they can be looked up with the identifier.
+The identifier is called the Entity, and the fields are Components.
+Game logic can select entities that have a certain set of components and ignore the rest.
+Functions that do this are called Systems.</p>
+<p>Here's how I picture the difference in my head. Imagine different colors are different component types.</p>
+<p><img src="https://molentum.me/blog/2020/starframe-architecture/structs_to_ecs.png" alt="Structs vs. ECS" /></p>
+<p>This improves performance by grouping data in memory more efficiently than those big everything-structs from earlier.
+To put it briefly, memory lookups are extremely slow, and processors do best when they get to go from one memory location
+to the one right next to it and repeat. This optimization is accomplished using <em>caches</em> of very fast memory close to the processor.
+In our big structs, most fields are irrelevant to most operations, but they still take up space in the cache all the time.
+On the other hand, ECS "tables" only have one type of thing each, so we can pick and choose what to pull into the cache
+by completely ignoring the tables we don't need.</p>
+<p>The other benefits of this pattern stem from its nature as a dynamic type system, as do many of its flaws.
+When using structs we were defining types in Rust's static type system,
+which lets us use the compiler to verify that our objects are well-formed,
+but requires a programmer to write every object type the game supports.
+On the other hand, in ECS, all our types are defined at runtime by inserting components into tables.
+No programming is needed to create new types of object or to wire them into the game logic,
+but we get no static analysis to help catch errors.
+An interesting consequence is that an object can change its type at runtime —
+a classic example is an RPG character getting status effects added and removed dynamically as components.</p>
+<p><strong>My implementation</strong></p>
+<p>At this point I was still wrapping my head around what an ECS even is, and I started by more or less just copying what <code>specs</code> did.
+I had a top-level manager called <code>Space</code> that gave out entity IDs, kept track of alive entities with a <code>BitSet</code> from the <a href="https://github.com/amethyst/hibitset">hibitset</a> crate,
+and stored all the component tables in an <code>AnyMap</code> from the <a href="https://github.com/chris-morgan/anymap">anymap</a> crate.</p>
+<p>Tables were inside <code>RwLock</code>s to allow accessing many in parallel.
+They also had their own <code>BitSet</code>s to keep track of entities using them,
+and queries used boolean operations on these to find the entities that had the components they were looking for.</p>
+<p>I had different types of <code>Storage</code> for my component tables that would be selected by the user based on how common the component was —
+<code>VecStorage</code> when almost every object has it, <code>DenseVecStorage</code> when it's common but not ubiquitous, <code>HashMapStorage</code> when it's rare,
+and <code>NullStorage</code> when it's a zero-sized tag component.
+Object IDs contained a generation index that allowed them to be deleted and overwritten with new things
+in a way that invalidated any old components still hanging around.</p>
+<p>Where things diverge a little from <code>specs</code> is in the queries that Systems use to select their desired component sets.
+This was in some part because I didn't really care for the tuple-based interface in <code>specs</code>, but mostly because I didn't fully understand how it worked.
+I wrote a rather long procedural macro that generated query implementations for structs of references (plus some special fields with special annotations)
+like this one from my physics module:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">derive</span><span>(ComponentQuery)]
+</span><span style="color:#b48ead;">pub struct </span><span>RigidBodyQuery&lt;</span><span style="color:#b48ead;">&#39;a</span><span>&gt; {
+</span><span>    #[</span><span style="color:#bf616a;">id</span><span>]
+</span><span>    </span><span style="color:#bf616a;">id</span><span>: crate::ecs::IdType,
+</span><span>    </span><span style="color:#bf616a;">tr</span><span>: &amp;</span><span style="color:#b48ead;">&#39;a mut </span><span>crate::util::Transform,
+</span><span>    </span><span style="color:#bf616a;">body</span><span>: &amp;</span><span style="color:#b48ead;">&#39;a mut </span><span>crate::physics::RigidBody,
+</span><span>}
+</span></code></pre>
+<p>Running this query through a <code>Space</code> would return a slice <code>&amp;mut [RigidBodyQuery]</code> where each item in the slice represented one entity.
+I still think this is a neat interface, but the macro ended up so large it was quite hard to maintain.</p>
+<p>Additional concepts I added from outside the realm of <code>specs</code> were <code>Recipe</code>s and <code>Pool</code>s.</p>
+<p>A <code>Recipe</code> is similar to the idea of a <em>prefab</em> in most game engines.
+It's a simple struct that knows how to turn itself into an entity, and with some macros around it,
+also knows how to read itself from a file using <a href="https://github.com/serde-rs/serde">serde</a>.
+Whereas prefabs are essentially <em>prototypes</em> defining all components of an entity,
+customized on a per-object basis by changing the components' values,
+these are more like constructor functions that take some parameters and produce entities out of them.
+<a href="https://github.com/m0lentum/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs">Here's what their definitions looked like.</a></p>
+<p><small>If you're wondering about the <code>recipes!</code> macro (which I don't use anymore because it made people wonder),
+it simply creates an enum with the given types as its variants, plus a bit more magic that was later deemed unnecessary.</small></p>
+<p>With these I was able to read scenes from RON files like this:</p>
+<pre data-lang="ron" style="background-color:#2b303b;color:#c0c5ce;" class="language-ron "><code class="language-ron" data-lang="ron"><span>[
+</span><span>    Player ((
+</span><span>        transform: ( position: (0, 0) ),
+</span><span>    )),
+</span><span>    DynamicBlock ((
+</span><span>        width: 1, height: 0.8, transform: ( position: (1, -1.5) ),
+</span><span>    )),
+</span><span>    StaticBlock ((
+</span><span>        width: 8, height: 0.2, transform: ( rotation: Deg(45) ),
+</span><span>    )),
+</span><span>]
+</span></code></pre>
+<p>I still use more or less the same recipe system today.
+It's a concise but human-readable way to express scenes and helps a lot when a text file is the only level editor I have.</p>
+<p>A <code>Pool</code> is an optimization for types of objects that are frequently spawned and deleted, such as bullets or other projectiles in an action game.
+What it does is preallocate and take control of entity slots so that entities it manages are always placed in those slots.
+The benefit of this is twofold — firstly, it prevents memory fragmentation from objects getting deleted and respawned far away in memory.
+<small>(In my understading this isn't actually an issue in an <em>archetypal</em> ECS which does some tricks to organize things automatically,
+but I didn't even know those were a thing at this point.)</small>
+Secondly, it lets you limit the number of instances of an object type that can exist at one time,
+preventing them from taking up more memory than your budget allows.
+This was especially important in this implementation because my <code>Space</code>s had a maximum capacity and weren't growable
+after being created.</p>
+<p>The last revision of source code with this implementation can be found <a href="https://github.com/m0lentum/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60">here</a>.</p>
+<h1 id="attempt-2-decentralized-ecs">Attempt 2: Decentralized ECS<a class="zola-anchor" href="#attempt-2-decentralized-ecs" aria-label="Anchor link for: attempt-2-decentralized-ecs">§</a>
+</h1>
+<p>I kept most of the first implementation for this one. <code>Space</code>s, <code>Storage</code>s, <code>Pool</code>s, the whole gang was still around,
+but the way I stored and queried my component tables was very different.</p>
+<p><code>AnyMap</code>s are cool and all, but they limit the compile-time checks you can do for things you put inside them.
+What if I let the user define their own structs with the tables they want?
+This way I could make better use of Rust's type system and, more importantly, borrow checker to hand out references instead
+of locking things at runtime.
+However, the central <code>Space</code> was still necessary, and if possible, I'd still like to force every table to be connected to it somehow
+to prevent mixing tables from different Spaces and causing errors.</p>
+<p>What I ended up doing was to let the user put anything they wanted in one field of <code>Space</code>, but restrict how and when they could access it.
+Here's what the types looked like from the perspective of a game:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub type </span><span>MainSpace = Space&lt;MainSpaceFeatures&gt;;
+</span><span>
+</span><span style="color:#b48ead;">pub struct </span><span>MainSpaceFeatures {
+</span><span>    </span><span style="color:#bf616a;">transform</span><span>: sf::core::TransformFeature,
+</span><span>    </span><span style="color:#bf616a;">shape</span><span>: sf::graphics::ShapeFeature,
+</span><span>    </span><span style="color:#bf616a;">physics</span><span>: sf::physics::PhysicsFeature,
+</span><span>    </span><span style="color:#bf616a;">player</span><span>: player::PlayerController,
+</span><span>    </span><span style="color:#bf616a;">camera</span><span>: sf::graphics::camera::MouseDragCamera,
+</span><span>}
+</span></code></pre>
+<p>All the types ending in <code>Feature</code> contain component tables.
+Many of them also have game logic, so you could call them Systems in the ECS sense while also being parts of the data structure itself.
+This is why I'm calling this thing "decentralized" — the data structure is scattered across a variety of types.</p>
+<p>Here's how you'd access the <code>MainSpaceFeatures</code> in an update loop:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// simplified from examples/testgame/main.rs
+</span><span>space.</span><span style="color:#96b5b4;">tick</span><span>(|</span><span style="color:#bf616a;">features</span><span>, </span><span style="color:#bf616a;">iter_seed</span><span>, _| {
+</span><span>    features.player.</span><span style="color:#96b5b4;">tick</span><span>(
+</span><span>        iter_seed,
+</span><span>        &amp;game.input,
+</span><span>        &amp;</span><span style="color:#b48ead;">mut</span><span> features.transform,
+</span><span>        &amp;</span><span style="color:#b48ead;">mut</span><span> features.physics,
+</span><span>        cmd_queue
+</span><span>    );
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> grav = forcefield::Gravity(Vec2::new(</span><span style="color:#d08770;">0.0</span><span>, -</span><span style="color:#d08770;">9.81</span><span>));
+</span><span>    features.physics.</span><span style="color:#96b5b4;">tick</span><span>(
+</span><span>        iter_seed,
+</span><span>        &amp;</span><span style="color:#b48ead;">mut</span><span> features.transform,
+</span><span>        dt,
+</span><span>        Some(&amp;grav),
+</span><span>    );
+</span><span>});
+</span></code></pre>
+<p>A nice thing about these interfaces is that they explicitly tell you what other Features/tables they depend on,
+so you must have everything around to be able to call them at all (as opposed to earlier where systems
+looked things up on their own using the macro-generated queries).
+Running many of these in parallel should also be easy, safe and lock-free with Rust borrow-checking the references,
+although I never actually did this.</p>
+<p>You may have noticed the <code>iter_seed</code> here, which leads us to the new query system.
+As mentioned, the macro-generated queries were gone; they couldn't exist without the ability to look up a table by its type.
+I needed something a little less automagical, which I wanted for maintainability's sake anyway.</p>
+<p>After some wrestling with generics and closures, I managed to produce a set of iterator combinators that looked like this:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// simplified from src/physics/mod.rs
+</span><span style="color:#b48ead;">let mut</span><span> iter = iter_seed
+</span><span>    .</span><span style="color:#96b5b4;">overlay</span><span>(</span><span style="color:#bf616a;">self</span><span>.bodies.</span><span style="color:#96b5b4;">iter_mut</span><span>()) </span><span style="color:#65737e;">// `and` but hides previous items from the return type
+</span><span>    .</span><span style="color:#96b5b4;">and</span><span>(</span><span style="color:#bf616a;">self</span><span>.colliders.</span><span style="color:#96b5b4;">iter</span><span>())
+</span><span>    .</span><span style="color:#96b5b4;">and</span><span>(transforms.</span><span style="color:#96b5b4;">iter_mut</span><span>())
+</span><span>    .</span><span style="color:#96b5b4;">with_ids</span><span>()
+</span><span>    .</span><span style="color:#96b5b4;">into_iter</span><span>();
+</span><span>
+</span><span style="color:#b48ead;">for </span><span>(((body, coll), tr), id) in iter {
+</span><span>  </span><span style="color:#65737e;">// do stuff...
+</span><span>}
+</span></code></pre>
+<p>The <code>IterSeed</code> is handed out by a <code>Space</code>, and produces a <code>()</code> for every entity that is alive.
+You have to start with this. From there on you get various boolean operations to add parts to the query,
+filtering out entities that don't fit the mold.
+<code>and</code> is by far the most useful one, but things like <code>not</code> and <code>or</code> are also possible.
+For those interested, the code for these is <a href="https://github.com/m0lentum/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100">here</a>.</p>
+<p>Aside from the ugly nested tuples, which are fairly easily dealt with by one pattern match,
+I was really happy with the expressiveness and lack of macros in this.
+Aside from some newfound awkwardness in the <code>Space</code> API, overall I felt like all these things were improvements over the original.</p>
+<p>The last revision of source code with this implementation can be found <a href="https://github.com/m0lentum/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35">here</a>.</p>
+<h1 id="attempt-3-graph">Attempt 3: Graph<a class="zola-anchor" href="#attempt-3-graph" aria-label="Anchor link for: attempt-3-graph">§</a>
+</h1>
+<p>Pretty much immediately after getting the previous implementation into a usable state I came across a crate called <a href="https://github.com/kvark/froggy">froggy</a>,
+which sparked my imagination right away. It calls itself a <em>Component Graph System</em> because it connects components directly to each other
+without an Entity at the center. This is achieved with reference-counted pointers that are contained in the components themselves,
+which might look something like this:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">struct </span><span>RigidBody {
+</span><span>    </span><span style="color:#bf616a;">transform</span><span>: Pointer&lt;Transform&gt;,
+</span><span>    </span><span style="color:#bf616a;">collider</span><span>: Pointer&lt;Collider&gt;,
+</span><span>    </span><span style="color:#bf616a;">mass</span><span>: Mass,
+</span><span>}
+</span></code></pre>
+<p>By nesting types that contain Pointers you can create all sorts of interesting hierarchies.
+These can be interpreted as directed graphs, hence the name.</p>
+<p>Incidentally, this ends up looking a lot like the simple struct approach we started with,
+but with custom "allocators" called <code>Storage</code>s to arrange the data more efficiently in memory
+and garbage collection to remove things that nobody needs anymore.</p>
+<p>For a while I contemplated just using <code>froggy</code> and ditching my own entity system altogether.
+I had some trouble imagining how I'd go about things like destroying an object on collision,
+which would require going upwards in the hierarchy from the rigid body component where the collision occurred.
+I don't doubt that this is a solvable problem with froggy, but this gave me a new idea:
+what if I took the graph out of the components and made it an actual graph data structure?
+This would open up many new algorithms and ways to move from one component to another,
+at the cost of some extra memory for the graph and the loss of statically typed hierarchies.
+Off I went to try this and see if it made any actual sense.</p>
+<p>The data structures part of this is pretty simple. I have a central <code>Graph</code> to store edges and some node metadata,
+and <code>Layer</code>s for concrete storage of components, similar to froggy's <code>Storage</code>s.
+<code>Layer</code>s always store their contents in a <code>Vec</code>; no need for any other storage types.
+You register <code>Layer</code>s with the <code>Graph</code> and it generates a <code>Vec</code> of edges between it and every other registered <code>Layer</code>,
+represented as indices into the other <code>Layer</code>'s storage.
+You build a graph in a similar way to the "features" from my second ECS attempt, by defining a custom type:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub struct </span><span>MyGraph {
+</span><span>    </span><span style="color:#bf616a;">graph</span><span>: Graph,
+</span><span>    </span><span style="color:#bf616a;">l_transform</span><span>: Layer&lt;Transform&gt;,
+</span><span>    </span><span style="color:#bf616a;">l_collider</span><span>: Layer&lt;Collider&gt;,
+</span><span>    </span><span style="color:#bf616a;">l_body</span><span>: Layer&lt;RigidBody&gt;,
+</span><span>    </span><span style="color:#65737e;">// etc.
+</span><span>}
+</span><span style="color:#b48ead;">impl </span><span>MyGraph {
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">new</span><span>() -&gt; </span><span style="color:#b48ead;">Self </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> graph = sf::graph::Graph::new();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> l_transform = graph.</span><span style="color:#96b5b4;">create_layer</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> l_collider = graph.</span><span style="color:#96b5b4;">create_layer</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> l_body = graph.</span><span style="color:#96b5b4;">create_layer</span><span>();
+</span><span>        MyGraph {
+</span><span>            graph,
+</span><span>            l_transform,
+</span><span>            l_collider,
+</span><span>            l_body,
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Then insert components and connect them like this:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> g = MyGraph::new();
+</span><span style="color:#b48ead;">let</span><span> tr_node = g.l_transform.</span><span style="color:#96b5b4;">insert</span><span>(Transform::new(..), &amp;</span><span style="color:#b48ead;">mut</span><span> g.graph);
+</span><span style="color:#b48ead;">let</span><span> coll_node = g.l_collider.</span><span style="color:#96b5b4;">insert</span><span>(Collider::new(..), &amp;</span><span style="color:#b48ead;">mut</span><span> g.graph);
+</span><span style="color:#b48ead;">let</span><span> body_node = g.l_body.</span><span style="color:#96b5b4;">insert</span><span>(RigidBody::new(..), &amp;</span><span style="color:#b48ead;">mut</span><span> g.graph);
+</span><span>g.graph.</span><span style="color:#96b5b4;">connect</span><span>(&amp;tr_node, &amp;body_node); </span><span style="color:#65737e;">// edge both ways, tr_node -&gt; body_node and body_node -&gt; tr_node
+</span><span>g.graph.</span><span style="color:#96b5b4;">connect</span><span>(&amp;body_node, &amp;coll_node);
+</span><span>g.graph.</span><span style="color:#96b5b4;">connect_oneway</span><span>(&amp;tr_node, &amp;coll_node); </span><span style="color:#65737e;">// edge only from tr_node -&gt; coll_node
+</span></code></pre>
+<p>When iterating on components, instead of selecting sets of them like in ECS,
+the equivalent here is selecting specific <em>patterns</em> in the graph, which is rather straightforward:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// match the pattern `Transform &lt;-- RigidBody --&gt; Collider`:
+</span><span style="color:#b48ead;">for mut</span><span> body in g.l_body.</span><span style="color:#96b5b4;">iter_mut</span><span>(&amp;g.graph) {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tr = </span><span style="color:#b48ead;">match</span><span> g.graph.</span><span style="color:#96b5b4;">get_neighbor</span><span>(&amp;body, &amp;g.l_transform) {
+</span><span>        Some(tr) =&gt; tr,
+</span><span>        None =&gt; </span><span style="color:#b48ead;">continue</span><span>,
+</span><span>    };
+</span><span>    </span><span style="color:#b48ead;">let</span><span> coll = </span><span style="color:#b48ead;">match</span><span> graph.</span><span style="color:#96b5b4;">get_neighbor</span><span>(&amp;body, &amp;g.l_collider) {
+</span><span>        Some(c) =&gt; c,
+</span><span>        None =&gt; </span><span style="color:#b48ead;">continue</span><span>,
+</span><span>    };
+</span><span>    </span><span style="color:#65737e;">// ...do stuff with `body`, `tr` and `coll`!
+</span><span>}
+</span><span style="color:#65737e;">// note: you can do the same thing in fewer words by using `filter_map` on the iterator,
+</span><span style="color:#65737e;">// but I felt like this one got the point across better
+</span></code></pre>
+<p>Aside from having to carry the central <code>Graph</code> around everywhere, I think this is pretty simple and neat.
+However, things get a little more funky when we start wanting to delete things.
+We need to figure out what it means for a collection of nodes and edges to be one object.
+I'm going to need some pictures for this.</p>
+<p><img src="https://molentum.me/blog/2020/starframe-architecture/simple_graphs.png" alt="Simple objects" /></p>
+<p>Imagine these are four different objects. Different-colored nodes are different types of components.
+What the types actually are doesn't matter, this is just about how you can connect them.</p>
+<p>A typical object (as pictured above) still looks like the kind of object you can model with ECS,
+in the sense that every component belongs to this object only.
+Objects like this are straightforward enough to identify — simply collect every edge and node you can find by following edges around,
+and that collection is your object.
+To delete it we could just get rid of all the edges and nodes we found.</p>
+<p>When we wander into the realm of patterns that are unique to this graph model, things get a little weird.
+Consider this scenario:</p>
+<p><img src="https://molentum.me/blog/2020/starframe-architecture/shared_component.png" alt="Shared component" /></p>
+<p>If we start deleting nodes on the left of the red node, everything on its right will remain untouched
+because there's no arrow that would take us to them, and vice versa.
+The red node is shared between two different objects.
+The problem is that the naive algorithm described above would delete the red and green node in both cases,
+stealing away some functionality from an unrelated object.</p>
+<p>To identify situations like this I borrowed another idea from <code>froggy</code>, namely reference counting.
+Every node now knows how many edges are pointing towards it.</p>
+<p>With this information we're now armed to deal with this problem.
+I still run the same algorithm from earlier to find every edge and node I have a route to,
+but this time count the number of edges traversed leading to each node, then traverse again and compare this to the node's stored reference count.
+If they're equal, all edges were found and we can delete them. If not, we have identified a shared component and stop traversing in that direction.</p>
+<p><img src="https://molentum.me/blog/2020/starframe-architecture/delete_algo.png" alt="Deletion algorithm" /></p>
+<p>If we start on the node marked with red in step 1 and traverse every edge we find, we get the collection marked with red in step 2.
+The node at the center has more references to it than we found, so we stop deleting things there.
+The final step shows the end result.</p>
+<p>Clearly this is not nearly as fast as deleting an object in a simpler model, but this accounts for such a small fraction
+of each frame of simulation I'm just not going to worry about it.</p>
+<p>Building more complex hierarchies in this framework requires some thinking.
+Am I going to delete instances of this? If so, what will the deletion algorithm do if I start it on node X?
+Consider this pattern of Unity-style hierarchical transforms:</p>
+<p><img src="https://molentum.me/blog/2020/starframe-architecture/hiera_transforms.png" alt="Hierarchical transforms" /></p>
+<p>Here we have one object with several others as its "children" which transform in its local space
+(the red squares represent the transform components).
+To determine the world-space location of a child we connect its transform to the parent's.
+If we delete any of the children here, it'll work as expected and just delete the child's components,
+unless it's the only child left. Then the parent will be deleted as well.
+If we delete the parent before the children, all its nodes except the transform will be deleted.
+We could add edges pointing from the parent to the children, in which case the entire hierarchy would be deleted
+regardless of where you start.</p>
+<p>These interactions are probably not exactly what you'd want or expect.
+For further control I'm going to need some kind of a "weak edge" mechanism (analogous to froggy's weak pointers)
+where certain edges won't be followed by the deletion algorithm.
+I haven't explored this properly yet.
+On the other hand, most objects aren't ever deleted so you can often just ignore these rules and make whatever works.
+I have to admit this is a lot of baggage attached to the improved flexibility over froggy, which may or may not be worth it.</p>
+<p>Technically, the deletion algorithm only deletes edges.
+Any node whose reference count reaches zero in this process is implicitly considered deleted.
+Many parts of my code depend on nodes never changing positions, so I can't put anything else in the slots left behind by deleted nodes
+and therefore can't keep my storages perfectly packed. Deleted nodes become holes.
+Instead, I push their positions into a queue from which they will be picked up and reused by future nodes.
+Additionally, because node identifiers can live anywhere in the program,
+I store a generation index as part of said identifier that's incremented on delete.
+Nodes are only the same if both their position and their generation is the same.</p>
+<p>That's about it for interesting parts of the current state of this thing.
+I don't yet know if it's actually any good but I'm having fun playing with it.
+I'll write more about this once I've had the time to come up with some interesting patterns
+and figure out if I like it better than ECS or not.
+Until then, I'll leave you with some random ideas and a quick recap.</p>
+<h1 id="some-random-ideas">Some random ideas<a class="zola-anchor" href="#some-random-ideas" aria-label="Anchor link for: some-random-ideas">§</a>
+</h1>
+<p>I've been playing a lot of <a href="https://elastomania.com/">Elasto Mania</a> lately,
+which made me think about how I would go about putting the player bike from it into my graph.
+It's got a lot of parts — the wheels with a collider and sprite each,
+the chassis of the bike and the rider's body parts with sprites plus a collider for his head,
+some spring constraints keeping the wheels in place,
+and an event listener of some kind that reacts to the head colliding with terrain.
+I'm not going to draw it because it would be massive, but I think all these things could be connected in the graph as one big "object",
+which might be cool maybe.</p>
+<p>As for the event listener, I've already implemented an <code>EventSink</code> component that subscribes
+to events by simply connecting to components that produce them.
+For instance, to listen to collision events, connect an <code>EventSink</code> to a <code>RigidBody</code> in the graph.
+I think it's neat.</p>
+<p>Elasto Mania also has terrain constructed out of closed loops of line segments,
+which could be graphified as a loop where nodes are individual vertices.</p>
+<p><img src="https://molentum.me/blog/2020/starframe-architecture/vert_loop.png" alt="A vertex loop" /></p>
+<p>Connect a Transform somewhere and you have a movable polygonal collider instead.
+This would allow an arbitrary number of vertices per collider / terrain loop while staying perfectly packed in memory.</p>
+<h1 id="a-quick-recap">A quick recap<a class="zola-anchor" href="#a-quick-recap" aria-label="Anchor link for: a-quick-recap">§</a>
+</h1>
+<p>This was a post about game engines, game objects and ways to compose them.
+After some quick philosophy we started by representing objects directly with programming language constructs,
+which is nice, simple and statically typed (language permitting) but creates an inefficient memory layout and
+some moderately annoying boilerplate code.
+We then looked at Entity-Component-System, a database-like approach that arranges memory nicely and
+allows things to change their type at runtime, and my two attempts at implementing it.
+Finally, we looked at a novel graph-based approach that creates some interesting new patterns
+(and some interesting new problems).</p>
+<p>I realize this was a little long-winded, and to be honest I mostly wrote it just to get myself thinking,
+but I hope you found it interesting. If you read this far I'm going to assume that was the case.
+If you'd like to talk about it, you can find me on <a href="https://twitter.com/molentum_">Twitter</a> or the <a href="https://discord.gg/yNtPTb2">Rust gamedev Discord</a>.</p>
+<!-- links -->
+
+    </article></div>
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+                    <div class="footer__inner"><div class="copyright">
+                                <span>© 2025 Mikael Myyrä</span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Theme based on <a href="https://github.com/ejmg/zerm">zerm</a> by <a href="https://github.com/ejmg">ejmg</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Font: <a href="https://www.jetbrains.com/lp/mono/">JetBrains Mono</a></span>
+                            </div>
+    <script type="text/javascript" src="https://molentum.me/assets/js/main.js"></script>
+</div>
+                </footer></div>
+    </body>
+</html>

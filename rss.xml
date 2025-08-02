@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>&#x2F;home&#x2F;mole</title>
+      <link>https://molentum.me</link>
+      <description>Creations and ramblings of Mikael &quot;Molentum&quot; Myyrä.</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://molentum.me/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Fri, 01 Aug 2025 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Art Fight 2025</title>
+          <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/art-fight-2025/</link>
+          <guid>https://molentum.me/gallery/2025/art-fight-2025/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/art-fight-2025/">&lt;p&gt;I participated in &lt;a href=&quot;https:&#x2F;&#x2F;artfight.net&#x2F;&quot;&gt;Art Fight&lt;&#x2F;a&gt; for the first time,
+where I semi-accidentally ended up challenging myself
+to make as many drawings as I can without ever repeating a style.
+I&#x27;ve compiled my &quot;attacks&quot; and &quot;defenses&quot; on this page.
+Big thanks to everyone involved for making such lovely art
+and allowing me to post it!&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/art-fight-2025/thumbnail.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Art rules from first principles, part 1: Perspective</title>
+          <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/art-rules-perspective/</link>
+          <guid>https://molentum.me/blog/2025/art-rules-perspective/</guid>
+          <description xml:base="https://molentum.me/blog/2025/art-rules-perspective/">&lt;p&gt;There are many shorthands and rules of thumb
+one encounters when learning the fundamentals of representational art —
+vanishing points, warm-cool contrasts,
+grouping of values into light, midtone and shadow, etc.
+There are many good non-technical explanations of these ideas out there,
+but I wanted to dive deeper
+and investigate how they arise from the physics of light
+and geometry of space.
+In this first part we&#x27;ll look at geometric interpretations
+of common perspective drawing methods.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Mermay inks (2025)</title>
+          <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/mermay-inks/</link>
+          <guid>https://molentum.me/gallery/2025/mermay-inks/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/mermay-inks/">&lt;p&gt;Portraits of &lt;a href=&quot;&#x2F;gallery&#x2F;2025&#x2F;aava&#x2F;&quot;&gt;Aava&lt;&#x2F;a&gt; drawn with ink on paper
+during the month of May,
+featuring some experimental use of colored inks.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/mermay-inks/mermay07.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Big fancy window</title>
+          <pubDate>Wed, 21 May 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/window/</link>
+          <guid>https://molentum.me/gallery/2025/window/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/window/">&lt;p&gt;The merfolk&#x27;s architecture is just as needlessly dramatic as their fashion.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/window/window.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Character design: Aava</title>
+          <pubDate>Sat, 19 Apr 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/aava/</link>
+          <guid>https://molentum.me/gallery/2025/aava/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/aava/">&lt;p&gt;Aava is a marine biologist studying river ecosystems
+and an amateur sculpture artist.
+Like most merfolk, she likes to wear ostentatious clothes and jewelry,
+even if they aren&#x27;t always entirely practical.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/aava/aava_halter_fancy.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Character design: Olivia &amp; Basil</title>
+          <pubDate>Sun, 23 Mar 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/fauns/</link>
+          <guid>https://molentum.me/gallery/2025/fauns/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/fauns/">&lt;p&gt;More imaginary nerds for my silly little worldbuilding project.
+Olivia and her little brother Basil, mathematicians
+who also happen to be fauns.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/fauns/fauns.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Painting normal maps, and other Krita tips</title>
+          <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/krita-tips/</link>
+          <guid>https://molentum.me/blog/2025/krita-tips/</guid>
+          <description xml:base="https://molentum.me/blog/2025/krita-tips/">&lt;p&gt;I&#x27;m a big fan of using software effectively and optimizing my workflows,
+so over my years using &lt;a href=&quot;https:&#x2F;&#x2F;krita.org&#x2F;&quot;&gt;Krita&lt;&#x2F;a&gt; I&#x27;ve spent quite a bit of time digging into its features.
+In this post I want to talk about how I use this wonderful piece of software
+and highlight some not-so-obvious bits
+that have made a difference in my process.
+I&#x27;ll do general painting first, hopefully in a way that is useful to beginners,
+and then indulge in some nerding out about normal maps and how to make them.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Night out</title>
+          <pubDate>Thu, 06 Mar 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/night-out/</link>
+          <guid>https://molentum.me/gallery/2025/night-out/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/night-out/">&lt;p&gt;Sometimes you just want to paint a sexy pinup
+with no further story or justification and that&#x27;s ok
+(but then it gets a story anyway
+because you don&#x27;t know how to do abstract backgrounds,
+and that&#x27;s ok too)&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/night-out/night_out.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Character design: Elegil</title>
+          <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/elegil/</link>
+          <guid>https://molentum.me/gallery/2025/elegil/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/elegil/">&lt;p&gt;A childhood friend of &lt;a href=&quot;&#x2F;gallery&#x2F;2024&#x2F;miriel&#x2F;&quot;&gt;Miriel&lt;&#x2F;a&gt;
+who left the hunter-gatherer life and moved to the city
+to get an education in the arts and practice his dance hobby.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/elegil/elegil.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>1910s dress-up</title>
+          <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2025/1910s-dressup/</link>
+          <guid>https://molentum.me/gallery/2025/1910s-dressup/</guid>
+          <description xml:base="https://molentum.me/gallery/2025/1910s-dressup/">&lt;p&gt;Some historical dresses from the 1910s
+(found via &lt;a href=&quot;https:&#x2F;&#x2F;thedreamstress.com&#x2F;category&#x2F;rate-the-dress&#x2F;&quot;&gt;The Dreamstress&lt;&#x2F;a&gt;;
+original sources are various museums)
+worn by &lt;a href=&quot;&#x2F;gallery&#x2F;2024&#x2F;miriel&#x2F;&quot;&gt;Miriel&lt;&#x2F;a&gt; because why not.
+Working my way out of a slump with some comfort zone portraits.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2025/1910s-dressup/1910s-dressup.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>A decade of digital art</title>
+          <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/a-decade-of-digital-art/</link>
+          <guid>https://molentum.me/blog/2025/a-decade-of-digital-art/</guid>
+          <description xml:base="https://molentum.me/blog/2025/a-decade-of-digital-art/">&lt;p&gt;The oldest digital drawing I have on my computer turns ten years old today.
+This post is a self-indulgent trip down memory lane,
+looking back at landmark pieces and lessons learned throughout the years.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Game graphics: the journey so far</title>
+          <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/game-graphics/</link>
+          <guid>https://molentum.me/blog/2025/game-graphics/</guid>
+          <description xml:base="https://molentum.me/blog/2025/game-graphics/">&lt;p&gt;The majority of my recent game development work
+has revolved around graphics —
+both workflows for making them
+and technology for rendering them.
+Many ideas have been had and many scrapped along the way,
+and the journey certainly isn&#x27;t over yet,
+but I think I&#x27;m moving towards something pretty unique and cool.
+This is a devlog-style post where I meander through
+some of the more noteworthy moments so far
+without going very deep into technical details
+(but providing technical sources where relevant).&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Rounding collider corners</title>
+          <pubDate>Sat, 04 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2025/rounding-collider-corners/</link>
+          <guid>https://molentum.me/blog/2025/rounding-collider-corners/</guid>
+          <description xml:base="https://molentum.me/blog/2025/rounding-collider-corners/">&lt;p&gt;Back in 2022 I entirely rewrote one of the most complicated parts of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&quot;&gt;Starframe&lt;&#x2F;a&gt;,
+the collision detection system.
+A notable feature of the new system is the ability to give any shape rounded corners.
+I also wrote most of this post back then, but things happened and it was left unfinished.
+Here it is now, more than two years later.
+Better late than never I suppose.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Stuff I liked in 2024</title>
+          <pubDate>Sun, 29 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2024/stuff-i-liked-in-2024/</link>
+          <guid>https://molentum.me/blog/2024/stuff-i-liked-in-2024/</guid>
+          <description xml:base="https://molentum.me/blog/2024/stuff-i-liked-in-2024/">&lt;p&gt;In recent years I&#x27;ve made a habit of posting
+a list of my favorite heavy metal releases of the year on Mastodon.
+This year I decided to list more than just music
+and do it in a more permanent place here on my website.
+So here are some metal albums, books, and games I enjoyed in 2024.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Blooming</title>
+          <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/blooming/</link>
+          <guid>https://molentum.me/gallery/2024/blooming/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/blooming/">&lt;p&gt;Ink sketches exploring the relationship between human and nature
+through varying degrees of body horror.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/blooming/queen.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Christmas greeting card 2024</title>
+          <pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/christmas2024/</link>
+          <guid>https://molentum.me/gallery/2024/christmas2024/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/christmas2024/"></description>
+	  <enclosure url="https://molentum.me/gallery/2024/christmas2024/christmas2024.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Very important application of dryad magic</title>
+          <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/shmallow/</link>
+          <guid>https://molentum.me/gallery/2024/shmallow/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/shmallow/">&lt;p&gt;The dryads are capable of powerful acts of creation and destruction,
+an important consequence of which is the ability to cook a marshmallow anywhere, at any time.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/shmallow/shmallow.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Character design: Ivu</title>
+          <pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/ivu/</link>
+          <guid>https://molentum.me/gallery/2024/ivu/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/ivu/">&lt;p&gt;The dryads, Ivu amongst them, are caretakers of the forest
+and some of the most powerful magical beings in the world,
+wielding shapeshifting growth and destructive fire
+to drive nature&#x27;s cycles of death and rebirth ever onward.&lt;&#x2F;p&gt;
+&lt;p&gt;Extra sketches exploring different balances between
+nature&#x2F;gardening aesthetics and a fancy sorcerer&#x27;s dress:&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/ivu/ivu.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Cyber Hive</title>
+          <pubDate>Sat, 09 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/cyber-hive/</link>
+          <guid>https://molentum.me/gallery/2024/cyber-hive/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/cyber-hive/"></description>
+	  <enclosure url="https://molentum.me/gallery/2024/cyber-hive/cyber_hive.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Inktober 2024</title>
+          <pubDate>Thu, 31 Oct 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/inktober-2024/</link>
+          <guid>https://molentum.me/gallery/2024/inktober-2024/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/inktober-2024/">&lt;p&gt;I did Inktober every other day again this year,
+incorporating colored inks for the first time
+to varying levels of success.
+I used the travel-themed prompts to explore &lt;a href=&quot;..&#x2F;miriel&#x2F;&quot;&gt;Miriel&lt;&#x2F;a&gt;&#x27;s adventures
+and develop the world she lives in.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/inktober-2024/camera.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Of the Soil</title>
+          <pubDate>Sun, 27 Oct 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/of-the-soil/</link>
+          <guid>https://molentum.me/gallery/2024/of-the-soil/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/of-the-soil/">&lt;p&gt;An experiment with abstract color and composition choices with rough sketchy brushwork,
+probably the first of many.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/of-the-soil/of_the_soil.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Ten formative games</title>
+          <pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2024/ten-formative-games/</link>
+          <guid>https://molentum.me/blog/2024/ten-formative-games/</guid>
+          <description xml:base="https://molentum.me/blog/2024/ten-formative-games/">&lt;p&gt;Inspired by recent discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;eggplant.show&#x2F;&quot;&gt;Eggplant Show&lt;&#x2F;a&gt; Discord community,
+here&#x27;s a list of ten video games.
+Not my favorite games (though many of them are that too),
+but ones that had a notable influence on who I am today.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Summer night at the lake</title>
+          <pubDate>Sat, 03 Aug 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/sunsetswim/</link>
+          <guid>https://molentum.me/gallery/2024/sunsetswim/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/sunsetswim/">&lt;p&gt;Inspired by a late evening swim I had recently.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/sunsetswim/sunsetswim.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Character design: Miriel</title>
+          <pubDate>Sun, 14 Jul 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/miriel/</link>
+          <guid>https://molentum.me/gallery/2024/miriel/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/miriel/">&lt;p&gt;Miriel of the hunter-gatherer elf folk living in the northern forests
+of my as-yet-unnamed &quot;fantasy meets solarpunk&quot; world.
+She&#x27;s a hunter, fisher, and explorer.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/miriel/miriel.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Mermay inks</title>
+          <pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/mermay-inks/</link>
+          <guid>https://molentum.me/gallery/2024/mermay-inks/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/mermay-inks/"></description>
+	  <enclosure url="https://molentum.me/gallery/2024/mermay-inks/mermay02.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Foragers</title>
+          <pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/foragers/</link>
+          <guid>https://molentum.me/gallery/2024/foragers/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/foragers/"></description>
+	  <enclosure url="https://molentum.me/gallery/2024/foragers/foragers.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Mermaid but l o n g</title>
+          <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/mermaid-but-long/</link>
+          <guid>https://molentum.me/gallery/2024/mermaid-but-long/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/mermaid-but-long/"></description>
+	  <enclosure url="https://molentum.me/gallery/2024/mermaid-but-long/mermaid_but_long.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Don&#x27;t forget to charge your moon staff</title>
+          <pubDate>Tue, 30 Apr 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/moonstaff/</link>
+          <guid>https://molentum.me/gallery/2024/moonstaff/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/moonstaff/"></description>
+	  <enclosure url="https://molentum.me/gallery/2024/moonstaff/moonstaff.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Demodemonini</title>
+          <pubDate>Wed, 28 Feb 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/demodemonini/</link>
+          <guid>https://molentum.me/gallery/2024/demodemonini/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/demodemonini/">&lt;p&gt;My submission for the graphic art compo at Instanssi 2024.
+Lines drawn in ink on paper,
+characters painted digitally with Krita,
+and animated effects written in Rust with wgpu.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;art&quot;&gt;Source code on GitHub&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/demodemonini/demodemons.gif" type="image/jpeg" /></item>
+      <item>
+          <title>Heather</title>
+          <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2024/heather/</link>
+          <guid>https://molentum.me/gallery/2024/heather/</guid>
+          <description xml:base="https://molentum.me/gallery/2024/heather/">&lt;p&gt;Continuing my series of flower-themed, vaguely Art Nouveau -inspired
+illustrations from 2022 (previous entries:
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;lily-of-the-valley&#x2F;&quot;&gt;Lily of the Valley&lt;&#x2F;a&gt;,
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;poppy&#x2F;&quot;&gt;Poppy&lt;&#x2F;a&gt;,
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;cornflower&#x2F;&quot;&gt;Cornflower&lt;&#x2F;a&gt;,
+&lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;marsh-marigold&#x2F;&quot;&gt;Marsh Marigold&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2024/heather/heather.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Self-portrait 2023</title>
+          <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/self-portrait-2023/</link>
+          <guid>https://molentum.me/gallery/2023/self-portrait-2023/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/self-portrait-2023/">&lt;p&gt;New self-portrait and profile picture to show off my improved skills
+since the &lt;a href=&quot;..&#x2F;..&#x2F;2020&#x2F;self-portrait-2020&#x2F;&quot;&gt;last one from 2020&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/self-portrait-2023/self_2023.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Christmas greeting card 2023</title>
+          <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/christmas-2023/</link>
+          <guid>https://molentum.me/gallery/2023/christmas-2023/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/christmas-2023/">&lt;p&gt;My annual Christmas greeting card, this time using traditional media.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/christmas-2023/christmas_2023.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Molenia of the Large Sword</title>
+          <pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/molenia-of-the-large-sword/</link>
+          <guid>https://molentum.me/gallery/2023/molenia-of-the-large-sword/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/molenia-of-the-large-sword/">&lt;p&gt;This character again, this time from a recent Dark Souls 3 playthrough.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/molenia-of-the-large-sword/molenia_of_the_large_sword.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Inktober 2023</title>
+          <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/inktober-2023/</link>
+          <guid>https://molentum.me/gallery/2023/inktober-2023/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/inktober-2023/">&lt;p&gt;Quick drawings done every other day for Inktober 2023,
+all made with a Pentel Pocket Brush brush pen.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/inktober-2023/02_spiders.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Wandering Sharpshooter</title>
+          <pubDate>Sat, 09 Sep 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/wandering-sharpshooter/</link>
+          <guid>https://molentum.me/gallery/2023/wandering-sharpshooter/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/wandering-sharpshooter/">&lt;p&gt;My recurring RPG character Molenia
+(also featured in &lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;irithyll-battlemage&#x2F;&quot;&gt;Irithyll Battlemage&lt;&#x2F;a&gt;
+and &lt;a href=&quot;..&#x2F;..&#x2F;2022&#x2F;nox-dragonslayer&#x2F;&quot;&gt;Nox Dragonslayer&lt;&#x2F;a&gt;),
+this time in their Diablo IV rogue gear.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/wandering-sharpshooter/sharpshooter.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Break in the Canopy</title>
+          <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/canopy/</link>
+          <guid>https://molentum.me/gallery/2023/canopy/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/canopy/"></description>
+	  <enclosure url="https://molentum.me/gallery/2023/canopy/break_in_the_canopy.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Mermay 2023</title>
+          <pubDate>Sat, 06 May 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/mermay-2023/</link>
+          <guid>https://molentum.me/gallery/2023/mermay-2023/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/mermay-2023/">&lt;p&gt;Sketches exploring the idea of
+&quot;wouldn&#x27;t it be funny if merfolk wore regular human clothes&quot;
+for this year&#x27;s Mermay.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/mermay-2023/snowjacketmerm.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Void Sorceress</title>
+          <pubDate>Tue, 18 Apr 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/void-sorceress/</link>
+          <guid>https://molentum.me/gallery/2023/void-sorceress/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/void-sorceress/"></description>
+	  <enclosure url="https://molentum.me/gallery/2023/void-sorceress/void_sorceress.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Demovelhon työpaja</title>
+          <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/demovelho/</link>
+          <guid>https://molentum.me/gallery/2023/demovelho/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/demovelho/">&lt;p&gt;An exercise in combining 3D modelling and digital painting.
+The title is Finnish for &quot;Demowizard&#x27;s Workshop&quot;.
+This was my entry for the graphic art compo at local demoparty Instanssi,
+where it won second place!&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/demovelho/demovelho.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Crystal Reaper</title>
+          <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/crystal-reaper/</link>
+          <guid>https://molentum.me/gallery/2023/crystal-reaper/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/crystal-reaper/">&lt;p&gt;A &quot;quick&quot; doodle that I accidentally thought about too much and turned into a
+whole concept with multiple characters.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/crystal-reaper/crystal_reaper.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Infernal Butterfly</title>
+          <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2023/infernal-butterfly/</link>
+          <guid>https://molentum.me/gallery/2023/infernal-butterfly/</guid>
+          <description xml:base="https://molentum.me/gallery/2023/infernal-butterfly/">&lt;p&gt;In an edgy dark fantasy kind of mood, trying out an edgy style to match.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2023/infernal-butterfly/infernal_butterfly.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Christmas greeting card 2022</title>
+          <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/christmas2022/</link>
+          <guid>https://molentum.me/gallery/2022/christmas2022/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/christmas2022/"></description>
+	  <enclosure url="https://molentum.me/gallery/2022/christmas2022/christmas2022.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Marsh Marigold</title>
+          <pubDate>Tue, 20 Dec 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/marsh-marigold/</link>
+          <guid>https://molentum.me/gallery/2022/marsh-marigold/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/marsh-marigold/">&lt;p&gt;Flower series, part 4. Simultaneously experimenting with rougher, more textured
+painting and cleaner decorative shapes using vector tools. There&#x27;s a certain
+tension between lines and painting that I&#x27;m finding very interesting.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/marsh-marigold/marsh_marigold.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Cornflower</title>
+          <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/cornflower/</link>
+          <guid>https://molentum.me/gallery/2022/cornflower/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/cornflower/">&lt;p&gt;Flower series, part 3. Continuing to challenge my sense of values with a
+strongly lit scene, as well as trying to push the complexity of my backgrounds.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/cornflower/cornflower.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Poppy</title>
+          <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/poppy/</link>
+          <guid>https://molentum.me/gallery/2022/poppy/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/poppy/">&lt;p&gt;Flower series, part 2. A challenging lighting scenario that taught me a great
+deal about values, with the help of valuable feedback from some artists on
+Discord.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/poppy/poppy.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Lily of the Valley</title>
+          <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/lily-of-the-valley/</link>
+          <guid>https://molentum.me/gallery/2022/lily-of-the-valley/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/lily-of-the-valley/">&lt;p&gt;The beginning of an Art Nouveau -inspired series based on flowers. Aiming to
+learn the shape language of plants and improve my abstract decorative designs.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/lily-of-the-valley/lily_of_the_valley.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Late Night Dip</title>
+          <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/late-night-dip/</link>
+          <guid>https://molentum.me/gallery/2022/late-night-dip/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/late-night-dip/">&lt;p&gt;My standard art process: painting a cool background to distract from the fact
+that I just felt like drawing a pretty lady.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/late-night-dip/late_night_dip.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Bloodmage Mermaid</title>
+          <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/bloodmage-mermaid/</link>
+          <guid>https://molentum.me/gallery/2022/bloodmage-mermaid/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/bloodmage-mermaid/">&lt;p&gt;Another cheesy murder-mermaid for Mermay 2022.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/bloodmage-mermaid/bloodmage_mermaid.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Heart Hands</title>
+          <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/heart-hands/</link>
+          <guid>https://molentum.me/gallery/2022/heart-hands/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/heart-hands/">&lt;p&gt;A cheesy murder-mermaid for Mermay 2022.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/heart-hands/heart_hands.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Nox Dragonslayer</title>
+          <pubDate>Sun, 10 Apr 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/nox-dragonslayer/</link>
+          <guid>https://molentum.me/gallery/2022/nox-dragonslayer/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/nox-dragonslayer/">&lt;p&gt;My player character from Elden Ring with her coolest gear.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/nox-dragonslayer/nox_dragonslayer.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Irithyll Battlemage</title>
+          <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/irithyll-battlemage/</link>
+          <guid>https://molentum.me/gallery/2022/irithyll-battlemage/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/irithyll-battlemage/">&lt;p&gt;My player character from Dark Souls 3 with her coolest gear.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/irithyll-battlemage/irithyll_battlemage.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Isidora, Voice of the Dead</title>
+          <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2022/isidora/</link>
+          <guid>https://molentum.me/gallery/2022/isidora/</guid>
+          <description xml:base="https://molentum.me/gallery/2022/isidora/">&lt;p&gt;Fanart of my favorite boss from Blasphemous.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2022/isidora/isidora.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Starframe devlog: Rope physics</title>
+          <pubDate>Thu, 30 Dec 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2021/starframe-ropes/</link>
+          <guid>https://molentum.me/blog/2021/starframe-ropes/</guid>
+          <description xml:base="https://molentum.me/blog/2021/starframe-ropes/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&#x2F;&quot;&gt;Starframe&lt;&#x2F;a&gt;&#x27;s rope physics is the first piece of physics code I&#x27;ve written that
+I designed entirely myself. This is a short story of that design process
+and the challenges and solutions found along the way.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Christmas greeting card 2021</title>
+          <pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2021/christmas2021/</link>
+          <guid>https://molentum.me/gallery/2021/christmas2021/</guid>
+          <description xml:base="https://molentum.me/gallery/2021/christmas2021/"></description>
+	  <enclosure url="https://molentum.me/gallery/2021/christmas2021/christmas2021.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>A Cool Tree</title>
+          <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2021/a-cool-tree/</link>
+          <guid>https://molentum.me/gallery/2021/a-cool-tree/</guid>
+          <description xml:base="https://molentum.me/gallery/2021/a-cool-tree/"></description>
+	  <enclosure url="https://molentum.me/gallery/2021/a-cool-tree/a_cool_tree.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Magmerm</title>
+          <pubDate>Wed, 19 May 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2021/magmerm/</link>
+          <guid>https://molentum.me/gallery/2021/magmerm/</guid>
+          <description xml:base="https://molentum.me/gallery/2021/magmerm/">&lt;p&gt;A fun quick design for Mermay 2021.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2021/magmerm/magmerm.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Starframe devlog: Solving Constraints in Physics</title>
+          <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2021/starframe-constraints/</link>
+          <guid>https://molentum.me/blog/2021/starframe-constraints/</guid>
+          <description xml:base="https://molentum.me/blog/2021/starframe-constraints/">&lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&#x2F;&quot;&gt;Starframe&lt;&#x2F;a&gt; physics solver has gone through a few iterations recently as my
+understanding of the problem and knowledge of available methods have grown. In
+this post I attempt to explain what constraints are and detail a few
+game-engine-friendly ways of solving them. I&#x27;ll try to make this
+understandable to someone with approximately the level of knowledge I had
+before starting this: decent linear algebra and calculus skills and a
+tiny bit of physics knowledge.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Self-portrait 2020</title>
+          <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2020/self-portrait-2020/</link>
+          <guid>https://molentum.me/gallery/2020/self-portrait-2020/</guid>
+          <description xml:base="https://molentum.me/gallery/2020/self-portrait-2020/">&lt;p&gt;Celebrating three years of daily drawing practice. A breakthrough in terms of
+style for me, introducing many features I still use two years later.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2020/self-portrait-2020/self_portrait_2020.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Severance Ceremony</title>
+          <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2020/severance-ceremony/</link>
+          <guid>https://molentum.me/gallery/2020/severance-ceremony/</guid>
+          <description xml:base="https://molentum.me/gallery/2020/severance-ceremony/"></description>
+	  <enclosure url="https://molentum.me/gallery/2020/severance-ceremony/severance_ceremony.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Starframe devlog: Architecture</title>
+          <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2020/starframe-architecture/</link>
+          <guid>https://molentum.me/blog/2020/starframe-architecture/</guid>
+          <description xml:base="https://molentum.me/blog/2020/starframe-architecture/">&lt;p&gt;I&#x27;ve spent a large portion of the past two years writing and rewriting
+the basic structures that describe a game and its content in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;m0lentum&#x2F;starframe&quot;&gt;Starframe&lt;&#x2F;a&gt; (formerly known as MoleEngine).
+These are some notes on what I&#x27;ve done so far and what I&#x27;ve learned from it.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>You&#x27;re not afraid of the dark, are you?</title>
+          <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2020/youre-not-afraid-of-the-dark-are-you/</link>
+          <guid>https://molentum.me/gallery/2020/youre-not-afraid-of-the-dark-are-you/</guid>
+          <description xml:base="https://molentum.me/gallery/2020/youre-not-afraid-of-the-dark-are-you/">&lt;p&gt;For Mermay 2020. This was a huge leap in skill for me, both in linework and
+painting.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2020/youre-not-afraid-of-the-dark-are-you/merm.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Biker Santa</title>
+          <pubDate>Sun, 23 Dec 2018 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2018/biker-santa/</link>
+          <guid>https://molentum.me/gallery/2018/biker-santa/</guid>
+          <description xml:base="https://molentum.me/gallery/2018/biker-santa/">&lt;p&gt;Christmas greeting card for 2018, first one of these I ever made.&lt;&#x2F;p&gt;</description>
+	  <enclosure url="https://molentum.me/gallery/2018/biker-santa/biker_santa.jpg" type="image/jpeg" /></item>
+      <item>
+          <title>Starframe devlog: Introduction</title>
+          <pubDate>Sun, 23 Sep 2018 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/blog/2018/starframe-intro/</link>
+          <guid>https://molentum.me/blog/2018/starframe-intro/</guid>
+          <description xml:base="https://molentum.me/blog/2018/starframe-intro/">&lt;p&gt;Starframe is an ambitious hobby project, still early on in development, aiming to create a general-purpose 2D
+game engine suitable for rapid prototyping and game jams as well as more polished, hopefully commercial-quality products.
+This blog is meant to document the development and ideas behind it in a fair bit of detail - mostly to organize and
+revise my own thoughts, but with the hope that someone else might also find it interesting and&#x2F;or helpful.
+In this first post I will outline what exactly I am trying to accomplish and why I am doing it.&lt;&#x2F;p&gt;</description></item>
+      <item>
+          <title>Self-portrait 2018</title>
+          <pubDate>Sat, 21 Apr 2018 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://molentum.me/gallery/2018/self-portrait-2018/</link>
+          <guid>https://molentum.me/gallery/2018/self-portrait-2018/</guid>
+          <description xml:base="https://molentum.me/gallery/2018/self-portrait-2018/"></description>
+	  <enclosure url="https://molentum.me/gallery/2018/self-portrait-2018/self_portrait_2018.jpg" type="image/jpeg" /></item>
+    </channel>
+</rss>

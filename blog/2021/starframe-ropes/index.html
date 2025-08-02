@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>&#x2F;home&#x2F;mole/Starframe devlog: Rope physics</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    
+    
+    
+    <meta name="author" content="Mikael Myyrä" />
+    <meta name="creator" content="Mikael Myyrä" />
+    <meta name="article:author" content="Mikael Myyrä" />
+    <meta name="fediverse:creator" content="@molentum@mastoart.social" />
+    <meta property="og:title" content="&#x2F;home&#x2F;mole/Starframe devlog: Rope physics" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;molentum.me&#x2F;blog&#x2F;2021&#x2F;starframe-ropes&#x2F;"/><meta name="description" content="Starframe's rope physics is the first piece of physics code I've written that I designed entirely myself. This is a short story of that design process and the challenges and solutions found along the way."/>
+        <meta property="og:description" content="Starframe's rope physics is the first piece of physics code I've written that I designed entirely myself. This is a short story of that design process and the challenges and solutions found along the way."/><meta property="og:image" content="https://molentum.me/self_square.jpg"/><meta property="article:published_time" content="2021-12-30T00:00:00+0000" /><meta property="article:modified_time" content="2021-12-30T00:00:00+0000" />
+    <link rel="stylesheet" href="https://molentum.me/style.css?h=1f6038239e9a49801985">
+    <link rel="stylesheet" href="https://molentum.me/color/lime.css?h=9e2ee27fa360b7fd8766"><link rel="stylesheet" href="https://molentum.me/custom.css?h=886d0bf1e8c05b697541">
+    
+<link rel="shortcut icon" href="https://molentum.me/favicon.ico" type="image/x-icon" />
+        
+        
+        
+        <link rel="alternate" type="application/rss+xml" title="All/&#x2F;home&#x2F;mole" href="https://molentum.me/rss.xml"><link rel="webmention" href="https:&#x2F;&#x2F;webmention.io&#x2F;molentum.me&#x2F;webmention" /></head>
+    <body><div class="container center">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__mole left-mole"></div>
+        <div class="header__logo">
+            <a href="https:&#x2F;&#x2F;molentum.me">
+    <div class="logo">
+        &#x2F;home&#x2F;mole
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+        <div class="header__mole right-mole"></div>
+    </div>
+    
+    <nav class="menu">
+        <ul class="menu__inner menu__inner--desktop">
+            
+            
+        <li>
+            <a href="https://molentum.me/about">about</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/blog">blog</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/gallery">gallery</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/notes">notes</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;mastoart.social&#x2F;@molentum">Mastodon</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;m0lentum">GitHub</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;molentum.itch.io&#x2F;">Itch.io</a>
+        </li></ul>
+
+        <ul class="menu__inner menu__inner--mobile">
+            
+        <li>
+            <a href="https://molentum.me/about">about</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/blog">blog</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/gallery">gallery</a>
+        </li>
+        <li>
+            <a href="https://molentum.me/notes">notes</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;mastoart.social&#x2F;@molentum">Mastodon</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;m0lentum">GitHub</a>
+        </li>
+        <li>
+            <a href="https:&#x2F;&#x2F;molentum.itch.io&#x2F;">Itch.io</a>
+        </li>
+        </ul>
+    </nav>
+
+        
+</header>
+<div class="content"><article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https:&#x2F;&#x2F;molentum.me&#x2F;blog&#x2F;2021&#x2F;starframe-ropes&#x2F;">Starframe devlog: Rope physics</a>
+            </h1>
+            
+    <div class="post-meta">
+        <span class="post-date">2021.12.30
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    ::
+    #<a href="https://molentum.me/tags/starframe/">starframe</a>
+        
+    #<a href="https://molentum.me/tags/physics/">physics</a>
+        
+    
+            
+        
+    </div>
+
+        </header>
+        
+
+        <p><a href="https://github.com/m0lentum/starframe/">Starframe</a>'s rope physics is the first piece of physics code I've written that
+I designed entirely myself. This is a short story of that design process
+and the challenges and solutions found along the way.</p>
+<span id="continue-reading"></span><h2 id="the-idea">The idea<a class="zola-anchor" href="#the-idea" aria-label="Anchor link for: the-idea">§</a>
+</h2>
+<p>Having just <a href="/blog/starframe-constraints/#extended-position-based-dynamics">implemented XPBD</a>, I was thinking about things
+it's uniquely good at that would also make for interesting game mechanics. One
+of the method's big selling points is unified handling of particles and rigid
+bodies, which makes coupling between the two relatively easy to achieve. A rope
+is one of the simplest constructs you can make out of particles (<a href="https://zalo.github.io/blog/constraints/#">this post has
+some fun interactive examples</a>), so it didn't take me long to arrive
+at the idea of connecting bodies together with ropes. It felt like something
+that I could pull off technically and that could also generate a lot of
+interesting game design.</p>
+<p>A rope on its own can be represented as a simple chain of particles with
+distance constraints between consecutive pairs of them. I had already
+implemented everything required to do this. There are some interesting details
+here that I'll get into later, but first, let's talk about the more novel
+part — two-way coupling with rigid bodies.</p>
+<p>There were two things I needed for the kind of two-way coupling I was looking
+for. The first was attaching a rope to a rigid body, which was trivial — in
+XPBD, attaching a particle to a rigid body is no different from attaching it to
+another particle, which I already did to build the rope itself. The second was
+collision detection, which was a lot less trivial.</p>
+<h2 id="experimentation">Experimentation<a class="zola-anchor" href="#experimentation" aria-label="Anchor link for: experimentation">§</a>
+</h2>
+<p>My initial idea for collision detection was an ambitious one. In order to have
+no gaps between particles that things could possibly pass through, I wanted to
+connect particles with capsule shapes as illustrated here:</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/capsules.png" alt="Point-like particles connected with capsule shapes" /></p>
+<p>I would first solve the rope's internal constraints on particles, then generate
+these capsules and solve collisions on them, and finally reposition the
+particles again from the capsules' new positions.</p>
+<p>So I got to work. The first step was to implement collision detection for the
+capsule shape, since I only had boxes and circles at this point. This was a
+fairly tricky task in itself and took a few days of intense debugging to get
+every edge case right.</p>
+<p>Some more tinkering later, I had built a rope out of particles connected with
+capsules as described earlier. Code for the particle-capsule coupling had to
+be scattered all over the solver, but if it worked it would surely be worth
+that complexity. I fired up my testing sandbox and saw a rope that settled
+nicely against the side of the box it was hanging from! I then started yanking
+it around with the mouse and, well,</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/explosion.jpg" alt="A rope that has exploded into a chaotic polyline spanning the whole screen" /></p>
+<p>It exploded. It wasn't stable. I hoped this might be an implementation bug, but
+eventually had to admit it wasn't. What I hadn't considered was that every
+particle was part of two different capsules, and if those capsules moved in
+different directions, the particle would have two competing positions to choose
+from. In some unfortunate configurations this would pull itself into a wall and
+blow up violently, and there was nothing I could think of that I could do about
+it.</p>
+<h3 id="a-simpler-solution">A simpler solution<a class="zola-anchor" href="#a-simpler-solution" aria-label="Anchor link for: a-simpler-solution">§</a>
+</h3>
+<p>So I had to admit defeat and toss this capsule idea in the bin. I replaced it
+with something much simpler that I knew would be stable — every particle gets
+its own collider, no coupling shenanigans at all. A rope is now just a chain of
+little circles like this: ○○○○○○○○○○○○○○○○○○○○○</p>
+<p>This means I had to abandon my grandiose plans of never having gaps in a rope,
+but I can compensate by making the particle spacing so small they overlap. I
+can't have super stretchy ropes now because stretching creates gaps, but I
+can game-design my way around that limitation.</p>
+<div class="sidenote">
+    <p>Allowing the colliders overlap meant I needed to make them ignore collisions
+with each other. I did this by implementing a layer system and assigning all
+rope particles to a layer without self-collision. A limitation of this
+approach is that ropes don't collide with themselves or each other at all, but
+this is fine for my purposes.</p>
+</div>
+<p>In practice, this turned out to work quite well already. Bodies would slide
+along ropes and vice versa in a plausible-looking way. However, stretching
+sometimes let bodies wedge themselves between rope particles, stopping them or
+making them tumble. I came up with a cheeky little trick to alleviate this —
+rather than using the actual collision normal, why don't we now pretend we're
+still doing the capsule thing, and use the normal direction of that to move
+things apart? Here's a close-up illustration of rope particles colliding with
+a box:</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/box-collision.png" alt="A box has its corner wedged between two circular particles" /></p>
+<p>The red arrows here are the original collision normals, each of which would
+push the box towards the other particle. Resolving the collision using the
+green normals instead pushes the box away from between the particles faster
+and makes it less likely to get stuck.</p>
+<p>At this point I was very happy with this solution and couldn't think of
+anything to add, so it's finally time to show you a nice flashy gif.</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/demo.gif" alt="Animated gif of ropes and bodies interacting" /></p>
+<div class="sidenote">
+    <p>There was also a confusing problem with friction being very strong in one
+direction but weak in the other. This turned out to be caused specifically by
+static friction, so rather than investigating further, my solution was to turn
+static friction off for ropes :)</p>
+</div>
+<h2 id="other-tidbits">Other tidbits<a class="zola-anchor" href="#other-tidbits" aria-label="Anchor link for: other-tidbits">§</a>
+</h2>
+<h3 id="bending-resistance">Bending resistance<a class="zola-anchor" href="#bending-resistance" aria-label="Anchor link for: bending-resistance">§</a>
+</h3>
+<p>If you just connect particles with distance constraints and leave it there,
+they can spin around each other without any limits. However, real ropes have
+some thickness and rigidity that prevents them from bending to extreme angles.
+To this end, I implemented a special angular constraint between three particles.</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/angle-constraint.png" alt="Illustration of three particles and the angle between them" /></p>
+<p>For each group of three rope particles, I take the angle <code>Θ</code> and move the third
+particle <code>P</code> in a circle until that angle is above a limit value <code>Θ'</code>, ending
+up with the particle at <code>P'</code>. I gave the constraint some compliance (<a href="/blog/starframe-constraints/#extended-position-based-dynamics">see my post on
+constraints</a>) to allow more extreme angles to occur under
+pressure. I also added some velocity damping to slow down angular movement,
+simulating internal friction in the rope.</p>
+<p>This is hardly a realistic model, but I'm making graphics and games here, where
+appearance is all that matters. And I generally like how this looks — ropes
+tend to move in a pleasantly restrained way, and when bunched up they make
+these little bends instead of falling completely flat.</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/bend.jpg" alt="A rope folding on itself, bending gradually instead of falling flat" /></p>
+<h3 id="data-structures">Data structures<a class="zola-anchor" href="#data-structures" aria-label="Anchor link for: data-structures">§</a>
+</h3>
+<div class="sidenote">
+    <p>2025 note: I'm not using this entity system anymore —
+consider this part a historical curiosity.
+There's still a graph structure inside the physics engine,
+which allows multiple colliders to attach to one body,
+but the rest of the engine uses a regular ECS.</p>
+</div>
+<p>I have this weird entity system I call the Component Graph that I've <a href="/blog/starframe-architecture/#attempt-3-graph">written a
+bit about before</a> (though much has changed since). I thought it would
+be a fun test of its capabilities to try and represent my ropes entirely in the
+graph without any external data structures. This was my first attempt at making
+it do something an ECS can't, and led to some pretty fundamental changes to the
+entity system itself.</p>
+<div class="sidenote">
+    <p>This seemed worth doing because the specialized damping and three-particle
+constraints didn't map cleanly onto my existing constraint system. If I was
+only doing distance constraints, I would probably have just slapped regular
+constraints on pairs of particles and called it a day.</p>
+</div>
+<p>I feel like this post isn't the right place to explain the whole system in
+enough detail to understand all the little things I tried and changed.
+Consider this a teaser for a deep-dive post on the subject when I have a few
+more experiences to talk about ;)</p>
+<div class="sidenote">
+    <p>For now, the most comprehensive explanation of the current incarnation of this
+system is in the <a href="https://github.com/m0lentum/starframe/blob/master/src/graph.rs">module documentation in the
+source code</a>.</p>
+</div>
+<p>Long story short, I ended up changing the whole conceptual model from a
+directed graph to an undirected one, added some more explicit control over the
+deletion algorithm, made some other unrelated improvements, and ended up with
+a rope representation looking like this:</p>
+<p><img src="https://molentum.me/blog/2021/starframe-ropes/graph-repr.png" alt="A tree-like pattern of multiple Body nodes connected to a single Rope node" /></p>
+<p>The <code>Rope</code> node contains the physical properties of the rope,
+and each <code>Body</code>-<code>Collider</code>-<code>Pose</code> triple is a single particle.</p>
+<p>This is working pretty well for me so far. It isn't anything you couldn't
+implement with, say, an ECS and some external structure to identify rope particles,
+but having the entire structure in the entity system gives me some cool
+features for free that may or may not otherwise take a bit of thought:</p>
+<ul>
+<li>Rope particles are just bodies with colliders like any other, so all usual
+physics code such as constraints and raycasts Just Works with them.</li>
+<li>On the flipside, you can easily tell if any given body is part of a rope by simply
+checking if it's connected to a Rope component.</li>
+<li>It's trivial to delete an entire rope (and also easy to delete just one
+particle). The graph's delete method handles both cases out of the box.</li>
+</ul>
+<h2 id="what-s-next">What's next<a class="zola-anchor" href="#what-s-next" aria-label="Anchor link for: what-s-next">§</a>
+</h2>
+<p>Around this time I also did a bunch of general optimization work (which I'll
+write another post about some time). With all this done, I was satisfied enough
+with my physics to start working on an actual video game making use of it.
+That game is called Flamegrower, and it's about burning some evil alien plants
+out of existence. It's open source (though I've yet to figure out exact
+licensing) and you can find it (or what exists of it so far) <a href="https://github.com/m0lentum/flamegrower/">on
+GitHub</a>.</p>
+
+    </article></div>
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+                    <div class="footer__inner"><div class="copyright">
+                                <span>© 2025 Mikael Myyrä</span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Theme based on <a href="https://github.com/ejmg/zerm">zerm</a> by <a href="https://github.com/ejmg">ejmg</a></span>
+                                <span>&nbsp;::&nbsp;</span>
+                                <span>Font: <a href="https://www.jetbrains.com/lp/mono/">JetBrains Mono</a></span>
+                            </div>
+    <script type="text/javascript" src="https://molentum.me/assets/js/main.js"></script>
+</div>
+                </footer></div>
+    </body>
+</html>
