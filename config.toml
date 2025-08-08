@@ -35,7 +35,7 @@ main_menu = [
   { url = "/gallery/", name = "gallery" },
   { url = "/notes/", name = "notes" },
   { url = "https://mastoart.social/@molentum", name = "Mastodon", external = true, rel_me = true },
-  { url = "https://github.com/m0lentum", name = "GitHub", external = true, rel_me = true },
+  { url = "https://codeberg.org/molentum", name = "Codeberg", external = true, rel_me = true },
   { url = "https://molentum.itch.io/", name = "Itch.io", external = true },
 ]
 fedi_account = "@molentum@mastoart.social"
