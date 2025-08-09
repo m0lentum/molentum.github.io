@@ -16,6 +16,8 @@ publish: build
   # don't remove .gitattributes, otherwise lfs breaks
   git rm -r "[!.git]*"
   mv public/** ./
+  echo "molentum.me" > .domains
+  echo "molentum.codeberg.page" >> .domains
   git add -A
   git commit -m "publish"
   git push origin HEAD:pages --force
