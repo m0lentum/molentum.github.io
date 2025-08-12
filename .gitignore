@@ -1,2 +1,5 @@
 public/
 static/processed_images/
+# Fira Code font is not actually used and takes up space in the repo
+# when it shows up in the pages branch
+assets/fonts/FiraCode*
