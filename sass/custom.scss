@@ -51,7 +51,7 @@ h1, h2, h3 {
 
   // scale canvas to screen if it doesn't fit
   canvas {
-    max-width: 100%;
+    max-width: 100vw;
     height: unset !important;
   }
 }
