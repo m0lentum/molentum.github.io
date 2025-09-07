@@ -1,6 +1,6 @@
 +++
 title = "Stuff I liked in 2025"
-updated = 2025-07-02
+updated = 2025-09-07
 slug = "stuff-i-liked-in-2025"
 [taxonomies]
 # can't have tags until this has a publication date
@@ -29,7 +29,9 @@ Current top 5:
 4. **Eluveitie — Ànv** (folk/melodeath)
 5. **Allegaeon — The Ossuary Lens** (prog/tech/melodeath)
 
-The rest in no particular order:
+The rest in no particular order
+(well, the order I heard them in,
+which I guess is a particular order if you think about it):
 
 - **Dynazty — Game of Faces** (heavy)
 - **Arion — The Light That Burns The Sky** (power)
@@ -45,10 +47,35 @@ The rest in no particular order:
 - **Embrium — Timekeeper** (melodic black)
 - **Buried Realm — The Dormant Darkness** (tech/melodeath)
 - **Novelists — CODA** (prog/metalcore)
+- **Fractal Universe — The Great Filters** (prog/death)
+- **Destinity — Ascension** (melodeath)
 - **Shadow of Intent — Imperium Delirium** (symphonic deathcore)
+- **Ancient Bards — Artifex** (symphonic/power)
+- **Azure Emote — Cryptic Aura** (symphonic prog/death)
+- **Blackbraid — Blackbraid III** (atmospheric black)
+- **Spire of Lazarus — Those Who Live In Death** (tech/deathcore)
 
 
 ## Books
+
+### Nonfiction
+
+I've been reading so much for my studies this year
+I haven't had the energy to read any more nonfiction for leisure,
+but I want to highlight one textbook I read:
+
+**Tristan Needham — Visual Differential Geometry and Forms**<br/>
+Beautifully written and illustrated,
+full of humor, useful intuition, fascinating historical notes,
+and _Star Trek_ references.
+The only textbook I've had so much _fun_ reading
+I'd even open it on weekends.
+Math (and science in general) would be better with more pictures of fruit
+and phrases like "therefore, reaching upward, we may now touch the face of God".
+The lengthy recommended reading list at the end of the book
+will certainly keep me occupied for years to come.
+
+### Fiction
 
 **Max Gladstone — Three Parts Dead** (The Craft Sequence)<br/>
 A fantasy interpretation of our modern world
@@ -99,6 +126,16 @@ The core of the story, though, is in romance and political machinations
 which I found quite compelling.
 Also, "lesbian space pirates" is a hell of a tagline.
 
+**Susanna Clarke — Jonathan Strange and Mr. Norrell**<br/>
+1800s England, except there's magic.
+And it's a field of study as dry and academic as they come,
+which makes it the exclusive pursuit of rich men with nothing better to do.
+The story is told in the style of a regency drama,
+with much attention given to the mundane interpersonal squabbles of these aristocrats.
+It took me a while to decide whether or not I liked this one,
+but ultimately the skillful character writing
+and unusual depiction of magic won me over.
+
 
 ## Games
 
@@ -144,9 +181,33 @@ Plus some delightfully Scottish character acting.
 There's not much in the way of gameplay,
 but with atmosphere like this I had a great time just walking through the story.
 
+**[Lies of P: Overture]**<br/>
+A new campaign for one of the best Soulslikes out there.
+This one ramps up the intensity to previously unseen levels
+without losing its sense of fairness,
+featuring some of my all-time favorite boss fights.
+The visual designs and exploration elements are also as enjoyable as ever.
+
+**[Merge Maestro]**<br/>
+A deckbuilder where you place tokens on a board,
+combine identical ones to make new stronger ones,
+and create synergies to destroy enemies.
+The basic rules are simple, but there's a combinatorial explosion of possibilities
+where winning often entails "breaking" the game in some new and satisfying way.
+
+**[Metal: Hellsinger]**<br/>
+At first glance this game looks almost exactly like Doom (2016),
+but the twist — you must shoot in time with the music —
+ends up giving it a highly distinct and satisfying identity.
+The soundtrack consists of some pretty banging melodic death metal
+that gives the game a driving groove that just feels really good.
+
 
 [saturnalia]: https://store.steampowered.com/app/916350/Saturnalia/
 [archipelago]: https://archipelago.gg/
 [beton brutal]: https://store.steampowered.com/app/2330500/BETON_BRUTAL/
 [dead space (2023)]: https://store.steampowered.com/app/1693980/Dead_Space/
 [still wakes the deep]: https://store.steampowered.com/app/1622910/Still_Wakes_the_Deep/
+[lies of p: overture]: https://store.steampowered.com/app/2848330/Lies_of_P_Overture/
+[merge maestro]: https://store.steampowered.com/app/3519530/Merge_Maestro/
+[metal: hellsinger]: https://store.steampowered.com/app/1061910/Metal_Hellsinger/
