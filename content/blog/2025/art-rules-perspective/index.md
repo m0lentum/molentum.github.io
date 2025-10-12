@@ -173,7 +173,7 @@ of reality that makes the following approximations:
 
 We've seen how the first two come about;
 the last one is implicit in our assumption that light moves along straight lines.
-In reality, of course, our eye has volume,
+In reality, of course, our eye has volume and aggregates signals over time,
 our image surfaces are at least a little bit bumpy (unless drawing digitally),
 and mass bends space, but the effects of these things are vanishingly small
 (unless you're drawing a black hole).
