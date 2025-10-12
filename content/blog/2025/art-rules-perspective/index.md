@@ -11,6 +11,10 @@ use_katex = true
 show_toc = true
 enable_webmentions = true
 mastodon_url = "https://mastoart.social/@molentum/114784038026370224"
+edits = [
+"2025-07-05: Remark about geometric meaning of the linear vanishing point",
+"2025-10-12: Concluding note about the approximations made in linear perspective",
+]
 +++
 
 There are many shorthands and rules of thumb
@@ -160,6 +164,19 @@ This is enough to draw a cube,
 but in most real-life scenarios there are lines in many more directions
 and thus many more (all the way up to an uncountably infinite number, in fact)
 vanishing points.
+
+In conclusion, linear perspective is an idealized geometric model
+of reality that makes the following approximations:
+- a pointlike observer fixed in space and time
+- a planar image surface
+- flat spacetime
+
+We've seen how the first two come about;
+the last one is implicit in our assumption that light moves along straight lines.
+In reality, of course, our eye has volume,
+our image surfaces are at least a little bit bumpy (unless drawing digitally),
+and mass bends space, but the effects of these things are vanishingly small
+(unless you're drawing a black hole).
 
 ## Curvilinear perspective
 

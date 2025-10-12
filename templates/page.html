@@ -13,6 +13,17 @@
                 <a href="{{ page.permalink }}">{{ page.title }}</a>
             </h1>
             {{ posts::meta(page=page, author=config.extra.show_author) }}
+        {# little edit history widget using the html builtin dropdown #}
+        {% if page.extra.edits %}
+            <details>
+            <summary><b>Edit history</b></summary>
+            <ul>
+            {% for edit in page.extra.edits %}
+            <li>{{ edit }}</li>
+            {% endfor %}
+            </ul>
+            </details>
+        {% endif %}
         </header>
         {% if page.extra.show_toc and page.toc %}
             {{ toc::toc() }}
