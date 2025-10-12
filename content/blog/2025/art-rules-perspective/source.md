@@ -1,7 +1,7 @@
 +++
 title = "Art rules from first principles, part 1: Perspective"
 date = 2025-07-02
-updated = 2025-07-05
+updated = 2025-10-12
 slug = "art-rules-perspective"
 [taxonomies]
 tags = ["art", "geometry"]
