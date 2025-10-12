@@ -22,3 +22,4 @@ publish: build
   git commit -m "publish"
   git push origin HEAD:pages --force
   git reset --hard HEAD~1
+  rm -r assets/
