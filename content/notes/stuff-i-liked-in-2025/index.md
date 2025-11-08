@@ -1,6 +1,6 @@
 +++
 title = "Stuff I liked in 2025"
-updated = 2025-09-07
+updated = 2025-11-08
 slug = "stuff-i-liked-in-2025"
 [taxonomies]
 # can't have tags until this has a publication date
@@ -22,12 +22,15 @@ See also [last year's post](/blog/2024/stuff-i-liked-in-2024/).
 
 ## Heavy metal
 
-Current top 5:
+There's been so much good stuff this year I might have to do a top 10 instead of 5.
+Top N so far:
 1. **Kardashev — Alunea** (deathgaze)
-2. **Rivers of Nihil — Rivers of Nihil** (prog/death)
-3. **Fallujah — Xenotaph** (atmospheric tech-death)
-4. **Eluveitie — Ànv** (folk/melodeath)
-5. **Allegaeon — The Ossuary Lens** (prog/tech/melodeath)
+2. **An Abstract Illusion — The Sleeping City** (atmospheric prog/death)
+3. **Rivers of Nihil — Rivers of Nihil** (prog/death)
+4. **Fallujah — Xenotaph** (atmospheric tech-death)
+5. **Eluveitie — Ànv** (folk/melodeath)
+6. **Slow Fall — Blood Eclipse** (melodeath)
+7. **Allegaeon — The Ossuary Lens** (prog/tech/melodeath)
 
 The rest in no particular order
 (well, the order I heard them in,
@@ -43,7 +46,6 @@ which I guess is a particular order if you think about it):
 - **Hypermass — Apparition Day** (groove/melodeath)
 - **Elvenking — Reader of the Runes - Luna** (folk/power)
 - **Voidfallen — The Rituals of Resilience** (melodeath)
-- **Slow Fall — Blood Eclipse** (melodeath)
 - **Embrium — Timekeeper** (melodic black)
 - **Buried Realm — The Dormant Darkness** (tech/melodeath)
 - **Novelists — CODA** (prog/metalcore)
@@ -54,6 +56,14 @@ which I guess is a particular order if you think about it):
 - **Azure Emote — Cryptic Aura** (symphonic prog/death)
 - **Blackbraid — Blackbraid III** (atmospheric black)
 - **Spire of Lazarus — Those Who Live In Death** (tech/deathcore)
+- **Lorna Shore — I Feel The Everblack Festering Within Me** (symphonic deathcore)
+- **Faetooth — Labyrinthine** (doom)
+- **Visitant — Rubidium** (melodic black/death)
+- **Dark Matter Secret — New Matter** (instrumental tech-death)
+- **Suotana — Ounas II** (folk/melodeath)
+- **In Mourning — The Immortal** (melodeath)
+- **Raat — White Fire** (atmospheric black)
+- **BLACKSHAPE — Prismer I** (post)
 
 
 ## Books
@@ -83,7 +93,8 @@ where the arcane rules of law and ownership
 are the basis of actual magic and gods.
 A fun hodgepodge of aesthetics, often quite funny satire,
 and many great characters.
-Quite a long series which stayed interesting all the way through.
+Quite a long series which stayed interesting all the way through,
+with the latest part being released just this October.
 
 **Mary Robinette Kowal — The Martian Contingency**<br/>
 The latest entry in the Lady Astronaut series mentioned in last year's list,
@@ -135,6 +146,19 @@ with much attention given to the mundane interpersonal squabbles of these aristo
 It took me a while to decide whether or not I liked this one,
 but ultimately the skillful character writing
 and unusual depiction of magic won me over.
+
+**Adrian Tchaikovsky — Empire in Black and Gold** (Shadows of the Apt)<br/>
+A fantasy world where humans have taken on traits of various insects.
+Industrious Beetles, rigidly organized Ants, tiny nimble Flies,
+Mantis warriors, etc. etc.
+all threatened by an aggressively expansionist Empire of the Wasps.
+The worldbuilding is a fun and very detailed mix
+of steampunky industrial revolution -era technology
+with the various semi-magical insectoid features,
+and while the protagonists have a certain "young adult" flavor,
+the story isn't afraid to get as dark and brutal as a war story needs to.
+At the time of writing I'm halfway through the (quite long) series
+and still enjoying it a fair bit.
 
 
 ## Games
@@ -202,6 +226,27 @@ ends up giving it a highly distinct and satisfying identity.
 The soundtrack consists of some pretty banging melodic death metal
 that gives the game a driving groove that just feels really good.
 
+**[Rain World]**<br/>
+One of the strangest, most thoroughly unique gaming experiences I've ever had.
+Rain World simulates a complex living ecosystem of predator and prey
+in the ruins of some mysterious civilization,
+where you must learn to survive without being told anything about how it works.
+It's unfair in the way nature is unfair;
+it's brutal and frightening and disgusting in the way nature is;
+it's grand and beautiful and serene in the way nature is.
+Also an absolute masterpiece in 2D visual effects
+and an inspiration to my own tech-art work.
+
+**[Sword of the Sea]**<br/>
+The latest from Giant Squid (of Journey fame),
+another short platforming adventure with a focus on astonishingly beautiful visuals.
+As a "snowboarding" game it lacks a certain inertia,
+but the movement is merely a vessel for experiencing the world,
+which is gorgeous as always.
+Worth seeing if you're a Giant Squid fan;
+if you've never played one of their games before,
+my personal favorite is still The Pathless.
+
 
 [saturnalia]: https://store.steampowered.com/app/916350/Saturnalia/
 [archipelago]: https://archipelago.gg/
@@ -211,3 +256,5 @@ that gives the game a driving groove that just feels really good.
 [lies of p: overture]: https://store.steampowered.com/app/2848330/Lies_of_P_Overture/
 [merge maestro]: https://store.steampowered.com/app/3519530/Merge_Maestro/
 [metal: hellsinger]: https://store.steampowered.com/app/1061910/Metal_Hellsinger/
+[rain world]: https://store.steampowered.com/app/312520/Rain_World/
+[sword of the sea]: https://store.steampowered.com/app/2453160/Sword_of_the_Sea/
