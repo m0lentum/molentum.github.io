@@ -541,7 +541,7 @@ feel free to ping me on Mastodon
 and I'll be happy to dig up my old notes (I think I still have them somewhere..)
 to post as an appendix.
 
-[starframe]: https://github.com/m0lentum/starframe
+[starframe]: https://codeberg.org/molentum/starframe
 [sht]: https://en.wikipedia.org/wiki/Hyperplane_separation_theorem
 [convex]: https://en.wikipedia.org/wiki/Convex_set
 [metanet-tut]: https://www.metanetsoftware.com/2016/n-tutorial-a-collision-detection-and-response

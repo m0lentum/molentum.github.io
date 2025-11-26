@@ -18,7 +18,7 @@ My submission for the graphic art compo at Instanssi 2024.
 Lines drawn in ink on paper,
 characters painted digitally with Krita,
 and animated effects written in Rust with wgpu.
-[Source code on GitHub](https://github.com/m0lentum/art)
+[Source code on Codeberg](https://codeberg.org/molentum/art)
 
 <!-- more -->
 

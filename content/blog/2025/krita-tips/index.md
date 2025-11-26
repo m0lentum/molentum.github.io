@@ -756,6 +756,6 @@ but I hope you enjoyed learning about it.
 [normalmap]: https://en.wikipedia.org/wiki/Normal_mapping
 [nm-tut-yt]: https://www.youtube.com/watch?v=D0tD0ZzOH4I
 [nm-brush-eng]: https://docs.krita.org/en/reference_manual/brushes/brush_engines/tangen_normal_brush_engine.html
-[starframe]: https://github.com/m0lentum/starframe
+[starframe]: https://codeberg.org/molentum/starframe
 [velgi]: https://molentum.itch.io/velgi
 [graphics-post]: ../game-graphics/

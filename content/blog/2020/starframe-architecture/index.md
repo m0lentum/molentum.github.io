@@ -1,12 +1,17 @@
 +++
 title = "Starframe devlog: Architecture"
 date = 2020-08-30
+updated = 2025-11-26
 slug = "starframe-architecture"
 aliases = ["blog/2020/08/starframe-1-architecture/", "blog/starframe-architecture"]
 [taxonomies]
 tags = ["starframe", "data structures"]
 [extra]
 og_type = "article"
+edits = [
+"2025-01-05: Added a note about new implementation",
+"2025-11-26: Updated links from GitHub to Codeberg",
+]
 +++
 
 I've spent a large portion of the past two years writing and rewriting
@@ -547,11 +552,10 @@ Finally, we looked at a novel graph-based approach that creates some interesting
 
 I realize this was a little long-winded, and to be honest I mostly wrote it just to get myself thinking,
 but I hope you found it interesting. If you read this far I'm going to assume that was the case.
-If you'd like to talk about it, you can find me on [Twitter] or the [Rust gamedev Discord][rgd-discord].
 
 <!-- links -->
 
-[starframe]: https://github.com/m0lentum/starframe
+[starframe]: https://codeberg.org/molentum/starframe
 [amethyst]: https://amethyst.rs/
 [way-of-rhea]: https://www.anthropicstudios.com/2019/06/05/entity-systems/
 [specs]: https://github.com/amethyst/specs
@@ -561,10 +565,10 @@ If you'd like to talk about it, you can find me on [Twitter] or the [Rust gamede
 [anymap]: https://github.com/chris-morgan/anymap
 [hibitset]: https://github.com/amethyst/hibitset
 [serde]: https://github.com/serde-rs/serde
-[ecs-impl-1]: https://github.com/m0lentum/starframe/tree/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
-[ecs-impl-1-recipes]: https://github.com/m0lentum/starframe/blob/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
-[ecs-impl-2]: https://github.com/m0lentum/starframe/tree/1518f8ee65b33427f580537639293360e7b9db35
-[ecs-impl-2-iters]: https://github.com/m0lentum/starframe/blob/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
+[ecs-impl-1]: https://codeberg.org/molentum/starframe/src/commit/cec0dbec5bce8612ffb9dd82441e30eb9233ef60
+[ecs-impl-1-recipes]: https://codeberg.org/molentum/starframe/src/commit/cec0dbec5bce8612ffb9dd82441e30eb9233ef60/examples/testgame/recipes.rs
+[ecs-impl-2]: https://codeberg.org/molentum/starframe/src/commit/1518f8ee65b33427f580537639293360e7b9db35
+[ecs-impl-2-iters]: https://codeberg.org/molentum/starframe/src/commit/1518f8ee65b33427f580537639293360e7b9db35/src/core/container.rs#L100
 [froggy]: https://github.com/kvark/froggy
 [elma]: https://elastomania.com/
 [twitter]: https://twitter.com/molentum_

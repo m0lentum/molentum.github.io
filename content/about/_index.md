@@ -63,7 +63,7 @@ you can send an email to `mikael@molentum.me`
 or ping me on Mastodon.
 
 
-[starframe]: https://github.com/m0lentum/starframe
+[starframe]: https://codeberg.org/molentum/starframe
 [yon]: /notes/yon/
 [gallery]: /gallery/
 [blog]: /blog/

@@ -238,7 +238,7 @@ that made it suboptimal for this art style.
 {% sidenote() %}
 I also developed a line renderer for this based on [these](https://wwwtyro.net/2019/11/18/instanced-lines.html)
 [blog posts](https://wwwtyro.net/2021/10/01/instanced-lines-part-2.html) by Rye Terrell,
-adapted from one I had written earlier for [dexterior](https://github.com/m0lentum/dexterior)
+adapted from one I had written earlier for [dexterior](https://codeberg.org/molentum/dexterior)
 (a cool simulation and visualization library I'm making for my PhD research;
 perhaps a topic for another day).
 For this piece I added support for translucently textured lines,
@@ -532,7 +532,7 @@ Maybe I'll figure that out in my PhD studies.
 
 
 [spine]: https://esotericsoftware.com/
-[starframe]: https://github.com/m0lentum/starframe
+[starframe]: https://codeberg.org/molentum/starframe
 [nerdsnipe]: https://xkcd.com/356/
 [normalmap]: https://en.wikipedia.org/wiki/Normal_mapping
 [krita]: https://krita.org/

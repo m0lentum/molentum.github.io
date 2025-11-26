@@ -1,12 +1,16 @@
 +++
 title = "Starframe devlog: Rope physics"
 date = 2021-12-30
+updated = 2025-11-26
 slug = "starframe-ropes"
 aliases = ["blog/starframe-ropes"]
 [taxonomies]
 tags = ["starframe", "physics"]
 [extra]
 og_type = "article"
+edits = [
+"2025-11-26: Updated links from GitHub to Codeberg"
+]
 +++
 
 [Starframe]'s rope physics is the first piece of physics code I've written that
@@ -175,12 +179,6 @@ enough detail to understand all the little things I tried and changed.
 Consider this a teaser for a deep-dive post on the subject when I have a few
 more experiences to talk about ;)
 
-{% sidenote() %}
-For now, the most comprehensive explanation of the current incarnation of this
-system is in the [module documentation in the
-source code](https://github.com/m0lentum/starframe/blob/master/src/graph.rs).
-{% end %}
-
 Long story short, I ended up changing the whole conceptual model from a
 directed graph to an undirected one, added some more explicit control over the
 deletion algorithm, made some other unrelated improvements, and ended up with
@@ -211,10 +209,10 @@ with my physics to start working on an actual video game making use of it.
 That game is called Flamegrower, and it's about burning some evil alien plants
 out of existence. It's open source (though I've yet to figure out exact
 licensing) and you can find it (or what exists of it so far) [on
-GitHub][flamegrower].
+Codeberg][flamegrower].
 
-[starframe]: https://github.com/m0lentum/starframe/
+[starframe]: https://codeberg.org/molentum/starframe/
 [sublucid]: https://zalo.github.io/blog/constraints/#
 [sf-constraints]: /blog/starframe-constraints/#extended-position-based-dynamics
 [sf-graph]: /blog/starframe-architecture/#attempt-3-graph
-[flamegrower]: https://github.com/m0lentum/flamegrower/
+[flamegrower]: https://codeberg.org/molentum/flamegrower/

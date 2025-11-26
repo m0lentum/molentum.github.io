@@ -7,7 +7,6 @@ tags = ["starframe", "physics", "collision"]
 [extra]
 og_type = "article"
 use_katex = true
-show_toc = true
 +++
 
 Back in 2022 I entirely rewrote one of the most complicated parts of [Starframe],
@@ -542,7 +541,7 @@ feel free to ping me on Mastodon
 and I'll be happy to dig up my old notes (I think I still have them somewhere..)
 to post as an appendix.
 
-[starframe]: https://github.com/m0lentum/starframe
+[starframe]: https://codeberg.org/molentum/starframe
 [sht]: https://en.wikipedia.org/wiki/Hyperplane_separation_theorem
 [convex]: https://en.wikipedia.org/wiki/Convex_set
 [metanet-tut]: https://www.metanetsoftware.com/2016/n-tutorial-a-collision-detection-and-response

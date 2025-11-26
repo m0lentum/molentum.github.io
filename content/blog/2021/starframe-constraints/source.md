@@ -1,6 +1,7 @@
 +++
 title = "Starframe devlog: Solving Constraints in Physics"
 date = 2021-03-31
+updated = 2025-11-26
 slug = "starframe-constraints"
 aliases = ["blog/2021/03/starframe-devlog-constraints/", "blog/starframe-constraints"]
 [taxonomies]
@@ -8,6 +9,9 @@ tags = ["starframe", "physics"]
 [extra]
 og_type = "article"
 use_katex = true
+edits = [
+"2025-11-26: Updated links from GitHub to Codeberg"
+]
 +++
 
 The [Starframe] physics solver has gone through a few iterations recently as my
@@ -1285,11 +1289,11 @@ ping me on the [Rust-gamedev Discord server](https://discord.gg/yNtPTb2) (I'm
 
 <!-- other links -->
 
-[starframe]: https://github.com/m0lentum/starframe/
+[starframe]: https://codeberg.org/molentum/starframe/
 [cattotwit]: https://twitter.com/erin_catto
 [box2d]: https://box2d.org/
 [box2dpub]: https://box2d.org/publications/
-[pgs-src]: https://github.com/m0lentum/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics/constraint.rs#L315
-[pgs-src-tick]: https://github.com/m0lentum/starframe/blob/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics.rs#L152
-[si-src]: https://github.com/m0lentum/starframe/blob/3db52efa10a8c505fe352d9bc57f70ce00fea45a/src/physics/constraint/solver.rs#L71
-[xpbd-src]: https://github.com/m0lentum/starframe/blob/master/src/physics.rs
+[pgs-src]: https://codeberg.org/molentum/starframe/src/commit/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics/constraint.rs#L315
+[pgs-src-tick]: https://codeberg.org/molentum/starframe/src/commit/89953322eedcb491815aa6f6115797f9cca78d0a/src/physics.rs#L152
+[si-src]: https://codeberg.org/molentum/starframe/src/commit/3db52efa10a8c505fe352d9bc57f70ce00fea45a/src/physics/constraint/solver.rs#L71
+[xpbd-src]: https://codeberg.org/molentum/starframe/src/commit/d4c5a50aae080f4836e7c25b8aac20552c4997a6/src/physics.rs

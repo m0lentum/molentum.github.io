@@ -19,7 +19,7 @@ In this first post I will outline what exactly I am trying to accomplish and why
 
 2020 note: I've edited this post a little to remove some obsolete information.
 I don't think this is a great introduction to the project as it is today, but I'm keeping it up for history's sake.
-If you just want to know what the project is about, check out the [GitHub repo's](https://github.com/m0lentum/starframe) README.
+If you just want to know what the project is about, check out the [repo's](https://codeberg.org/molentum/starframe) README.
 
 # But why?
 
@@ -80,4 +80,4 @@ This is the road I'm currently on - rewriting what I had done with C++ in this n
 and revisiting old decisions along the way. I'm still in the very early stages of this and
 plan to write up a blog post whenever I'm finished with a major feature (which won't be often - I'm working
 and studying so time is scarce). I won't go into language specifics much, but all the code examples will obviously be in Rust.
-Also, for those interested, the full source code to this project lives on [GitHub](https://github.com/m0lentum/starframe).
+Also, for those interested, the full source code to this project lives on [Codeberg](https://codeberg.org/molentum/starframe).
