@@ -34,6 +34,7 @@ main_menu = [
   { url = "/blog/", name = "blog" },
   { url = "/gallery/", name = "gallery" },
   { url = "/notes/", name = "notes" },
+  { url = "/publications/", name = "publications" },
   { url = "https://mastoart.social/@molentum", name = "Mastodon", external = true, rel_me = true },
   { url = "https://codeberg.org/molentum", name = "Codeberg", external = true, rel_me = true },
   { url = "https://molentum.itch.io/", name = "Itch.io", external = true },
