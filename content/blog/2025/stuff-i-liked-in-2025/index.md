@@ -1,43 +1,99 @@
 +++
 title = "Stuff I liked in 2025"
-updated = 2025-11-08
+date = 2025-12-31
 slug = "stuff-i-liked-in-2025"
 [taxonomies]
-# can't have tags until this has a publication date
-# tags = ["music", "books", "games"]
+tags = ["music", "books", "games"]
 [extra]
 og_type = "article"
+show_toc = true
 +++
 
-This is the 2025 edition of my "good stuff" list,
-where this time I'm collecting things over time as I experience them.
-Metal records, books, and games I've enjoyed so far in 2025,
+It's time for another year-end list of good stuff.
+Metal records, books, and games I enjoyed in 2025,
 with the music restricted to new releases.
+Also some personal retrospecting at the end.
 
 <!-- more -->
 
 {% sidenote() %}
-See also [last year's post](/blog/2024/stuff-i-liked-in-2024/).
+All posts like this:
+- (in-progress 2026 edition will appear under [notes](/notes/) soon)
+- [2025](/blog/2025/stuff-i-liked-in-2025/)
+- [2024](/blog/2024/stuff-i-liked-in-2024/)
 {% end %}
 
 ## Heavy metal
 
-There's been so much good stuff this year I might have to do a top 10 instead of 5.
-Top N so far:
-1. **Kardashev — Alunea** (deathgaze)
-2. **An Abstract Illusion — The Sleeping City** (atmospheric prog/death)
-3. **Rivers of Nihil — Rivers of Nihil** (prog/death)
-4. **Fallujah — Xenotaph** (atmospheric tech-death)
-5. **Eluveitie — Ànv** (folk/melodeath)
-6. **Slow Fall — Blood Eclipse** (melodeath)
-7. **Allegaeon — The Ossuary Lens** (prog/tech/melodeath)
+This year saw so much amazing music
+I had to bump the ranked part of the list up to 10 entries.
 
-The rest in no particular order
+**1. Kardashev — Alunea**<br/>
+Another deathgaze masterpiece from my favorite band in the world.
+Effortlessly sailing the spectrum between brutal and gentle
+(side note: I'm still trying to coin the term "gentle death metal" for this style of music),
+with gorgeous guitar melodies and some of the best vocals I've ever heard.
+
+**2. An Abstract Illusion — The Sleeping City**<br/>
+Another incredible piece of gentle death metal,
+this one with a slower, more atmospheric and meandering tone.
+A journey of an album which I never hesitate to embark on.
+
+**3. Rivers of Nihil — Rivers of Nihil**<br/>
+A legend of progressive death metal,
+now with more vocal variety than ever thanks to the addition of Andy Thomas
+(formerly of Black Crown Initiate, another all-time favorite band of mine).
+Varied and complex, but with a distinct old-school touch.
+
+**4. Fallujah — Xenotaph**<br/>
+Nobody plays the guitar like Scott Carstairs —
+blisteringly technical and soothingly atmospheric at the same time, somehow.
+Kyle Schaefer's amazing vocal range adds a new level of sophistication
+that makes this my favorite release from the band yet.
+
+**5. Kaunis Kuolematon — Kun Valo Minussa Kuoli**<br/>
+Wonderfully heartwrenching death-doom metal
+sung, appropriately, in Finnish:
+the language of a gloomy, melancholy region befitting the music.
+I find this kind of music very cathartic,
+especially in the current dark of winter.
+
+**6. Eluveitie — Ànv**<br/>
+Eluveitie's previous record, Ategnatos (2019),
+was my original gateway into death metal, so my expectations were high for this one.
+I wasn't disappointed — the driving riffs, fun folk instruments,
+soaring female vocals, and catchy choruses are all there and perhaps better than ever.
+
+**7. Arion — The Light That Burns The Sky**<br/>
+Power metal was long my favorite genre,
+and while I've somewhat fallen out of love with it in recent years,
+Arion never fails to pull me back.
+They bring impressive skill, memorable melodies,
+and a relentless energy that, unlike many power metal acts,
+feels fully sincere and thus that much more emotionally effective.
+
+**8. Slow Fall — Blood Eclipse**<br/>
+Distinctly Finnish melodeath, with its constant undertone of gloomy melancholy
+balanced out by groovy riffs and some seriously impressive vocals.
+
+**9. Allegaeon — The Ossuary Lens**<br/>
+I was sad to see some of Allegaeon's progressive side leave with the vocalist,
+but while this record's more old-school tech-death metal
+doesn't hit the unfathomable heights of DAMNUM for me,
+it's still some of the most impressive
+yet effortlessly melodic guitar playing out there.
+
+**10. Aephanemer — Utopie**<br/>
+Grand symphonic melodeath heaping with scale and confidence,
+interspersed with long stretches of neoclassical guitar solos.
+You can really feel the musicians having fun with this one.
+
+...and here's a whole lot more in no particular order
 (well, the order I heard them in,
-which I guess is a particular order if you think about it):
+which I guess is a particular order if you think about it),
+without description but with approximate subgenres:
 
 - **Dynazty — Game of Faces** (heavy)
-- **Arion — The Light That Burns The Sky** (power)
 - **Spiritbox — Tsunami Sea** (prog/metalcore)
 - **Dawn of Ouroboros — Bioluminescence** (post-black)
 - **Dessiderium — Keys To The Palace** (prog/death/black)
@@ -64,6 +120,14 @@ which I guess is a particular order if you think about it):
 - **In Mourning — The Immortal** (melodeath)
 - **Raat — White Fire** (atmospheric black)
 - **BLACKSHAPE — Prismer I** (post)
+- **Before The Dawn — Cold Flare Eternal** (melodeath)
+- **Igorrr — Amen** (avant-garde)
+- **Psychonaut — World Maker** (post)
+- **Trhä — tahaccet ga qëcha com ibajn** (black)
+- **WEFT — The Splintered Oar** (atmospheric black)
+- **Yellow Eyes — Confusion Gate** (atmospheric black)
+- **KAUAN — Wayhome** (post-rock)
+- **The Algorithm — Recursive Infinity** (electronic)
 
 
 ## Books
@@ -247,6 +311,14 @@ Worth seeing if you're a Giant Squid fan;
 if you've never played one of their games before,
 my personal favorite is still The Pathless.
 
+**[Ratchet & Clank: Rift Apart]**<br/>
+Ratchet & Clank was a big part of my childhood,
+so revisiting the series was a fun blast from the past.
+The comedy had me groaning as often as laughing,
+and I was a little disappointed with the enemy variety,
+but I had a great time dashing around at high speeds
+and juggling a litany of goofy weapons.
+
 
 [saturnalia]: https://store.steampowered.com/app/916350/Saturnalia/
 [archipelago]: https://archipelago.gg/
@@ -258,3 +330,53 @@ my personal favorite is still The Pathless.
 [metal: hellsinger]: https://store.steampowered.com/app/1061910/Metal_Hellsinger/
 [rain world]: https://store.steampowered.com/app/312520/Rain_World/
 [sword of the sea]: https://store.steampowered.com/app/2453160/Sword_of_the_Sea/
+[ratchet & clank: rift apart]: https://store.steampowered.com/app/1895880/Ratchet__Clank_Rift_Apart/
+
+
+## Personal
+
+Now that I've given other people's work the attention it deserves,
+let me indulge in a little self-congratulation.
+Here are a few things I did this year that I'm proud of.
+
+Learned traditional painting with gouache
+and had tons of fun with it.
+[Some examples here][gouache].
+And generally, I did a _lot_ of art:
+including sketches and studies, the final tally is
+- 58 gouache paintings
+- 25 ink drawings
+- 25 digital works
+- 118 pencil and ink sketchbook pages
+
+Most of them won't be seen in the gallery here
+(although many of the better ones are on my Mastodon page),
+but the mileage is very much showing itself in my skills and confidence.
+
+Increased my exercise schedule to three times per week
+and made significant fitness gains for the first time in years:
+I can now consistently run 10 km or swim 1.5 km,
+both doubling my usual distances from the start of the year.
+
+Continued my new sewing hobby and made some of my favorite clothes
+that I wear all the time.
+Indeed, I'm wearing one of my custom t-shirts as I write this :)
+
+Got more socially active, participating in a students' art club,
+making trips to see friends, and even giving a presentation at an academic conference
+(slides for that one available under [publications](/publications)!)
+It may not seem like much, but having been very isolated for most of my life,
+these are all big steps forward for me.
+
+Speaking of social activities, I also kept up a habit
+of livestreaming every Sunday on [my Twitch channel][twitch].
+Playing video games (or sometimes painting) and chatting
+has been great fun and contributed a good deal to my improving social confidence.
+
+These are just the highlights — it's not been all fun and games,
+but overall this year has been a great one for me.
+Thanks for reading, and here's to another good one in 2026 🎉
+
+
+[gouache]: /gallery/2025/gouache-stuff/
+[twitch]: https://twitch.tv/molentum

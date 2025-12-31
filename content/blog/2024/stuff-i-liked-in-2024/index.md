@@ -17,10 +17,14 @@ So here are some metal albums, books, and games I enjoyed in 2024.
 
 <!-- more -->
 
-{% sidenote() %}
-Only the metal albums are limited to releases that actually came out in 2024.
+(Only the metal albums are limited to releases that actually came out in 2024.
 I don't spend enough time with other media to have anything left
-if I were to impose such a limitation.
+if I were to impose such a limitation.)
+
+{% sidenote() %}
+All posts like this:
+- [2025](/blog/2025/stuff-i-liked-in-2025/)
+- [2024](/blog/2024/stuff-i-liked-in-2024/)
 {% end %}
 
 
