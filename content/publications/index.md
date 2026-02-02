@@ -6,7 +6,8 @@ Here's a collection of my academic work.
 
 ### Articles
 
-None public yet.
+- [Discrete Exterior Calculus and Controlled Time Integration
+  for Time-Harmonic Acoustics](https://urn.fi/URN:NBN:fi:jyu-202601301719) (2026)
 
 ### Presentation slides
 
