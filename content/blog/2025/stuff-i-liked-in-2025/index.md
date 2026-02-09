@@ -18,8 +18,8 @@ Also some personal retrospecting at the end.
 
 {% sidenote() %}
 All posts like this:
-- (in-progress 2026 edition will appear under [notes](/notes/) soon)
-- [2025](/blog/2025/stuff-i-liked-in-2025/)
+- [2026](/notes/stuff-i-liked-in-2026/)
+- [2025](/blog/2025/stuff-i-liked-in-2025/) (you are here)
 - [2024](/blog/2024/stuff-i-liked-in-2024/)
 {% end %}
 
