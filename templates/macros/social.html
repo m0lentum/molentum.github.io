@@ -43,14 +43,21 @@
             {# for some reason markdown line breaks are preserved in this,
                 hackery to remove them
                 and also quotes which break the html #}
-            {{ page.summary
+            {% set summary = page.summary
                 | striptags
                 | linebreaksbr
                 | replace(from="<br>", to=" ")
                 | replace(from='"', to="'")
                 | truncate(length=300)
                 | safe
-            }}
+            %}
+            {# append number of images on the page if we're in the gallery #}
+            {% set img_count = page.assets | length %}
+            {% if "gallery/_index.md" in page.ancestors and img_count > 1 %}
+            {{ summary }} ({{ img_count }} images)
+            {% else %}
+            {{ summary }}
+            {% endif %}
         {%- elif page.description -%}
             {{ page.description }}
         {%- endif -%}

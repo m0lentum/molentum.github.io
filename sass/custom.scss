@@ -209,6 +209,19 @@ article.artwork {
   }
 }
 
+.count-badge {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  width: auto;
+  font-size: 0.8rem;
+  height: 2em;
+  padding: 0.25em 0.5em;
+  border-radius: 0 5px 0 0;
+  background: lighten(#161f2e, 10%);
+  font-weight: bold;
+}
+
 .gallery-title {
   color: var(--accent);
   margin: 0;

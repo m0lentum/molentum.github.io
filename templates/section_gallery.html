@@ -53,8 +53,15 @@
                                 <span>CC0</span>
                             </div>
                             {% endif %}
+                            {% set img_count = page.assets | length %}
+                            {% if img_count > 1 %}
+                            <div class="count-badge">
+                                <span>{{ img_count }} images</span>
+                            </div>
+                            {% endif %}
                         </div>
-                        <h2 class="gallery-title">{{ page.title }}</h2>
+                        <h2 class="gallery-title">{{ page.title }}
+                        </h2>
                     </a>
                 </div>
                 {%- endfor -%}
