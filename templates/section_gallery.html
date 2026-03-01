@@ -47,7 +47,12 @@
                     {% endif %}
                     <a href={{ page.permalink }}>
                         <div class="gallery-image">
-                            <img src={{ image.url }} alt="{{ page.extra.main_image_alt }}" />
+                            <img 
+                                src={{ image.url }}
+                                alt="{{ page.extra.main_image_alt }}"
+                                width={{ image.width }}
+                                height={{ image.height }}
+                            />
                             {% if page.extra.license and page.extra.license == "CC0" %}
                             <div class="license-badge">
                                 <span>CC0</span>
