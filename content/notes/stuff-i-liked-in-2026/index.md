@@ -1,7 +1,7 @@
 +++
 title = "Stuff I liked in 2026"
 # date = 2026-12-31
-updated = 2026-03-01
+updated = 2026-03-12
 slug = "stuff-i-liked-in-2026"
 [taxonomies]
 # tags = ["music", "books", "games"]
@@ -29,6 +29,8 @@ All posts like this:
 - **coffret de bijoux — dyn vywjil nen jyn dij nendindalnen dyn lelqit
   nen vaw qanjiw / tremaalk' lalvunqat lalvunqat** (post-black / electronic)
 - **The Luna Sequence — Rifts Become Passages** (electronic)
+- **Gladenfold — Soulbound** (power/melodeath) (AOTY so far!)
+- **Cryptic Shift — Overspace & Supertime** (prog/death/thrash)
 
 ## Books
 
