@@ -1,6 +1,7 @@
 +++
 title = "Stuff I liked in 2025"
 date = 2025-12-31
+updated = 2026-03-12
 slug = "stuff-i-liked-in-2025"
 [taxonomies]
 tags = ["music", "books", "games"]
@@ -73,7 +74,7 @@ and a relentless energy that, unlike many power metal acts,
 feels fully sincere and thus that much more emotionally effective.
 
 **8. Slow Fall — Blood Eclipse**<br/>
-Distinctly Finnish melodeath, with its constant undertone of gloomy melancholy
+Distinctly Finnish melodeath, with its undertone of sorrow
 balanced out by groovy riffs and some seriously impressive vocals.
 
 **9. Allegaeon — The Ossuary Lens**<br/>
@@ -128,6 +129,12 @@ without description but with approximate subgenres:
 - **Yellow Eyes — Confusion Gate** (atmospheric black)
 - **KAUAN — Wayhome** (post-rock)
 - **The Algorithm — Recursive Infinity** (electronic)
+
+Honorable mentions
+(that is, 2025 albums I loved
+but didn't hear until later and thus weren't eligible for AOTY):
+- **Bloodred Hourglass — We Should Be Buried Like This** (melodeath)
+- **Orbit Culture — Death Above Life** (groove/melodeath)
 
 
 ## Books
