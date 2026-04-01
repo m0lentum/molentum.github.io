@@ -1,6 +1,7 @@
 +++
 title = "What is local color?"
 date = 2026-03-31
+updated = 2026-04-01
 slug = "local-color"
 [taxonomies]
 tags = ["art", "physics"]
@@ -10,6 +11,9 @@ use_katex = true
 show_toc = true
 enable_webmentions = false
 mastodon_url = ""
+edits = [
+"2026-04-01: Alternative interpretation of the demo painting as low-light vision"
+]
 +++
 
 Local color is a concept we all understand intuitively.
@@ -236,6 +240,23 @@ and adjust it towards local color all in one go,
 but I recommend trying this two-step process as an exercise
 if you've never painted like this.
 {% end %}
+
+Addendum: it should be noted that the above scene can be interpreted two different ways.
+I've said it's a blue light,
+but a very similar perceptual effect is created by actual nighttime light,
+which isn't blue, only low in intensity.
+This is because human vision under low light becomes dominated by the rod cells,
+which don't see color.
+Long-wavelength colors like reds and yellows are the first to be lost in this transition.
+The net effect is a scene where warm colors are physically present but we don't see them.
+This has no bearing on the way I've defined local color
+in purely physical radiometric terms,
+but it's good to know when depicting low-light scenes —
+we need techniques of exposure/tonemapping to make dark scenes visible to us,
+and often this entails making the light look blue to emulate rod-dominant vision.
+So in hindsight I could have chosen a less ambiguous scene to demonstrate this idea,
+but hey, we got to learn another cool fact about color :)
+Thanks to scratch on Discord for pointing this out to me.
 
 One more interesting thing to notice is how this pertains to the difference
 between digital and traditional art.
