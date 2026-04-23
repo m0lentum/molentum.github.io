@@ -13,7 +13,7 @@ ignored_content = ["**/source.md"]
 
 theme = "zerm"
 
-taxonomies = [{ name = "tags" }, { name = "characters" }]
+taxonomies = [{ name = "tags" }, { name = "characters", render = false }]
 
 [markdown]
 highlight_code = true

@@ -7,6 +7,7 @@ page_template = "page_artwork.html"
 generate_feeds = true
 [extra]
 image_size = 300
+show_badges = true
 container_classes = "gallery-container"
 show_rss_link = true
 enable_webmentions = false

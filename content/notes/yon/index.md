@@ -124,54 +124,8 @@ Common visual motifs include the triangle,
 symbolizing the elves' lean and simple lifestyle,
 and various floral patterns.
 
-#### Miriel
+TODO: shortcode to add illustrated character links
 
-{% sidenote() %}
-Images are resized here to save bandwidth.
-Click on them to find the high-resolution originals.
-{% end %}
-
-[{{ fit_img(width=800, height=800,
-alt="Drawing of a red-haired elven woman wearing her hunting/fishing gear:
-a green tunic with leather reinforcements on the chest and hooks for equipment on the waist,
-dark gray linen pants, leather boots and gloves, and a bow and quiver on her back.
-She has a sleeve tattoo of purple anemone flowers reaching up to her neck.
-Next to her are more detailed drawings of her bow, knife, and tattoo."
-src="/gallery/2024/miriel/miriel.jpg"
-)}}](/gallery/2024/miriel/)
-
-[{{ fit_img(width=800, height=800,
-alt="Drawing of a red-haired elven woman wearing her hiking gear:
-a dark green cloak on top of a light green tunic, dark gray linen pants,
-leather boots and gloves, and a backpack.
-In another drawing the same cloak is fully wrapped around her,
-converted into a raincoat with sleeves. Everything is decorated with gold embroidery."
-src="/gallery/2024/miriel/miriel_hiking.jpg"
-)}}](/gallery/2024/miriel/)
-
-The first character designed for this project,
-she is a stereotypical example of a forest elf.
-Her [adventures during Inktober 2024](/gallery/2024/inktober-2024/)
-provide a glimpse into the elves' lifestyle and environment.
-
-[List of art featuring Miriel](/characters/miriel/)
-
-#### Elegil
-
-[{{ fit_img(width=600, height=600,
-alt="Digital sketch of a male-presenting elf with long purple hair tied into a bun.
-There are two versions wearing different outfits.
-In the first he's standing on a gravel path wearing a long-sleeve sweater,
-an ankle-length skirt, socks, and sneakers.
-In the second he's barefoot on a shiny hardwood floor wearing a tank top and sweatpants.",
-src="/gallery/2025/elegil/elegil.jpg"
-)}}](/gallery/2025/elegil/)
-
-Miriel's childhood friend
-who left the hunter-gatherer life and moved to the city
-to get an education in the arts and practice his dance hobby.
-
-[List of art featuring Elegil](/characters/elegil/)
 
 ### Dryads
 
@@ -195,20 +149,6 @@ maintaining its balance and diversity through nigh-imperceptible nudges of magic
 Although they mostly keep away from settlements,
 they've been known to help farmers during difficult years.
 
-#### Ivu
-
-[{{ fit_img(width=600, height=600,
-alt="Digital painting of a feminine figure whose skin looks like birch bark
-and hair falls in curls that resemble the drooping leaves of a birch tree.
-She wears a green apron on top of an orange dress with red decorative drapery at the hem and shoulders."
-src="/gallery/2024/ivu/ivu.jpg"
-)}}](/gallery/2024/ivu/)
-
-Ivu is the avatar of the birch tree
-and also the protagonist of my long-term game project Flamegrower —
-in fact, the dryads' magic powers were created out of the game's mechanics.
-
-[List of art featuring Ivu](/characters/ivu/)
 
 ### Fauns
 
@@ -219,22 +159,6 @@ at university campuses,
 where they're stereotypically known as good students and scientists
 with a propensity for jokes and pranks.
 
-#### Olivia & Basil
-
-[{{ fit_img(width=600, height=600,
-alt="Digital painting of two fauns with deer-like features.
-They're standing in front of a carved wooden door and wearing old-timey academia-style clothes:
-a turtleneck sweater and a plaid skirt; a tweed jacket and pants with a scarf."
-src="/gallery/2025/fauns/fauns.jpg"
-)}}](/gallery/2025/fauns/)
-
-A pair of siblings, both mathematicians.
-Basil is always trying to outdo his older sister,
-rarely succeeding, but both delight in the friendly competition.
-
-[List of art featuring Olivia](/characters/olivia/)
-<br/>
-[List of art featuring Basil](/characters/basil/)
 
 ### Mountain dwarves
 
@@ -268,23 +192,6 @@ build grand halls decorated with paintings and sculptures,
 and give musical performances
 which are prized and sought after all over the world.
 
-#### Aava
-
-Merfolk are uniquely well suited for the study of marine biology
-(on account of the ability to stay underwater indefinitely),
-so many of their institutes of higher learning are focused on the topic.
-Aava is one young researcher in the field and an amateur sculptor,
-with an ostentatious fashion sense typical of her people.
-
-[{{ fit_img(width=600, height=600,
-alt="Digital drawing of a mermaid wearing a skimpy halter top
-with an embroidered belt around the waist and chains of jewelry hanging off it.
-She also wears various other jewelry around the arms and the head and heavy smoky-eye makeup.
-Her body is colored with drab greens and grays, evoking some kind of Nordic freshwater fish."
-src="/gallery/2025/aava/aava_halter_fancy.jpg"
-)}}](/gallery/2025/aava/)
-
-[List of art featuring Aava](/characters/aava/)
 
 ## City life
 

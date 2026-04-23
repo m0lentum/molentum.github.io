@@ -127,7 +127,10 @@ article.artwork {
 
 .gallery-container {
   align-items: center;
-  text-align: center;
+
+  p {
+    width: 100%;
+  }
 
   header,
   .post,
