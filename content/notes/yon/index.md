@@ -124,7 +124,22 @@ Common visual motifs include the triangle,
 symbolizing the elves' lean and simple lifestyle,
 and various floral patterns.
 
-TODO: shortcode to add illustrated character links
+Characters:
+
+<div class="horizontal">
+{{ gallery_link(
+    title="Miriel",
+    page_path="@/characters/miriel/",
+    img_file="miriel_square.jpg",
+    size=200
+) }}
+{{ gallery_link(
+    title="Elegil",
+    page_path="@/characters/elegil/",
+    img_file="elegil_square.jpg",
+    size=200
+) }}
+</div>
 
 
 ### Dryads
@@ -149,6 +164,17 @@ maintaining its balance and diversity through nigh-imperceptible nudges of magic
 Although they mostly keep away from settlements,
 they've been known to help farmers during difficult years.
 
+Characters:
+
+<div class="horizontal">
+{{ gallery_link(
+    title="Ivu",
+    page_path="@/characters/ivu/",
+    img_file="ivu_square.jpg",
+    size=200
+) }}
+</div>
+
 
 ### Fauns
 
@@ -159,6 +185,22 @@ at university campuses,
 where they're stereotypically known as good students and scientists
 with a propensity for jokes and pranks.
 
+Characters:
+
+<div class="horizontal">
+{{ gallery_link(
+    title="Olivia",
+    page_path="@/characters/olivia/",
+    img_file="olivia_square.jpg",
+    size=200
+) }}
+{{ gallery_link(
+    title="Basil",
+    page_path="@/characters/basil/",
+    img_file="basil_square.jpg",
+    size=200
+) }}
+</div>
 
 ### Mountain dwarves
 
@@ -191,6 +233,17 @@ They dress themselves in elaborate clothing and jewelry,
 build grand halls decorated with paintings and sculptures,
 and give musical performances
 which are prized and sought after all over the world.
+
+Characters:
+
+<div class="horizontal">
+{{ gallery_link(
+    title="Aava",
+    page_path="@/characters/aava/",
+    img_file="aava_square.jpg",
+    size=200
+) }}
+</div>
 
 
 ## City life

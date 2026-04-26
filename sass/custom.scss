@@ -171,7 +171,6 @@ article.artwork {
 .gallery-post {
   padding-bottom: 15px;
   flex: 1 1 auto;
-  min-width: 300px;
   a {
     display: flex;
     flex-flow: column nowrap;
@@ -184,6 +183,12 @@ article.artwork {
   img {
     margin: 0;
   }
+}
+
+.horizontal {
+  // horizontal flex row for displaying gallery links in custom contexts
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .gallery-image {

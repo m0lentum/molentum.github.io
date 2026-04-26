@@ -19,7 +19,7 @@ The third is simpler in form, decorated with geometric patterns on the bust and 
 Some historical dresses from the 1910s
 (found via [The Dreamstress](https://thedreamstress.com/category/rate-the-dress/);
 original sources are various museums)
-worn by [Miriel](/gallery/2024/miriel/) because why not.
+worn by [Miriel](/characters/miriel/) because why not.
 Working my way out of a slump with some comfort zone portraits.
 
 <!-- more -->

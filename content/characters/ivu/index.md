@@ -23,12 +23,12 @@ Ivu is the avatar of the birch tree
 and also the protagonist of my long-term game project Flamegrower —
 in fact, the dryads' magic powers were created out of the game's mechanics.
 
+<!-- more -->
+
 Extra sketches exploring different balances between
 nature/gardening aesthetics and a fancy sorcerer's dress:
 
-<!-- more -->
-
-![Four different clothing designs for one feminine figure with birch bark for skin.
+![Four different clothing designs for Ivu the dryad.
 One is naked. The second wears a long green dress decorated with orange flame-like sigils.
 The third wears an apron on top of an orange dress with red decorative drapery.
 The fourth wears an apron with one shoulder strap undone on top of a collared t-shirt,

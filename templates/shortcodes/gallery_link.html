@@ -1,0 +1,40 @@
+{# can't use the gallery_link macro because get_page isn't available in shortcodes.
+this means we have to provide more info by hand, which is annoying but it is what it is.
+badges also can't be done and we can't get alt text from the page metadata #}
+{# parameters:
+title (text part of the link)
+page_path (directory path, not website path),
+img_file (image file name within the directory, should match the page's `main_image`
+size (length of the longer edge of the image in pixels)
+#}
+<div class="gallery-post">
+    {% set img_path = page_path ~ img_file %}
+    {% set meta = get_image_metadata(path=img_path) %}
+    {# crop the image such that the shorter side is section.extra.image_size #}
+    {% if meta.width < meta.height %}
+        {% set image = resize_image(
+            path=img_path,
+            width=size,
+            op="fit_width",
+            quality=100,
+        ) %}
+    {% else %}
+        {% set image = resize_image(
+            path=img_path,
+            height=size,
+            op="fit_height",
+            quality=100,
+        ) %}
+    {% endif %}
+    <a href={{ get_url(path = page_path ~ "index.md") }}>
+        <div class="gallery-image">
+            <img 
+                src={{ image.url }}
+                width={{ image.width }}
+                height={{ image.height }}
+            />
+        </div>
+        <h2 class="gallery-title">{{ title }}
+        </h2>
+    </a>
+</div>
