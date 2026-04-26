@@ -22,7 +22,7 @@
                 <br/>
                 Characters:
                 {% for char in page.taxonomies.characters %}
-                    <a href="{{get_taxonomy_url(kind="characters", name=char )}}">{{ char }}</a>
+                    <a href="/characters/{{ char | slugify }}">{{ char }}</a>
                     {%- if not loop.last -%}
                     ,
                     {%- endif -%}

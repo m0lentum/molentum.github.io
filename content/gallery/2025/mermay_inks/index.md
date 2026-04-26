@@ -15,7 +15,7 @@ enable_webmentions = false
 mastodon_url = ""
 +++
 
-Portraits of [Aava](/gallery/2025/aava/) drawn with ink on paper
+Portraits of [Aava](/characters/aava/) drawn with ink on paper
 during the month of May,
 featuring some experimental use of colored inks.
 

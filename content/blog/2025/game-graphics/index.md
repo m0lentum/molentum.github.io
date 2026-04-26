@@ -97,7 +97,7 @@ This character is the protagonist of Flamegrower,
 a physics-based platformer I'm very slowly working on.
 The narrative of the game has since shifted quite a bit,
 and her design with it, turning her from an android gardener
-into [Ivu the dryad](/gallery/2024/ivu/).
+into [Ivu the dryad](/characters/ivu/).
 {% end %}
 
 {% sidenote() %}

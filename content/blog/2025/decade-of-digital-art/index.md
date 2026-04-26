@@ -266,7 +266,7 @@ but I'll keep it to a few highlights.
 
 [This one](/gallery/2023/canopy/) pushed the scale of my environments further than ever
 and has a certain peaceful yet grand mood that influenced my later work in a big way.
-The character didn't have a deeper story at the time but later turned into a prototypical [Miriel](/gallery/2024/miriel/).
+The character didn't have a deeper story at the time but later turned into a prototypical [Miriel](/characters/miriel/).
 
 {{ fit_img(width=800, height=800,
 alt="Digital drawing of a foggy forest at sunset, viewed from the top branches of a tall tree.

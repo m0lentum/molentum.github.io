@@ -1,0 +1,56 @@
+{% extends "index.html" -%}
+{% import "macros/gallery_link.html" as gl %}
+
+{%- block title %}
+    <title>{{ config.title }}/{{ page.title }}</title>
+{%- endblock title -%}
+
+{%- block main -%}
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                {# ad-hoc breadcrumb in the title
+                because it's hard to get back to the characters page otherwise atm.
+                probably should add a breadcrumb everywhere instead #}
+                {% for anc in page.ancestors %}
+                {% set anc = get_section(path=anc) %}
+                {% if anc.title %}
+                <a class="breadcrumb" href="{{ anc.permalink }}">{{ anc.title }}</a>
+                <span class="breadcrumb"> / </span>
+                {% endif %}
+                {% endfor %}
+                <a href="{{ page.permalink }}">{{ page.extra.character }}</a>
+            </h1>
+            <div class="post-meta">
+                <span class="post-date">
+                    {%- if page.date -%}
+                        Created: {{ page.date | date(format="%Y.%m.%d") }} <br/>
+                    {%- endif -%}
+                    {%- if page.updated -%}
+                        Last updated: {{ page.updated | date(format="%Y.%m.%d") }} <br/>
+                    {%- endif -%}
+                </span>
+            </div>
+        </header>
+
+        {# note: main image on character pages is the square portrait,
+        never included in the actual page (in page_artwork.html it's here) #}
+
+        {{ page.content | safe }}
+
+        {% set term = get_taxonomy_term(kind="characters", term=page.extra.character, required=false) %}
+
+        <h2>
+            Artworks featuring {{ page.extra.character }}
+            ({% if term %}{{ term.page_count }}{% else %}0{% endif %} pages):
+        </h2>
+    </article>
+
+    {% if term %}
+    <div class="posts gallery">
+        {%- for page in term.pages -%}
+            {{ gl::gallery_link(page=page) }}
+        {%- endfor -%}
+    </div>
+    {% endif %}
+{%- endblock main -%}

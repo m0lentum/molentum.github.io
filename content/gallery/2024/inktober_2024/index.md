@@ -16,7 +16,7 @@ skip_main_image = true
 I did Inktober every other day again this year,
 incorporating colored inks for the first time
 to varying levels of success.
-I used the travel-themed prompts to explore [Miriel](../miriel/)'s adventures
+I used the travel-themed prompts to explore [Miriel](/characters/miriel/)'s adventures
 and develop the world she lives in.
 
 <!-- more -->

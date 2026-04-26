@@ -1,5 +1,6 @@
 {% extends "index.html" -%}
 {% import "zerm/templates/macros/lists.html" as lists -%}
+{% import "macros/gallery_link.html" as gl %}
 
 {%- block title %}
     <title>{{ config.title }}/{{ section.title }}</title>
@@ -26,49 +27,11 @@
         {%- block page_list -%}
             <section class="posts gallery">
                 {%- for page in paginator.pages -%}
-                <div class="gallery-post">
-                    {% set path = page.path ~ page.extra.main_image %}
-                    {% set meta = get_image_metadata(path=path) %}
-                    {# crop the image such that the shorter side is section.extra.image_size #}
-                    {% if meta.width < meta.height %}
-                        {% set image = resize_image(
-                            path=path,
-                            width=section.extra.image_size,
-                            op="fit_width",
-                            quality=100,
-                        ) %}
-                    {% else %}
-                        {% set image = resize_image(
-                            path=path,
-                            height=section.extra.image_size,
-                            op="fit_height",
-                            quality=100,
-                        ) %}
-                    {% endif %}
-                    <a href={{ page.permalink }}>
-                        <div class="gallery-image">
-                            <img 
-                                src={{ image.url }}
-                                alt="{{ page.extra.main_image_alt }}"
-                                width={{ image.width }}
-                                height={{ image.height }}
-                            />
-                            {% if page.extra.license and page.extra.license == "CC0" %}
-                            <div class="license-badge">
-                                <span>CC0</span>
-                            </div>
-                            {% endif %}
-                            {% set img_count = page.assets | length %}
-                            {% if img_count > 1 %}
-                            <div class="count-badge">
-                                <span>{{ img_count }} images</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <h2 class="gallery-title">{{ page.title }}
-                        </h2>
-                    </a>
-                </div>
+                {{ gl::gallery_link(
+                    page=page, 
+                    size=section.extra.image_size,
+                    badges=section.extra.show_badges or false,
+                )}}
                 {%- endfor -%}
             </section>
         {%- endblock page_list-%}

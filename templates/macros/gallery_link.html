@@ -1,0 +1,50 @@
+{# link to a gallery page that shows the page's main image,
+as used in the gallery listing and some other places #}
+
+{% macro gallery_link(page, size=300, badges=true) %}
+<div class="gallery-post">
+    {% set path = "@/" ~ page.colocated_path ~ page.extra.main_image %}
+    {% set meta = get_image_metadata(path=path) %}
+    {# crop the image such that the shorter side is section.extra.image_size #}
+    {% if meta.width < meta.height %}
+        {% set image = resize_image(
+            path=path,
+            width=size,
+            op="fit_width",
+            quality=100,
+        ) %}
+    {% else %}
+        {% set image = resize_image(
+            path=path,
+            height=size,
+            op="fit_height",
+            quality=100,
+        ) %}
+    {% endif %}
+    <a href={{ page.permalink }}>
+        <div class="gallery-image">
+            <img 
+                src={{ image.url }}
+                alt="{{ page.extra.main_image_alt }}"
+                width={{ image.width }}
+                height={{ image.height }}
+            />
+            {% if badges %}
+                {% if page.extra.license and page.extra.license == "CC0" %}
+                <div class="license-badge">
+                    <span>CC0</span>
+                </div>
+                {% endif %}
+                {% set img_count = page.assets | length %}
+                {% if img_count > 1 %}
+                <div class="count-badge">
+                    <span>{{ img_count }} images</span>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <h2 class="gallery-title">{{ page.title }}
+        </h2>
+    </a>
+</div>
+{% endmacro gallery_link %}
