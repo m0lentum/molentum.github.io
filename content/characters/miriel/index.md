@@ -1,7 +1,7 @@
 +++
 title = "Miriel"
 date = 2024-07-14
-updated = 2026-04-18
+updated = 2026-04-26
 [extra]
 container_classes = "gallery-container"
 character = "Miriel"

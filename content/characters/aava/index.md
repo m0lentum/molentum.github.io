@@ -1,7 +1,7 @@
 +++
 title = "Aava"
 date = 2025-04-19
-updated = 2026-04-18
+updated = 2026-04-26
 [extra]
 container_classes = "gallery-container"
 character = "Aava"
@@ -15,7 +15,7 @@ with an embroidered belt around the waist and chains of jewelry hanging off it.
 She also wears various other jewelry around the arms and the head and heavy smoky-eye makeup.
 Her body is colored with drab greens and grays, evoking some kind of Nordic freshwater fish.](aava_halter_fancy.jpg)
 
-Merfolk are uniquely well suited for the study of marine biology
+[Merfolk] are uniquely well suited for the study of marine biology
 (on account of the ability to stay underwater indefinitely),
 so many of their institutes of higher learning are focused on the topic.
 Aava is one young researcher in the field and an amateur sculptor,
@@ -38,3 +38,25 @@ and less jewelry and makeup.](aava_halter_casual.jpg)
 
 ![Aava wearing the same dress as before but colored pink instead of blue,
 with less jewelry and makeup.](aava_dress_casual.jpg)
+
+
+## Relationships
+
+- [Miriel]\: friend.
+  Miriel's band of elves once visited Aava's home town during their summer travels,
+  where Miriel encountered Aava's sculpture work.
+  They found they had many mutual interests
+  in art, wildlife, and fashion.
+- [Olivia]\: friends / maybe more?
+  Originally met due to Aava's father Vetten (design TBD),
+  who is Olivia and Basil's supervising professor.
+  Aava is even more flirty than usual with Olivia,
+  who gets uncharacteristically flustered by this.
+  Neither admits they're in love, but it seems likely that they kiss behind closed doors.
+- [Basil]\: friend. See above.
+  
+
+[merfolk]: /notes/yon/#merfolk
+[miriel]: /characters/miriel
+[olivia]: /characters/olivia
+[basil]: /characters/basil

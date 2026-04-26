@@ -243,6 +243,12 @@ Characters:
     img_file="aava_square.jpg",
     size=200
 ) }}
+{{ gallery_link(
+    title="Salma",
+    page_path="@/characters/salma/",
+    img_file="salma_square.jpg",
+    size=200
+) }}
 </div>
 
 
