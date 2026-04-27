@@ -11,6 +11,9 @@ Here's a collection of my academic work.
 
 ### Presentation slides
 
+- [Discrete exterior calculus for phonon propagation
+  in layered periodic structures](2026_prague_workshop.pdf)
+  (Workshop on Discrete Exterior Calculus, 2026, Prague)
 - [Simulating waves with discrete exterior calculus](id2025dec.pdf) (Inverse Days 2025)
 
 ### Theses
