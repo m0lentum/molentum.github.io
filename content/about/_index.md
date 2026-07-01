@@ -19,7 +19,7 @@ no_wrap_images = true
 
 Hello and welcome to my website, or web garden,
 tinkering space, whatever you want to call it.
-My name is Mikael Myyrä (English pronouns they/them or he/him), known online as Molentum.
+My name is Mikael Myyrä (English pronouns they/them), known online as Molentum.
 I am a PhD student in computational science at the University of Jyväskylä, Finland,
 and a hobbyist creative person.
 On this site you'll find graphic art and writing about my various projects.
