@@ -1,9 +1,12 @@
 +++
 title = "Yon — worldbuilding notes"
-updated = 2025-04-19
+updated = 2026-07-04
 slug = "yon"
 [extra]
 show_toc = true
+edits = [
+"2026-07-04: Elaborate on magic and its history"
+]
 +++
 
 Much of my art from 2024 onwards has been situated
@@ -38,9 +41,10 @@ It's also not a world of larger-than-life stories and high conflict,
 lending itself mostly to cozy slices of life
 and an aesthetic backdrop for whatever I feel like drawing at any given time.
 
-There are, however, hints of a darker past,
-which we may learn more about
-whenever I happen to find myself in a sufficiently bleak mood.
+It wasn't always this serene, though.
+The ancient history of Yon is full of war and struggle,
+and remnants of past evils remain to this day
+in corners of the world where few dare trespass.
 
 
 ## Geography
@@ -65,18 +69,47 @@ to ensure each community can be entirely supported by locally procured food and 
 
 ## Magic
 
-It is presently somewhat unclear what magic exists in this world
-and how it operates.
-Some creatures are known to be magical in nature —
-specifically the dryads, who can manipulate the growth of plants
-and light fires with a touch.
-However, most inhabitants of Yon (Yonders?) have no such powers,
-relying on nature, technology, and one another for their survival.
+There are rare creatures on Yon that hold inherent magical powers,
+nature spirits such as dryads being the most prominent example.
+For everyone else, magic requires raw materials
+which are generally very difficult to obtain:
+arcane carbon chains and aether-conducting manadium crystals from deep beneath the earth,
+microscopic motes of raw life-force diffused across the oceans,
+threads of pure thought woven by the now-presumed-extinct dream spiders of Soporia,
+the fire of a dryad's heart freely given.
+For most people across most of history, magic was the stuff of folk myths and tall tales.
 
+Centuries ago, as industrial methods of extraction became available,
+a handful of factions began to gather huge stockpiles of these materials.
+They built the most destructive arsenal of weapons ever known,
+subjugating the peoples of Yon under mighty nation-states
+and culminating in the pivotal war now known as the Excess.
+Some decades later, as the last of the rulers who brought on this calamity
+were finally done clinging onto their power,
+it was decided that the remaining stockpiles of raw magic
+should be destroyed and none ever created again.
+Some were literally launched into the sun,
+others wiped from existence with their own destructive power,
+others still channeled back into the nature from whence they came
+to scab over the deep wounds left in the planet.
 
-## History
+Magic still lingers in the places most affected by the Excess —
+the residue of weapons and monsters too dangerous or difficult to clean up,
+the places too far gone to keep living in.
+Many magical materials can still be obtained,
+but attempts to create new industrial-scale operations
+have been rare and swiftly rejected, with violence if necessary.
 
-Nothing here yet.
+Today, magic continues to be widely shunned, even hated,
+much like the systems of power that allowed its consolidation to happen.
+There are always those driven to dabble with it
+out of curiosity or greed, perhaps even out of noble intentions,
+but those who refuse to stop at angsty teenage smoke spells and love potions
+tend to find themselves cast out of communities and left to fend for themselves.
+Some say it's a shame that such a powerful feature of the universe
+is left untouched and unresearched,
+but most would agree there's more than enough power
+and interesting things to learn in ordinary materials.
 
 
 ## Characters
