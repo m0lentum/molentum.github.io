@@ -15,8 +15,9 @@ build:
 publish: build
   git rm -r "[!.git]*"
   mv public/** ./
+  touch .nojekyll
   echo "molentum.me" > .domains
-  echo "molentum.codeberg.page" >> .domains
+  # echo "molentum.codeberg.page" >> .domains
   git add -A
   git commit -m "publish"
   git push origin HEAD:pages --force
