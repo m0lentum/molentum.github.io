@@ -1,13 +1,16 @@
 +++
 title = "Miriel"
 date = 2024-07-14
-updated = 2026-04-26
+updated = 2026-07-14
 [extra]
 container_classes = "gallery-container"
 character = "Miriel"
 main_image = "miriel_square.jpg"
 main_image_alt = """A red-haired elven woman wearing a sleeveless leather-reinforced tunic
 and carrying a bow."""
+edits = [
+"2026-07-14: Add link to 'Of elves and worlds' blog post",
+]
 +++
 
 ![Miriel, a red-haired elven woman, wearing her hunting/fishing gear:
@@ -43,11 +46,8 @@ and still the one most personally meaningful to me.
 In fact, she's somewhat of a self-representation (an "elfsona", perhaps) —
 not a 1-to-1 recreation of me, obviously,
 but in many ways a reflection of who I am or who I'd like to be.
-I didn't fully realize this at the time I designed her,
-but seeing and embracing myself in her
-has turned out to be a surprisingly powerful tool
-for understanding myself, my dreams and emotions,
-and working on complex problems like loneliness and gender identity.
+[Here's a blog post][of-elves-and-worlds] discussing her
+and the wider Yon project's personal significance to me.
 
 
 ## Relationships
@@ -82,3 +82,4 @@ and working on complex problems like loneliness and gender identity.
 [aava]: /characters/aava/
 [elegil]: /characters/elegil/
 [ivu]: /characters/ivu/
+[of-elves-and-worlds]: /blog/2026/of-elves-and-worlds/

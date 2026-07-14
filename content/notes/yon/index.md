@@ -1,11 +1,12 @@
 +++
 title = "Yon — worldbuilding notes"
-updated = 2026-07-04
+updated = 2026-07-14
 slug = "yon"
 [extra]
 show_toc = true
 edits = [
-"2026-07-04: Elaborate on magic and its history"
+"2026-07-04: Elaborate on magic and its history",
+"2026-07-14: Add link to 'Of elves and worlds' blog post",
 ]
 +++
 
@@ -45,6 +46,11 @@ It wasn't always this serene, though.
 The ancient history of Yon is full of war and struggle,
 and remnants of past evils remain to this day
 in corners of the world where few dare trespass.
+
+{% sidenote() %}
+This project has grown to be more personally meaningful to me than I ever expected.
+I've written down some of my thoughts and feelings about it in [this blog post](/blog/2026/of-elves-and-worlds/).
+{% end %}
 
 
 ## Geography
